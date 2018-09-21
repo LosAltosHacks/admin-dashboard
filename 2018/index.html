@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Los Altos Hacks III - High School Hackathon</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta property="og:title" content="Los Altos Hacks III" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://www.losaltoshacks.com/" />
+	<meta property="og:description" content="A 24-hour high school hackathon. Coming early 2018." />
+	<meta property="og:image" content="https://www.losaltoshacks.com/images/social-media.jpg" />
+
+	<meta name="twitter:title" content="Los Altos Hacks III">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@losaltoshacks">
+	<meta name="twitter:description" content="A 24-hour high school hackathon. Coming early 2018.">
+	<meta name="twitter:image" content="http://www.losaltoshacks.com/images/social-media.jpg">
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="apple-touch-icon" href="touch-icon.png">
+
+	<link href="css/fonts.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+
+	<script>
+		// MailChimp
+		!function(c, h, i, m, p) {
+			m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p)
+		}(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/48c677497c434b91bc928d44c/0a7ff0db52e30aa7726609f1a.js")
+	</script>
+</head>
+
+<body>
+	<main>
+		<!-- Top -->
+		<section id="top">
+			<canvas id="top-canvas"></canvas>
+			<div id="teaser-animation-wrapper">
+				<canvas id="teaser-animation"></canvas>
+			</div>
+			<div id="top-text" class="gradient-text">
+				<h1>Los Altos<br/>Hacks III</h1>
+				<p class="date"><time>March 24 - 25, 2018</time></p>
+				<p class="venue"><a href="https://goo.gl/maps/d8XScSN25km">Juniper Aspiration Dome<br><span class="address">1081 Innovation Way, Sunnyvale, CA</a></p>
+			</div>
+			<div class="row" id="top-main"></div>
+			<template id="template-apply">
+				<h2 class="gradient-text">Apply Now!</h2>
+				<a class="button blue" href="https://losaltoshacks.typeform.com/to/A5wAta" target="_blank"><span>Hacker</span></a>
+				<a class="button darkblue" href="https://losaltoshacks.typeform.com/to/vAS4L4" target="_blank"><span>Mentor</span></a>
+			</template>
+			<template id="template-countdown">
+				<h2 class="gradient-text">Get Ready!</h2>
+				<div>
+					<div>
+						<h3 id="countdown-label">Opening Ceremony starts in</h3>
+						<p><date id="countdown"></date></p>
+					</div>
+				</div>
+			</template>
+			<template id="template-event">
+				<h2 class="gradient-text">Hacking In Progress!</h2>
+				<a class="button darkblue" href="/dashboard" target="_blank"><span>Visit Dashboard</span></a>
+			</template>
+			<template id="template-post-event">
+				<a class="button darkblue" href="https://losaltoshacks3.devpost.com/submissions" target="_blank"><span>View Submissions &amp; Winners</span></a>
+			</template>
+		</section>
+
+		<!-- About -->
+		<section id="about">
+			<div class="row">
+				<div>
+					<h2 class="gradient-text">Los Altos's third annual high school hackathon</h2>
+					<p>We bring together hundreds of high school students from across the Bay Area to work together and make their ideas a reality.</p>
+					<p>We'll provide the food, refreshments and hacking spaces for you—the hackers—to do your magic. Just bring your ideas and your passion!</p>
+
+					<!-- <form action="//losaltoshacks.us16.list-manage.com/subscribe/post?u=48c677497c434b91bc928d44c&amp;id=02f44c6658" method="post" id="email-signup" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+						<h4 id="email-signup-label">Sign up to receive updates:</h3>
+						<input type="email" value="" name="EMAIL" id="email-input" placeholder="Your email address" required="">
+						<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_48c677497c434b91bc928d44c_02f44c6658" tabindex="-1" value=""></div>
+						<input type="submit" value="Subscribe" name="subscribe" id="subscribe-input">
+					</form> -->
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section id="faq">
+			<div class="row">
+				<div>
+					<h2>FAQ</h2>
+					<div class="faq-wrapper row columns-half">
+						<details>
+							<summary><h3>What is Los Altos Hacks?</h3></summary>
+							<div>
+								<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>Who can participate?</h3></summary>
+							<div>
+								<p>Any high school student can participate. If you've graduated from high school, you can only apply to be a mentor. If you're in middle school, you may be able to participate; please contact us at <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a> for more information.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>How do I form or join a team?</h3></summary>
+							<div>
+								<p>There will be a session at the beginning of the hackathon for you to meet others and form teams. Each team may have a maximum of four people.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>Does this cost money?</h3></summary>
+							<div>
+								<p>No! Los Altos Hacks is free for all participants—food, swag, and other costs are covered. We don't provide travel reimbursements, however.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>What if I can't code?</h3></summary>
+							<div>
+								<p>No problem! Experience isn't required to attend. Plus, we'll have workshops where you can learn.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>What should I bring?</h3></summary>
+							<div>
+								<p>Bring a valid student ID, a laptop, chargers, a reusable water bottle (we will not provide plastic bottles), and the signed Parent Packet (you can also complete it online). Power strips, sleeping bags, and toiletries are highly recommended.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>What if I have dietary restrictions?</h3></summary>
+							<div>
+								<p>No problem! If you have dietary restrictions, simply add them to your application when you sign up, and we will accommodate for you! Additionally, each meal will have vegan, gluten free, and vegetarian options for everyone.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>Is there a Code of Conduct?</h3></summary>
+							<div>
+								<p>Yes, there is! All attendees are required to review and abide by the <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a> during the event.</p>
+							</div>
+						</details>
+						<details>
+							<summary><h3>I have another question...</h3></summary>
+							<div>
+								<p>We're here for you! Send us an email at <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a> or feel free to reach out to us on <a href="https://twitter.com/losaltoshacks" target="_blank">Twitter</a> or <a href="https://www.facebook.com/losaltoshacks/" target="_blank">Facebook</a>.</p>
+							</div>
+						</details>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Schedule -->
+		<section id="schedule">
+			<div class="row">
+				<div>
+					<h2>Schedule*</h2>
+					<h3>Saturday - March 24</h3>
+					<table>
+						<tr><th>Time</th><th>Event</th><th>Location</th></tr>
+						<tr><td>10 AM</td><td>Check In</td><td>Juniper Aspiration Dome</td></tr>
+						<tr><td>10:30 AM</td><td>Waitlist Check In; Mentor Meeting</td><td>Juniper Aspiration Dome</td></tr>
+						<tr><td>11 AM</td><td>Opening Ceremony</td><td>Main Stage</td></tr>
+						<tr><td>12 PM</td><td>Lunch; Hacking Begins</td><td>Everywhere</td></tr>
+						<tr><td>12:30 PM</td><td>Team Mixer</td><td>Workshop Area</td></tr>
+						<tr><td>1 PM</td><td><h4>Make Your Own Website Workshop</h4><p>Courtesy of Hack Club</p></td><td>Workshop Area</td></tr>
+						<tr><td>4 PM</td><td><h4>Hack the Hackers (Now That's Meta)</h4><p>Use the Bugcrowd API to build your own security app</p></td><td>Workshop Area</td></tr>
+						<tr><td>5 PM</td><td><h4>1517 Social</h4><p>Talk with experts about your project!</p></td><td>Workshop Area</td></tr>
+						<tr><td>7 PM</td><td>Dinner</td><td>Everywhere</td></tr>
+						<tr><td>9 PM</td><td>Cup Stacking</td><td>Main Stage</td></tr>
+						<tr><td>10 PM</td><td>Capture The Flag</td><td>Everywhere</td></tr>
+					</table>
+					<h3>Sunday - March 25</h3>
+					<table>
+						<tr><th>Time</th><th>Event</th><th>Location</th></tr>
+						<tr><td>12 AM</td><td>Midnight Surprise</td><td>Everywhere</td></tr>
+						<tr><td>1 AM</td><td><p>Super Smash Bros. Melee Tournament</p><p>Powered by Discord</p></td><td>Workshop Area</td></tr>
+						<tr><td>8 AM</td><td>Breakfast; Submissions to Devpost</td><td>Everywhere</td></tr>
+						<tr><td>8:30 AM</td><td>Judges Arive &amp; Meet</td><td>Juniper Aspiration Dome</td></tr>
+						<tr><td>9 AM</td><td>Judging</td><td>Everywhere</td></tr>
+						<tr><td>11 AM</td><td>Closing Ceremony</td><td>Main Stage</td></tr>
+						<tr><td>12 PM</td><td>End of Hackathon</td><td>Everywhere</td></tr>
+					</table>
+					<p><small>*Subject to change.</small></p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Partners -->
+		<section id="partners">
+			<div class="row">
+				<div>
+					<h2>Partners</h2>
+					<!-- Partner Images -->
+					<div class="row">
+						<a target="_blank" href="https://www.juniper.net/us/en/"><img src="images/sponsors/juniper.png" alt="Juniper Networks" title="Juniper Networks"></a>
+					</div>
+					<div class="row columns-medium">
+						<a target="_blank" href="https://mlh.io/"><img src="images/sponsors/mlh.png" alt="Major League Hacking" title="Major League Hacking"></a>
+						<a target="_blank" href="https://hackplus.io/"><img src="images/sponsors/hack+.png" alt="Hack+" title="Hack+"></a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Our Sponsors -->
+		<section id="sponsors">
+			<div class="row">
+				<div>
+					<h2>Our Sponsors</h2>
+					<div class="row columns-medium">
+						<a target="_blank" href="https://www.udacity.com/"><img src="images/sponsors/udacity.png" alt="Udacity" title="Udacity"></a>
+						<a target="_blank" href="https://www.vmware.com/"><img src="images/sponsors/vmware.png" alt="VMWare" title="VMWare"></a>
+					</div>
+					<div class="row columns-medium">
+						<a target="_blank" href="http://losaltoscf.org/"><img src="images/sponsors/lacf.png" alt="Los Altos Community Foundation" title="Los Altos Community Foundation"></a>
+					</div>
+					<div class="row columns-medium">
+						<a target="_blank" href="https://www.makeschool.com/"><img src="images/sponsors/makeschool.png" alt="Make School" title="Make School"></a>
+						<a target="_blank" href="https://www.bugcrowd.com/"><img src="images/sponsors/bugcrowd.png" alt="Bugcrowd" title="Bugcrowd"></a>
+						<a target="_blank" href="https://www.yubico.com/"><img src="images/sponsors/yubico.png" alt="Yubico" title="Yubico"></a>
+						<a target="_blank" href="https://www.citrix.com/"><img src="images/sponsors/citrix.png" alt="Citrix" title="Citrix"></a>
+						<a target="_blank" href="https://www.siliconvalleycf.org/"><img src="images/sponsors/svcf.png" alt="Silicon Valley Community Foundation" title="Silicon Valley Community Foundation"></a>
+						<a target="_blank" href="https://www.heroku.com/"><img src="images/sponsors/heroku.png" alt="Heroku" title="Heroku"></a>
+						<a target="_blank" href="https://www.mongodb.com/"><img src="images/sponsors/mongodb.png" alt="MongoDB" title="MongoDB"></a>
+						<a target="_blank" href="http://www.belkin.com/us/"><img src="images/sponsors/belkin.png" alt="Belkin" title="Belkin"></a>
+						<a target="_blank" href="https://balsamiq.com"><img src="images/sponsors/balsamiq.png" alt="Balsamiq" title="Balsamiq"></a>
+					</div>
+					<div class="row columns-small">
+						<a target="_blank" href="http://www.brandmakers.com/"><img src="images/sponsors/brandmakers.png" alt="Brand Makers" title="Brand Makers"></a>
+						<a target="_blank" href="https://www.stickermule.com/"><img src="images/sponsors/stickermule.png" alt="Sticker Mule" title="Sticker Mule"></a>
+						<a target="_blank" href="http://neurosky.com/"><img src="images/sponsors/neurosky.png" alt="NeurySky" title="NeurySky"></a>
+						<a target="_blank" href="http://get.tech/"><img src="images/sponsors/tech.png" alt=".TECH" title=".TECH"></a>
+						<a target="_blank" href="https://nootrobox.com/?ref=lahacks"><img src="images/sponsors/gocubes.png" alt="Go Cubes" title="Go Cubes"></a>
+						<a target="_blank" href="https://yelp.com/"><img src="images/sponsors/yelp.png" alt="Yelp" title="Yelp"></a>
+						<a target="_blank" href="https://quizlet.com/"><img src="images/sponsors/quizlet.png" alt="Quizlet" title="Quizlet"></a>
+						<a target="_blank" href="https://digitalocean.com"><img src="images/sponsors/digitalocean.png" alt="Digital Ocean" title="Digital Ocean"></a>
+						<a target="_blank" href="https://www.discordapp.com/"><img src="images/sponsors/discord.png" alt="Discord" title="Discord"></a>
+						<a target="_blank" href="https://www.ea.com/"><img src="images/sponsors/ea.png" alt="EA" title="EA"></a>
+						<a target="_blank" href="https://www.realvnc.com"><img src="images/sponsors/realvnc.png" alt="RealVNC" title="RealVNC"></a>
+						<a target="_blank" href="https://www.algolia.com/"><img src="images/sponsors/algolia.png" alt="Algolia" title="Algolia"></a>
+						<a target="_blank" href="http://www.davincischools.org/"><img src="images/sponsors/davinci.png" alt="Da Vinci" title="Da Vinci"></a>
+						<a target="_blank" href="http://www.1517fund.com/"><img src="images/sponsors/1517.png" alt="1517" title="1517"></a>
+						<a target="_blank" href="https://www.jetbrains.com/"><img src="images/sponsors/jetbrains.png" alt="JetBrains" title="JetBrains"></a>
+						<a target="_blank" href="https://sketchapp.com"><img src="images/sponsors/sketch.png" alt="Sketch" title="Sketch"></a>
+						<a target="_blank" href="https://www.desmos.com/"><img src="images/sponsors/desmos.png" alt="Desmos" title="Desmos"></a>
+						<a target="_blank" href="https://www.wolframalpha.com/"><img src="images/sponsors/wolfram.png" alt="Wolfram" title="Wolfram"></a>
+						<a target="_blank" href="https://codehs.com/"><img src="images/sponsors/codehs.png" alt="CodeHS" title="CodeHS"></a>
+						<a target="_blank" href="https://www.interviewcake.com/"><img src="images/sponsors/interviewcake.png" alt="Interview Cake" title="Interview Cake"></a>
+						<a target="_blank" href="https://www.twilio.com/"><img src="images/sponsors/twilio.png" alt="Twilio" title="Twilio"></a>
+						<a target="_blank" href="https://girlsintech.org/"><img src="images/sponsors/girlsintech.png" alt="Girls in Tech" title="Girls in Tech"></a>
+						<a target="_blank" href="https://hackclub.com/"><img src="images/sponsors/hackclub.png" alt="Hack Club" title="Hack Club"></a>
+						<a target="_blank" href="https://www.youtube.com/channel/UCgCDXXQ2lcJFNlP90H5G2HA"><img src="images/sponsors/lahsgreenteam.png" alt="LAHS Green Team" title="LAHS Green Team"></a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Food Partners -->
+		<section id="food">
+			<div class="row">
+				<div>
+					<h2>Food Partners</h2>
+					<div class="row columns-half">
+						<a target="_blank" href="https://www.teaspoonlife.com/"><img src="images/sponsors/teaspoon.png" alt="Teaspoon" title="Teaspoon"></a>
+						<a target="_blank" href="http://bluelinepizza.com/"><img src="images/sponsors/blueline.png" alt="Blue Line Pizza" title="Blue Line Pizza"></a>
+						<a target="_blank" href="http://www.curryupnow.com/"><img src="images/sponsors/curryupnow.png" alt="Curry Up Now" title="Curry Up Now"></a>
+						<a target="_blank" href="http://sunnysidebiscuits.weebly.com/"><img src="images/sponsors/sunnyside.png" alt="Sunnyside Catering and Biscuits" title="Sunnyside Catering and Biscuits"></a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Sponsor Shoutout -->
+		<section id="sponsor-shoutout">
+			<div class="row">
+				<div>
+					<h3 class="sponsor-info">Interested in sponsoring Los Altos Hacks?</h3>
+					<p class="sponsor-info">Check out our <a href="docs/sponsorship.pdf">sponsorship prospectus</a>, and please let us know at <a href="mailto:sponsor@losaltoshacks.com" target="_top">sponsor@losaltoshacks.com</a>!</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Judges -->
+		<section id="judges">
+			<div class="row">
+				<div>
+					<h2>Judges</h2>
+					<div class="judges-wrapper row columns-tiny">
+						<figure>
+							<img src="images/judges/eli.png">
+							<h4>Eli Luberoff</h4>
+							<figcaption>CEO</figcaption>
+							<figcaption>Desmos</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/ellen.jpeg">
+							<h4>Ellen Hardy</h4>
+							<figcaption>Chief Operating Officer</figcaption>
+							<figcaption>TCI</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/james.jpg">
+							<h4>James Richards</h4>
+							<figcaption>VP of Engineering</figcaption>
+							<figcaption>Udacity</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/morris.png">
+							<h4>Morris Thai</h4>
+							<figcaption>Senior Product Manager</figcaption>
+							<figcaption>TCI</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/genevieve.JPG">
+							<h4>Genevieve Johnson</h4>
+							<figcaption>Senior Designer</figcaption>
+							<figcaption>Roblox</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/ben.jpg">
+							<h4>Ben Lai</h4>
+							<figcaption>Senior Software Engineer</figcaption>
+							<figcaption>LinkedIn</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/shirley.jpg">
+							<h4>Shirley Soulouman</h4>
+							<figcaption>Senior Program Manager</figcaption>
+							<figcaption>VMWare</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/lily.jpg">
+							<h4>Lily Chang</h4>
+							<figcaption>Vice President, Strategic Transformation</figcaption>
+							<figcaption>VMWare</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/john.JPG">
+							<h4>John Yu</h4>
+							<figcaption>Partner</figcaption>
+							<figcaption>Oriza Ventures</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/jim.png">
+							<h4>Dmitriy Kolchin</h4>
+							<figcaption>Serial Entrepreneur</figcaption>
+							<figcaption>ReSHARP</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/kurush.jpg">
+							<h4>Kurush Dubash</h4>
+							<figcaption>Software Engineer</figcaption>
+							<figcaption>Adobe</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/melanie.jpg">
+							<h4>Melanie Silva</h4>
+							<figcaption>User Experience Designer</figcaption>
+							<figcaption>Adobe</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/areeta.jpg">
+							<h4>Areeta Wong</h4>
+							<figcaption>Director of Event Management</figcaption>
+							<figcaption>Hack+</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/lester.JPG">
+							<h4>Lester Bird</h4>
+							<figcaption>Distinguished Engineer</figcaption>
+							<figcaption>Juniper Networks</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/avinash.JPG">
+							<h4>Avinash Reddy</h4>
+							<figcaption>Software Engineer</figcaption>
+							<figcaption>Juniper Networks</figcaption>
+						</figure>
+						<figure>
+							<img src="images/judges/nandan.JPG">
+							<h4>Nandan Paramashiva</h4>
+							<figcaption>Software Engineer</figcaption>
+							<figcaption>Juniper Networks</figcaption>
+						</figure>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Team -->
+		<section id="team">
+			<div class="row">
+				<div>
+					<h2>Our Team</h2>
+					<div class="team-wrapper row columns-small">
+						<figure>
+							<img src="images/team/jamsheed.JPG">
+							<h4>Jamsheed Mistri</h4>
+							<figcaption>Lead &amp; Sponsorship Director</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/an.JPG">
+							<h4>An Huynh</h4>
+							<figcaption>Outreach Director</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/justin.JPG">
+							<h4>Justin Yu</h4>
+							<figcaption>Tech Director</figcaption>
+						</figure>
+					</div>
+					<div class="team-wrapper row columns-tiny">
+						<figure>
+							<img src="images/team/dan.JPG">
+							<h4>Dan Appel</h4>
+							<figcaption>Tech Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/krizia.JPG">
+							<h4>Krizia Araracap</h4>
+							<figcaption>Outreach &amp; Design Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/oscar.JPG">
+							<h4>Oscar Bjorkman</h4>
+							<figcaption>Tech &amp; Design Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/ryan.JPG">
+							<h4>Ryan Huang</h4>
+							<figcaption>Tech &amp; Design Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/leo.JPG">
+							<h4>Leo Lin</h4>
+							<figcaption>Sponsorship &amp; Outreach Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/kylemarino.JPG">
+							<h4>Kyle Marino</h4>
+							<figcaption>Sponsorship &amp; Tech Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/kat.JPG">
+							<h4>Katherine Nasif</h4>
+							<figcaption>Outreach Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/kylesandell.JPG">
+							<h4>Kyle Sandell</h4>
+							<figcaption>Tech Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/anya.JPG">
+							<h4>Anya Sharma</h4>
+							<figcaption>Sponsorship Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/sam.JPG">
+							<h4>Samuel Shi</h4>
+							<figcaption>Outreach Team</figcaption>
+						</figure>
+						<figure>
+							<img src="images/team/darryl.JPG">
+							<h4>Darryl Yeo</h4>
+							<figcaption>Tech &amp; Design Team</figcaption>
+						</figure>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Past Year Sites -->
+		<section id="past-years">
+			<div class="row">
+				<div>
+					<h2>Past Years</h2>
+					<div class="row columns-small">
+						<a href="/2016"><img src="images/2016.png" alt="2016"></a>
+						<a href="/2017"><img src="images/2017.png" alt="2017"></a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="row">
+			<div>
+				<p class="social-media">
+					<a href="https://facebook.com/losaltoshacks" title="Facebook: /losaltoshacks" target="_blank" style="color: #3a589b"><svg height="67" width="67"><path d="M29.765 50.32h6.744V33.998h4.499l.596-5.624h-5.095l.007-2.816c0-1.466.14-2.253 2.244-2.253h2.812V17.68h-4.5c-5.405 0-7.307 2.729-7.307 7.317v3.377h-3.369v5.625h3.369V50.32zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30c0 16.568-13.432 30-30 30z" fill-rule="evenodd" fill="currentColor"/></svg></a>
+					<a href="https://twitter.com/losaltoshacks" title="Twitter: @losaltoshacks" target="_blank" style="color: #598dca"><svg height="67" width="67"><path d="M38.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173 0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678a11.751 11.751 0 0 1-5.616 1.567c-.944.021-1.719.106-1.719.17 0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.674 5.657-5 6.978-8.221.713-1.715 1.425-4.851 1.425-6.354 0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267 0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932-1.069-.296-2.704-.254-3.668.085zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30c0 16.568-13.432 30-30 30z" fill-rule="evenodd" fill="currentColor"/></svg></a>
+					<a href="https://instagram.com/losaltoshacks" title="Instagram: @losaltoshacks" target="_blank" style="color: #bc2a8d"><svg width="67" height="67"><path d="M43.271 26.578v-.006c.502 0 1.005.01 1.508-.002.646-.016 1.172-.57 1.172-1.217v-2.89c0-.691-.547-1.24-1.236-1.241h-2.883a1.234 1.234 0 0 0-1.236 1.243c-.001.955-.004 1.91.003 2.865a1.4 1.4 0 0 0 .073.426c.173.508.639.82 1.209.823l1.39-.001zM34 27.817a6.181 6.181 0 0 0-.142 12.361c3.454.074 6.248-2.686 6.321-6.043.075-3.46-2.717-6.32-6.179-6.318zm-11.954 3.299v13.627c0 .649.562 1.208 1.212 1.208h21.479c.656 0 1.215-.557 1.215-1.212V31.117H43.04a9.545 9.545 0 0 1 .376 4.014c-.161 1.363-.601 2.631-1.316 3.803s-1.644 2.145-2.779 2.918a9.482 9.482 0 0 1-9.946.428c-1.579-.885-2.819-2.12-3.685-3.713-1.289-2.373-1.495-4.865-.739-7.451h-2.905zm24.159 18.139c.159-.026.318-.049.475-.083 1.246-.265 2.264-1.304 2.508-2.557.025-.137.045-.273.067-.409V21.794c-.021-.133-.04-.268-.065-.401a3.301 3.301 0 0 0-2.78-2.618c-.058-.007-.113-.02-.17-.03H21.761c-.147.027-.296.047-.441.08a3.29 3.29 0 0 0-2.545 2.766c-.008.057-.02.114-.029.171V46.24c.028.154.05.311.085.465a3.302 3.302 0 0 0 2.77 2.52c.064.008.13.021.195.03h24.409zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30c0 16.568-13.432 30-30 30z" fill-rule="evenodd" fill="currentColor"/></svg></a>
+				</p>
+				<p>Copyright © 2017-2018 Los Altos Hacks. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+	<script src="js/moment.min.js"></script>
+	<script src="js/top.js"></script>
+	<script src="js/canvas-animation.js"></script>
+	<script src="js/teaser-animation.js"></script>
+	<script>(function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+	<a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:20px;top:0;width:10%;z-index:10000" href="https://mlh.io/seasons/na-2018/events?utm_source=na-2018&utm_medium=TrustBadge&utm_campaign=na-2018&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/white.svg" alt="Major League Hacking 2017 Hackathon Season" style="width:100%"></a>
+</body>
+
+</html>

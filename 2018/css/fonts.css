@@ -1,0 +1,23 @@
+@font-face {
+	src: url("../fonts/DIN.ttf");
+	font-family: "DIN";
+	font-weight: 400;
+}
+
+@font-face {
+	src: url("../fonts/DIN Medium.ttf");
+	font-family: "DIN";
+	font-weight: 500;
+}
+
+@font-face {
+	src: url("../fonts/DIN Bold.ttf");
+	font-family: "DIN";
+	font-weight: 700;
+}
+
+@font-face {
+	src: url("../fonts/DIN Black.ttf");
+	font-family: "DIN";
+	font-weight: 900;
+}
