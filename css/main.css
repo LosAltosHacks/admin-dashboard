@@ -40,10 +40,10 @@ p, h1, h2, h3, h4, ul {
 	margin: 0;
 }
 	h1 {
-		font-weight: 500;
+		font-weight: 600;
 	}
 	h2, h3, h4 {
-		font-weight: 400;
+		font-weight: 500;
 	}
 	p {
 		font-weight: 300;
@@ -470,7 +470,7 @@ figure:hover img {
 .row figure h4 {
 	margin: 0 -3em;
 	margin-top: 0.75em;
-	font-weight: bold;
+	font-weight: 500;
 }
 .row figure figcaption {
 	font-size: 0.8em;
