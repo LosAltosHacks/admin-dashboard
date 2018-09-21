@@ -2,4 +2,4 @@
 
 # losaltoshacks.github.io
 
-Website for Los Altos Hacks III, [losaltoshacks.com](https://losaltoshacks.com).
+Website for Los Altos Hacks IV, [losaltoshacks.com](https://losaltoshacks.com).
