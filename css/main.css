@@ -1,5 +1,5 @@
 :root {
-	--site-width: 32rem; /* 800px */
+	--site-width: 32rem; 
 	--side-padding: calc((100vw - var(--site-width)) / 2);
 	--nav-background-color: rgba(240, 245, 255, 0.9);
 	--nav-height: 3rem;
@@ -41,7 +41,7 @@ p, h1, h2, h3, h4, ul {
 	color: white;
 }
 	h1 {
-		font-weight: 600;
+		font-weight: 500;
 	}
 	h2, h3, h4 {
 		font-weight: 500;
@@ -83,7 +83,6 @@ a:hover img {
 h1 {
 	font-size: 3rem;
 	line-height: 1.1;
-	text-transform: uppercase;
 }
 
 input {
@@ -205,11 +204,14 @@ section:nth-child(even) {
 footer {
 	align-items: center;
 	padding: 2rem 2rem;
-	background-color: #22303d;
+	background-color: #000;
 	color: white;
 	position: relative;
 }
-
+footer .row {
+	justify-content: left;
+	text-align: left;
+}
 hr {
 	border: 0;
 	clear: both;
@@ -220,7 +222,9 @@ hr {
 	margin: 3.5rem auto;
 	margin-bottom: 2rem;
 }
-
+p.text-tiny {
+	font-size: 0.5rem;
+}
 .row {
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -232,7 +236,7 @@ hr {
 	max-width: 100%;
 }
 .row > :not(:only-child) {
-	padding: 1rem;
+	padding: 1rem 0;
 }
 .row.columns-half > * {
 	flex: 1 320px;
@@ -254,18 +258,31 @@ hr {
 	max-width: calc((80px + 5 * var(--vw)) * 1.5);
 }
 .row > * > * + * {
-	margin-top: 1rem;
+	margin-top: 0.6rem;
+}
+.mt-0 {
+	margin-top: 0 !important;
+}
+h4.dateline {
+	font-size: 1rem;
+	letter-spacing: -1px;
+}
+.text-muted {
+	color: #8e8e8e;
 }
 
 h2 {
+	font-size: 1.8rem;
 	color: white;
-	text-shadow: 0px 0px 5px white;
 }
 
 
 #top {
-
-	min-height: 100vh;
+	/* changed from 100vh to account for fixed navbar, etc. - will need to adapt for responsive*/
+	min-height: 800px;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: start;
 }
 
 #top-canvas {
@@ -283,6 +300,7 @@ h2 {
 		width: 100%;
 		height: 100%;
 		position: fixed;
+		top:0;
 	}
 	#bg-video {
 		min-height: 100%;
@@ -310,18 +328,31 @@ h2 {
 	height: auto;
 	display: block;
 }
-
+#logo-main img {
+	width: 45%; 
+/* responsive needed */
+}
+h1.head-text {
+	font-size: 2rem;
+}
 #info-left {
 	z-index: 1;
 	grid-area: logo;
 	width: 60 * var(--vw);
 	max-width: 100%;
+	text-align: left;
 }
 
 #info-right {
 	z-index: 1;
 	grid-area: details;
 	display: grid;
+	text-align: right;
+}
+#top-text {
+	justify-content: space-between;
+	position: absolute;
+	bottom: 1rem;
 }
 /* #top-text .date {
 	margin-top: 0.5rem;
@@ -381,8 +412,19 @@ h2 {
 
 #about {
 	text-align: left;
+	height: calc(80vh);
+	min-height: 550px;
 }
+#about .row {
+	justify-content: start;
 
+}
+#about p {
+	font-size: 0.8rem;
+}
+#about .row>div {
+	max-width: 70%;
+}
 .faq-wrapper {
 	font-size: 0.75em;
 	line-height: 1.65;
@@ -390,7 +432,7 @@ h2 {
 	text-align: left;
 }
 .faq-wrapper > * {
-	padding: 0 0.5rem;
+	padding: 0.5rem 1rem !important;
 }
 
 summary {
@@ -447,12 +489,14 @@ details[open] > summary + * {
 	font-size: 0.85em;
 }
 
-
+#team { 
+	flex-direction: column;
+}
 #team .team-wrapper {
 	font-size: 0.9em;
 	align-items: start;
 }
-#team figure, #judges figure {
+#team figure, #judges figure, footer figure {
 	margin: 0;
 	padding: 0.75rem;
 	max-width: 225px;
@@ -530,7 +574,6 @@ figure:hover img {
 	color: unset;
 }
 
-
 ::selection {
 	background: #2980b9;
 	background: transparent;
@@ -545,10 +588,3 @@ figure:hover img {
 	color: #02a2dd;
 }
 
-
-/* Workaround for "disappearing Typeform" bug */
-/* See https://codepen.io/darrylyeo/pen/gvONMG */
-iframe {
-	-webkit-transform: none !important;
-	transform: none !important;
-}
