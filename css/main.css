@@ -1,5 +1,5 @@
 :root {
-	--site-width: 32rem;
+	--site-width: 38rem;
 	--side-padding: calc((100vw - var(--site-width)) / 2);
 	--nav-background-color: rgba(240, 245, 255, 0.9);
 	--nav-height: 3rem;
@@ -201,7 +201,9 @@ section {
 	position: relative;
 }
 section:nth-child(even) {
+	background-image: radial-gradient(farthest-corner at 0 0, #094268 0%, #255779 100%);
 	background-color: rgb(29, 101, 132);
+  /*color for fallback*/
 }
 
 footer {
@@ -242,7 +244,7 @@ p.text-tiny {
 	padding: 1rem 0;
 }
 .row.columns-half > * {
-	flex: 1 320px;
+	flex: 1 50%;
 }
 .row.columns-medium > * {
 	flex: 1 calc(240px + 7 * var(--vw));
