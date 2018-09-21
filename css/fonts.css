@@ -1,23 +1,29 @@
 @font-face {
-	src: url("../fonts/DIN.ttf");
-	font-family: "DIN";
+	src: url("../fonts/Poppins-Light.ttf");
+	font-family: "Poppins";
+	font-weight: 300;
+}
+
+@font-face {
+	src: url("../fonts/Poppins-Regular.ttf");
+	font-family: "Poppins";
 	font-weight: 400;
 }
 
 @font-face {
-	src: url("../fonts/DIN Medium.ttf");
-	font-family: "DIN";
+	src: url("../fonts/Poppins-Medium.ttf");
+	font-family: "Poppins";
 	font-weight: 500;
 }
 
 @font-face {
-	src: url("../fonts/DIN Bold.ttf");
-	font-family: "DIN";
+	src: url("../fonts/Poppins-Bold.ttf");
+	font-family: "Poppins";
 	font-weight: 700;
 }
 
 @font-face {
-	src: url("../fonts/DIN Black.ttf");
-	font-family: "DIN";
+	src: url("../fonts/Poppins-Black.ttf");
+	font-family: "Poppins";
 	font-weight: 900;
 }

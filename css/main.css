@@ -15,7 +15,7 @@
 
 	color: rgba(0, 0, 0, 0.9);
 	font-size: calc(12px + var(--vw));
-	font-family: 'DIN', 'Open Sans', sans-serif;
+	font-family: 'Poppins', 'Open Sans', sans-serif;
 	text-align: center;
 }
 @media (min-width: 2000px) {
@@ -39,6 +39,15 @@ div, header, main, article, footer {
 p, h1, h2, h3, h4, ul {
 	margin: 0;
 }
+	h1 {
+		font-weight: 500;
+	}
+	h2, h3, h4 {
+		font-weight: 400;
+	}
+	p {
+		font-weight: 300;
+	}
 
 img, canvas {
 	display: block;
@@ -461,6 +470,7 @@ figure:hover img {
 .row figure h4 {
 	margin: 0 -3em;
 	margin-top: 0.75em;
+	font-weight: bold;
 }
 .row figure figcaption {
 	font-size: 0.8em;
@@ -472,7 +482,7 @@ figure:hover img {
 	align-items: start;
 }
 .judges-wrapper figure figcaption:nth-of-type(2) {
-	font-weight: bold;
+	font-weight: 300;
 	font-size: 0.7em;
 }
 
@@ -482,6 +492,25 @@ figure:hover img {
 #sponsors img {
 	max-height: calc(20px + 6 * var(--vw));
 }
+
+#sponsors {
+	width: 100%;
+	display: block;
+	overflow: hidden;
+}
+	#sponsors-title {
+		float: left;
+		width: 50%;
+		vertical-align: top;
+		display: inline-block;
+	}
+	#sponsors-slides {
+		float: left;
+		width: 50%;
+		vertical-align: top;
+		display: inline-block;
+	}
+
 #food img {
 	max-height: calc(60px + 6 * var(--vw));
 }
