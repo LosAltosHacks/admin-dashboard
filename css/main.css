@@ -284,7 +284,7 @@ h2 {
 
 #top {
 	/* changed from 100vh to account for fixed navbar, etc. - will need to adapt for responsive*/
-	min-height: 800px;
+	/* min-height: 800px; */ /* not sure why min-height is here, will do dimensional accommodations later */
 	height: 100vh;
 	flex-direction: column;
 	justify-content: start;
@@ -563,9 +563,8 @@ figure:hover img {
 		padding: 2.5rem 2rem;
 	}
 		#sponsors-panel img {
-			width: auto;
-			height: auto;
 			max-width: calc(100% - 5rem);
+			max-height: calc((100vh - 5rem) / 3 - 4rem);
 			margin-left: auto;
 			margin-right: auto;
 			margin-top: 2rem;
