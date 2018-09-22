@@ -201,8 +201,8 @@ section {
 	position: relative;
 }
 section:nth-child(even) {
-	background-image: radial-gradient(farthest-corner at 0 0, #094268 0%, #255779 100%);
-	background-color: rgb(29, 101, 132);
+	background-image: linear-gradient(40deg, #094268, #255779);
+	background-color: #3088c3;
   /*color for fallback*/
 }
 
