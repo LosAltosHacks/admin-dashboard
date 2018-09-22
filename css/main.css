@@ -1,5 +1,5 @@
 :root {
-	--site-width: 32rem; 
+	--site-width: 32rem;
 	--side-padding: calc((100vw - var(--site-width)) / 2);
 	--nav-background-color: rgba(240, 245, 255, 0.9);
 	--nav-height: 3rem;
@@ -42,6 +42,9 @@ p, h1, h2, h3, h4, ul {
 }
 	h1 {
 		font-weight: 500;
+	}
+	h2 {
+		text-shadow: 0 0 4px white;
 	}
 	h2, h3, h4 {
 		font-weight: 500;
@@ -329,7 +332,8 @@ h2 {
 	display: block;
 }
 #logo-main img {
-	width: 45%; 
+	width: 45%;
+	filter: brightness(130%);
 /* responsive needed */
 }
 h1.head-text {
@@ -489,7 +493,7 @@ details[open] > summary + * {
 	font-size: 0.85em;
 }
 
-#team { 
+#team {
 	flex-direction: column;
 }
 #team .team-wrapper {
@@ -533,29 +537,38 @@ figure:hover img {
 }
 
 #partners img {
-	max-height: calc(40px + 6 * var(--vw));
+	/* max-height: calc(40px + 6 * var(--vw)); */
 }
 #sponsors img {
-	max-height: calc(20px + 6 * var(--vw));
+	/* max-height: calc(20px + 6 * var(--vw)); */
 }
 
 #sponsors {
 	width: 100%;
-	display: block;
-	overflow: hidden;
+	overflow: auto;
+	padding: 0;
 }
 	#sponsors-title {
 		float: left;
 		width: 50%;
-		vertical-align: top;
-		display: inline-block;
+		padding: 2.5rem 2rem;
+		text-align: left;
 	}
-	#sponsors-slides {
+	#sponsors-panel {
 		float: left;
 		width: 50%;
-		vertical-align: top;
-		display: inline-block;
+		background-color: white;
+		padding: 2.5rem 2rem;
 	}
+		#sponsors-panel img {
+			width: auto;
+			height: auto;
+			max-width: calc(100% - 5rem);
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+		}
 
 #food img {
 	max-height: calc(60px + 6 * var(--vw));
@@ -587,4 +600,3 @@ figure:hover img {
 	text-shadow: #3498db 0 0 19px;
 	color: #02a2dd;
 }
-
