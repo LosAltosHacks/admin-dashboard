@@ -200,7 +200,7 @@ section {
 	background-color: black;
 	position: relative;
 }
-section:nth-child(even) {
+section:nth-child(odd) {
 	background-image: linear-gradient(40deg, #094268, #255779);
 	background-color: #3088c3;
   /*color for fallback*/
