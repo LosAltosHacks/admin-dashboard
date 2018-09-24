@@ -283,11 +283,12 @@ h2 {
 
 
 #top {
-	/* changed from 100vh to account for fixed navbar, etc. - will need to adapt for responsive*/
+	/* changed from 100vh to account for fixed navbar, etc. - will need to adapt for responsive */
 	min-height: 800px;
 	height: 100vh;
 	flex-direction: column;
 	justify-content: start;
+	padding-top: 4.5rem;
 }
 
 #top-canvas {
@@ -633,4 +634,48 @@ figure:hover img {
 }
 .lah-input-group > .inpctrl::placeholder {
 	color: rgba(256,256,256,0.8);
+}
+
+#nav {
+  position: absolute;
+  top: 0;
+  background: none;
+  left: 0;
+  right: 0;
+  z-index: 999;
+	padding: 0rem 2rem;
+	padding-top: 1rem;
+	align-items: start;
+}
+#nav-row {
+	height: 2rem;
+	justify-content: start;
+	
+}
+.nav-icon {
+	width: 2rem;
+	margin-right: 15px;
+}
+.nav-icon #nav-brand {
+	height: 100%;
+	width: 100%;
+}
+.nav-links {
+	flex-basis: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	max-width: 540px;
+	/* responsive solution needed */
+}
+.nav-links > .nav-link {
+	margin-top: 0;
+	font-size: 0.8rem;
+}
+.nav-links > .nav-link a {
+	color: white;
+	font-weight: 500;
+}
+.nav-links > .nav-link a:hover {
+	color: #aaa;
 }
