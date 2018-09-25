@@ -268,7 +268,7 @@ p.text-tiny {
 	margin-top: 0 !important;
 }
 h4.dateline {
-	font-size: 1rem;
+	/* font-size: 1rem; */
 	letter-spacing: -1px;
 }
 .text-muted {
@@ -283,8 +283,8 @@ h2 {
 
 #top {
 	/* changed from 100vh to account for fixed navbar, etc. - will need to adapt for responsive */
-	min-height: 800px;
-	height: 100vh;
+	min-height: 600px;
+	height: calc(100vh - 0em);
 	flex-direction: column;
 	justify-content: start;
 	padding-top: 7rem;
@@ -336,10 +336,11 @@ h2 {
 #logo-main img {
 	width: 45%;
 	filter: brightness(130%);
+	max-height: 30vh;
 /* responsive needed */
 }
 h1.head-text {
-	font-size: 2rem;
+	font-size: 8vh;
 }
 #info-left {
 	z-index: 1;
@@ -347,6 +348,7 @@ h1.head-text {
 	width: 60 * var(--vw);
 	max-width: 100%;
 	text-align: left;
+	font-size: 0.8rem;
 }
 
 #info-right {
@@ -354,11 +356,13 @@ h1.head-text {
 	grid-area: details;
 	display: grid;
 	text-align: left;
+	font-size: 0.8rem;
 }
 #top-text {
 	justify-content: space-between;
 	position: absolute;
 	bottom: 1rem;
+	font-size: 1vh;
 }
 /* #top-text .date {
 	margin-top: 0.5rem;
@@ -649,7 +653,7 @@ figure:hover img {
 #nav-row {
 	height: 2rem;
 	justify-content: start;
-	
+
 }
 .nav-icon {
 	width: 2rem;

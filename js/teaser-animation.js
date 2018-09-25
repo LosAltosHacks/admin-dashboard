@@ -19,41 +19,65 @@ Object.assign(Number.prototype, {
 	}
 })
 
+
 function animate(time) {
-	var cycle = (time - startTime) / 1000 % 4,
-		t;
+	var cycle = (time) / 1000 % 4,
+	t;
 
-	// Loop the animation
 	if (cycle <= 1) {
-		t = cycle;
+		getSlide
 	} else if (cycle < 2) {
-		t = 1;
+
 	} else if (cycle <= 3) {
-		t = 1 - cycle % 1;
+
 	} else if (cycle < 4) {
-		t = 0;
+
 	}
-
-	ctx.clearRect(0, 0, 700, 500);
-	t = easeInOutCubic(t);
-
-
-	ctx.save()
-		ctx.translate(t * 0.35, 0);
-
-		// Layer 0
-		ctx.fillStyle = "#2980b9";
-		drawLHoriz(t.map(0, 0.5).constrain());
-		drawARight(t);
-
-		// Layer 1
-		ctx.fillStyle = "#3498db";
-		drawLVert(t.map(0.5, 1).constrain());
-		drawALeft(t);
-	ctx.restore()
 
 	requestAnimationFrame(animate);
 }
+
+function getSlide(i) {
+	return $('#sponsor-slide')[i]
+}
+
+requestAnimationFrame(animate);
+
+// function animate(time) {
+// 	var cycle = (time - startTime) / 1000 % 4,
+// 		t;
+//
+// 	// Loop the animation
+// 	if (cycle <= 1) {
+// 		t = cycle;
+// 	} else if (cycle < 2) {
+// 		t = 1;
+// 	} else if (cycle <= 3) {
+// 		t = 1 - cycle % 1;
+// 	} else if (cycle < 4) {
+// 		t = 0;
+// 	}
+//
+// 	ctx.clearRect(0, 0, 700, 500);
+// 	t = easeInOutCubic(t);
+//
+//
+// 	ctx.save()
+// 		ctx.translate(t * 0.35, 0);
+//
+// 		// Layer 0
+// 		ctx.fillStyle = "#2980b9";
+// 		drawLHoriz(t.map(0, 0.5).constrain());
+// 		drawARight(t);
+//
+// 		// Layer 1
+// 		ctx.fillStyle = "#3498db";
+// 		drawLVert(t.map(0.5, 1).constrain());
+// 		drawALeft(t);
+// 	ctx.restore()
+//
+// 	requestAnimationFrame(animate);
+// }
 
 function drawLVert(t) {
 	polygon([
