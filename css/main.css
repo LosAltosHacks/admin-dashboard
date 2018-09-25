@@ -661,7 +661,7 @@ figure:hover img {
 }
 .footer-icon {
 	width: 2rem;
-	margin-left: 1rem;
+	margin-left: 2rem;
 }
 .footer-icon #footer-brand {
 	height: 100%;
@@ -693,16 +693,10 @@ footer .footer-wrapper {
 }
 footer .footer-sect {
 	margin: 0;
-	padding: 0.75rem;
-	max-width: 225px;
+	padding: 0.75rem !important;
+	width: 225px;
 	color: white;
 }
 .row-inner {
 	width: 100%;
-}
-footer > .row {
-	padding: 0 2rem;	
-}
-#copyText {
-	margin-left: -2rem;
 }
