@@ -690,6 +690,7 @@ figure:hover img {
 footer .footer-wrapper {
 	font-size: 0.9em;
 	align-items: start;
+	justify-content: center;
 }
 footer .footer-sect {
 	margin: 0;
