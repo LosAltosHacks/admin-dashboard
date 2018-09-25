@@ -569,6 +569,8 @@ figure:hover img {
 		#sponsors-panel img {
 			max-width: calc(100% - 5rem);
 			max-height: calc((100vh - 5rem) / 3 - 4rem);
+			width: auto;
+			min-height: 3rem;
 			margin-left: auto;
 			margin-right: auto;
 			margin-top: 2rem;
