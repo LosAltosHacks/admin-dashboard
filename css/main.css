@@ -191,7 +191,7 @@ nav ul li a {
 
 
 section {
-	padding: 2.5rem 2rem;
+	padding: 2.5rem 4rem;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -208,7 +208,6 @@ section:nth-child(odd) {
 
 footer {
 	align-items: center;
-	padding: 2rem 2rem;
 	background-color: #000;
 	color: white;
 	position: relative;
@@ -288,7 +287,7 @@ h2 {
 	height: 100vh;
 	flex-direction: column;
 	justify-content: start;
-	padding-top: 4.5rem;
+	padding-top: 7rem;
 }
 
 #top-canvas {
@@ -503,7 +502,7 @@ details[open] > summary + * {
 	font-size: 0.9em;
 	align-items: start;
 }
-#team figure, #judges figure, footer figure {
+#team figure, #judges figure {
 	margin: 0;
 	padding: 0.75rem;
 	max-width: 225px;
@@ -644,7 +643,7 @@ figure:hover img {
   right: 0;
   z-index: 999;
 	padding: 0rem 2rem;
-	padding-top: 1rem;
+	padding-top: 2rem;
 	align-items: start;
 }
 #nav-row {
@@ -657,6 +656,14 @@ figure:hover img {
 	margin-right: 15px;
 }
 .nav-icon #nav-brand {
+	height: 100%;
+	width: 100%;
+}
+.footer-icon {
+	width: 2rem;
+	margin-left: 1rem;
+}
+.footer-icon #footer-brand {
 	height: 100%;
 	width: 100%;
 }
@@ -678,4 +685,24 @@ figure:hover img {
 }
 .nav-links > .nav-link a:hover {
 	color: #aaa;
+}
+
+footer .footer-wrapper {
+	font-size: 0.9em;
+	align-items: start;
+}
+footer .footer-sect {
+	margin: 0;
+	padding: 0.75rem;
+	max-width: 225px;
+	color: white;
+}
+.row-inner {
+	width: 100%;
+}
+footer > .row {
+	padding: 0 2rem;	
+}
+#copyText {
+	margin-left: -2rem;
 }
