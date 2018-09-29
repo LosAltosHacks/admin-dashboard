@@ -154,7 +154,7 @@ tr > :first-child {
 nav, nav ul, nav ul li {
 	display: flex;
 }
-nav {
+nav {z
 	background-image: linear-gradient(
 		to right,
 		rgba(255, 255, 255, 0),
