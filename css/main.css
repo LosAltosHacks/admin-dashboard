@@ -354,8 +354,15 @@ _::-webkit-full-page-media, _:future, :root summary:after {
 }
 
 details[open] > summary:after {
+	transform: translateY(-0.3536em) rotate(45deg);
+}
 details > summary + * {
 	animation: DetailsOpen 0.5s linear;
+}
+details[open] > summary + * {
+	margin-top: 0.5em;
+	max-height: 100vh;
+	animation-direction: reverse;
 }
 @keyframes DetailsOpen {
 	from { overflow: hidden; max-height: 100vh }
@@ -493,6 +500,9 @@ figure:hover img {
 	flex-basis: 100%;
 	font-size: 0.6rem;
 	padding-left: 1rem;
+}
+.lah-input-group > .inpctrl::placeholder {
+	color: rgba(256,256,256,0.8);
 }
 .lah-input-group > .lah-group-addon {
 	width: calc(2rem * 1.1782);
