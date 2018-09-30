@@ -32,12 +32,12 @@ html, body {
 	margin: 0;
 }
 
-div, header, main, article, footer {
+div, main, footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
-p, h1, h2, h3, h4, ul {
+p, h1, h2, h3, h4 {
 	margin: 0;
 	color: white;
 }
@@ -54,7 +54,7 @@ p, h1, h2, h3, h4, ul {
 		font-weight: 300;
 	}
 
-img, canvas {
+img {
 	display: block;
 	max-width: 100%;
 	margin: auto;
@@ -79,11 +79,6 @@ main a {
 	color: #ffb347;
 } */
 
-a:hover img {
-	transform: translateY(-2px);
-	filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
-}
-
 h1 {
 	font-size: 3rem;
 	line-height: 1.1;
@@ -96,30 +91,6 @@ input {
 }
 input:focus {
 	outline: none;
-}
-input[type=email] {
-	border-bottom: var(--accent-color) 2px solid;
-	margin: 1rem 0;
-	font-size: 0.9rem;
-	transition: 0.2s;
-	padding: 0.5rem 0;
-	width: 100%;
-}
-input[type=email]:hover {
-	border-bottom: var(--accent-hover-color) 2px solid;
-}
-
-input[type=submit] {
-	font-size: 0.8rem;
-	max-width: 200px;
-	padding: 0.5rem 1rem;
-	background-color: var(--accent-color);
-	color: white;
-	cursor: pointer;
-	transition: 0.2s;
-}
-input[type=submit]:hover {
-	background-color: var(--accent-hover-color);
 }
 
 
@@ -152,44 +123,6 @@ tr > :first-child {
 }
 
 
-nav, nav ul, nav ul li {
-	display: flex;
-}
-nav {z
-	background-image: linear-gradient(
-		to right,
-		rgba(255, 255, 255, 0),
-		var(--nav-background-color) var(--side-padding),
-		var(--nav-background-color) calc(100vw - var(--side-padding)),
-		rgba(255, 255, 255, 0)
-	);
-	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
-
-	position: fixed;
-	top: 0;
-	width: 100vw;
-	height: var(--nav-height);
-	padding: 0 var(--side-padding);
-
-	z-index: 1;
-}
-nav ul {
-	padding: 0;
-	align-items: center;
-}
-nav #logo {
-	background: url('../images/Los-Altos-Hacks-Logo.svg') 1rem/auto 65% no-repeat;
-	min-width: 5rem;
-	height: 100%;
-	margin-right: auto;
-}
-nav ul li a {
-	color: inherit;
-	padding: 0 1rem;
-	line-height: var(--nav-height);
-}
-
-
 
 section {
 	padding: 2.5rem 4rem;
@@ -217,16 +150,6 @@ footer .row {
 	justify-content: left;
 	text-align: left;
 }
-hr {
-	border: 0;
-	clear: both;
-	display: block;
-	width: 40%;
-	background-color: #e3e7ed;
-	height: 2px;
-	margin: 3.5rem auto;
-	margin-bottom: 2rem;
-}
 p.text-tiny {
 	font-size: 0.5rem;
 }
@@ -246,21 +169,9 @@ p.text-tiny {
 .row.columns-half > * {
 	flex: 1 50%;
 }
-.row.columns-medium > * {
-	flex: 1 calc(240px + 7 * var(--vw));
-}
-.row.columns-small > * {
-	flex: 1 1 calc(130px + 10 * var(--vw));
-	max-width: calc((130px + 10 * var(--vw)) * 1.352);
-}
 .row.columns-tiny > * {
 	flex: 1 calc(90px + 8 * var(--vw));
 	max-width: calc((90px + 8 * var(--vw)) * 1.25);
-}
-.row.columns-tinier > * {
-	flex: 1 calc(80px + 5 * var(--vw));
-	padding: 0.5rem;
-	max-width: calc((80px + 5 * var(--vw)) * 1.5);
 }
 .row > * > * + * {
 	margin-top: 0.6rem;
@@ -323,13 +234,6 @@ h2 {
 		filter: blur(5px);
 	}
 
-.gradient-text {
-	background: -webkit-linear-gradient(40deg, #106eb8, #a0d2f0);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	text-shadow: rgba(82, 190, 230, 0.5) 1px 1px 0.1em;
-}
-
 #logo-main {
 	z-index: 1;
 	margin: 0 auto;
@@ -385,34 +289,6 @@ h1.head-text {
 /* #top-main {
 	grid-area: top-main;
 } */
-.button, .row > .button {
-	display: flex;
-	line-height: 1;
-	color: white;
-	margin: 0.4rem;
-	transform: skew(-15deg);
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	padding: 0.65em 1em;
-}
-.button.blue {
-	background-color: var(--blue);
-}
-.button.darkblue {
-	background-color: var(--darkblue);
-}
-.button:hover {
-	opacity: 0.5;
-}
-.button span {
-	display: inline-block;
-	transform: skew(15deg);
-}
-
-#countdown, #countdown-label {
-	font-variant: small-caps;
-	color: darkslategray;
-}
 
 #about {
 	text-align: left;
@@ -478,15 +354,8 @@ _::-webkit-full-page-media, _:future, :root summary:after {
 }
 
 details[open] > summary:after {
-	transform: translateY(-0.3536em) rotate(45deg);
-}
 details > summary + * {
 	animation: DetailsOpen 0.5s linear;
-}
-details[open] > summary + * {
-	margin-top: 0.5em;
-	max-height: 100vh;
-	animation-direction: reverse;
 }
 @keyframes DetailsOpen {
 	from { overflow: hidden; max-height: 100vh }
@@ -548,10 +417,6 @@ figure:hover img {
 	font-weight: 300;
 	font-size: 0.7em;
 }
-
-#partners img {
-	/* max-height: calc(40px + 6 * var(--vw)); */
-}
 #sponsors img {
 	/* max-height: calc(20px + 6 * var(--vw)); */
 }
@@ -588,14 +453,6 @@ figure:hover img {
 				width: auto;
 				margin: 1.5rem auto;
 			}
-
-#food img {
-	max-height: calc(60px + 6 * var(--vw));
-}
-#past-years img {
-	box-shadow: 0px 5px 14px 0px rgba(69,69,69,0.25);
-}
-
 .social-media a {
 	background: radial-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9) 50%, transparent 50%, transparent);
 	border-radius: 50%;
@@ -648,9 +505,6 @@ figure:hover img {
 	height: 100%;
 	font-size: 1rem;
 	color: white
-}
-.lah-input-group > .inpctrl::placeholder {
-	color: rgba(256,256,256,0.8);
 }
 
 #nav {
@@ -724,6 +578,7 @@ footer .link-group-head {
 footer a.link-group-item {
 	color: white;
 	text-transform: uppercase;
+	font-size: 0.7rem;
 }
 footer a.link-group-item:hover {
 	color: lightgray;
@@ -819,19 +674,6 @@ footer a.link-group-item:hover {
 	background-color: rgba(0,0,0,.5);
 	box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
 }
-	.event {
-		font-size: 20px;
-		list-style-type: none;
-		display: flex;
-		cursor: pointer;
-	}
-	.event .time {
-		width: 100px;
-	}
-	.event .title {
-		margin-left: auto;
-		font-weight: 700;
-	}
 
 
 /* media queries */
