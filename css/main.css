@@ -23,6 +23,7 @@
 		--vw: 20px;
 	}
 }
+
 * {
 	box-sizing: border-box;
 }
@@ -344,28 +345,16 @@ h2 {
 h1.head-text {
 	font-size: 7vh;
 }
-#info-left {
-	z-index: 1;
-	grid-area: logo;
-	width: 60 * var(--vw);
-	max-width: 100%;
-	text-align: left;
-	font-size: 0.8rem;
-}
-
-#info-right {
-	z-index: 1;
-	grid-area: details;
-	display: grid;
-	text-align: left;
-	font-size: 0.8rem;
-}
 #top-text {
 	justify-content: space-between;
 	position: absolute;
-	bottom: 1rem;
-	font-size: 1vh;
+	bottom: 0.7rem;
+	font-size: 0.6rem;
+	text-align: left;
 }
+	#info-left, #info-right {
+		padding: 1em;
+	}
 /* #top-text .date {
 	margin-top: 0.5rem;
 }
@@ -390,9 +379,9 @@ h1.head-text {
 	margin: 2rem auto 0;
 }*/
 
-#top-main {
+/* #top-main {
 	grid-area: top-main;
-}
+} */
 .button, .row > .button {
 	display: flex;
 	line-height: 1;
@@ -628,7 +617,7 @@ figure:hover img {
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
-	height: 2rem;
+	height: 1.7rem;
 	background-color: #094268;
 	background: linear-gradient(30deg, #255779, #094268);
 	min-width: 400px;
@@ -637,8 +626,8 @@ figure:hover img {
 	background: none;
 	color: #ffffff;
 	flex-basis: 100%;
-	font-size: 0.8rem;
-	padding: 15px;
+	font-size: 0.6rem;
+	padding-left: 1rem;
 }
 .lah-input-group > .lah-group-addon {
 	width: calc(2rem * 1.1782);
