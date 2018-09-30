@@ -489,7 +489,7 @@ details[open] > summary + * {
 }
 
 
-#schedule h3 {
+/* #schedule h3 {
 	margin-top: 1.75rem;
 }
 #schedule table {
@@ -497,7 +497,7 @@ details[open] > summary + * {
 }
 #schedule * + p {
 	font-size: 0.85em;
-}
+} */
 
 #team {
 	flex-direction: column;
@@ -707,3 +707,103 @@ footer .footer-sect {
 .row-inner {
 	width: 100%;
 }
+
+#schedule {
+	text-align: left;
+	color: white;
+	/* display: block; */
+}
+	#event-name {
+		font-weight: 700;
+		font-size: 1.2rem;
+		display: inline;
+	}
+	#sched-time {
+		color: #eee;
+		margin-right: 20px;
+		display: inline;
+	}
+
+#details {
+	font-size: 0.8rem;
+	margin-top: 40px;
+	display: table;
+}
+	#details .detail {
+		margin: 0.5rem 0;
+		display: table-row;
+	}
+	#details .detail i {
+		display: table-cell;
+		padding-right: 1em;
+		padding-bottom: 1em;
+	}
+	#details .detail span {
+		display: table-cell;
+	}
+	/* #details .detail i {
+		margin-top: 4px;
+		width: 20px;
+		text-align: center;
+	}
+	#details .detail span {
+		margin-left: 1em;
+	} */
+	.detail.info {
+		font-size: 80%;
+	}
+
+#schedule-vis {
+	width: 50%;
+}
+
+#timeline {
+	position: relative;
+	display: block;
+	height: 200px;
+}
+	#line {
+		display: block;
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		height: 3px;
+		transform: skewY(-10deg);
+		background-color: white;
+		justify-content: space-between;
+	}
+	#line div {
+		display: inline-block;
+		margin: 1em;
+		transform: skewY(10deg);
+	  font-weight: 500;
+	  color: white;
+	  margin-top: 1em;
+	  font-size: .7rem;
+	}
+
+#schedule-panel {
+	margin-left: auto;
+  padding: 1rem;
+  max-width: 45%;
+  box-sizing: border-box;
+	border-radius: 4px;
+	height: 100%;
+	color: white;
+	font-size: .8rem;
+	background-color: rgba(0,0,0,.5);
+	box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+}
+	.event {
+		font-size: 20px;
+		list-style-type: none;
+		display: flex;
+		cursor: pointer;
+	}
+	.event .time {
+		width: 100px;
+	}
+	.event .title {
+		margin-left: auto;
+		font-weight: 700;
+	}

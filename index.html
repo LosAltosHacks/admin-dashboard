@@ -22,8 +22,10 @@
 	<link rel="icon" type="image/png" href="favicon.png">
 	<link rel="apple-touch-icon" href="touch-icon.png">
 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link href="css/fonts.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -187,9 +189,61 @@
 
 		<!-- Schedule -->
 		<section id="schedule">
-			<div class="row">
-				<div>
-					<h2 style="text-align:left">Schedule</h2> <!-- Fix Later -->
+
+        <div id="schedule-vis">
+					<h2>Schedule</h2>
+          <div id="event-name">
+						<span id="sched-time">10 AM:</span><span id="sched-name">Check In</span>
+					</div>
+          <div id="details">
+            <div class="detail location">
+              <i class="fas fa-location-arrow"></i>
+              <span>Juniper Aspiration Dome</span>
+            </div>
+            <div class="detail info">
+              <i class="fas fa-info"></i>
+              <span>Where we will collect all your information and make sure you know what you are getting into!</span>
+            </div>
+          </div>
+          <div id="timeline">
+						<div id="line">
+	            <div>10:AM</div>
+	            <div>11:AM</div>
+	            <div>12:AM</div>
+	            <div>13:AM</div>
+						</div>
+          </div>
+        </div>
+        <div id="schedule-panel">
+					<h3>Saturday - March 24</h3>
+					<table>
+						<tr><th>Time</th><th>Event</th></tr>
+						<tr><td>10 AM</td><td>Check In</td></tr>
+						<tr><td>10:30 AM</td><td>Waitlist Check In; Mentor Meeting</td></tr>
+						<tr><td>11 AM</td><td>Opening Ceremony</td></tr>
+						<tr><td>12 PM</td><td>Lunch; Hacking Begins</td></tr>
+						<tr><td>12:30 PM</td><td>Team Mixer</td></tr>
+						<tr><td>1 PM</td><td><h4>Make Your Own Website Workshop</h4><p>Courtesy of Hack Club</p></td></tr>
+						<tr><td>4 PM</td><td><h4>Hack the Hackers (Now That's Meta)</h4><p>Use the Bugcrowd API to build your own security app</p></td></tr>
+						<tr><td>5 PM</td><td><h4>1517 Social</h4><p>Talk with experts about your project!</p></td></tr>
+						<tr><td>7 PM</td><td>Dinner</td></tr>
+						<tr><td>9 PM</td><td>Cup Stacking</td></tr>
+						<tr><td>10 PM</td><td>Capture The Flag</td></tr>
+					</table>
+					<!-- <h3>Sunday - March 25</h3>
+					<table>
+						<tr><th>Time</th><th>Event</th></tr>
+						<tr><td>12 AM</td><td>Midnight Surprise</td></tr>
+						<tr><td>1 AM</td><td><p>Super Smash Bros. Melee Tournament</p><p>Powered by Discord</p></td></tr>
+						<tr><td>8 AM</td><td>Breakfast; Submissions to Devpost</td></tr>
+						<tr><td>8:30 AM</td><td>Judges Arrive &amp; Meet</td></tr>
+						<tr><td>9 AM</td><td>Judging</td></tr>
+						<tr><td>11 AM</td><td>Closing Ceremony</td></tr>
+						<tr><td>12 PM</td><td>End of Hackathon</td></tr>
+					</table> -->
+	      </div>
+				<!-- <div>
+					<h2 style="text-align:left">Schedule</h2>
 					<table>
 						<tr><th>Time</th><th>Event</th><th>Location</th></tr>
 						<tr><td>10 AM</td><td>Check In</td><td>Juniper Aspiration Dome</td></tr>
@@ -216,8 +270,7 @@
 						<tr><td>12 PM</td><td>End of Hackathon</td><td>Everywhere</td></tr>
 					</table>
 					<p><small>*Subject to change.</small></p>
-				</div>
-			</div>
+				</div> -->
 		</section>
 
 		<!-- Our Sponsors -->

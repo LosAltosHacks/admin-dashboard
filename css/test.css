@@ -1,4 +1,5 @@
 /*preliminary styles*/
+
 :root {
 	--site-width: 1200px;
 	--side-padding: 30px;
@@ -21,6 +22,11 @@ body {
   margin: 0px;
   background-color: black;
 }
+
+h2 {
+	text-shadow: 0 0 4px white;
+}
+
 /*common styles*/
 .content-section {
   padding: 30px;
@@ -92,7 +98,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   opacity: .1;
 }
 .hero .overlay > .color-overlay {
@@ -108,7 +114,6 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  top: 0;
   z-index: 11;
   position: absolute;
   max-width: var(--site-width);
@@ -122,12 +127,13 @@ body {
   flex-direction: column;
 }
 .hero .logo > img {
-  height: 12vw;
+	filter: brightness(130%);
+  height: 14vw;
 }
 .hero .logo > label {
   color: white;
   margin-top: 15px;
-  font-size: 3vw;
+  font-size: 4vw;
   font-weight: 500;
 }
 .hero .content {
@@ -149,6 +155,9 @@ body {
 .hero .content h4, .hero .content p {
   font-size: 16px;
   margin: 0px 0px;
+}
+.hero .content p {
+	font-weight: 100;
 }
 .hero .content .dateline {
   margin-bottom: 20px;
@@ -211,7 +220,7 @@ body {
   max-width: 800px;
 }
 
-/*faq*/ 
+/*faq*/
 .content-section.faq {
   color: white;
   background-color: black;
