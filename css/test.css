@@ -225,10 +225,12 @@ body {
 .faq .drawer-row {
   margin-left: -20px;
   margin-right: -20px;
+  justify-content: space-between;
 }
 .faq details {
   position: relative;
   font-size: 25px;
+  max-width: 500px;
   font-weight: 500;
   transition: height .2s;
   padding: 20px 0px;
@@ -244,19 +246,135 @@ body {
   outline:none;
 }
 .faq details summary::-webkit-details-marker {
-  position: absolute;
-  right: 30px;;
-  top: 30px;
+  float: right;
 }
-.faq details > summary + * {
+.faq details > div {
 	animation: DetailsOpen 0.5s linear;
 }
 .faq details[open] > summary + * {
 	margin-top: 0.5em;
-	max-height: 100vh;
 	animation-direction: reverse;
 }
 @keyframes DetailsOpen {
 	from { overflow: hidden; max-height: 100vh }
 	to { overflow: hidden; max-height: 0; opacity: 0 }
+}
+
+/*schedule section*/
+.content-section.schedule {
+  background: linear-gradient(30deg, var(--themeBlueLight),var(--themeBlueDark));
+}
+.schedule-visualizer {
+  padding: 50px;
+}
+.schedule-visualizer .event-name {
+  color: white;
+  font-weight: 700;
+  font-size: 35px;
+}
+#schedTime {
+  color: #eee!important;
+  margin-right: 20px;
+}
+.schedule-visualizer .details {
+  font-size: 20px;
+  color: white;
+  margin-top: 40px;
+}
+.schedule-visualizer .details .detail {
+  margin: 10px 0px;
+  display: flex;
+}
+.schedule-visualizer .details .detail i {
+  margin-top: 4px;
+  width: 20px;
+  text-align: center;
+}
+.schedule-visualizer .details .detail span {
+  margin-left: 1em;
+}
+.schedule-visualizer .details .info {
+  font-size: 80%;
+}
+.schedule-visualizer .timeline {
+  position: relative;
+  height: 200px;
+}
+.schedule-visualizer .timeline .line {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  height: 3px;
+  transform: skewY(-10deg);
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+.schedule-visualizer .timeline .line div {
+  transform: skewY(10deg);
+  font-weight: 500;
+  color: white;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.controller {
+  margin-left: auto;
+  padding: 30px;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+.controller > div {
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 50px;
+  height: 100%;
+  color: white;
+  background-color: rgba(0,0,0,.5);
+  box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.controller > div > div {
+  font-size: 20px;
+  list-style-type: none;
+  display: flex;
+  cursor: pointer;
+}
+.controller .time {
+  width: 100px;
+}
+.controller .title {
+  margin-left: auto;
+  font-weight: 700;
+}
+
+
+/*sponsors*/
+.sponsors {
+  padding: 0px;
+  height: 100vh;
+}
+.sponsors .rside {
+  background-color: white;
+}
+.sponsors .static {
+  color: white;
+  font-family: 'Poppins';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sponsors .static div {
+  width: 500px;
+  padding: 30px;
+}
+.sponsors .scroll {
+  padding: 50px;
+  box-sizing: border-box;
+}
+.sponsors .scroll img {
+  width: 50%;
+  display: block;
+  margin: 50px auto;
 }
