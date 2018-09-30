@@ -1,5 +1,5 @@
 :root {
-	--site-width: 38rem;
+	--site-width: 45rem;
 	--side-padding: calc((100vw - var(--site-width)) / 2);
 	--nav-background-color: rgba(240, 245, 255, 0.9);
 	--nav-height: 3rem;
@@ -284,7 +284,7 @@ h2 {
 
 #top {
 	/* changed from 100vh to account for fixed navbar, etc. - will need to adapt for responsive */
-	min-height: 600px;
+	min-height: 25rem;
 	height: calc(100vh - 0em);
 	flex-direction: column;
 	justify-content: start;
@@ -320,6 +320,7 @@ h2 {
 		left: 50%;
 		transform: translate(-50%, -50%);
 		z-index: -1;
+		filter: blur(5px);
 	}
 
 .gradient-text {
@@ -338,8 +339,9 @@ h2 {
 }
 #logo-main img {
 	width: 45%;
-	filter: brightness(130%);
+	filter: brightness(130%) drop-shadow(0 0 10px rgba(0, 0, 0, .7));
 	max-height: 30vh;
+	min-height: 10rem;
 /* responsive needed */
 }
 h1.head-text {
