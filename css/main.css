@@ -203,8 +203,8 @@ section {
 }
 section:nth-child(odd) {
 	background-image: linear-gradient(40deg, #094268, #255779);
-	background-color: #3088c3;
-  /*color for fallback*/
+	/*background-color: #3088c3;*/
+	/* causes artifacts on chrome */
 }
 
 footer {
@@ -356,6 +356,7 @@ h1.head-text {
 }
 	#info-left, #info-right {
 		padding: 1em;
+		font-size: 16px;
 	}
 /* #top-text .date {
 	margin-top: 0.5rem;
@@ -453,9 +454,12 @@ summary:hover {
 summary::-webkit-details-marker {
 	display: none;
 }
+details {
+	position: relative;
+}
+
 summary:after {
 	content: '';
-	display: table;
 	border: solid;
 	border-width: 0 0.2em 0.2em 0;
 	font-size: 0.66em;
@@ -465,6 +469,14 @@ summary:after {
 	transition: transform 0.3s;
 	color: white;
 }
+/* i hate safari just for the record */
+_::-webkit-full-page-media, _:future, :root summary:after {
+	right: 0px;
+	top: 1.66em;
+	position: absolute;
+	
+}
+
 details[open] > summary:after {
 	transform: translateY(-0.3536em) rotate(45deg);
 }
@@ -543,29 +555,21 @@ figure:hover img {
 }
 
 #sponsors {
-	width: 100%;
 	overflow: auto;
 	padding: 0;
-	display: table;
-	height: 100%;
 }
 	#sponsors-title {
-		float: left;
-		width: 50%;
+		flex-basis: 50%;
 		padding: 2.5rem 2rem;
 		text-align: left;
-		display: table-cell;
-		vertical-align: middle;
 		height: 100%;
 		position: relative;
 		z-index: 2;
 		background-color: black;
 	}
 	#sponsors-panel {
-		float: left;
-		width: 50%;
+		flex-basis: 50%;
 		background-color: white;
-		display: table-cell;
 	}
 
 		.sponsors-slide {
@@ -685,6 +689,7 @@ figure:hover img {
 	flex-direction: row;
 	justify-content: space-around;
 	max-width: 540px;
+	min-width: 250px;
 	/* responsive solution needed */
 }
 .nav-links > .nav-link {
@@ -813,3 +818,71 @@ footer .footer-sect {
 		margin-left: auto;
 		font-weight: 700;
 	}
+
+
+/* media queries */
+
+/* tablets + small screens */
+@media only screen and (max-width: 900px) {
+	#top-text {
+		padding: 0 1rem; /* this ends up squished on small screens */
+	}
+	#schedule {
+		flex-direction: column;
+	}
+	#schedule-vis {
+		width: 100%;
+	}
+	#schedule-panel {
+		width: 100%;
+		max-width: 100%;
+	}
+	.footer-sect {
+		flex-basis: 33%;
+		text-align: center;
+	}
+	.footer-sect:first-child {
+		width: 100%;
+		flex-basis: 100%;
+	}
+	.footer-sect:first-child .footer-icon {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#copyText {
+		width: 100%;
+		text-align: center;
+	}
+	
+}
+/* phones */
+@media only screen and (max-width: 500px) {
+	#top-text {
+		bottom: 1.3rem;
+		flex-direction: column;
+	}
+	#info-left, #info-right {
+		width: 100%;
+	}
+	.lah-input-group {
+		max-width: 100%;
+		min-width: 100%;
+	}
+	#about {
+		height: auto;
+	}
+	#sponsors {
+		flex-direction: column;
+	}
+/*	For the sponsors tab, this design flow needs to be reimplemented by the design team. Leaving this as a placeholder for now. */
+	#sponsors-title, #sponsors-panel {
+		flex-basis: 100%;
+		width: 100%;
+	}
+	#sponsors img {
+		max-height: 2rem;
+	}
+	.row.columns-half > * {
+		flex: 1 100%;
+	}
+}
