@@ -717,6 +717,18 @@ footer .footer-sect {
 	width: 225px;
 	color: white;
 }
+footer .link-group-head {
+	text-transform: uppercase;
+	font-weight: 500;
+}
+footer a.link-group-item {
+	color: white;
+	text-transform: uppercase;
+}
+footer a.link-group-item:hover {
+	color: lightgray;
+}
+
 .row-inner {
 	width: 100%;
 }
