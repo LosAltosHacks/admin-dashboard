@@ -350,7 +350,7 @@ _::-webkit-full-page-media, _:future, :root summary:after {
 	right: 0px;
 	top: 1.66em;
 	position: absolute;
-	
+
 }
 
 details[open] > summary:after {
@@ -594,6 +594,31 @@ footer a.link-group-item:hover {
 	color: lightgray;
 }
 
+.past-years {
+	transition: 0.3s;
+}
+	.past-years h4 {
+		position: absolute;
+		font-weight: 600;
+		font-size: 2rem;
+		z-index: 2;
+		user-select: none;
+	}
+	.past-years img {
+		border-radius: .2em;
+		filter: brightness(0.7);
+	}
+	.past-years a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: 0.3s;
+	}
+	.past-years:hover {
+		transform: scale(1.1);
+		box-shadow: 0 0 1em rgba(255, 255, 255, 0.2);
+	}
+
 .row-inner {
 	width: 100%;
 }
@@ -719,7 +744,7 @@ footer a.link-group-item:hover {
 		width: 100%;
 		text-align: center;
 	}
-	
+
 }
 /* phones */
 @media only screen and (max-width: 500px) {
