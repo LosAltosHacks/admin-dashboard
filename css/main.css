@@ -510,12 +510,14 @@ details[open] > summary + * {
 #team .team-wrapper {
 	font-size: 0.9em;
 	align-items: start;
+	max-width: 800px;
 }
 #team figure, #judges figure {
 	margin: 0;
 	padding: 0.75rem;
-	max-width: 225px;
 	color: white;
+	min-width: 25%;
+	max-width: 200px;
 }
 figure img {
 	border-radius: 50%;
@@ -870,6 +872,9 @@ footer .footer-sect {
 	}
 	#about {
 		height: auto;
+	}
+	#about .row>div {
+		max-width: 100%;
 	}
 	#sponsors {
 		flex-direction: column;
