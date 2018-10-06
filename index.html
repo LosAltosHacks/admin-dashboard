@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Los Altos Hacks IV - High School Hackathon</title>
+	<title>Los Altos Hacks IV</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -58,145 +58,138 @@
 				<div id="overlay"></div>
 				<video autoplay muted loop id="bg-video">
 					<source src="images/video.mp4" type="video/mp4">
-				</video>
-			</div>
-			<div class="row" id="logo-main">
-				<img src="images/Los-Altos-Hacks-Logo.svg">
-				<h1 class="head-text">Los Altos Hacks IV</h1>
-			</div>
-			<div class="row" id="top-text">
-				<div id="info-left">
-					<h4 class="dateline">March 24 - 25, 2018</h4>
-					<h4>Juniper Aspiration Dome</h4>
-					<p class="mt-0 text-muted">1081 Innovation Way, Sunnyvale, CA</p>
+					</video>
 				</div>
-				<div id="info-right">
-					<h4>Keep me updated!</h4>
-					<div class="lah-input-group">
-						<input class="inpctrl" placeholder="Enter your email" type="text">
-						<div class="lah-group-addon">
-							<button class="reg-button" type="button">&rsaquo;</button>
+				<div class="row" id="logo-main">
+					<img src="images/Los-Altos-Hacks-Logo.svg">
+					<h1 class="head-text">Los Altos Hacks IV</h1>
+				</div>
+				<div class="row" id="top-text">
+					<div id="info-left">
+						<h4 class="dateline">March 24 - 25, 2018</h4>
+						<h4>Juniper Aspiration Dome</h4>
+						<p class="mt-0 text-muted">1081 Innovation Way, Sunnyvale, CA</p>
+					</div>
+					<div id="info-right">
+						<h4>Keep me updated!</h4>
+						<div class="lah-input-group">
+							<input class="inpctrl" placeholder="Enter your email" type="text">
+							<div class="lah-group-addon">
+								<button class="reg-button" type="button">&rsaquo;</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- reserved for implementation use -->
-			<template id="template-apply">
-				<h2 class="gradient-text">Apply Now!</h2>
-				<a class="button blue" href="/register" target="_blank"><span>Hacker</span></a>
-				<a class="button darkblue" href="/mentor" target="_blank"><span>Mentor</span></a>
-			</template>
-			<template id="template-countdown">
-				<h2 class="gradient-text">Get Ready!</h2>
-				<div>
+				<!-- reserved for implementation use -->
+				<template id="template-apply">
+					<h2 class="gradient-text">Apply Now!</h2>
+					<a class="button blue" href="/register" target="_blank"><span>Hacker</span></a>
+					<a class="button darkblue" href="/mentor" target="_blank"><span>Mentor</span></a>
+				</template>
+				<template id="template-countdown">
+					<h2 class="gradient-text">Get Ready!</h2>
 					<div>
-						<h3 id="countdown-label">Opening Ceremony starts in</h3>
-						<p><date id="countdown"></date></p>
+						<div>
+							<h3 id="countdown-label">Opening Ceremony starts in</h3>
+							<p><date id="countdown"></date></p>
+						</div>
+					</div>
+				</template>
+				<template id="template-event">
+					<h2 class="gradient-text">Hacking In Progress!</h2>
+					<a class="button darkblue" href="/dashboard" target="_blank"><span>Visit Dashboard</span></a>
+				</template>
+				<template id="template-post-event">
+					<a class="button darkblue" href="https://losaltoshacks3.devpost.com/submissions" target="_blank"><span>View Submissions &amp; Winners</span></a>
+				</template>
+			</section>
+
+			<!-- About -->
+			<section id="about">
+				<div class="row">
+					<div>
+						<h2>Los Altos's fourth annual high school hackathon</h2>
+						<p>We bring together hundreds of high school students from across the Bay Area to work together and make their ideas a reality.</p>
+						<p>We'll provide the food, refreshments and hacking spaces for you—the hackers—to do your magic. Just bring your ideas and your passion!</p>
 					</div>
 				</div>
-			</template>
-			<template id="template-event">
-				<h2 class="gradient-text">Hacking In Progress!</h2>
-				<a class="button darkblue" href="/dashboard" target="_blank"><span>Visit Dashboard</span></a>
-			</template>
-			<template id="template-post-event">
-				<a class="button darkblue" href="https://losaltoshacks3.devpost.com/submissions" target="_blank"><span>View Submissions &amp; Winners</span></a>
-			</template>
-		</section>
+			</section>
 
-		<!-- About -->
-		<section id="about">
-			<div class="row">
-				<div>
-					<h2>Los Altos's fourth annual high school hackathon</h2>
-					<p>We bring together hundreds of high school students from across the Bay Area to work together and make their ideas a reality.</p>
-					<p>We'll provide the food, refreshments and hacking spaces for you—the hackers—to do your magic. Just bring your ideas and your passion!</p>
-
-					<!-- <form action="//losaltoshacks.us16.list-manage.com/subscribe/post?u=48c677497c434b91bc928d44c&amp;id=02f44c6658" method="post" id="email-signup" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-						<h4 id="email-signup-label">Sign up to receive updates:</h3>
-						<input type="email" value="" name="EMAIL" id="email-input" placeholder="Your email address" required="">
-						<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_48c677497c434b91bc928d44c_02f44c6658" tabindex="-1" value=""></div>
-						<input type="submit" value="Subscribe" name="subscribe" id="subscribe-input">
-					</form> -->
-				</div>
-			</div>
-		</section>
-
-		<!-- FAQ -->
-		<section id="faq">
-			<div class="row">
-				<div>
-					<h2>FAQ</h2>
-					<div class="faq-wrapper row columns-half">
-						<details>
-							<summary><h3>What is Los Altos Hacks?</h3></summary>
-							<div>
-								<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
-							</div>
-						</details>
-						<details>
-							<summary><h3>What is Los Altos Hacks?</h3></summary>
-							<div>
-								<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
-							</div>
-						</details>
-						<details>
-							<summary><h3>What is Los Altos Hacks?</h3></summary>
-							<div>
-								<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
-							</div>
-						</details>
-						<details>
-							<summary><h3>What is Los Altos Hacks?</h3></summary>
-							<div>
-								<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
-							</div>
-						</details>
-						<details>
-							<summary><h3>What is Los Altos Hacks?</h3></summary>
-							<div>
-								<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
-							</div>
-						</details>
-						<details>
-							<summary><h3>What is Los Altos Hacks?</h3></summary>
-							<div>
-								<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
-							</div>
-						</details>
+			<!-- FAQ -->
+			<section id="faq">
+				<div class="row">
+					<div>
+						<h2>FAQ</h2>
+						<div class="faq-wrapper row columns-half">
+							<details>
+								<summary><h3>What is Los Altos Hacks?</h3></summary>
+								<div>
+									<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
+								</div>
+							</details>
+							<details>
+								<summary><h3>What is Los Altos Hacks?</h3></summary>
+								<div>
+									<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
+								</div>
+							</details>
+							<details>
+								<summary><h3>What is Los Altos Hacks?</h3></summary>
+								<div>
+									<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
+								</div>
+							</details>
+							<details>
+								<summary><h3>What is Los Altos Hacks?</h3></summary>
+								<div>
+									<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
+								</div>
+							</details>
+							<details>
+								<summary><h3>What is Los Altos Hacks?</h3></summary>
+								<div>
+									<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
+								</div>
+							</details>
+							<details>
+								<summary><h3>What is Los Altos Hacks?</h3></summary>
+								<div>
+									<p>Los Altos Hacks is a high school hackathon—a 24-hour programming event where students work in teams to make hardware and software projects. This year, we aim to have around 350 attendees with an even gender ratio.</p>
+								</div>
+							</details>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<!-- Schedule -->
-		<section id="schedule">
+			<!-- Schedule -->
+			<section id="schedule">
 
-        <div id="schedule-vis">
+				<div id="schedule-vis">
 					<h2>Schedule</h2>
-          <div id="event-name">
+					<div id="event-name">
 						<span id="sched-time">10 AM:</span><span id="sched-name">Check In</span>
 					</div>
-          <div id="details">
-            <div class="detail location">
-              <i class="fas fa-location-arrow"></i>
-              <span>Juniper Aspiration Dome</span>
-            </div>
-            <div class="detail info">
-              <i class="fas fa-info"></i>
-              <span>Where we will collect all your information and make sure you know what you are getting into!</span>
-            </div>
-          </div>
-          <div id="timeline">
-						<div id="line">
-	            <div>10:AM</div>
-	            <div>11:AM</div>
-	            <div>12:AM</div>
-	            <div>13:AM</div>
+					<div id="details">
+						<div class="detail location">
+							<i class="fas fa-location-arrow"></i>
+							<span>Juniper Aspiration Dome</span>
 						</div>
-          </div>
-        </div>
-        <div id="schedule-panel">
+						<div class="detail info">
+							<i class="fas fa-info"></i>
+							<span>Where we will collect all your information and make sure you know what you are getting into!</span>
+						</div>
+					</div>
+					<div id="timeline">
+						<div id="line">
+							<div>10:AM</div>
+							<div>11:AM</div>
+							<div>12:AM</div>
+							<div>13:AM</div>
+						</div>
+					</div>
+				</div>
+				<div id="schedule-panel">
 					<h3>Saturday - March 24</h3>
 					<table>
 						<tr><th>Time</th><th>Event</th></tr>
@@ -223,52 +216,23 @@
 						<tr><td>11 AM</td><td>Closing Ceremony</td></tr>
 						<tr><td>12 PM</td><td>End of Hackathon</td></tr>
 					</table> -->
-	      </div>
-				<!-- <div>
-					<h2 style="text-align:left">Schedule</h2>
-					<table>
-						<tr><th>Time</th><th>Event</th><th>Location</th></tr>
-						<tr><td>10 AM</td><td>Check In</td><td>Juniper Aspiration Dome</td></tr>
-						<tr><td>10:30 AM</td><td>Waitlist Check In; Mentor Meeting</td><td>Juniper Aspiration Dome</td></tr>
-						<tr><td>11 AM</td><td>Opening Ceremony</td><td>Main Stage</td></tr>
-						<tr><td>12 PM</td><td>Lunch; Hacking Begins</td><td>Everywhere</td></tr>
-						<tr><td>12:30 PM</td><td>Team Mixer</td><td>Workshop Area</td></tr>
-						<tr><td>1 PM</td><td><h4>Make Your Own Website Workshop</h4><p>Courtesy of Hack Club</p></td><td>Workshop Area</td></tr>
-						<tr><td>4 PM</td><td><h4>Hack the Hackers (Now That's Meta)</h4><p>Use the Bugcrowd API to build your own security app</p></td><td>Workshop Area</td></tr>
-						<tr><td>5 PM</td><td><h4>1517 Social</h4><p>Talk with experts about your project!</p></td><td>Workshop Area</td></tr>
-						<tr><td>7 PM</td><td>Dinner</td><td>Everywhere</td></tr>
-						<tr><td>9 PM</td><td>Cup Stacking</td><td>Main Stage</td></tr>
-						<tr><td>10 PM</td><td>Capture The Flag</td><td>Everywhere</td></tr>
-					</table>
-					<h3>Sunday - March 25</h3>
-					<table>
-						<tr><th>Time</th><th>Event</th><th>Location</th></tr>
-						<tr><td>12 AM</td><td>Midnight Surprise</td><td>Everywhere</td></tr>
-						<tr><td>1 AM</td><td><p>Super Smash Bros. Melee Tournament</p><p>Powered by Discord</p></td><td>Workshop Area</td></tr>
-						<tr><td>8 AM</td><td>Breakfast; Submissions to Devpost</td><td>Everywhere</td></tr>
-						<tr><td>8:30 AM</td><td>Judges Arive &amp; Meet</td><td>Juniper Aspiration Dome</td></tr>
-						<tr><td>9 AM</td><td>Judging</td><td>Everywhere</td></tr>
-						<tr><td>11 AM</td><td>Closing Ceremony</td><td>Main Stage</td></tr>
-						<tr><td>12 PM</td><td>End of Hackathon</td><td>Everywhere</td></tr>
-					</table>
-					<p><small>*Subject to change.</small></p>
-				</div> -->
-		</section>
-
-		<!-- Our Sponsors -->
-		<section id="sponsors">
-			<div id="sponsors-title">
-				<h2>Our Sponsors</h2>
-				<p>Interested in sponsoring us?</p>
-				<p>Check out our <b><a href="docs/sponsorship.pdf">sponsorship prospectus</a></b></p>
-			</div>
-			<div id="sponsors-panel">
-				<div class="sponsors-slide">
-					<img src="images/sponsors/juniper.png">
-					<img src="images/sponsors/mlh.png">
-					<img src="images/sponsors/hack+.png">
 				</div>
-			</div>
+			</section>
+
+			<!-- Our Sponsors -->
+			<section id="sponsors">
+				<div id="sponsors-title">
+					<h2>Our Sponsors</h2>
+					<p>Interested in sponsoring us?</p>
+					<p>Check out our <b><a href="docs/sponsorship.pdf">sponsorship prospectus</a></b></p>
+				</div>
+				<div id="sponsors-panel">
+					<div class="sponsors-slide">
+						<img src="images/sponsors/juniper.png">
+						<img src="images/sponsors/mlh.png">
+						<img src="images/sponsors/hack+.png">
+					</div>
+				</div>
 				<!--
 				<div id="sponsors-slides">
 					<div class="columns-medium">
@@ -315,227 +279,94 @@
 					<a target="_blank" href="https://hackclub.com/"><img src="images/sponsors/hackclub.png" alt="Hack Club" title="Hack Club"></a>
 					<a target="_blank" href="https://www.youtube.com/channel/UCgCDXXQ2lcJFNlP90H5G2HA"><img src="images/sponsors/lahsgreenteam.png" alt="LAHS Green Team" title="LAHS Green Team"></a>
 				</div> -->
-		</section>
+			</section>
 
-		<!-- Judges -->
-		<section id="judges">
-			<div class="row">
-				<div>
-					<h2>Our Judges</h2>
-					<div class="judges-wrapper row columns-tiny">
-						<figure>
-							<img src="images/judges/eli.png">
-							<h4>Eli Luberoff</h4>
-							<figcaption>CEO</figcaption>
-							<figcaption>Desmos</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/ellen.jpeg">
-							<h4>Ellen Hardy</h4>
-							<figcaption>Chief Operating Officer</figcaption>
-							<figcaption>TCI</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/james.jpg">
-							<h4>James Richards</h4>
-							<figcaption>VP of Engineering</figcaption>
-							<figcaption>Udacity</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/morris.png">
-							<h4>Morris Thai</h4>
-							<figcaption>Senior Product Manager</figcaption>
-							<figcaption>TCI</figcaption>
-						</figure>
-						<!-- <figure>
-							<img src="images/judges/genevieve.JPG">
-							<h4>Genevieve Johnson</h4>
-							<figcaption>Senior Designer</figcaption>
-							<figcaption>Roblox</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/ben.jpg">
-							<h4>Ben Lai</h4>
-							<figcaption>Senior Software Engineer</figcaption>
-							<figcaption>LinkedIn</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/shirley.jpg">
-							<h4>Shirley Soulouman</h4>
-							<figcaption>Senior Program Manager</figcaption>
-							<figcaption>VMWare</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/lily.jpg">
-							<h4>Lily Chang</h4>
-							<figcaption>Vice President, Strategic Transformation</figcaption>
-							<figcaption>VMWare</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/john.JPG">
-							<h4>John Yu</h4>
-							<figcaption>Partner</figcaption>
-							<figcaption>Oriza Ventures</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/jim.png">
-							<h4>Dmitriy Kolchin</h4>
-							<figcaption>Serial Entrepreneur</figcaption>
-							<figcaption>ReSHARP</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/kurush.jpg">
-							<h4>Kurush Dubash</h4>
-							<figcaption>Software Engineer</figcaption>
-							<figcaption>Adobe</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/melanie.jpg">
-							<h4>Melanie Silva</h4>
-							<figcaption>User Experience Designer</figcaption>
-							<figcaption>Adobe</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/areeta.jpg">
-							<h4>Areeta Wong</h4>
-							<figcaption>Director of Event Management</figcaption>
-							<figcaption>Hack+</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/lester.JPG">
-							<h4>Lester Bird</h4>
-							<figcaption>Distinguished Engineer</figcaption>
-							<figcaption>Juniper Networks</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/avinash.JPG">
-							<h4>Avinash Reddy</h4>
-							<figcaption>Software Engineer</figcaption>
-							<figcaption>Juniper Networks</figcaption>
-						</figure>
-						<figure>
-							<img src="images/judges/nandan.JPG">
-							<h4>Nandan Paramashiva</h4>
-							<figcaption>Software Engineer</figcaption>
-							<figcaption>Juniper Networks</figcaption>
-						</figure> -->
+			<!-- Judges -->
+			<section id="judges">
+				<div class="row">
+					<div>
+						<h2>Our Judges</h2>
+						<div class="judges-wrapper row columns-tiny">
+							<figure>
+								<img src="images/judges/eli.png">
+								<h4>Eli Luberoff</h4>
+								<figcaption>CEO</figcaption>
+								<figcaption>Desmos</figcaption>
+							</figure>
+							<figure>
+								<img src="images/judges/ellen.jpeg">
+								<h4>Ellen Hardy</h4>
+								<figcaption>Chief Operating Officer</figcaption>
+								<figcaption>TCI</figcaption>
+							</figure>
+							<figure>
+								<img src="images/judges/james.jpg">
+								<h4>James Richards</h4>
+								<figcaption>VP of Engineering</figcaption>
+								<figcaption>Udacity</figcaption>
+							</figure>
+							<figure>
+								<img src="images/judges/morris.png">
+								<h4>Morris Thai</h4>
+								<figcaption>Senior Product Manager</figcaption>
+								<figcaption>TCI</figcaption>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Team -->
+			<section id="team">
+				<div class="row">
+					<div>
+						<h2>Our Team</h2>
+						<div class="team-wrapper row columns-small">
+							<figure>
+								<img src="images/team/jamsheed.JPG">
+								<h4>Jamsheed Mistri</h4>
+								<figcaption>Lead &amp; Sponsorship Director</figcaption>
+							</figure>
+							<figure>
+								<img src="images/team/an.JPG">
+								<h4>An Huynh</h4>
+								<figcaption>Outreach Director</figcaption>
+							</figure>
+							<figure>
+								<img src="images/team/justin.JPG">
+								<h4>Justin Yu</h4>
+								<figcaption>Tech Director</figcaption>
+							</figure>
+						</div>
+						<div class="team-wrapper row columns-tiny">
+							<figure>
+								<img src="images/team/dan.JPG">
+								<h4>Dan Appel</h4>
+								<figcaption>Tech Team</figcaption>
+							</figure>
+							<figure>
+								<img src="images/team/krizia.JPG">
+								<h4>Krizia Araracap</h4>
+								<figcaption>Outreach &amp; Design Team</figcaption>
+							</figure>
+							<figure>
+								<img src="images/team/oscar.JPG">
+								<h4>Oscar Bjorkman</h4>
+								<figcaption>Tech &amp; Design Team</figcaption>
+							</figure>
+							<figure>
+								<img src="images/team/ryan.JPG">
+								<h4>Ryan Huang</h4>
+								<figcaption>Tech &amp; Design Team</figcaption>
+							</figure>
+						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-
-		<!-- Team -->
-		<section id="team">
-			<div class="row">
-				<div>
-					<h2>Our Team</h2>
-					<!-- <div class="team-wrapper row columns-small">
-						<figure>
-							<img src="images/team/jamsheed.JPG">
-							<h4>Jamsheed Mistri</h4>
-							<figcaption>Lead &amp; Sponsorship Director</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/an.JPG">
-							<h4>An Huynh</h4>
-							<figcaption>Outreach Director</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/justin.JPG">
-							<h4>Justin Yu</h4>
-							<figcaption>Tech Director</figcaption>
-						</figure>
-					</div> -->
-					<div class="team-wrapper row columns-tiny">
-						<figure>
-							<img src="images/team/jamsheed.JPG">
-							<h4>Jamsheed Mistri</h4>
-							<figcaption>Lead &amp; Sponsorship Director</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/an.JPG">
-							<h4>An Huynh</h4>
-							<figcaption>Outreach Director</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/justin.JPG">
-							<h4>Justin Yu</h4>
-							<figcaption>Tech Director</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/dan.JPG">
-							<h4>Dan Appel</h4>
-							<figcaption>Tech Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/krizia.JPG">
-							<h4>Krizia Araracap</h4>
-							<figcaption>Outreach &amp; Design Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/oscar.JPG">
-							<h4>Oscar Bjorkman</h4>
-							<figcaption>Tech &amp; Design Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/ryan.JPG">
-							<h4>Ryan Huang</h4>
-							<figcaption>Tech &amp; Design Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/leo.JPG">
-							<h4>Leo Lin</h4>
-							<figcaption>Sponsorship &amp; Outreach Team</figcaption>
-						</figure>
-<!-- snipped for design purposes until this is populated -->
-						<!-- <figure>
-							<img src="images/team/kylemarino.JPG">
-							<h4>Kyle Marino</h4>
-							<figcaption>Sponsorship &amp; Tech Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/kat.JPG">
-							<h4>Katherine Nasif</h4>
-							<figcaption>Outreach Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/kylesandell.JPG">
-							<h4>Kyle Sandell</h4>
-							<figcaption>Tech Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/anya.JPG">
-							<h4>Anya Sharma</h4>
-							<figcaption>Sponsorship Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/sam.JPG">
-							<h4>Samuel Shi</h4>
-							<figcaption>Outreach Team</figcaption>
-						</figure>
-						<figure>
-							<img src="images/team/darryl.JPG">
-							<h4>Darryl Yeo</h4>
-							<figcaption>Tech &amp; Design Team</figcaption>
-						</figure> -->
-					</div>
-				</div>
-			</div>
-		</div>
 		</section>
 
 		<!-- Past Year Sites -->
-		<!-- <section id="past-years">
-			<div class="row">
-				<div>
-					<h2>Past Years</h2>
-					<div class="row columns-small">
-						<a href="/2016"><img src="images/2016.png" alt="2016"></a>
-						<a href="/2017"><img src="images/2017.png" alt="2017"></a>
-					</div>
-				</div>
-			</div>
-		</section> -->
+
 	</main>
 	<footer>
 		<div class="row">
@@ -547,33 +378,12 @@
 						</div>
 					</div>
 					<div class="footer-sect">
-						<!-- <div class="past-years">
-							<a href="/2016">
-								<h4>2016</h4>
-								<img src="images/2016.png">
-							</a>
-						</div> -->
-						<!-- <div class="link-group-head">Link Group</div> -->
 						<a href="/2016" class="link-group-item">2016</a>
 					</div>
 					<div class="footer-sect">
-						<!-- <div class="past-years">
-							<a href="/2017">
-								<h4>2017</h4>
-								<img src="images/2017.png">
-							</a>
-						</div> -->
-						<!-- <div class="link-group-head">Link Group</div> -->
 						<a href="/2017" class="link-group-item">2017</a>
 					</div>
 					<div class="footer-sect">
-						<!-- <div class="past-years">
-							<a href="/2018">
-								<h4>2018</h4>
-								<img src="images/2018.png">
-							</a>
-						</div> -->
-						<!-- <div class="link-group-head">Link Group</div> -->
 						<a href="/2018" class="link-group-item">2018</a>
 					</div>
 					<p class="text-tiny" id="copyText">Copyright © 2017-2018 Los Altos Hacks. All rights reserved.</p>
@@ -590,9 +400,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="js/moment.min.js"></script>
 	<script src="js/top.js"></script>
-	<!-- <script src="js/canvas-animation.js"></script>
-	<script src="js/teaser-animation.js"></script> -->
-	<!-- <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:20px;top:0;width:10%;z-index:10000" href="https://mlh.io/seasons/na-2018/events?utm_source=na-2018&utm_medium=TrustBadge&utm_campaign=na-2018&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/white.svg" alt="Major League Hacking 2017 Hackathon Season" style="width:100%"></a> -->
 </body>
 
 </html>
