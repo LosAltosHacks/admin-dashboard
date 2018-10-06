@@ -591,7 +591,8 @@ footer a.link-group-item {
 	font-size: 0.7rem;
 }
 footer a.link-group-item:hover {
-	color: lightgray;
+	color: #02a2dd;
+	box-shadow: 0 0 5 #02a2dd;
 }
 
 .past-years {
