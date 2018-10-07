@@ -352,24 +352,25 @@ _::-webkit-full-page-media, _:future, :root summary:after {
 	position: absolute;
 
 }
-
+details {
+	transition: height 0.3s ease;
+	overflow: hidden;
+}
 details[open] > summary:after {
 	transform: translateY(-0.3536em) rotate(45deg);
 }
-details > summary + * {
-	animation: DetailsOpen 0.5s linear;
-}
 details[open] > summary + * {
-	margin-top: 0.5em;
-	max-height: 100vh;
+	animation: DetailsOpen 0.5s linear;
 	animation-direction: reverse;
 }
 @keyframes DetailsOpen {
 	from { overflow: hidden; max-height: 100vh }
 	to { overflow: hidden; max-height: 0; opacity: 0 }
 }
-
-
+/* this sadly isn't dynamic without js #csssucks */
+details:not([open]) {
+	height: calc(1.2375em + 24.47px);
+}
 /* #schedule h3 {
 	margin-top: 1.75rem;
 }
