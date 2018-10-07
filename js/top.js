@@ -18,6 +18,44 @@ function animateOpen(ele) {
 		$(ele).removeAttr('style');
 	}
 }
+$('.lah-input-group .inpctrl').keydown(function(e) {
+	if(e.which == 13) {
+		e.preventDefault();
+		$(this).blur();
+		$('.reg-button', $(this).closest('.lah-input-group')).click();
+	}
+});
+$('.lah-input-group .reg-button').click(function() {
+	if($(this).prop('disabled'))
+		return;
+	var $parentInp = $(this).closest('.lah-input-group');
+	var $input = $('input', $parentInp);
+	var value = $input.val();
+	//input sanitation
+	value = value.trim();
+	//i would recommend using an actual mail validator service serverside for this but to be thorough: 
+	//https://emailregex.com/
+	var regexSafe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+	if(value == "" || value == null || !regexSafe) {
+		$parentInp.addClass('error');
+		setTimeout(function(){ $parentInp.removeClass('error'); }, 1200);
+		$input.focus();
+		return;
+	}
+	//insert your generic load indicator here
+	$parentInp.addClass('load');
+	$(this).prop('disabled', true);
+	//insert your generic code-200 placeholder here
+	$.post('https://jsonplaceholder.typicode.com/posts', {addr: value}).done(function() {
+		$parentInp.addClass('closed').removeClass('load');
+		$('.reg-button', $parentInp).text("Registration completed.");
+	}).fail(function(msg) {
+		$parentInp.addClass('error').removeClass('load');
+		setTimeout(function(){ $parentInp.removeClass('error'); }, 1200);
+		$input.focus();
+		$(this).prop('disabled', false);
+	})
+});
 /*
 const registrationEnd = moment('2018-03-18 21:00')
 const eventStart = moment('2018-03-24 11:00')
