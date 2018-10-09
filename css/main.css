@@ -510,17 +510,15 @@ figure:hover img {
 }
 
 #sponsors-title {
-    flex-basis: 50%;
     padding: 2.5rem 2rem;
     text-align: left;
-    height: 100%;
-    position: relative;
+    position: absolute;
     z-index: 2;
     background-color: black;
 }
 
 #sponsors-panel {
-    flex-basis: 50%;
+    flex-basis: 100%;
     background-color: white;
 }
 
@@ -533,11 +531,11 @@ figure:hover img {
 
 .sponsors-slide img {
     /* max-width: calc(100% - 5rem); */
-    max-height: 100px;
+    max-height: 4rem;
     /* min-height: 3rem; */
     min-height: 0.5rem;
     width: auto;
-    margin: 0.5rem auto;
+    margin: 1rem auto;
 }
 
 .social-media a {
