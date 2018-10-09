@@ -17,8 +17,8 @@
 		<use xlink:href="#SVGID_2_"  overflow="visible"/>
 	</clipPath>
 </g>
-<path fill="#F39C12" d="M-6-5v299.2h1202.3V-5H-6z M691.2,101.3c0,14-11.4,25.4-25.4,25.4H525.1c-14,0-25.4-11.4-25.4-25.4V87.4
-	c0-14,11.4-25.4,25.4-25.4h140.7c14,0,25.4,11.4,25.4,25.4V101.3z"/>
+<path fill="#3781B4" d="M0,0v294.2h1192.1V0H0z M691.4,104.5c0,13.7-11.3,24.9-25.2,24.9H526.7c-13.8,0-25.2-11.2-25.2-24.9V90.8
+	c0-13.7,11.3-24.9,25.2-24.9h139.6c13.8,0,25.2,11.2,25.2,24.9V104.5z"/>
 <g>
 	<defs>
 		<polygon id="SVGID_5_" points="0,1120.4 1321,289 0,289 		"/>
@@ -33,7 +33,7 @@
 		<clipPath id="SVGID_8_">
 			<use xlink:href="#SVGID_7_"  overflow="visible"/>
 		</clipPath>
-		<rect x="-5" y="284" clip-path="url(#SVGID_8_)" fill="#F39C12" width="1331" height="841.4"/>
+		<rect x="-5" y="284" clip-path="url(#SVGID_8_)" fill="#3781B4" width="1331" height="841.4"/>
 	</g>
 </g>
 <g>
@@ -50,7 +50,7 @@
 		<clipPath id="SVGID_12_">
 			<use xlink:href="#SVGID_11_"  overflow="visible"/>
 		</clipPath>
-		<rect x="-162" y="272" clip-path="url(#SVGID_12_)" fill="#F39C12" width="1357" height="850"/>
+		<rect x="-162" y="272" clip-path="url(#SVGID_12_)" fill="#3781B4" width="1357" height="850"/>
 	</g>
 </g>
 <g>
@@ -326,7 +326,7 @@ N7kaAAAAABD0/wUYABK/sYtLfC0zAAAAAElFTkSuQmCC" transform="matrix(0.4493 0 0 0.449
 		<clipPath id="SVGID_20_">
 			<use xlink:href="#SVGID_19_"  overflow="visible"/>
 		</clipPath>
-		<path clip-path="url(#SVGID_20_)" fill="#D35400" d="M591-5v69h101.5c6.6,0,12,5.4,12,12v34c0,6.6-5.4,12-12,12H591v255.5h606.1
+		<path clip-path="url(#SVGID_20_)" fill="#255779" d="M591-5v69h101.5c6.6,0,12,5.4,12,12v34c0,6.6-5.4,12-12,12H591v255.5h606.1
 			V-5H591z"/>
 		<path clip-path="url(#SVGID_20_)" fill="#D35400" d="M704.5,110V76c0-6.6-5.4-12-12-12H591v58h101.5
 			C699.1,122,704.5,116.6,704.5,110z"/>
@@ -346,7 +346,7 @@ N7kaAAAAABD0/wUYABK/sYtLfC0zAAAAAElFTkSuQmCC" transform="matrix(0.4493 0 0 0.449
 		<clipPath id="SVGID_24_">
 			<use xlink:href="#SVGID_23_"  overflow="visible"/>
 		</clipPath>
-		<path clip-path="url(#SVGID_24_)" fill="#D35400" d="M486.5,110V76c0-6.6,5.4-12,12-12h102.6V-5H-5v382.5h606.1V122H498.5
+		<path clip-path="url(#SVGID_24_)" fill="#255779" d="M486.5,110V76c0-6.6,5.4-12,12-12h102.6V-5H-5v382.5h606.1V122H498.5
 			C491.9,122,486.5,116.6,486.5,110z"/>
 		<path clip-path="url(#SVGID_24_)" fill="#D35400" d="M498.5,64c-6.6,0-12,5.4-12,12v34c0,6.6,5.4,12,12,12h102.6V64H498.5z"/>
 	</g>

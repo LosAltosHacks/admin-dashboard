@@ -98,7 +98,7 @@
 			position: absolute;
 			top:0;
 			left:0;
-			background-image: url('/images/badge-blank.svg');
+			background-image: url('/images/badge-back.svg');
 			background-size: cover;
 			background-repeat: no-repeat;
 			height: 100%;
@@ -139,10 +139,8 @@
 		}
 		.reg-form .page.pullOffscreen {
 			max-height: 0;
-			transform-origin: 50% 0%;
-			//transform: translateY(-200%) scaleY(0);
-/*			opacity: 0;
-*/		}
+			opacity: 0;
+		}
 		.head-logo {
 			width: 60%;
 			margin: 0 auto;
@@ -275,8 +273,55 @@
 			font-size: 15px;
 			font-weight: normal;
 		}
+		.badge #badge-phone {
+			font-size: 15px;
+			font-weight: normal;
+			top: calc(60% + 2.8rem);
+		}
+		.badge #badge-school {
+			top: 90%;
+			left: 80%;
+			font-size: 15px;
+			
+		}
+		.badge #badge-grade-age {
+			top: 90%;
+			left: 25%;
+			font-size: 15px;
+		}
 		.badge.flip {
 		    transform: translateX(-100%) rotateY(-180deg);
+		}
+		.radio-group {
+			height: 2.2rem;
+			border-radius: 8px;
+			border: 1px solid gray;
+			overflow: hidden;
+			display: inline-flex;
+			
+		}
+		.radio-group .radio-option {
+			height: 100%;
+			width: 2.2rem;
+			background-color: rgb(15, 112, 177);
+			border-left: 1px solid gray;
+			border-right: 1px solid gray;
+			display: inline-block;
+			font-size: 1.5rem;
+			line-height: 2.2rem;
+			text-align: center;
+			transition: background-color 0.4s;
+			cursor: pointer;
+			user-select: none;
+		}
+		.radio-group .radioBox[disabled] + .radio-option {
+			cursor: not-allowed;
+		}
+		.radio-group .radioBox:checked + .radio-option, .radio-group .radioBox:not([disabled]) + .radio-option:hover {
+			background-color: rgb(11, 71, 111);
+		}
+		.radio-group .radioBox {
+			display: none;
 		}
 	</style>
 </head>
@@ -289,11 +334,15 @@
 				<div class="badge">
 					<div class="badge-front">
 						<span id="badge-name"></span>
-						<span id="badge-email"></span>
+						<span id="badge-age"></span>
+						<span id="badge-school"></span>
+						<span id="badge-grade-age"></span>
 					</div>
 					<div class="badge-back">
 						<span id="badge-name"></span>
 						<span id="badge-email"></span>
+						<span id="badge-phone"></span>
+						<span id="badge-grade-age"></span>
 					</div>
 				</div>
 			</div>
@@ -313,35 +362,58 @@
 							<span class="descriptor">Los Altos Hacks - 1/3</span>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-first">What is your first name?</h3>
-								<input class="slickInput" type="text" placeholder="Enter your response here" id="entry-first">
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-first">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-last">What is your last name?</h3>
-								<input class="slickInput" type="text" placeholder="Enter your response here" id="entry-last">
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-last">
 							</div>
 							<div class="questionGroup">
-								<h3 class="slim-title" for="entry-email">What is your email address?</h3>
-								<input class="slickInput" type="text" placeholder="Enter your email here" id="entry-email">
+								<h3 class="slim-title" for="entry-age">How old are you?</h3>
+								<input class="slickInput num" type="text" placeholder="Type your answer here..." id="entry-age">
 							</div>
-							<button class="lahBtn disabled" id="addedQuestions"><span class="buttonLabel">Additional Questions &rsaquo;</span></button>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-school">What high school do you currently attend?</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-school">
+							</div>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-grade">What grade are you in?</h3>
+								<div class="radio-group" id="entry-grade">
+							    	<input class="radioBox" type="radio" name="entry-grade" id="entry-grade-9" value="9" disabled>
+									<label class="radio-option" for="entry-grade-9">
+										<span class="radio-title">9</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-grade" id="entry-grade-10" value="10" disabled>
+									<label class="radio-option" for="entry-grade-10">
+										<span class="radio-title">10</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-grade" id="entry-grade-11" value="11" disabled>
+									<label class="radio-option" for="entry-grade-11">
+										<span class="radio-title">11</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-grade" id="entry-grade-12" value="12" disabled>
+									<label class="radio-option" for="entry-grade-12">
+										<span class="radio-title">12</span>
+									</label>
+								</div>
+							</div>
+							<button class="lahBtn disabled" id="contactPageBtn"><span class="buttonLabel">Contact Info &rsaquo;</span></button>
 						</div>
 					</div>
-					<div class="page unloadedPage" id="secondaryQuestionsPage">
+					<div class="page unloadedPage" id="contactPage">
 						<div class="backdropHov">
 							<span class="descriptor">Los Altos Hacks - 2/3</span>
-							<div class="questionGroup">
-								<h3 class="slim-title" for="entry-first">What is your first name?</h3>
-								<input class="slickInput" type="text" placeholder="Enter your response here" id="entry-first">
-							</div>
-							<div class="questionGroup">
-								<h3 class="slim-title" for="entry-last">What is your last name?</h3>
-								<input class="slickInput" type="text" placeholder="Enter your response here" id="entry-last">
-							</div>
+							<p class="text-muted">The information from further questions will be used internally only and not distributed or printed onto the physical card.</p>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-email">What is your email address?</h3>
 								<input class="slickInput" type="text" placeholder="Enter your email here" id="entry-email">
 							</div>
-							<button class="lahBtn disabled" id="addedQuestions"><span class="buttonLabel">Additional Questions &rsaquo;</span></button>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-phone">What is your phone number?</h3>
+								<p>If you do not have a phone number, please put your parent's phone number and write what their relation is to you. (example: "650-932-3921 - Mother")</p>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-phone">
+							</div>
+							<button class="lahBtn disabled" id="addedQuestionsBtn"><span class="buttonLabel">Additional Questions &rsaquo;</span></button>
 						</div>
 					</div>
 				</div>
@@ -364,8 +436,6 @@
 		//progression buttons
 		$('#welcomeProgress').click(function() {
 			$('#welcomePage').addClass('pullOffscreen');
-			setTimeout(function() {
-			}, 1500)
 			$('#namePage').removeClass('unloadedPage');
 			$('#namePage .slickInput')[0].focus();
 		});
@@ -375,15 +445,40 @@
 		$('.slickInput').blur(function() {
 			$(this).closest('.questionGroup.focus').removeClass('focus');
 		});
-		$('.slickInput', '#namePage').on('input', function() {
+		$('.slickInput, .radioBox', '#namePage').on('input change', function(e) {
+			if($(this).is('.slickInput.num')) {
+				var value = $(this).val();
+				var altVal = value.replace(/[^0-9]/g, "");
+				if(altVal != value) {
+					$(this).val(altVal);
+					//add some kind of reaction
+					var $parentHolster = $(this).closest('.questionGroup');
+					if(!$parentHolster.is(':animated')) {
+						$parentHolster.animate({'margin-left': '-20px'}, 200, function() {
+							$parentHolster.animate({'margin-left': '20px'}, 200, function() {
+								$parentHolster.animate({'margin-left': '0px'}, 200);
+							});
+						});
+					}
+				}
+			}
+			
 			var first = $('#entry-first').val();
 			var last = $('#entry-last').val().trim();
-			var email = $('#entry-email').val().trim();
+			var age = $('#entry-age').val().trim();
+			var school = $('#entry-school').val().trim();
+			var grade = $('#entry-grade .radioBox:checked').val();
 			first = first.charAt(0).toUpperCase() + first.slice(1);
 			last = last.charAt(0).toUpperCase() + last.slice(1);
 			$('#badge-name').text(first + " " + last);
-			$('#badge-email').text(email);
-			
+			var ageAddon = (age > 0) ? " ("+age+")" : "";
+			//translate school to just initials
+			if(school != "")
+				$('#badge-school').text(school.match(/\b(\w)/g).join('').toUpperCase());
+			if(grade > 0)
+				$('#badge-grade-age').text(grade+'th' + ageAddon);
+			else 
+				$('#badge-grade-age').text('');
 			var allFilled = true;
 			$('.slickInput', '#namePage').each(function() {
 				if($(this).val().trim() == "") {
@@ -391,18 +486,33 @@
 					return false;
 				}
 			});
-			if(allFilled)
-				$('#addedQuestions').removeClass('disabled');
-			else 
-				$('#addedQuestions').addClass('disabled');
+			if(allFilled) {
+				$('#entry-grade .radioBox').removeAttr('disabled');
+				$('#entry-grade').closest('.questionGroup').addClass('focus');
+				
+				if($('#entry-grade .radioBox:checked').val().trim() != "")
+					$('#contactPageBtn').removeClass('disabled');
+				else
+					$('#contactPageBtn').addClass('disabled');
+			}
+			else {
+				$('#contactPageBtn').addClass('disabled');
+				$('#entry-grade').closest('.questionGroup').removeClass('focus');
+				$('#entry-grade .radioBox').attr('disabled', '');
+			}
 		});
-		$('#addedQuestions').click(function() {
+		$('.slickInput, .radioBox', '#contactPage').on('input change', function() {
+			var email = $('#entry-email').val().trim();
+			var phone = $('#entry-phone').val().trim();
+			
+		})
+		$('#contactPageBtn').click(function() {
 			$('#namePage').addClass('pullOffscreen');
 			$('.badge').addClass('flip');
-			setTimeout(function() {
-			}, 1500)
-			$('#secondaryQuestionsPage').removeClass('unloadedPage');
+			$('#contactPage').removeClass('unloadedPage');
+			$('#contactPage .slickInput')[0].focus();
 		});
+		
 		
 	</script>
 </body>
