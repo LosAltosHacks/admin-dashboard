@@ -264,19 +264,14 @@
 		    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.41);
 			
 		}
+		.badge span.no-warp {
+		    -webkit-transform: none;
+	        -ms-transform: none;
+            transform: none;
+		}
 		.badge #badge-name {
 		    top: 60%;
 			font-size: 20px;
-		}
-		.badge #badge-email {
-		    top: calc(60% + 1.4rem); 
-			font-size: 15px;
-			font-weight: normal;
-		}
-		.badge #badge-phone {
-			font-size: 15px;
-			font-weight: normal;
-			top: calc(60% + 2.8rem);
 		}
 		.badge #badge-school {
 			top: 90%;
@@ -288,6 +283,53 @@
 			top: 90%;
 			left: 25%;
 			font-size: 15px;
+		}
+		.badge #badge-email {
+		    top: 17.5%;
+		    left: 50px;
+		    font-size: 15px;
+		    font-weight: normal;
+		}
+		.badge #badge-phone {
+		    top: 26.5%;
+		    left: 50px;
+		    font-size: 15px;
+		    font-weight: normal;
+		}
+		.badge #badge-parent-name {
+		    top: 42%;
+		    left: 16px;
+		    font-size: 15px;
+		    font-weight: normal;
+		    background-color: #ffffff;
+		    text-shadow: 1px 1px 2px rgba(173, 173, 173, 0.77);
+		}
+		.badge #badge-parent-email {
+			top: 52.5%;
+		    left: 50px;
+		    font-size: 12px;
+			line-height: 15px;
+		    font-weight: normal;
+		    background-color: #ffffff;
+		    text-shadow: 1px 1px 2px rgba(173, 173, 173, 0.77);
+		}
+		.badge #badge-shirt {
+		    left: 80%;
+		    top: 63%;
+		}
+		.badge #badge-exp {
+		    left: 24%;
+		    top: 63%;
+		}
+		.badge #badge-linkedin {
+			font-size: 10px;
+		    top: 87%;
+		    left: 24%;
+		}
+		.badge #badge-github {
+			font-size: 10px;
+		    top: 87%;
+		    left: 75.5%;
 		}
 		.badge.flip {
 		    transform: translateX(-100%) rotateY(-180deg);
@@ -302,17 +344,18 @@
 		}
 		.radio-group .radio-option {
 			height: 100%;
-			width: 2.2rem;
+			min-width: 2.2rem;
 			background-color: rgb(15, 112, 177);
 			border-left: 1px solid gray;
 			border-right: 1px solid gray;
 			display: inline-block;
 			font-size: 1.5rem;
-			line-height: 2.2rem;
+			line-height: calc(2.2rem - 4px);
 			text-align: center;
 			transition: background-color 0.4s;
 			cursor: pointer;
 			user-select: none;
+			padding: 2px;
 		}
 		.radio-group .radioBox[disabled] + .radio-option {
 			cursor: not-allowed;
@@ -339,10 +382,14 @@
 						<span id="badge-grade-age"></span>
 					</div>
 					<div class="badge-back">
-						<span id="badge-name"></span>
-						<span id="badge-email"></span>
-						<span id="badge-phone"></span>
-						<span id="badge-grade-age"></span>
+						<span class="no-warp" id="badge-email"></span>
+						<span class="no-warp" id="badge-phone"></span>
+						<span class="no-warp" id="badge-parent-name"></span>
+						<span class="no-warp" id="badge-parent-email"></span>
+						<span class="no-warp" id="badge-exp"></span>
+						<span class="no-warp" id="badge-shirt"></span>
+						<span 				  id="badge-linkedin"></span>
+						<span				  id="badge-github"></span>
 					</div>
 				</div>
 			</div>
@@ -405,6 +452,10 @@
 							<span class="descriptor">Los Altos Hacks - 2/3</span>
 							<p class="text-muted">The information from further questions will be used internally only and not distributed or printed onto the physical card.</p>
 							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-gender">What is your gender?</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-gender">
+							</div>
+							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-email">What is your email address?</h3>
 								<input class="slickInput" type="text" placeholder="Enter your email here" id="entry-email">
 							</div>
@@ -413,7 +464,117 @@
 								<p>If you do not have a phone number, please put your parent's phone number and write what their relation is to you. (example: "650-932-3921 - Mother")</p>
 								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-phone">
 							</div>
-							<button class="lahBtn disabled" id="addedQuestionsBtn"><span class="buttonLabel">Additional Questions &rsaquo;</span></button>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-phone">What is your parent's name?</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-parent-name">
+							</div>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-phone">What is your parent's email?</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-parent-email">
+							</div>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-shirtsize">What is your t-shirt size?</h3>
+								<div class="radio-group" id="entry-shirtsize">
+							    	<input class="radioBox" type="radio" name="entry-shirtsize" id="entry-shirtsize-S" value="S" disabled>
+									<label class="radio-option" for="entry-shirtsize-S">
+										<span class="radio-title">S</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-shirtsize" id="entry-shirtsize-M" value="M" disabled>
+									<label class="radio-option" for="entry-shirtsize-M">
+										<span class="radio-title">M</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-shirtsize" id="entry-shirtsize-L" value="L" disabled>
+									<label class="radio-option" for="entry-shirtsize-L">
+										<span class="radio-title">L</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-shirtsize" id="entry-shirtsize-XL" value="XL" disabled>
+									<label class="radio-option" for="entry-shirtsize-XL">
+										<span class="radio-title">XL</span>
+									</label>
+								</div>
+							</div>
+							<button class="lahBtn disabled" id="hackerBGBtn"><span class="buttonLabel">Hacker Background &rsaquo;</span></button>
+						</div>
+					</div>
+					<div class="page unloadedPage" id="hackerDetailsPage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks - 3/3</span>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-linkedin">What is your Linkedin? (optional)</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-linkedin">
+							</div>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-github">What is your Github? (optional)</h3>
+								<input class="slickInput" type="text" placeholder="Enter your email here" id="entry-github">
+							</div>
+							<div class="questionGroup focus">
+								<h3 class="slim-title" for="entry-attendednum">How many hackathons have you attended?</h3>
+								<div class="radio-group" id="entry-attendednum">
+							    	<input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-0" value="0">
+									<label class="radio-option" for="entry-attendednum-0">
+										<span class="radio-title">0</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-1" value="1">
+									<label class="radio-option" for="entry-attendednum-1">
+										<span class="radio-title">1</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-2" value="2">
+									<label class="radio-option" for="entry-attendednum-2">
+										<span class="radio-title">2</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-3" value="3">
+									<label class="radio-option" for="entry-attendednum-3">
+										<span class="radio-title">3</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-4" value="4">
+									<label class="radio-option" for="entry-attendednum-4">
+										<span class="radio-title">4</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-5" value="5">
+									<label class="radio-option" for="entry-attendednum-4">
+										<span class="radio-title">5</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-6" value="6">
+									<label class="radio-option" for="entry-attendednum-6">
+										<span class="radio-title">6</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-7" value="7">
+									<label class="radio-option" for="entry-attendednum-7">
+										<span class="radio-title">7</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-8" value="8">
+									<label class="radio-option" for="entry-attendednum-8">
+										<span class="radio-title">8</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-9" value="9">
+									<label class="radio-option" for="entry-attendednum-9">
+										<span class="radio-title">9</span>
+									</label>
+								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-10" value="10+">
+									<label class="radio-option" for="entry-attendednum-10">
+										<span class="radio-title">10+</span>
+									</label>
+								</div>
+							</div>
+							<button class="lahBtn disabled" id="finReg"><span class="buttonLabel">Finalize Registration &rsaquo;</span></button>
+						</div>
+					</div>
+					<div class="page unloadedPage" id="finalizePage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks - Fin</span>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-mlhcode">I agree to the MLH Code of Conduct</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-mlhcode">
+							</div>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-mlhterms">I agree to the terms of both the MLH Contest Terms and Conditions (1) and the MLH Privacy Policy (2). Please note that you may receive pre and post-event informational e-mails and occasional messages about hackathons from MLH as per the MLH Privacy Policy.</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-mlhterms">
+							</div>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-lahpriv">By submitting your application, you acknowledge and agree that the organization behind Los Altos Hacks III (Youth Leadership Incubator Inc dba Hack+) may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact legal@hackplus.io for any clarifications, questions, or requests regarding this agreement.</h3>
+								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-lahpriv">
+							</div>
+							<button class="lahBtn disabled" id="sendReg"><span class="buttonLabel">All done &rsaquo;</span></button>
 						</div>
 					</div>
 				</div>
@@ -504,13 +665,67 @@
 		$('.slickInput, .radioBox', '#contactPage').on('input change', function() {
 			var email = $('#entry-email').val().trim();
 			var phone = $('#entry-phone').val().trim();
+			var parname = $('#entry-parent-name').val().trim();
+			var paremail = $('#entry-parent-email').val().trim();
+			var tshirt = $('#entry-shirtsize .radioBox:checked').val();
+			$('#badge-email').text(email);
+			$('#badge-phone').text(phone);
+			$('#badge-parent-name').text(parname);
+			$('#badge-parent-email').text(paremail);
+			$('#badge-shirt').text(tshirt);
 			
-		})
+			var allFilled = true;
+			$('.slickInput', '#contactPage').each(function() {
+				if($(this).val().trim() == "") {
+					allFilled = false;
+					return false;
+				}
+			});
+			if(allFilled) {
+				$('#entry-shirtsize .radioBox').removeAttr('disabled');
+				$('#entry-shirtsize').closest('.questionGroup').addClass('focus');
+			
+				if($('#entry-shirtsize .radioBox:checked').val().trim() != "")
+					$('#hackerBGBtn').removeClass('disabled');
+				else
+					$('#hackerBGBtn').addClass('disabled');
+			}
+			else {
+				$('#hackerBGBtn').addClass('disabled');
+				$('#entry-shirtsize').closest('.questionGroup').removeClass('focus');
+				$('#entry-shirtsize .radioBox').attr('disabled', '');
+			}
+			
+		});
+		
+		$('.slickInput, .radioBox', '#hackerDetailsPage').on('input change', function() {
+			var linkedin = $('#entry-linkedin').val().trim();
+			var github = $('#entry-github').val().trim();
+			var attended = $('#entry-attendednum .radioBox:checked').val();
+			$('#badge-linkedin').text(linkedin);
+			$('#badge-github').text(github);
+			$('#badge-exp').text(attended);
+				
+			if($('#entry-attendednum .radioBox:checked').val().trim() != "")
+				$('#finReg').removeClass('disabled');
+			else
+				$('#finReg').addClass('disabled');
+		});
+		
 		$('#contactPageBtn').click(function() {
 			$('#namePage').addClass('pullOffscreen');
 			$('.badge').addClass('flip');
 			$('#contactPage').removeClass('unloadedPage');
 			$('#contactPage .slickInput')[0].focus();
+		});
+		$('#hackerBGBtn').click(function() {
+			$('#contactPage').addClass('pullOffscreen');
+			$('#hackerDetailsPage').removeClass('unloadedPage');
+			$('#hackerDetailsPage .slickInput')[0].focus();
+		});
+		$('#finReg').click(function() {
+			$('#contactPage').addClass('pullOffscreen');
+			$('#finalizePage').removeClass('unloadedPage');
 		});
 		
 		
