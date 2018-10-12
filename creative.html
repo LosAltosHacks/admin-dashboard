@@ -374,6 +374,9 @@
 			opacity: 0;
 			display: block;
 		}
+		#regDone {
+			display: none;
+		}
 	</style>
 </head>
 
@@ -401,6 +404,10 @@
 					</div>
 				</div>
 				<a href="#" id="confirmBadge"><h3>Confirm Your Information!</h3></a>
+				<div id="regDone" class="text-center">
+					<p>You've completed the registration process. You should have an email to confirm this process.</p>
+					<button class="lahBtn force-center" id="backHome"><span class="buttonLabel">Head Back Home &rsaquo;</span></button>
+				</div>
 			</div>
 			<div class="field-sect">
 				<div class="reg-form">
@@ -409,7 +416,7 @@
 							<img src="/images/Los-Altos-Hacks-Logo-Flat.svg">
 						</div>
 						<h3 class="text-center">Welcome to the Los Altos Hacks IV Application!</h3>
-						<p class="text-muted text-left">Los Altos Hacks III will take place on March 24-25, 2018 at the Juniper Aspiration Dome in Sunnyvale, California. This application is for those who are planning to attend. After you have submitted your application, we will notify you closer to the event date if you have been accepted. Los Altos Hacks is free of charge for all high school students. For more information, visit https://losaltoshacks.com.</p>
+						<p class="text-muted text-left">Los Altos Hacks IV will take place on March 24-25, 2018 at the Juniper Aspiration Dome in Sunnyvale, California. This application is for those who are planning to attend. After you have submitted your application, we will notify you closer to the event date if you have been accepted. Los Altos Hacks is free of charge for all high school students. For more information, visit https://losaltoshacks.com.</p>
 						<button class="lahBtn text-center force-center" id="welcomeProgress"><span class="buttonLabel">Construct Your Badge</span></button>
 						<div class="downwardProgression"></div>
 					</div>
@@ -741,8 +748,16 @@
 			e.preventDefault();
 			$('.badge').toggleClass('flip');
 		});
+		$('#sendReg').click(function() {
+			$('.badge').removeClass('flip');
+			$('#regDone').fadeIn();
+			$('#confirmBadge').fadeOut();
+			$('.field-sect').removeClass('open');
+		});
+		$('#backHome').click(function() {
+			window.location.href = "/";
+		});
 		$('.termsCheck', '#finalizePage').on('change', function() {
-			//this element is on-off, change the focus state of the next question group:
 			var $thisQGroup = $(this).closest('.questionGroup');
 			var $nextQGroup = $thisQGroup.nextAll();
 			if($(this).is(':checked')) {
