@@ -69,7 +69,7 @@
 			margin-top: calc(200px / -0.61 - 300px);
 			transition: margin-top 1.2s ease-in-out, transform 1s;
 			position: relative;
-			pointer-events: none;
+			user-select: none;
 		    transform-style: preserve-3d;
 			transform-origin: center right;
 			
@@ -366,6 +366,14 @@
 		.radio-group .radioBox {
 			display: none;
 		}
+		.badge-sect #confirmBadge {
+			text-transform: uppercase;
+			text-decoration: none;
+			color: white;
+			text-align: center;
+			opacity: 0;
+			display: block;
+		}
 	</style>
 </head>
 
@@ -374,7 +382,7 @@
 		<section id="top">
 			<div class="gradient-drop"></div>
 			<div class="badge-sect">
-				<div class="badge">
+				<div class="badge freerot">
 					<div class="badge-front">
 						<span id="badge-name"></span>
 						<span id="badge-age"></span>
@@ -392,6 +400,7 @@
 						<span				  id="badge-github"></span>
 					</div>
 				</div>
+				<a href="#" id="confirmBadge"><h3>Confirm Your Information!</h3></a>
 			</div>
 			<div class="field-sect">
 				<div class="reg-form">
@@ -562,17 +571,17 @@
 					<div class="page unloadedPage" id="finalizePage">
 						<div class="backdropHov">
 							<span class="descriptor">Los Altos Hacks - Fin</span>
-							<div class="questionGroup">
+							<div class="questionGroup focus">
 								<h3 class="slim-title" for="entry-mlhcode">I agree to the MLH Code of Conduct</h3>
-								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-mlhcode">
+								<input class="termsCheck" type="checkbox" id="entry-mlhcode" value="accepted">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-mlhterms">I agree to the terms of both the MLH Contest Terms and Conditions (1) and the MLH Privacy Policy (2). Please note that you may receive pre and post-event informational e-mails and occasional messages about hackathons from MLH as per the MLH Privacy Policy.</h3>
-								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-mlhterms">
+								<input class="termsCheck" type="checkbox" id="entry-mlhterms" value="accepted">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-lahpriv">By submitting your application, you acknowledge and agree that the organization behind Los Altos Hacks III (Youth Leadership Incubator Inc dba Hack+) may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact legal@hackplus.io for any clarifications, questions, or requests regarding this agreement.</h3>
-								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-lahpriv">
+								<input class="termsCheck" type="checkbox" id="entry-lahpriv" value="accepted">
 							</div>
 							<button class="lahBtn disabled" id="sendReg"><span class="buttonLabel">All done &rsaquo;</span></button>
 						</div>
@@ -724,11 +733,37 @@
 			$('#hackerDetailsPage .slickInput')[0].focus();
 		});
 		$('#finReg').click(function() {
-			$('#contactPage').addClass('pullOffscreen');
+			$('#hackerDetailsPage').addClass('pullOffscreen');
 			$('#finalizePage').removeClass('unloadedPage');
+			$('#confirmBadge').fadeTo(300, 1);
 		});
-		
-		
+		$('#confirmBadge').click(function(e) {
+			e.preventDefault();
+			$('.badge').toggleClass('flip');
+		});
+		$('.termsCheck', '#finalizePage').on('change', function() {
+			//this element is on-off, change the focus state of the next question group:
+			var $thisQGroup = $(this).closest('.questionGroup');
+			var $nextQGroup = $thisQGroup.nextAll();
+			if($(this).is(':checked')) {
+				$nextQGroup.each(function() {
+					if($(this).is('.questionGroup')) {
+						$(this).addClass('focus');
+					}
+					return false;
+				})
+			} else {
+				$nextQGroup.each(function() {
+					if($(this).is('.questionGroup')) {
+						$(this).addClass('focus');
+					}
+				});
+			}
+			if($('.termsCheck:not(:checked)', '#finalizePage').length == 0)
+				$('#sendReg').removeClass('disabled');
+			else 
+				$('#sendReg').addClass('disabled');
+		});
 	</script>
 </body>
 
