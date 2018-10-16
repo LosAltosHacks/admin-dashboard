@@ -283,7 +283,7 @@ div#overlay {
 
 #logo-main img {
     width: 45%;
-    filter: brightness(130%) drop-shadow(0 0 10px rgba(0, 0, 0, .7));
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, .7));
     max-height: 30vh;
     min-height: 10rem;
     /* responsive needed */
