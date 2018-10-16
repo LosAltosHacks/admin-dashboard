@@ -990,9 +990,9 @@ footer a.link-group-item:hover {
         width: 100%;
     }
 
-    #sponsors img {
+    /* #sponsors img {
         max-height: 2rem;
-    }
+    } */
 
     .row.columns-half > * {
         flex: 1 100%;
