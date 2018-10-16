@@ -286,7 +286,6 @@ div#overlay {
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, .7));
     max-height: 30vh;
     min-height: 10rem;
-    /* responsive needed */
 }
 
 h1.head-text {
@@ -908,6 +907,10 @@ footer a.link-group-item:hover {
 
 /* tablets + small screens */
 @media only screen and (max-width: 900px) {
+    #logo-main img {
+        width: 90%;
+    }
+
     #top-text {
         padding: 0 1rem;
         /* this ends up squished on small screens */
