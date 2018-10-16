@@ -551,7 +551,7 @@ figure:hover img {
 }
 
 .row.columns-medium > * {
-    
+
     flex: 1 calc(240px + 7 * var(--vw));
 }
 
@@ -902,6 +902,9 @@ footer a.link-group-item:hover {
     box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07);
 }
 
+.team-wrapper.row.columns-tiny figure {
+  max-width: calc(100px + 8 * var(--vw)) !important;
+}
 
 /* media queries */
 
