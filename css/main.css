@@ -549,11 +549,13 @@ figure:hover img {
 }
 
 .row > * {
+    align-content: center;
+    justify-content: center;
     max-width: 100%;
 }
 
 .row.columns-medium > * {
-    align-content: center;
+    
     flex: 1 calc(240px + 7 * var(--vw));
 }
 
