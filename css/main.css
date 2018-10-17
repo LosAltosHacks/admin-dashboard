@@ -516,6 +516,7 @@ figure:hover img {
 #sponsors-panel {
     flex-basis: 100%;
     background-color: white;
+    align-items: center;
 }
 
 .sponsors-slide {
