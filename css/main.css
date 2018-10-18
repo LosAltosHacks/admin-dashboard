@@ -148,7 +148,6 @@ tr > :first-child {
 }
 
 
-
 section {
     padding: 2.5rem 4rem;
     display: flex;
@@ -519,6 +518,12 @@ figure:hover img {
     align-items: center;
 }
 
+#sponsors-panel h2 {
+    font-size: 1.5em;
+    padding-top: 1em;
+    color:black;
+}
+
 .sponsors-slide {
 /*    padding: 2.5rem 2rem;*/
 /*    position: relative;*/
@@ -549,6 +554,10 @@ figure:hover img {
     align-content: center;
     justify-content: center;
     max-width: 100%;
+}
+
+.row.columns-half > * {
+	flex: 1 320px;
 }
 
 .row.columns-medium > * {
