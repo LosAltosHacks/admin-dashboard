@@ -81,12 +81,10 @@ function displayDynamicSchedule() {
   var displayNameNode = document.getElementById("schedName");
   var displayTimeNode = document.getElementById("schedTime");
   var displayLocationNode = document.getElementById("schedLocation");
-  var displayInfoNode = document.getElementById("schedInfo");
 
   //reset some text
   displayNameNode.innerHTML = activeEvent.event.name;
   displayTimeNode.innerHTML = activeEvent.event.time;
-  displayInfoNode.innerHTML = activeEvent.event.info;
   displayLocationNode.innerHTML = activeEvent.event.location;
 
   
