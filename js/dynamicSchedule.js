@@ -1,88 +1,35 @@
 //initial state data.  update/delete as you please. 
-var eventDay = "March 24";
-var scheduleData = [
-  {
-    time: "10 AM",
-    name: "Check In",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "10:30 AM",
-    name: "Waitlist Check In",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "11 AM",
-    name: "Opening Ceremony",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "12 PM",
-    name: "Lunch; Hacking Begins",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "12:30 PM",
-    name: "Team Mixer",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "1 PM",
-    name: "Make Your Own Website Workshop.",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "4 PM",
-    name: "Hack the Hackers",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "5 PM",
-    name: "1517 Social",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "7 PM",
-    name: "Dinner",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "9 PM",
-    name: "Cup Stacking",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  },
-  {
-    time: "10 PM",
-    name: "Capture The Flag",
-    location: "Juniper Aspiration Dome",
-    info: "Where we will collect all your information and make sure you know what you are getting into!"
-  }, 
-]
+var dayKey = 0;
+var days = ["March 24","March 25"];
+var eventDay = days[dayKey];
+var scheduleData = Schedules[eventDay].sched;
 
 //important dom elements refrenced early on.
 var line = document.getElementById("line");
-var schedList = document.getElementById("schedList");
+var schedList = document.getElementById("schedListData");
 
 //fill in the list on the right.
-scheduleData.map(function (event, i) {
-  schedList.insertAdjacentHTML("beforeend",'<tr id="listItem'+i+'" data-linkTo="'+i+'" class="scheduleLink"><td>'+event.time+'</td><td>'+event.name+'</td></tr>');
-});
+function initSideList() {
+  schedList.innerHTML = "";
+  scheduleData.map(function (event, i) {
+    schedList.insertAdjacentHTML("beforeend",'<tr id="listItem'+i+'" data-linkTo="'+i+'" class="scheduleLink"><td>'+event.time+'</td><td>'+event.name+'</td></tr>');
+  });
+  console.log(eventDay);
+  var formattedDay = moment(eventDay, "MMMM DD").format("dddd");
+  $("#schedDayLarge").text(eventDay + " - " + formattedDay);
+}
+initSideList();
+
 
 //create an "active list"
-//find time closest to now (based on momentjs) and set that as active. 
-var activeTracker = [];
-var closestEvent = {index : null, diff: null};
-for (var eventKey in scheduleData) {
+//find time closest to now (based on momentjs) and set that as active.
+var activeTracker;
+var closestEvent;
+function initTracker() {
+  console.log(dayKey);
+  activeTracker = [];
+  closestEvent = {index : null, diff: null};
+  for (var eventKey in scheduleData) {
   var event = scheduleData[eventKey];
   var eventTime = moment(eventDay + " " + event.time, "MMMM DD hh:mm A");
   var now = moment();
@@ -94,6 +41,9 @@ for (var eventKey in scheduleData) {
   activeTracker.push(false);
 }
 activeTracker[closestEvent.index] = true;
+}
+initTracker();
+
 
 //a few functions that will be used later on.
 function findActiveEvent() {
@@ -113,6 +63,13 @@ function updateActiveEvent(key) {
   activeTracker[key] = true;
   displayDynamicSchedule();
 }
+function reInitSchedule() {
+  //reinit tracker and sidelist.
+  initSideList();
+  initTracker();
+  displayDynamicSchedule();
+}
+
 
 //handle displaying the active event. 
 var timeline_displayedEvents = [];
@@ -138,6 +95,10 @@ function displayDynamicSchedule() {
   var prevKey = scheduleData[(activeEvent.key * 1) - 1] ? (activeEvent.key * 1) - 1 : scheduleData.length - 1;
   $('#schedIncrease').attr('data-linkTo',nextKey);
   $('#schedDecrease').attr('data-linkTo',prevKey);
+  
+  //change the day displayed
+  var formattedDay = moment(eventDay, "MMMM DD").format("dddd");
+  $("#schedDay").text(formattedDay);
   
   //display the new timeline. 
   //first find the active event in the currently displayed timeline. 
@@ -176,4 +137,17 @@ $('#schedule').on('click','.scheduleLink',function(){
   if (nextActiveEventKey != "null") {
     updateActiveEvent(nextActiveEventKey);
   }
+});
+
+$("#toggleDay").click(function(){
+  console.log("hi");
+  if (dayKey == 0) {
+    dayKey = 1;
+  }
+  else {
+    dayKey = 0;
+  }
+  eventDay = days[dayKey];
+  scheduleData = Schedules[eventDay].sched;
+  reInitSchedule()
 });

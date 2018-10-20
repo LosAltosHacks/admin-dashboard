@@ -825,10 +825,10 @@ footer a.link-group-item:hover {
 }
 
 #event-name {
-    margin-top: 20px;
     font-weight: 700;
     font-size: 1.2rem;
-    display: inline;
+    display: block;
+    max-width: calc(100% - 110px);
 }
 
 #schedTime {
@@ -836,7 +836,27 @@ footer a.link-group-item:hover {
     margin-right: 20px;
     display: inline;
 }
-
+#schedName {
+  display: block;
+  font-size: 80%;
+  font-weight: 500;
+}
+.schedHeader {
+  display: flex;
+  flex-direction: row;
+}
+.switchDay {
+  margin-left: auto;
+  font-size: 18px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,255,255,.4);
+  border-radius: 100%;
+  background-color: var(--blue);
+}
 #details {
     font-size: 0.8rem;
     margin-top: 40px;
@@ -912,9 +932,14 @@ footer a.link-group-item:hover {
     background-color: rgba(0, 0, 0, .5);
     box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07);
 }
+.schedVisHeader {
+  margin-top: 20px;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: center;
+}
 .navButtons {
-  margin-top: 30px;
-  max-width: 100px;
+  width: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -925,7 +950,7 @@ footer a.link-group-item:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255,255,255,.4);
+  background-color: var(--blue);
   height: 35px;
   border-radius: 100%;
 }
@@ -969,7 +994,7 @@ footer a.link-group-item:hover {
         width: 100%;
         max-width: 100%;
     }
-
+  
     .footer-sect {
         flex-basis: 33%;
         text-align: center;

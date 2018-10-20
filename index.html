@@ -185,12 +185,17 @@
 
 				<div id="schedule-vis">
 					<h2>Schedule</h2>
-					<div id="event-name">
-						<span id="schedTime"></span><span id="schedName"></span>
-					</div>
-                    <div class="navButtons">
-                        <div id="schedDecrease" data-linkTo="0" class="navButton scheduleLink"><i class="fas fa-chevron-left"></i></div>
-                        <div id="schedIncrease" data-linkTo="0" class="navButton scheduleLink"><i class="fas fa-chevron-right"></i></div>
+                    <div class="schedVisHeader">
+                      <div id="event-name">
+                          <span id="schedDay">Saturday</span>
+                          <span>, </span>
+                          <span id="schedTime"></span>
+                          <div id="schedName"></div>
+                      </div>
+                      <div class="navButtons">
+                          <div id="schedDecrease" data-linkTo="0" class="navButton scheduleLink"><i class="fas fa-chevron-left"></i></div>
+                          <div id="schedIncrease" data-linkTo="0" class="navButton scheduleLink"><i class="fas fa-chevron-right"></i></div>
+                      </div>
                     </div>
 					<div id="details">
 						<div class="detail location">
@@ -207,9 +212,17 @@
 					</div>
 				</div>
 				<div id="schedule-panel">
-					<h3>Saturday - March 24</h3>
+					<h3 class="schedHeader">
+                      <div id="schedDayLarge">Saturday - March 24</div>
+                      <div id="toggleDay" class="switchDay"><i class="fas fa-angle-double-right"></i></div>
+                    </h3>
 					<table id="schedList">
-                      <tr><th>Time</th><th>Event</th></tr>
+                      <thead>
+                        <tr><th>Time</th><th>Event</th></tr>
+                      </thead>
+                      <tbody id="schedListData">
+                      
+                      </tbody>
 					</table>
 				</div>
 			</section>
@@ -444,6 +457,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="js/moment.min.js"></script>
 	<script src="js/top.js"></script>
+    <script src="js/schedules.js"></script>
     <script src="js/dynamicSchedule.js"></script>
 </body>
 
