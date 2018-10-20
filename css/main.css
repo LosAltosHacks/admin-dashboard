@@ -825,12 +825,13 @@ footer a.link-group-item:hover {
 }
 
 #event-name {
+    margin-top: 20px;
     font-weight: 700;
     font-size: 1.2rem;
     display: inline;
 }
 
-#sched-time {
+#schedTime {
     color: #eee;
     margin-right: 20px;
     display: inline;
@@ -880,7 +881,7 @@ footer a.link-group-item:hover {
 }
 
 #line {
-    display: block;
+    display: flex;
     position: absolute;
     width: 100%;
     top: 50%;
@@ -888,15 +889,14 @@ footer a.link-group-item:hover {
     transform: skewY(-10deg);
     background-color: white;
     justify-content: space-between;
+    flex-direction: row;
 }
 
 #line div {
-    display: inline-block;
-    margin: 1em;
+  margin-top: 30px;
     transform: skewY(10deg);
     font-weight: 500;
     color: white;
-    margin-top: 1em;
     font-size: .7rem;
 }
 
@@ -912,10 +912,36 @@ footer a.link-group-item:hover {
     background-color: rgba(0, 0, 0, .5);
     box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07);
 }
-
+.navButtons {
+  margin-top: 30px;
+  max-width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 18px;
+}
+.navButtons .navButton {
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,255,255,.4);
+  height: 35px;
+  border-radius: 100%;
+}
+.scheduleLink {
+  opacity: .8;
+  cursor: pointer;
+  transition: transform .2s, opacity .2s, filter .2s;
+}
+.scheduleLink.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 1px);
+}
 .team-wrapper.row.columns-tiny figure {
   max-width: calc(100px + 8 * var(--vw)) !important;
 }
+
 
 /* media queries */
 
@@ -939,6 +965,7 @@ footer a.link-group-item:hover {
     }
 
     #schedule-panel {
+        margin-top: 50px;
         width: 100%;
         max-width: 100%;
     }
