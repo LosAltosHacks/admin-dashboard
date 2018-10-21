@@ -810,7 +810,6 @@ footer a.link-group-item:hover {
 }
 
 #event-name {
-    font-weight: 700;
     font-size: 1.2rem;
     display: block;
     max-width: calc(100% - 110px);
@@ -823,8 +822,9 @@ footer a.link-group-item:hover {
 }
 #schedName {
   display: block;
-  font-size: 80%;
+  font-size: 120%;
   font-weight: 500;
+  font-weight: 700;
 }
 .schedHeader {
   display: flex;
@@ -832,15 +832,22 @@ footer a.link-group-item:hover {
 }
 .switchDay {
   margin-left: auto;
-  font-size: 18px;
-  height: 30px;
-  width: 30px;
+  font-size: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(255,255,255,.4);
-  border-radius: 100%;
   background-color: var(--blue);
+  padding: 7px;
+  border-radius: 4px;
+  text-align: center;
+  opacity: 0.8;
+  transition: transform .2s, opacity .2s, filter .2s;
+}
+.switchDay:hover {
+    cursor: pointer;
+    opacity: 1;
+    box-shadow: 0 0 1em rgba(255, 255, 255, 0.2);
 }
 #details {
     font-size: 0.8rem;
@@ -855,22 +862,12 @@ footer a.link-group-item:hover {
 
 #details .detail i {
     display: table-cell;
-    padding-right: 1em;
-    padding-bottom: 1em;
 }
 
 #details .detail span {
     display: table-cell;
 }
 
-/* #details .detail i {
-		margin-top: 4px;
-		width: 20px;
-		text-align: center;
-	}
-	#details .detail span {
-		margin-left: 1em;
-	} */
 .detail.info {
     font-size: 80%;
 }
@@ -903,6 +900,10 @@ footer a.link-group-item:hover {
     font-weight: 500;
     color: white;
     font-size: .7rem;
+}
+
+#schedList {
+    width: 100%;
 }
 
 #schedule-panel {
@@ -944,7 +945,7 @@ footer a.link-group-item:hover {
   cursor: pointer;
   transition: transform .2s, opacity .2s, filter .2s;
 }
-.scheduleLink.active {
+.scheduleLink:hover, .scheduleLink.active {
   opacity: 1;
   filter: drop-shadow(0 0 1px);
 }

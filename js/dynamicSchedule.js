@@ -1,6 +1,6 @@
 //initial state data.  update/delete as you please. 
 var dayKey = 0;
-var days = ["March 24","March 25"];
+var days = ["March 23","March 24"];
 var eventDay = days[dayKey];
 var scheduleData = Schedules[eventDay].sched;
 
@@ -14,7 +14,6 @@ function initSideList() {
   scheduleData.map(function (event, i) {
     schedList.insertAdjacentHTML("beforeend",'<tr id="listItem'+i+'" data-linkTo="'+i+'" class="scheduleLink"><td>'+event.time+'</td><td>'+event.name+'</td></tr>');
   });
-  console.log(eventDay);
   var formattedDay = moment(eventDay, "MMMM DD").format("dddd");
   $("#schedDayLarge").text(eventDay + " - " + formattedDay);
 }
@@ -26,7 +25,6 @@ initSideList();
 var activeTracker;
 var closestEvent;
 function initTracker() {
-  console.log(dayKey);
   activeTracker = [];
   closestEvent = {index : null, diff: null};
   for (var eventKey in scheduleData) {
@@ -138,12 +136,13 @@ $('#schedule').on('click','.scheduleLink',function(){
 });
 
 $("#toggleDay").click(function(){
-  console.log("hi");
   if (dayKey == 0) {
     dayKey = 1;
+    $("#toggleDay").html("View Saturday");
   }
   else {
     dayKey = 0;
+    $("#toggleDay").html("View Sunday");
   }
   eventDay = days[dayKey];
   scheduleData = Schedules[eventDay].sched;
