@@ -496,79 +496,64 @@ figure:hover img {
 }
 
 #sponsors img {
-    /* max-height: calc(20px + 6 * var(--vw)); */
+    max-height: calc(20px + 6 * var(--vw));
 }
 
 #sponsors {
-    overflow: auto;
-    padding: 0;
+    background: white;
 }
 
-#sponsors-title {
-    padding: 2.5rem 2rem;
-    text-align: left;
-    position: absolute;
-    z-index: 2;
-    background-color: black;
+#sponsors h2 {
+    color: black;
 }
 
-#sponsors-panel {
-    flex-basis: 100%;
-    background-color: white;
-    align-items: center;
-    padding: 0 20%;
-}
-
-#sponsors-panel h2 {
-    font-size: 1.5em;
-    padding-top: 1em;
-    color:black;
-}
-
-.sponsors-slide {
-/*    padding: 2.5rem 2rem;*/
-/*    position: relative;*/
-    width: 100%;
-    height: 100%;
-/*    align-content: center;*/
-}
-
-#partners img {
-	max-height: calc(40px + 6 * var(--vw));
-}
-
-#sponsors img {
-	max-height: calc(20px + 6 * var(--vw));
-    padding: 10px;
+#sponsors a:hover img {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
 }
 
 .row {
-	flex-wrap: wrap;
-	flex-direction: row;
-	align-items: center;
-	max-width: var(--site-width);
-	width: 100%;
-    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    max-width: var(--site-width);
+    width: 100%;
 }
 
 .row > * {
-    align-content: center;
-    justify-content: center;
     max-width: 100%;
 }
 
+.row > :not(:only-child) {
+    padding: 1rem;
+}
+
 .row.columns-half > * {
-	flex: 1 320px;
+    flex: 1 320px;
 }
 
 .row.columns-medium > * {
-
     flex: 1 calc(240px + 7 * var(--vw));
 }
 
 .row.columns-small > * {
     flex: 1 1 calc(130px + 10 * var(--vw));
     max-width: calc((130px + 10 * var(--vw)) * 1.352);
+}
+
+.row.columns-tiny > * {
+    flex: 1 calc(90px + 8 * var(--vw));
+    max-width: calc((90px + 8 * var(--vw)) * 1.25);
+}
+
+.row.columns-tinier > * {
+    flex: 1 calc(80px + 5 * var(--vw));
+    padding: 0.5rem;
+    max-width: calc((80px + 5 * var(--vw)) * 1.5);
+}
+
+.row > * > * + * {
+    margin-top: 1rem;
 }
 
 .social-media a {
