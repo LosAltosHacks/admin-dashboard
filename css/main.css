@@ -524,10 +524,6 @@ figure:hover img {
     max-width: 100%;
 }
 
-.row > :not(:only-child) {
-    padding: 1rem;
-}
-
 .row.columns-half > * {
     flex: 1 320px;
 }
