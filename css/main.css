@@ -363,6 +363,10 @@ h1.head-text {
     padding: 0.5rem 1rem !important;
 }
 
+details:not([open]) {
+	height: calc(1.2375em + 24.47px);
+}
+
 summary {
     display: flex;
     justify-content: space-between;
