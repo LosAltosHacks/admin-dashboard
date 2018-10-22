@@ -355,7 +355,7 @@ h1.head-text {
 .faq-wrapper {
     font-size: 0.75em;
     line-height: 1.65;
-    align-items: start;
+    align-items: start !important;
     text-align: left;
 }
 
@@ -432,7 +432,7 @@ details[open] > summary + * {
 }
 /* this sadly isn't dynamic without js #csssucks */
 details:not([open]) {
-	height: calc(1.2375em + 24.47px);
+	/* height: calc(1.2375em + 24.47px); */
 }
 /* #schedule h3 {
 	margin-top: 1.75rem;
@@ -522,10 +522,6 @@ figure:hover img {
 
 .row > * {
     max-width: 100%;
-}
-
-.row.columns-half > * {
-    flex: 1 320px;
 }
 
 .row.columns-medium > * {
@@ -976,7 +972,7 @@ footer a.link-group-item:hover {
         width: 100%;
         max-width: 100%;
     }
-  
+
     .footer-sect {
         flex-basis: 33%;
         text-align: center;
