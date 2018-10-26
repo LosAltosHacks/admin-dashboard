@@ -511,6 +511,11 @@ figure:hover img {
     color: black;
 }
 
+#sponsors a {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
 #sponsors a:hover img {
     transform: translateY(-2px);
     filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
