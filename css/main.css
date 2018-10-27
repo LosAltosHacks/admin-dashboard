@@ -378,7 +378,7 @@ h1.head-text {
 
 details {
   flex: 1 50%;
-  height: 100% !important;
+  /* height: 100% !important; */
   margin: 0 !important;
   padding-left: 1em;
   padding-right: 1em;
@@ -387,7 +387,8 @@ details {
 }
 
 details:not([open]) {
-	height: calc(1.2375em + 24.47px);
+	/* height: calc(1.2375em + 24.47px); */
+  height: 3.3em;
 }
 
 summary {
@@ -453,19 +454,6 @@ details[open] > summary + * {
         opacity: 0
     }
 }
-/* this sadly isn't dynamic without js #csssucks */
-details:not([open]) {
-	/* height: calc(1.2375em + 24.47px); */
-}
-/* #schedule h3 {
-	margin-top: 1.75rem;
-}
-#schedule table {
-	width: 100%;
-}
-#schedule * + p {
-	font-size: 0.85em;
-} */
 
 #team {
     flex-direction: column;
@@ -1034,6 +1022,10 @@ footer a.link-group-item:hover {
   details {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    width: unset;
+  }
+  details:not([open]) {
+    height: 4em;
   }
   #logo-main {
     height: calc(100vh - 160px - 7.4rem);
