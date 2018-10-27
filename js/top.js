@@ -1,3 +1,4 @@
+var lah_api = "https://api.losaltoshacks.com";
 $('.nav-link a').on('click', function(event) {
 	var target = $(this.getAttribute('href'));
 	if( target.length ) {
@@ -30,6 +31,7 @@ $('.lah-input-group .reg-button').click(function() {
 		return;
 	var $parentInp = $(this).closest('.lah-input-group');
 	var $input = $('input', $parentInp);
+	var $btn = $(this);
 	var value = $input.val();
 	//input sanitation
 	value = value.trim();
@@ -40,17 +42,15 @@ $('.lah-input-group .reg-button').click(function() {
 		$input.focus();
 		return;
 	}
-	//insert your generic load indicator here
 	$parentInp.addClass('load');
-	$(this).prop('disabled', true);
-	//insert your generic code-200 placeholder here
-	$.post('https://jsonplaceholder.typicode.com/posts', {addr: value}).done(function() {
+	$btn.prop('disabled', true);
+	$.post(lah_api+'/email_list/v1/subscribe', {email: value}).done(function() {
 		$parentInp.addClass('closed').removeClass('load');
-		$('.reg-button', $parentInp).text("Registration completed.");
+		$btn.text("Registration completed.");
 	}).fail(function(msg) {
 		$parentInp.addClass('error').removeClass('load');
 		setTimeout(function(){ $parentInp.removeClass('error'); }, 1200);
 		$input.focus();
-		$(this).prop('disabled', false);
+		$btn.prop('disabled', false);
 	})
 });
