@@ -383,6 +383,7 @@ details {
   padding-left: 1em;
   padding-right: 1em;
   position: relative;
+  width: 45rem;
 }
 
 details:not([open]) {
