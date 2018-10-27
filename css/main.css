@@ -357,10 +357,30 @@ h1.head-text {
     line-height: 1.65;
     align-items: start !important;
     text-align: left;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+}
+
+.faq-row {
+  width: 100%;
+  flex: 1 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .faq-wrapper > * {
     padding: 0.5rem 1rem !important;
+}
+
+details {
+  flex: 1 50%;
+  height: 100% !important;
+  margin: 0 !important;
+  padding-left: 1em;
+  padding-right: 1em;
+  position: relative;
 }
 
 details:not([open]) {
@@ -383,10 +403,6 @@ summary:hover {
 
 summary::-webkit-details-marker {
     display: none;
-}
-
-details {
-    position: relative;
 }
 
 summary:after {
@@ -1002,6 +1018,20 @@ footer a.link-group-item:hover {
         text-align: center;
     }
 
+}
+
+/* browser resize */
+@media only screen and (max-width: 750px) {
+  .faq-row {
+    display: block;
+    width: 45rem;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  details {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 }
 
 /* phones */
