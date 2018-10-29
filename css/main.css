@@ -814,6 +814,7 @@ footer a.link-group-item:hover {
 #schedule {
     text-align: left;
     color: white;
+    height: 100%;
     /* display: block; */
 }
 
@@ -835,8 +836,13 @@ footer a.link-group-item:hover {
   font-weight: 700;
 }
 .schedHeader {
-  display: flex;
+  display: block;
+  text-align: center;
   flex-direction: row;
+}
+#schedDayLarge {
+  margin-bottom: 10px;
+  font-size: 110%;
 }
 .switchDay {
   margin-left: auto;
@@ -864,7 +870,7 @@ footer a.link-group-item:hover {
 }
 
 #details .detail {
-    margin: 0.5rem 0;
+    margin: 10px;
     display: table-row;
 }
 
@@ -917,7 +923,7 @@ footer a.link-group-item:hover {
 #schedule-panel {
     margin-left: auto;
     padding: 1rem;
-    max-width: 45%;
+    width: 40%;
     box-sizing: border-box;
     border-radius: 4px;
     height: 100%;
@@ -926,11 +932,21 @@ footer a.link-group-item:hover {
     background-color: rgba(0, 0, 0, .5);
     box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07);
 }
+.detail.location {
+  margin-top: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
 .schedVisHeader {
   margin-top: 20px;
   flex-direction:row;
   justify-content: space-between;
   align-items: center;
+}
+#schedLocation {
+  margin-left: 10px;
 }
 .navButtons {
   width: 100px;
