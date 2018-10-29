@@ -130,11 +130,12 @@ displayDynamicSchedule();
 //bind some event listeners. 
 $('#schedule').on('click','.scheduleLink',function(){
   var nextActiveEventKey = $(this).attr('data-linkTo');
+  var id = $(this).attr("id");
+
   if (nextActiveEventKey != "null") {
     updateActiveEvent(nextActiveEventKey);
   }
   else {
-    var id = $(this).attr("id");
     if (id == "schedIncrease") {
         if (dayKey == 0) {
           dayKey = 1;
@@ -154,7 +155,23 @@ $('#schedule').on('click','.scheduleLink',function(){
         }
     }
   }
+
+  hideAndShowButtons();
 });
+
+function hideAndShowButtons() {
+  if ($("#schedIncrease").attr('data-linkTo') == "null" && dayKey == 1) {
+    $("#schedIncrease").css("visibility", "hidden");
+  } else {
+    $("#schedIncrease").css("visibility", "visible");
+  }
+
+  if ($("#schedDecrease").attr('data-linkTo') == "null" && dayKey == 0) {
+    $("#schedDecrease").css("visibility", "hidden");
+  } else {
+    $("#schedDecrease").css("visibility", "visible");
+  }
+}
 
 $("#toggleDay").click(function(){
   if (dayKey == 0) {
@@ -167,5 +184,6 @@ $("#toggleDay").click(function(){
   }
   eventDay = days[dayKey];
   scheduleData = Schedules[eventDay].sched;
-  reInitSchedule()
+  reInitSchedule();
+  hideAndShowButtons();
 });

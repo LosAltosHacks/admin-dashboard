@@ -278,8 +278,6 @@ div#overlay {
     width: 100%;
     height: auto;
     display: block;
-    position: absolute;
-    top: 3rem;
 }
 
 #logo-main img {
@@ -378,7 +376,6 @@ h1.head-text {
 
 details {
   flex: 1 50%;
-  /* height: 100% !important; */
   margin: 0 !important;
   padding-left: 1em;
   padding-right: 1em;
@@ -387,7 +384,6 @@ details {
 }
 
 details:not([open]) {
-	/* height: calc(1.2375em + 24.47px); */
   height: 3.3em;
 }
 
@@ -419,6 +415,10 @@ summary:after {
     transform: translateX(-0.3536em) rotate(-45deg);
     transition: transform 0.3s;
     color: white;
+}
+
+summary h3 {
+    padding-right: 1em;
 }
 
 /* i hate safari just for the record */
@@ -814,8 +814,7 @@ footer a.link-group-item:hover {
 #schedule {
     text-align: left;
     color: white;
-    height: 100%;
-    /* display: block; */
+    height: 100vh;
 }
 
 #event-name {
@@ -982,6 +981,11 @@ footer a.link-group-item:hover {
 
 /* tablets + small screens */
 @media only screen and (max-width: 900px) {
+    #logo-main {
+        position: absolute;
+        top: 3rem;
+    }
+
     #logo-main img {
         width: 90%;
     }
@@ -993,6 +997,7 @@ footer a.link-group-item:hover {
 
     #schedule {
         flex-direction: column;
+        height: 100%;
     }
 
     #schedule-vis {
@@ -1041,7 +1046,7 @@ footer a.link-group-item:hover {
     width: unset;
   }
   details:not([open]) {
-    height: 4em;
+    height: 4.4em;
   }
   #logo-main {
     height: calc(100vh - 160px - 7.4rem);
