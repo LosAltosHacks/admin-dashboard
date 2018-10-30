@@ -47,10 +47,10 @@ p {
 }
 
 header {
-  background-image: url(../assets/SSBUGradient.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-image: url(../assets/SSBUGradient.png); */
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
   height: 100%;
 }
 header #logo {
@@ -67,9 +67,30 @@ header #scrolly {
   margin: 0 auto;
   width: 40px;
 }
+header img#background {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  -webkit-mask-image: -webkit-gradient(
+    linear, right top, right bottom,
+    color-stop(0.00,  rgba(0,0,0,1)),
+    color-stop(0.35,  rgba(0,0,0,1)),
+    color-stop(0.50,  rgba(0,0,0,1)),
+    color-stop(0.65,  rgba(0,0,0,1)),
+    color-stop(1.00,  rgba(0,0,0,0)));
+}
 
-main {
-  background-image: linear-gradient(-45deg, #4091FF, #FF405F);
+main .overlay {
+  position: absolute;
+  bottom: -370vh;
+  height: 450vh;
+  width: 100%;
+  background: linear-gradient(-45deg, #4091FF, #FF405F);
+  z-index: -2;
 }
 
 .nav {
