@@ -63,7 +63,8 @@ header #logo {
 header #scrolly {
   position: absolute;
   bottom: 10%;
-  left: 50%;
+  left: calc(50% - 20px);
+  filter: invert(1);
   margin: 0 auto;
   width: 40px;
 }
