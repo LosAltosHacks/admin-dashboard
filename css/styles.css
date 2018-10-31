@@ -115,6 +115,13 @@ main .overlay {
   width: 8em;
 }
 
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 a {
   font-family: 'Lato', sans-serif;
   font-weight: 900;
@@ -130,6 +137,8 @@ hr {
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
+
+
 .content {
   width: 80%;
   margin: 0 auto;
@@ -142,20 +151,53 @@ hr {
 }
 
 .right-content {
+  float: right;
   text-align: left;
-  margin: 0 auto;
 }
-.right-content hr {
+/* .right-content hr {
   margin-left: 0;
-}
+} */
 
 .left-content {
+  float: left;
   text-align: right;
-  margin: auto;
 }
-.left-content hr {
+
+.right-content img, .left-content img {
+  max-width: 100%;
+  max-height: 60vh;
+  margin: 0 auto;
+}
+
+.right-content > div, .left-content > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+  .right-content > div {
+    float: right;
+  }
+  .right-content * {
+    float: left;
+  }
+  .right-content h1 {
+    float: none;
+  }
+  .left-content > div {
+    float: left;
+  }
+  .left-content * {
+    float: right;
+  }
+  .left-content h1 {
+    float: none;
+  }
+.right-content p, .right-content h2, .left-content p, .left-content h2 {
+  width: 100%;
+}
+/* .left-content hr {
   margin-right: 0;
-}
+} */
 
 .center-content {
   text-align: center;
@@ -177,7 +219,7 @@ hr {
 }
 
 .col-40 {
-  width: 40%;
+  width: 50%;
 }
 .col-20 {
   width: 20%;
@@ -207,4 +249,13 @@ hr {
 }
 #social li {
   display: inline-block;
+}
+
+@media only screen and (max-width: 650px) {
+  .col-40 {
+    width: 100%;
+  }
+  section > div {
+    margin-bottom: 20vh;
+  }
 }
