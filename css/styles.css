@@ -120,6 +120,7 @@ a {
   font-weight: 900;
   color: white;
   text-decoration: none;
+  cursor: pointer;
 }
 
 hr {
@@ -188,6 +189,10 @@ hr {
 .elem ul {
   list-style-type: none;
   padding-left: 0;
+}
+
+#scrolly:hover {
+  cursor:pointer;
 }
 
 #about {
