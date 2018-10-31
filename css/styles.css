@@ -258,4 +258,7 @@ hr {
   section > div {
     margin-bottom: 20vh;
   }
+  section {
+    display: unset;
+  }
 }
