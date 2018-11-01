@@ -71,6 +71,7 @@ header #scrolly {
   filter: invert(1);
   margin: 0 auto;
   width: 40px;
+  cursor: pointer:
 }
 header img#background {
   position: absolute;
