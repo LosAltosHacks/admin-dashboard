@@ -224,8 +224,11 @@ hr {
   vertical-align: middle;
 }
 
-.col-40 {
+.col-50 {
   width: 50%;
+}
+.col-40 {
+  width: 40%;
 }
 .col-20 {
   width: 20%;
@@ -264,13 +267,17 @@ hr {
 #social img {
   max-width: 100%;
 }
+  #social a {
+    transition: tranform .5s;
+    transition: filter .5s;
+  }
   #social a:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
     filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
   }
 
 @media only screen and (max-width: 650px) {
-  .col-40 {
+  .col-50 {
     width: 100%;
   }
   section > div {
