@@ -252,10 +252,22 @@ hr {
 #social ul {
   list-style-type: none;
   padding-left: 0;
+  white-space: nowrap;
+  width: 50%;
+  margin: 0 auto;
 }
 #social li {
   display: inline-block;
+  width: calc(100% / 4);
+  padding: 10px;
 }
+#social img {
+  max-width: 100%;
+}
+  #social a:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
+  }
 
 @media only screen and (max-width: 650px) {
   .col-40 {
