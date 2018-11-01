@@ -92,8 +92,7 @@ header img#background {
 
 main .overlay {
   position: absolute;
-  bottom: -370vh;
-  height: 450vh;
+  top: 0;
   width: 100%;
   background: linear-gradient(-45deg, #4091FF, #FF405F);
   z-index: -2;

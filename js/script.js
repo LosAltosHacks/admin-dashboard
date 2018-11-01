@@ -4,4 +4,6 @@ $(document).ready(function(){
       behavior: 'smooth'
     });
   });
+
+  $('.overlay').height($('header').height() + $('main').height() + $('footer').height());
 });
