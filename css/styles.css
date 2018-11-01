@@ -19,10 +19,6 @@ bottom right: Primary Blue
   box-sizing: border-box;
 }
 
-html {
-  overflow-x: hidden;
-}
-
 html, body {
   color: #fff;
   font-family: 'Lato', sans-serif;
@@ -181,20 +177,18 @@ hr {
 }
   .right-content > div {
     float: right;
-    text-align: right;
   }
   .right-content * {
-    float: right;
+    float: left;
   }
   .right-content h1 {
     float: none;
   }
   .left-content > div {
     float: left;
-    text-align: left;
   }
   .left-content * {
-    float: left;
+    float: right;
   }
   .left-content h1 {
     float: none;
