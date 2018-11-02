@@ -71,7 +71,7 @@ header #scrolly {
   filter: invert(1);
   margin: 0 auto;
   width: 40px;
-  cursor: pointer;
+  cursor: pointer:
 }
 header img#background {
   position: absolute;
@@ -94,7 +94,7 @@ main .overlay {
   position: absolute;
   top: 0;
   width: 100%;
-  background: linear-gradient(#3c006e00, #3C006E), linear-gradient(-45deg, #4091FF, #FF405F);
+  background: linear-gradient(-45deg, #4091FF, #FF405F);
   z-index: -2;
 }
 
@@ -102,14 +102,9 @@ main .overlay {
   list-style-type: none;
   padding-left: 0;
   margin-top: 0;
-  position: fixed;
-  background: linear-gradient(#00000050, #00000000);
-  width: 100%;
-  z-index: 1;
 }
 .nav li {
   display: inline-block;
-  vertical-align: middle;
 }
 
 .button {
@@ -136,11 +131,10 @@ a {
   font-weight: 900;
   color: white;
   text-decoration: none;
-  cursor: pointer;
 }
 
 hr {
-  width: 40px;
+  width: 50px;
   height: 5px;
   background-color: #fff;
   border: none;
@@ -152,16 +146,12 @@ hr {
 .content {
   width: 80%;
   margin: 0 auto;
-  line-height: 1.5;
 }
 
 .page {
   height: auto;
-  padding: 120px 0px;
+  padding: 60px 0px;
   margin: 0 auto;
-}
-.page img {
-  transform: scaleX(-1);
 }
 
 .right-content {
@@ -259,20 +249,6 @@ hr {
 #scrolly:hover {
   transform: translateY(-2px);
   filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2)), invert(1);
-}
-
-.logo {
-  width: 20%;
-  height: auto;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.characterimage {
-  width: 100%;
-  transform: scaleX(-1);
-
 }
 
 #about {
