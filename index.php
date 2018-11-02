@@ -15,7 +15,7 @@
       <li><img src="assets/images/LAHSSmashLongBorderless.png" alt="Logo" class="logo"></li>
       <li id="drop-down">Social<i></i></li>
     </ul>
-    <img src="assets/SSBUGradient.png" alt="Smash Background" id="background">
+    <img src="assets/images/SSBUGradient.png" alt="Smash Background" id="background">
     <!-- <img src="assets/LAHSSmashIcon.png" alt="LAHS Smash" id="logo">
     We are
     <img src="assets/LAHSSmashLongTextOnly.png" alt="LAHS Smash" id="logo"> -->
