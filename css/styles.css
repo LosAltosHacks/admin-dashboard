@@ -110,6 +110,16 @@ main .overlay {
 .nav li {
   display: inline-block;
   vertical-align: middle;
+  padding: 10px 20px;
+}
+.nav .logo {
+  width: 200px;
+  height: auto;
+}
+.nav #drop-down {
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
 }
 
 .button {
@@ -220,6 +230,13 @@ hr {
   margin: auto;
 }
 
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+
 .footer {
   padding: 20px 0px;
   height: auto;
@@ -256,14 +273,6 @@ hr {
 #scrolly:hover {
   transform: translateY(-2px);
   filter: drop-shadow(0 5px 2px rgba(255, 255, 255, 0.5)) invert(1);
-}
-
-.logo {
-  width: 20%;
-  height: auto;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 /* .characterimage {
