@@ -6,4 +6,8 @@ $(document).ready(function(){
   });
 
   $('.overlay').height($('header').height() + $('main').height() + $('footer').height());
+
+  $(window).resize(function() {
+    $('.overlay').height($('header').height() + $('main').height() + $('footer').height());
+  })
 });

@@ -71,7 +71,7 @@ header #scrolly {
   filter: invert(1);
   margin: 0 auto;
   width: 40px;
-  cursor: pointer:
+  cursor: pointer;
 }
 header img#background {
   position: absolute;
@@ -242,13 +242,12 @@ hr {
 }
 
 #scrolly {
-  transition: transform .5s;
-  transition: filter .5s;
+  transition: all .5s;
 }
 
 #scrolly:hover {
   transform: translateY(-2px);
-  filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2)), invert(1);
+  filter: drop-shadow(0 5px 2px rgba(255, 255, 255, 0.5)) invert(1);
 }
 
 #about {
@@ -266,7 +265,7 @@ hr {
   list-style-type: none;
   padding-left: 0;
   white-space: nowrap;
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
 }
 #social li {
@@ -275,15 +274,15 @@ hr {
   padding: 10px;
 }
 #social img {
-  max-width: 100%;
+  max-width: 40%;
 }
   #social a {
-    transition: tranform .5s;
-    transition: filter .5s;
+    transition: all .5s;
   }
   #social a:hover {
     transform: translateY(-5px);
     filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
   }
 
 @media only screen and (max-width: 650px) {
