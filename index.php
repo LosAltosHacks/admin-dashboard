@@ -66,9 +66,9 @@
         <h2>Follow us on social media</h2>
         <ul>
           <li>
-            <a href="https://www.facebook.com/lahssmash/">
-              <img alt="facebook" src="assets/icons/icons8-facebook-512.png">
-              <p>Facebook</p>
+            <a href="https://discord.gg/kCnafm5">
+              <img alt="discord" src="assets/icons/icons8-discord-512.png">
+              <p>Discord</p>
             </a>
           </li>
           <li>
