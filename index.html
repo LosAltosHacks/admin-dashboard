@@ -105,7 +105,8 @@
   <div class="elem col-40">
     &copy; 2018 LAHS Smash Club<br>
     Designed by Andy Shi<br>
-    Website created by Elena Atluri and Kung-Min Lin in association with <a href="https://lahs.club">LAHS Hack Club</a>
+    Website created by Elena Atluri and Kung-Min Lin in association with <a href="https://lahs.club">LAHS Hack Club</a><br>
+    Icons provided by <a href="https://icons8.com/">icon8</a>
   </div>
   <div class="elem col-20">
     <ul>
