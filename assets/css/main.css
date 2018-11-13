@@ -1,0 +1,50 @@
+:root {
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(to right bottom, rgb(255, 64, 95), rgb(64, 145, 255));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.panel {
+  background-color: white;
+  margin-top: 5px;
+  margin: 0 auto;
+  width: 90%;
+  padding: 10px;
+  min-height: 100%;
+}
+
+#attendees-list {
+
+}
+  #attendees-list ul {
+    padding: 0;
+  }
+  #attendees-list li {
+    display: inline-block;
+    list-style-type: none;
+  }
+  #attendees-list summary {
+    outline: none;
+    cursor: pointer;
+  }
+    #attendees-list summary::after {
+      content: '>';
+      border: solid;
+      width: 1em;
+      height: 1em;
+    }
