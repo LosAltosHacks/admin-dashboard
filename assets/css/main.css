@@ -32,19 +32,62 @@ body {
 
 }
   #attendees-list ul {
-    padding: 0;
+    padding: 5px;
+    width: calc(100% - 1.2em);
+    margin: 0;
+    display: inline-block;
   }
   #attendees-list li {
     display: inline-block;
     list-style-type: none;
+    width: calc((100% - 1.2em) / 5);
   }
   #attendees-list summary {
     outline: none;
-    cursor: pointer;
   }
-    #attendees-list summary::after {
-      content: '>';
+  #attendees-list summary::-webkit-details-marker {
+    display: none;
+  }
+    #attendees-list summary:after {
+      display: inline-block;
+      content: '';
       border: solid;
+      border-width: 0 0.2em 0.2em 0;
+      font-size: 0.66em;
       width: 1em;
       height: 1em;
+      transform: translateX(-0.3536em) rotate(-45deg);
+      transition: transform 0.3s;
     }
+
+    details[open] > summary {
+      background-color: rgb(77, 184, 255);
+      color: white;
+    }
+
+    details[open] > summary:after {
+      display: inline-block;
+      transform: translateY(-0.3536em) rotate(45deg);
+    }
+
+    #attendees-list details[open] > summary + * {
+    	animation: DetailsOpen 0.5s linear;
+    	animation-direction: reverse;
+    }
+
+    @keyframes DetailsOpen {
+        from {
+            overflow: hidden;
+            max-height: 100vh
+        }
+
+        to {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0
+        }
+    }
+
+.attendees-details {
+  padding: 10px;
+}
