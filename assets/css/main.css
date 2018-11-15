@@ -24,23 +24,45 @@ body {
   margin-top: 5px;
   margin: 0 auto;
   width: 90%;
-  padding: 10px;
+  padding-top: 10px;
   min-height: 100%;
 }
+  .panel > h1 {
+    padding: 10px;
+  }
 
 #attendees-list {
 
 }
+  #attendees-list summary, #attendees-list .header {
+    width: 100%;
+    padding-left: 10px;
+  }
   #attendees-list summary ul, #attendees-list .header ul {
     padding: 5px;
     width: calc(100% - 1.2em);
     margin: 0;
     display: inline-block;
+    word-wrap: break-word
   }
   #attendees-list summary li, #attendees-list .header li {
     display: inline-block;
     list-style-type: none;
-    width: calc((100% - 1.2em) / 5);
+  }
+  #attendees-list summary li:nth-child(1), #attendees-list .header li:nth-child(1) {
+    width: 15%;
+  }
+  #attendees-list summary li:nth-child(2), #attendees-list .header li:nth-child(2) {
+    width: 20%;
+  }
+  #attendees-list summary li:nth-child(3), #attendees-list .header li:nth-child(3) {
+    width: 20%;
+  }
+  #attendees-list summary li:nth-child(4), #attendees-list .header li:nth-child(4) {
+    width: 30%;
+  }
+  #attendees-list summary li:nth-child(5), #attendees-list .header li:nth-child(5) {
+    width: calc(15% - 1.2em);
   }
   #attendees-list .header {
     font-weight: bold;
@@ -70,7 +92,7 @@ body {
     }
 
     details[open] > summary:after {
-      display: inline-block;
+      display: none;
       transform: translateY(-0.3536em) rotate(45deg);
     }
 
@@ -101,9 +123,11 @@ body {
     padding: 0.2em;
     width: calc(100% / 3 - 0.2em);
     display: inline-block;
+    font-weight: 300;
   }
   .attendees-details li {
     width: 100%;
     display: block;
     list-style-type: none;
+    padding: .2em;
   }
