@@ -34,9 +34,13 @@ body {
 #attendees-list {
 
 }
+  .header {
+    width: 100%;
+  }
   #attendees-list summary, #attendees-list .header {
     width: 100%;
     padding-left: 10px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
   }
   #attendees-list summary ul, #attendees-list .header ul {
     padding: 5px;
@@ -74,7 +78,7 @@ body {
     display: none;
   }
     #attendees-list summary:after {
-      display: inline-block;
+      display: none;
       content: '';
       border: solid;
       border-width: 0 0.2em 0.2em 0;
@@ -116,6 +120,7 @@ body {
 
 .attendees-details {
   padding: 10px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
 }
   .attendees-details ul {
     margin: 0;
