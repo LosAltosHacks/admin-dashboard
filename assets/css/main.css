@@ -1,5 +1,5 @@
 :root {
-  font-family: sans-serif;
+  font-family: 'Roboto', Fallback, sans-serif;
 }
 
 * {
@@ -31,16 +31,19 @@ body {
 #attendees-list {
 
 }
-  #attendees-list ul {
+  #attendees-list summary ul, #attendees-list .header ul {
     padding: 5px;
     width: calc(100% - 1.2em);
     margin: 0;
     display: inline-block;
   }
-  #attendees-list li {
+  #attendees-list summary li, #attendees-list .header li {
     display: inline-block;
     list-style-type: none;
     width: calc((100% - 1.2em) / 5);
+  }
+  #attendees-list .header {
+    font-weight: bold;
   }
   #attendees-list summary {
     outline: none;
@@ -58,6 +61,7 @@ body {
       height: 1em;
       transform: translateX(-0.3536em) rotate(-45deg);
       transition: transform 0.3s;
+      cursor: pointer;
     }
 
     details[open] > summary {
@@ -91,3 +95,15 @@ body {
 .attendees-details {
   padding: 10px;
 }
+  .attendees-details ul {
+    margin: 0;
+    vertical-align: top;
+    padding: 0.2em;
+    width: calc(100% / 3 - 0.2em);
+    display: inline-block;
+  }
+  .attendees-details li {
+    width: 100%;
+    display: block;
+    list-style-type: none;
+  }
