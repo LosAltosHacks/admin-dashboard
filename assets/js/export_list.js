@@ -3,9 +3,7 @@ function exportCSV() {
 
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var rows = ConvertToCSV(this.responseText);
-      var csvContent = "data:text/csv;charset=utf-8," + encodeURI(rows);
-      window.open(csvContent);
+      // this.responseText
     }
   }
 
@@ -13,11 +11,4 @@ function exportCSV() {
   xhttp.setRequestHeader("Authorization", "Bearer foobar");
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.send();
-}
-
-function jsonToCSV(args) {
-  var result, ctr, keys, columnDelimiter, lineDelimiter, data;
-
-  data = args.data || null;
-  if (data == null || !data.length)
 }
