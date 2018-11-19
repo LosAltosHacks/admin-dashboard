@@ -6,7 +6,7 @@ xhttp.onreadystatechange = function() {
     var response = JSON.parse(this.responseText);
     response.forEach(function(user) {
       var attendee = template.content.cloneNode(true);
-      var summary = [user.acceptance_status == "none" ? "Yes" : "No", user.first_name, user.surname, user.email, user.timestamp];
+      var summary = [user.acceptance_status == "none" ? "No" : "Yes", user.first_name, user.surname, user.email, user.timestamp];
 
       summary.forEach(function(data) {
         var element = document.createElement("li");
@@ -22,12 +22,12 @@ xhttp.onreadystatechange = function() {
       attendee.querySelector(".tel").appendChild(document.createTextNode(user.student_phone_number));
       attendee.querySelector(".t-shirt").appendChild(document.createTextNode(user.tshirt_size));
       attendee.querySelector(".prev-hack").appendChild(document.createTextNode(user.previous_hackathons));
-      attendee.querySelector(".g-name").appendChild(document.createTextNode(user.guardian_name));
-      attendee.querySelector(".g-email").appendChild(document.createTextNode(user.guardian_email));
-      attendee.querySelector(".g-tel").appendChild(document.createTextNode(user.guardian_phone_number));
-      attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username));
-      attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile));
-      attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions));
+      attendee.querySelector(".g-name").appendChild(document.createTextNode(user.guardian_name ? user.guardian_name : ""));
+      attendee.querySelector(".g-email").appendChild(document.createTextNode(user.guardian_email ? user.guardian_email : ""));
+      attendee.querySelector(".g-tel").appendChild(document.createTextNode(user.guardian_phone_number ? user.guardian_phone_number : ""));
+      attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username ? user.github_username : ""));
+      attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile ? user.linkedin_profile : ""));
+      attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
 
       document.getElementById("attendees-list").appendChild(attendee);
     })
