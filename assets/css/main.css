@@ -14,7 +14,7 @@ body, html {
 }
 
 body {
-  background: linear-gradient(to right bottom, rgb(255, 64, 95), rgb(64, 145, 255));
+  background-color: #67b7e1;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -31,53 +31,57 @@ body {
     padding: 10px;
   }
 
-#attendees-list {
+.panel:not(#email-list) {
+  display: none;
+}
+
+.list {
 
 }
   .header {
     width: 100%;
   }
-  #attendees-list summary, #attendees-list .header {
+  .list summary, .list .header {
     width: 100%;
     padding-left: 10px;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
   }
-  #attendees-list summary ul, #attendees-list .header ul {
+  .list summary ul, .list .header ul {
     padding: 5px;
     width: calc(100% - 1.2em);
     margin: 0;
     display: inline-block;
     word-wrap: break-word
   }
-  #attendees-list summary li, #attendees-list .header li {
+  .list summary li, .list .header li {
     display: inline-block;
     list-style-type: none;
   }
-  #attendees-list summary li:nth-child(1), #attendees-list .header li:nth-child(1) {
+  .list summary li:nth-child(1), .list .header li:nth-child(1) {
     width: 15%;
   }
-  #attendees-list summary li:nth-child(2), #attendees-list .header li:nth-child(2) {
+  .list summary li:nth-child(2), .list .header li:nth-child(2) {
     width: 20%;
   }
-  #attendees-list summary li:nth-child(3), #attendees-list .header li:nth-child(3) {
+  .list summary li:nth-child(3), .list .header li:nth-child(3) {
     width: 20%;
   }
-  #attendees-list summary li:nth-child(4), #attendees-list .header li:nth-child(4) {
+  .list summary li:nth-child(4), .list .header li:nth-child(4) {
     width: 30%;
   }
-  #attendees-list summary li:nth-child(5), #attendees-list .header li:nth-child(5) {
+  .list summary li:nth-child(5), .list .header li:nth-child(5) {
     width: calc(15% - 1.2em);
   }
-  #attendees-list .header {
+  .list .header {
     font-weight: bold;
   }
-  #attendees-list summary {
+  .list summary {
     outline: none;
   }
-  #attendees-list summary::-webkit-details-marker {
+  .list summary::-webkit-details-marker {
     display: none;
   }
-    #attendees-list summary:after {
+    .list summary:after {
       display: none;
       content: '';
       border: solid;
@@ -100,7 +104,7 @@ body {
       transform: translateY(-0.3536em) rotate(45deg);
     }
 
-    #attendees-list details[open] > summary + * {
+    .list details[open] > summary + * {
     	animation: DetailsOpen 0.5s linear;
     	animation-direction: reverse;
     }
@@ -139,7 +143,57 @@ body {
 
 #menu {
   position: fixed;
+  height: 100vh;
+  width: 20vw;
+  min-width: 250px;
+  right: 0;
 }
-#menu-button {
+  #menu-button {
+    background-color: rgb(0, 81, 255);
+    height: 3em;
+    width: 3em;
+    padding: 0.75em;
+    border-radius: 50%;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    z-index: 2;
+    cursor: pointer;
+    transition: transform .5s;
+  }
+    #menu-button img {
+      height: 100%;
+      width: 100%;
+      filter: invert(1);
+    }
+  #menu-button:hover {
+    transform: scale(1.2);
+  }
 
-}
+  #menu-panel {
+    display: none;
+    position: absolute;
+    background-color: rgba(63, 178, 255, 0.9);
+    height: 100%;
+    width: 100%;
+    right: 0;
+  }
+    #menu-panel ul {
+      position: absolute;
+      top: 5em;
+      padding: 0;
+      width: 100%;
+    }
+    #menu-panel li {
+      display: block;
+      cursor: pointer;
+      color: white;
+      list-style-type: none;
+      transition: background-color .5s;
+      padding: 0.6em;
+      padding-left: 2em;
+      white-space: nowrap;
+    }
+    #menu-panel li:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
