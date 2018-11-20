@@ -5,9 +5,11 @@ function signup(user) {
   var xhttp = new XMLHttpRequest();
 
   xhttp.onreadystatechange = function() {
-    return JSON.parse(this.responseText);
+    if (this.readyState == 4 && this.status === 200) return this.response;
+    else return false;
   }
 
+  xhttp.responseType = 'json';
   xhttp.open("POST", server + "/registration/v1/signup", true);
   xhttp.setRequestHeader("Authorization", "Bearer foobar");
   xhttp.setRequestHeader("Content-Type", "application/json");
@@ -18,10 +20,12 @@ function modify(user_id, params) {
   var xhttp = new XMLHttpRequest();
 
   xhttp.onreadystatechange = function() {
-    return JSON.parse(this.responseText);
+    if (this.readyState == 4 && this.status === 200) return this.response;
+    else return false;
   }
 
-  xhttp.open("POST", server + "/registration/v1/signup/" + user_id, true);
+  xhttp.responseType = 'json';
+  xhttp.open("POST", server + "/registration/v1/modify/" + user_id, true);
   xhttp.setRequestHeader("Authorization", "Bearer foobar");
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.send(JSON.stringify(params));
@@ -35,6 +39,26 @@ function accept(user_id, status) {
 function verify(user_id) {
   if (status != "none" && status != "waitlisted" && status != "rejected" && status != "queue" && status != "accepted") return false;
   modify(user_id, {email_verified: true});
+}
+
+function unverify(user_id) {
+  if (status != "none" && status != "waitlisted" && status != "rejected" && status != "queue" && status != "accepted") return false;
+  modify(user_id, {email_verified: false});
+}
+
+function deleteUser(user_id) {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status === 200) return this.response;
+    else return false;
+  }
+
+  xhttp.responseType = 'json';
+  xhttp.open("GET", server + "/registration/v1/delete/" + user_id, true);
+  xhttp.setRequestHeader("Authorization", "Bearer foobar");
+  xhttp.setRequestHeader("Content-Type", "application/json");
+  xhttp.send();
 }
 
 function getUser(user_id) {

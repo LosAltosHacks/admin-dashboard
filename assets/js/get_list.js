@@ -15,6 +15,7 @@ xhttp.onreadystatechange = function() {
         attendee.querySelector("summary ul").appendChild(element)
       })
 
+      attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
       attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));
       attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
       attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
