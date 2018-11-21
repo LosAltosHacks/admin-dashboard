@@ -14,13 +14,14 @@ body, html {
 }
 
 body {
-  background-color: #67b7e1;
+  /* background-color: #67b7e1; */
+  background-color: white;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 .panel {
-  background-color: white;
+  /* background-color: white; */
   margin-top: 5px;
   margin: 0 auto;
   width: 90%;
@@ -147,7 +148,11 @@ body {
   width: 20vw;
   min-width: 250px;
   right: 0;
+  pointer-events: none;
 }
+  #menu * {
+    pointer-events: auto;
+  }
   #menu-button {
     background-color: rgb(0, 81, 255);
     height: 3em;
