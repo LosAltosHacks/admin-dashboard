@@ -33,6 +33,11 @@ async function getUser(query) {
   return result;
 }
 
+async function getHistory(user_id) {
+  let result = await request("GET", "/registration/v1/history/" + user_id);
+  return result;
+}
+
 function request(method, url, data) {
   return new Promise(function (resolve, reject) {
     let xhttp = new XMLHttpRequest();

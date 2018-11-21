@@ -12,9 +12,12 @@ async function getList() {
       attendee.querySelector("summary ul").appendChild(element)
     })
 
+    attendee.querySelector("summary").setAttribute("title", user.first_name + " " + user.surname + " <" + user.user_id + ">");
+
     var deleteIcon = document.createElement("span");
     deleteIcon.classList.add("delete-icon");
     var deleteSpan = document.createElement("span");
+    deleteSpan.setAttribute("title", "Delete Attendee");
     var deleteIconImg = document.createElement("img");
     deleteIconImg.src = "/assets/icons/close.svg";
     deleteSpan.appendChild(deleteIconImg);
@@ -39,11 +42,22 @@ async function getList() {
     var editIcon = document.createElement("span");
     editIcon.classList.add("edit-icon");
     var editSpan = document.createElement("span");
+    editSpan.setAttribute("title", "Edit Attendee Data");
     var editIconImg = document.createElement("img");
     editIconImg.src = "/assets/icons/user-edit.svg";
     editSpan.appendChild(editIconImg);
     editIcon.appendChild(editSpan)
     attendee.querySelector(".attendees-details").appendChild(editIcon);
+
+    var historyIcon = document.createElement("span");
+    historyIcon.classList.add("history-icon");
+    var historySpan = document.createElement("span");
+    historySpan.setAttribute("title", "View Edit History");
+    var historyIconImg = document.createElement("img");
+    historyIconImg.src = "/assets/icons/history.svg";
+    historySpan.appendChild(historyIconImg);
+    historyIcon.appendChild(historySpan)
+    attendee.querySelector(".attendees-details").appendChild(historyIcon);
 
     document.getElementById("attendees-list").insertBefore(attendee, document.getElementById("attendees-list").children[1]);
   })

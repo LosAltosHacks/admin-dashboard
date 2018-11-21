@@ -137,6 +137,7 @@ body {
     padding: .2em;
   }
 
+/* Icons */
 .delete-icon {
   position: absolute;
   left: -3%;
@@ -184,6 +185,32 @@ body {
     transform: scale(1.2);
   }
   .edit-icon img {
+    height: 1.5em;
+    width: 1.5em;
+    filter: invert(1);
+  }
+
+.history-icon {
+  position: absolute;
+  right: calc(20px + 3em);
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+  .history-icon > span {
+    width: 3em;
+    height: 3em;
+    padding: 0.75em;
+    background-color: rgb(77, 184, 255);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform .5s;
+  }
+  .history-icon > span:hover {
+    transform: scale(1.2);
+  }
+  .history-icon img {
     height: 1.5em;
     width: 1.5em;
     filter: invert(1);
@@ -260,3 +287,13 @@ body {
     #menu-panel li:hover {
       background-color: rgba(255, 255, 255, 0.3);
     }
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}

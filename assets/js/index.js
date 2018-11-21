@@ -40,6 +40,11 @@ $(document).ready(function() {
       row.remove();
     });
   })
+
+  $(document).on('click', ".history-icon > span", function(e) {showHistory(e);});
+  $(document).on('click', ".edit-icon > span", function(e) {showEditPanel(e);});
+
+  document.addEventListener('copy', clipboard.hook);
 })
 
 function getPanel(panel) {
@@ -66,4 +71,22 @@ function confirmAccept() {
     }
   })
   updateLists();
+}
+
+function showHistory(e) {
+  var modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.id = "history-modal";
+
+  var user_id = $(e.target).closest(".attendees-row").attr("data-id");
+  getHistory(user_id).then(function(result) {
+    // Do something here
+  })
+}
+
+function showEditPanel(e) {
+  var modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.id = "edit-modal";
+  document.querySelector("body").appendChild(modal);
 }
