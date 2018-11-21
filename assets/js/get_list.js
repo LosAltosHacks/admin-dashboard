@@ -5,7 +5,6 @@ async function getList() {
     var attendee = template.content.cloneNode(true);
     var summary = [user.acceptance_status == "none" ? "No" : user.acceptance_status.charAt(0).toUpperCase() + user.acceptance_status.slice(1), user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
 
-
     summary.forEach(function(data) {
       var element = document.createElement("li");
       var node = document.createTextNode(data);
@@ -15,11 +14,11 @@ async function getList() {
 
     var deleteIcon = document.createElement("span");
     deleteIcon.classList.add("delete-icon");
-    var span = document.createElement("span");
-    var icon = document.createElement("img");
-    icon.src = "/assets/icons/close.svg";
-    span.appendChild(icon);
-    deleteIcon.appendChild(span)
+    var deleteSpan = document.createElement("span");
+    var deleteIconImg = document.createElement("img");
+    deleteIconImg.src = "/assets/icons/close.svg";
+    deleteSpan.appendChild(deleteIconImg);
+    deleteIcon.appendChild(deleteSpan)
     attendee.querySelector("summary").insertBefore(deleteIcon, attendee.querySelector("summary").children[0]);
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
@@ -36,6 +35,15 @@ async function getList() {
     attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username ? user.github_username : ""));
     attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile ? user.linkedin_profile : ""));
     attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+
+    var editIcon = document.createElement("span");
+    editIcon.classList.add("edit-icon");
+    var editSpan = document.createElement("span");
+    var editIconImg = document.createElement("img");
+    editIconImg.src = "/assets/icons/user-edit.svg";
+    editSpan.appendChild(editIconImg);
+    editIcon.appendChild(editSpan)
+    attendee.querySelector(".attendees-details").appendChild(editIcon);
 
     document.getElementById("attendees-list").insertBefore(attendee, document.getElementById("attendees-list").children[1]);
   })

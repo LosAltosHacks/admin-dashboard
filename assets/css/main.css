@@ -117,6 +117,7 @@ body {
   padding: 10px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
   background-color: rgba(77, 184, 255, 0.4);
+  position: relative;
 }
   .attendees-details ul {
     margin: 0;
@@ -137,7 +138,6 @@ body {
   position: absolute;
   left: -3%;
   height: 100%;
-  width: 1em;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -157,6 +157,32 @@ body {
   .delete-icon img {
     height: 1em;
     width: 1em;
+    filter: invert(1);
+  }
+
+.edit-icon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+  .edit-icon > span {
+    width: 3em;
+    height: 3em;
+    padding: 0.75em;
+    background-color: rgb(77, 184, 255);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform .5s;
+  }
+  .edit-icon > span:hover {
+    transform: scale(1.2);
+  }
+  .edit-icon img {
+    height: 1.5em;
+    width: 1.5em;
     filter: invert(1);
   }
 
