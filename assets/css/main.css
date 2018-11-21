@@ -91,6 +91,9 @@ body {
   .list summary::-webkit-details-marker {
     display: none;
   }
+    details:not([open]):hover {
+      background-color: rgba(77, 184, 255, 0.2);
+    }
     details[open] > summary {
       background-color: rgb(77, 184, 255);
       color: white;
