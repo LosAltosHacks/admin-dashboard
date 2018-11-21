@@ -4,20 +4,41 @@ jwt_auth = "foobar";
 // Listeners for controls
 
 $(document).ready(function() {
+  // Decorative Controls
+  let origin = $('.header').offset().top;
+  $(document).scroll(function() {
+    if ($(window).scrollTop() > origin) $('.header').addClass('fix');
+    if ($(window).scrollTop() < origin) $('.header').removeClass('fix');
+  })
+
   $("#menu-button").click(function() {
     $("#menu-panel").animate({"width": "toggle"});
   })
 
   $("body > div").not("#menu").click(function() {
-    if ($("#menu-panel").css("display") !== "none") $("#menu-panel").animate({"width": "toggle"});
+    if ($("#menu-panel").css("display") === "block" && $("#menu-panel").width() == $("#menu-panel").parent().width()) {
+      $("#menu-panel").animate({"width": "toggle"});
+    }
   })
 
+  // Essential Controls
   $("#select-all").change(function() {
     if ($(this).is(':checked')) {
       $(".accept").prop("checked", true);
     } else {
       $(".accept").prop("checked", false);
     }
+  })
+
+  $(document).on('click', ".delete-icon > span", function(e) {
+    e.preventDefault();
+    deleteUser($(this).closest(".attendees-row").attr("data-id"))
+    let row = $(this).closest(".attendees-row");
+    row.css({"background-color": "#e53935"});
+    row.css({"color": "white"});
+    row.slideUp(function() {
+      row.remove();
+    });
   })
 })
 
@@ -26,6 +47,7 @@ function getPanel(panel) {
   $('#' + panel).css({display: "block"});
   if (panel !== "bulk-acceptance") $("#confirm-acceptance").css({display: "none"});
   else $("#confirm-acceptance").css({display: "block"});
+  updateLists();
 }
 
 function expandAll() {
@@ -43,4 +65,5 @@ function confirmAccept() {
       accept(id, "queue");
     }
   })
+  updateLists();
 }

@@ -5,12 +5,22 @@ async function getList() {
     var attendee = template.content.cloneNode(true);
     var summary = [user.acceptance_status == "none" ? "No" : user.acceptance_status.charAt(0).toUpperCase() + user.acceptance_status.slice(1), user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
 
+
     summary.forEach(function(data) {
       var element = document.createElement("li");
       var node = document.createTextNode(data);
       element.append(node);
       attendee.querySelector("summary ul").appendChild(element)
     })
+
+    var deleteIcon = document.createElement("span");
+    deleteIcon.classList.add("delete-icon");
+    var span = document.createElement("span");
+    var icon = document.createElement("img");
+    icon.src = "/assets/icons/close.svg";
+    span.appendChild(icon);
+    deleteIcon.appendChild(span)
+    attendee.querySelector("summary").insertBefore(deleteIcon, attendee.querySelector("summary").children[0]);
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
     attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));

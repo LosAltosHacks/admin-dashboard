@@ -62,3 +62,10 @@ function request(method, url, data) {
     else xhttp.send();
   })
 }
+
+function updateLists() {
+  $('.list > *').not('.header').remove();
+  getList();
+  getAcceptedList();
+  getUnacceptedList();
+}
