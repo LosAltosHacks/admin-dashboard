@@ -73,12 +73,15 @@ async function getUnacceptedList() {
     if (user.acceptance_status !== "none") return;
     var summary = [user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
 
+    var wrapper = document.createElement("li");
+    wrapper.classList.add("acceptance-checkbox");
     var checkbox = document.createElement("input");
     checkbox.classList.add("accept");
     var type = document.createAttribute("type");
     type.value = "checkbox";
     checkbox.setAttributeNode(type);
-    attendee.querySelector("summary ul").appendChild(checkbox);
+    wrapper.appendChild(checkbox);
+    attendee.querySelector("summary ul").appendChild(wrapper);
 
     summary.forEach(function(data) {
       var element = document.createElement("li");

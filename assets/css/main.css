@@ -183,16 +183,26 @@ body {
     width: 100%;
     right: 0;
   }
-    #menu-panel ul {
+    #menu-panel > div {
       position: absolute;
       top: 5em;
+      padding: 0;
+      width: 100%;
+      color: white;
+    }
+    #menu-panel h2 {
+      font-size: 18px;
+      padding: 0.3em 1em;
+      border-bottom: solid 1px rgba(255, 255, 255, 0.7);
+    }
+    #menu-panel ul {
+      position: relative;
       padding: 0;
       width: 100%;
     }
     #menu-panel li {
       display: block;
       cursor: pointer;
-      color: white;
       list-style-type: none;
       transition: background-color .5s;
       padding: 0.6em;

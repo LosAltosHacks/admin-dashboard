@@ -14,12 +14,21 @@
   <div id="menu">
     <div id="menu-button"><img src="/assets/icons/menu-bar.svg"></div>
     <div id="menu-panel">
-      <ul>
-        <li onclick="getPanel('email-list')">Email List</li>
-        <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
-        <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
-        <li onclick="getPanel('check-in')">Check-In Panel</li>
-      </ul>
+      <div>
+        <h2>Pages</h2>
+        <ul>
+          <li onclick="getPanel('email-list')">Email List</li>
+          <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
+          <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
+          <li onclick="getPanel('check-in')">Check-In Panel</li>
+        </ul>
+        <h2>Tools</h2>
+        <ul>
+          <li onclick="expandAll()" id="expand-all">Expand All</li>
+          <li onclick="hideAll()" id="hide-all">Hide All</li>
+          <li style="display: none" onclick="confirmAccept()" id="confirm-acceptance">Confirm Acceptance</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -94,7 +103,7 @@
     <div id="unaccepted-list" class="list">
       <div class="header">
         <ul>
-          <li>Accept</li><li>
+          <li>Accept<input id="select-all" type="checkbox"></li><li>
           First Name</li><li>
           Last Name</li><li>
           Email</li><li>
