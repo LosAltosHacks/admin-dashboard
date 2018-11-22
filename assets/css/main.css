@@ -48,7 +48,8 @@ body {
     left: 0;
     padding-left: calc(5% + 10px) !important;
     padding-right: 5%;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 3;
   }
   .list summary, .list .header {
     width: 100%;
@@ -223,7 +224,7 @@ body {
   min-width: 250px;
   right: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 999;
 }
   #menu * {
     pointer-events: auto;
@@ -289,6 +290,7 @@ body {
     }
 
 .modal {
+  z-index: 999;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -296,4 +298,93 @@ body {
   width: 500px;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+  .modal-content {
+    padding: 10px;
+  }
+
+#history-modal li {
+  list-style-type: none;
+}
+#edit-modal li {
+  list-style-type: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+  #edit-modal input[type="text"], #edit-modal input[type="number"], #edit-modal input[type="email"], #edit-modal input[type="tel"] {
+    border: 1px solid #cccccc;
+  }
+
+#copy-field {
+  resize: vertical;
+  min-height: 5em;
+  max-height: 20em;
+  width: 80%;
+  border: 1px solid #CCCCCC !important;
+}
+  #copy-icon {
+    display: inline-block;
+    padding: 0.5em;
+    position: absolute;
+    top: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color .3s;
+    border-radius: 50%;
+  }
+  #copy-icon:active {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  #copy-icon:hover img {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7));
+  }
+  #copy-icon img {
+    height: 1.5em;
+    width: 1.5em;
+    transition: transform .5s, filter .5s;
+  }
+
+.close-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: #e53935;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform .5s;
+}
+.close-icon:hover {
+  transform: scale(1.2);
+}
+.close-icon img {
+  height: 20px;
+  width: 20px;
+  filter: invert(1);
+}
+
+#finish-edit-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: #4db6ac;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform .5s;
+}
+#finish-edit-icon:hover {
+  transform: scale(1.2);
+}
+#finish-edit-icon img {
+  height: 20px;
+  width: 20px;
+  filter: invert(1);
 }
