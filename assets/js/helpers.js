@@ -43,7 +43,7 @@ function request(method, url, data) {
     let xhttp = new XMLHttpRequest();
     xhttp.responseType = 'json';
     xhttp.open(method, server + url, true);
-    xhttp.setRequestHeader("Authorization", "Bearer " + jwt_auth);
+    if (jwt_auth) xhttp.setRequestHeader("Authorization", "Bearer " + jwt_auth);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onload = function() {
       if (this.readyState == 4 && this.status >= 200 && this.status < 300) {

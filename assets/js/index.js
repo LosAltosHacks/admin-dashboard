@@ -1,9 +1,12 @@
 server = "http://localhost:5000";
-jwt_auth = "foobar";
 
 // Listeners for controls
 
 $(document).ready(function() {
+  if (window.location.pathname !== "/login.html" && !jwt_auth) {
+    window.location.href = "/login.html";
+  }
+
   // Decorative Controls
   let origin = $('.header').offset().top;
   $(document).scroll(function() {
