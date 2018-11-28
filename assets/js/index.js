@@ -9,9 +9,21 @@ if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
 
 $(document).ready(function() {
   // Decorative Controls
-  $("#profile > img").attr('src', localStorage.prof_image);
-  $("#profile > span").append("<h4>" + localStorage.name + "</h4>");
-  $("#profile > span").append("<p>" + localStorage.email + "</p>");
+  $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
+  $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name + "</h4>");
+  $("#profile > span").not("#profile-pic").append("<p>" + localStorage.email + "</p>");
+
+  $("#profile > #profile-pic").hover(function() {
+    $(this).css({'background-image': "url('/assets/icons/sign-out.svg')"});
+    $(this).addClass('signout');
+  }, function() {
+    $(this).css({'background-image': "url('" + localStorage.prof_image + "')"});
+    $(this).removeClass('signout');
+  });
+
+  $("#profile > #profile-pic").click(function() {
+    logout();
+  });
 
   let origin = $('.header').offset().top;
   $(document).scroll(function() {

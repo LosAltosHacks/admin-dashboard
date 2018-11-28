@@ -405,31 +405,41 @@ body {
   border-radius: 10px;
   padding: 5px !important;
   height: 60px;
-  width: 170px !important;
+  min-width: 170px;
+  width: 65% !important;
   position: absolute !important;
   top: 10px !important;
   left: 5px;
 }
-  #profile > img {
+  #profile > #profile-pic {
     border-radius: 50%;
     position: relative;
     float: left;
     height: 50px;
     width: 50px;
+    cursor: pointer;
+    background-position: center;
+    background-size: cover;
   }
-  #profile > span {
+  #profile > #profile-pic.signout {
+    background-size: 70%;
+    background-repeat: no-repeat;
+    filter: invert(1);
+  }
+  #profile > span:not(#profile-pic) {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 100px;
+    min-width: 100px;
     float: left;
     padding: 5px;
     height: 100%;
+    width: 65%;
   }
-  #profile > span * {
+  #profile > span:not(#profile-pic) * {
     margin: 0 !important;
     overflow-wrap: break-word;
   }
-  #profile > span p {
+  #profile > span:not(#profile-pic) p {
     font-size: 10px;
   }
