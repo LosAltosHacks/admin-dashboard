@@ -1,13 +1,18 @@
 server = "http://localhost:5000";
 
 // Listeners for controls
+let jwt_auth = localStorage.jwt_auth;
+// jwt_auth = "foobar";
+if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
+  window.location.href = "/login.html";
+}
 
 $(document).ready(function() {
-  if (window.location.pathname !== "/login.html" && !jwt_auth) {
-    window.location.href = "/login.html";
-  }
-
   // Decorative Controls
+  $("#profile > img").attr('src', localStorage.prof_image);
+  $("#profile > span").append("<h4>" + localStorage.name + "</h4>");
+  $("#profile > span").append("<p>" + localStorage.email + "</p>");
+
   let origin = $('.header').offset().top;
   $(document).scroll(function() {
     if ($(window).scrollTop() > origin) $('.header').addClass('fix');
@@ -257,4 +262,10 @@ function showEditPanel(e) {
     document.body.appendChild(modal.container);
     $(".modal").animate({"height": "toggle"})
   })
+}
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "/login.html";
+  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }
