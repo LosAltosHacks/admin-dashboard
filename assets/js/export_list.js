@@ -1,7 +1,7 @@
 async function exportEmails() {
   var copyText = "";
 
-  let result = await request("GET", "/registration/v1/list");
+  let result = await getUser({acceptance_status: "queue"});
   result.forEach(function(user) {
     copyText += user.email + "\n";
   })
@@ -16,12 +16,15 @@ async function exportEmails() {
   var copyIconWrapper = document.createElement("span");
   copyIconWrapper.id = "copy-icon";
   copyIconWrapper.appendChild(copyIcon);
-  var copyIconWrapper = document.createElement("span");
-  copyIconWrapper.id = "copy-icon";
-  copyIconWrapper.appendChild(copyIcon);
+  var confirmIcon = document.createElement("img");
+  confirmIcon.src = "/assets/icons/check.svg";
+  var confirmIconWrapper = document.createElement("span");
+  confirmIconWrapper.id = "confirm-accept-icon";
+  confirmIconWrapper.appendChild(confirmIcon);
 
   modal.content.appendChild(copyField);
   modal.content.appendChild(copyIconWrapper);
+  modal.content.appendChild(confirmIconWrapper);
   document.body.appendChild(modal.container);
   $(".modal").animate({"height": "toggle"})
 }

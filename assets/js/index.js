@@ -7,6 +7,8 @@ if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
   window.location.href = "/login.html";
 }
 
+let edited_fields = {};
+
 $(document).ready(function() {
   // Decorative Controls
   $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
@@ -78,6 +80,14 @@ $(document).ready(function() {
     });
   })
 
+  $(document).on('click', "#confirm-accept-icon", function(e) {
+    e.preventDefault();
+    // $("#copy-field").val().split("\n") // for more robust implementation
+    $("#accepted-list .attendees-row").each(function() {
+      accept($(this).attr("data-id"), "accepted");
+    })
+  })
+
   $(document).on('click', ".modal .close-icon", function() {
     $(".modal").animate({"height": "toggle"}, function() {
       $(".modal").remove();
@@ -89,13 +99,18 @@ $(document).ready(function() {
     $("#copy-field").select();
     document.execCommand('copy', true);
   });
+
+  $(document).on('change', "#edit-modal li *", function() {
+    var field_name = $(this).closest("li").text().split(":")[0];
+    let field_val;
+    if ($(this).attr('type') === "checkbox") field_val = $(this).is(":checked");
+    else field_val = $(this).val();
+    edited_fields[field_name] = field_val;
+  })
+
   $(document).on('click', "#finish-edit-icon", function() {
-    var data = {};
-    $(this).siblings("div").find("li").each(function() {
-      if ($(this).children().val() !== "") data[$(this).attr("data-edit")] = $(this).children().val();
-    });
-    modify($(this).closest("#edit-modal").attr("data-id"), data).then(function(result) {
-      // Do something with result
+    modify($(this).closest("#edit-modal").attr("data-id"), edited_fields).then(function(result) {
+      edited_fields = {};
       $(".modal").animate({"height": "toggle"}, function() {
         $(".modal").remove();
         updateLists();
@@ -184,7 +199,7 @@ function showEditPanel(e) {
   modal.container.setAttribute("data-id", user_id);
 
   getUser({query: user_id}).then(function(result) {
-    var attendee = result[0];
+    var attendee = result[result.length-1];
     var header = document.createElement("h3");
     header.appendChild(document.createTextNode("Attendee <" + user_id + ">"));
     modal.content.appendChild(header);

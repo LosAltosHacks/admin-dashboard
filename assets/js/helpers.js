@@ -29,13 +29,50 @@ async function deleteUser(user_id) {
 }
 
 async function getUser(query) {
-  let result = await request("POST", "/registration/v1/search", {query: query});
+  let result = await request("POST", "/registration/v1/search", {query: query, outdated: false});
   return result;
 }
 
 async function getHistory(user_id) {
   let result = await request("GET", "/registration/v1/history/" + user_id);
   return result;
+}
+
+// For development purposes only
+async function populateUsers(n) {
+  for (var i=0; i<n; i++) {
+    signup({
+      first_name: "First",
+      surname: "Last",
+      email: fakeEmail(),
+      age: Math.floor(Math.random() * 20),
+      school: "High School",
+      grade: Math.floor(Math.random() * 3) + 9,
+      student_phone_number: "111111111",
+      guardian_name: "Guardian Name",
+      guardian_email: fakeEmail(),
+      guardian_phone_number: "2222222222",
+      gender: "Female",
+      tshirt_size: "M",
+      previous_hackathons: Math.floor(Math.random()*10),
+      github_username: fakeEmail(),
+      linkedin_profile: fakeEmail(),
+      dietary_restrictions: "None"
+    });
+  }
+  updateLists();
+}
+
+function fakeEmail() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i<10; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  text += "@gmail.com";
+  console.log(text);
+  return text;
 }
 
 function request(method, url, data) {

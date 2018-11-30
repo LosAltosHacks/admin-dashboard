@@ -88,6 +88,7 @@ body {
   .list summary {
     position: relative;
     outline: none;
+    display: block;
   }
   .list summary::-webkit-details-marker {
     display: none;
@@ -371,6 +372,7 @@ body {
 #copy-field {
   resize: vertical;
   min-height: 5em;
+  height: auto;
   max-height: 20em;
   width: 80%;
   border: 1px solid #CCCCCC !important;
@@ -393,6 +395,32 @@ body {
     filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7));
   }
   #copy-icon img {
+    height: 1.5em;
+    width: 1.5em;
+    transition: transform .5s, filter .5s;
+  }
+
+  #confirm-accept-icon {
+    display: inline-block;
+    padding: 0.5em;
+    position: absolute;
+    top: 35px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color .3s, transform .5s;
+    border-radius: 50%;
+  }
+  #confirm-accept-icon:active {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  #confirm-accept-icon:hover {
+    transform: translateY(-2px);
+  }
+  #confirm-accept-icon:hover img {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7));
+  }
+  #confirm-accept-icon img {
     height: 1.5em;
     width: 1.5em;
     transition: transform .5s, filter .5s;

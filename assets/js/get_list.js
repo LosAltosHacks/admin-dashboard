@@ -46,11 +46,10 @@ async function getList() {
 }
 
 async function getAcceptedList() {
-  let response = await request("GET", "/registration/v1/list");
+  let response = await getUser({acceptance_status: "queue"});
   response.forEach(function(user) {
     var template = document.getElementById("attendee-template");
     var attendee = template.content.cloneNode(true);
-    if (user.acceptance_status !== "queue") return;
     var summary = [user.acceptance_status.charAt(0).toUpperCase() + user.acceptance_status.slice(1), user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
 
     summary.forEach(function(data) {
@@ -84,11 +83,10 @@ async function getAcceptedList() {
 }
 
 async function getUnacceptedList() {
-  let response = await request("GET", "/registration/v1/list");
+  let response = await getUser({acceptance_status: "none"});
   response.forEach(function(user) {
     var template = document.getElementById("attendee-template");
     var attendee = template.content.cloneNode(true);
-    if (user.acceptance_status !== "none") return;
     var summary = [user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
 
     var wrapper = document.createElement("li");
