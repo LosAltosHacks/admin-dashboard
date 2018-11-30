@@ -531,3 +531,38 @@ body {
   #profile > span:not(#profile-pic) p {
     font-size: 10px;
   }
+
+#search-bar {
+  position: relative;
+  cursor: auto !important;
+}
+  #search-bar > input {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 0;
+    padding: 5px;
+    border-radius: 20px;
+  }
+  #search-button {
+    position: absolute;
+    top: 2px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+    background-color: #1e88e5;
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform .5s;
+    cursor: pointer;
+  }
+    #search-button:hover {
+      transform: scale(1.2);
+    }
+  #search-button > img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+    transition: transform .5s;
+  }
+    #search-button:hover > img {
+      transform: scale(1.2);
+    }

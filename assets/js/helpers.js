@@ -29,7 +29,7 @@ async function deleteUser(user_id) {
 }
 
 async function getUser(query) {
-  let result = await request("POST", "/registration/v1/search", {query: query, outdated: false});
+  let result = await request("POST", "/registration/v1/search", {query: query});
   return result;
 }
 

@@ -58,6 +58,16 @@ $(document).ready(function() {
     }
   })
 
+  $("#search-button").click(function() {
+    if ($("#search-bar > input").val().trim() === "") cancelSearch();
+    searchUpdated($("#search-bar > input").val());
+    $("#search-bar > input").select();
+  })
+
+  $("#search-bar > input").click(function() {
+    $(this).select();
+  })
+
   $(document).on('click', ".delete-icon > span", function(e) {
     e.preventDefault();
     deleteUser($(this).closest(".attendees-row").attr("data-id"));
@@ -120,6 +130,8 @@ $(document).ready(function() {
 })
 
 function getPanel(panel) {
+  if (panel === "email-list") $("#search-bar").css({display: "block"});
+  else $("#search-bar").css({display: "none"});
   $('.panel').css({display: "none"});
   $('#' + panel).css({display: "block"});
   updateLists();
@@ -303,6 +315,25 @@ function showEditPanel(e) {
     document.body.appendChild(modal.container);
     $(".modal").animate({"height": "toggle"})
   })
+}
+
+function searchUpdated(query) {
+  getUser(query).then(function(result) {
+    var ids = result.map(function(item) { return item.user_id });
+    $("#email-list .attendees-row").each(function() {
+      if (ids.includes($(this).attr('data-id'))) {
+        return;
+      } else {
+        $(this).css({"display": "none"});
+      }
+    });
+  })
+}
+
+function cancelSearch() {
+  $("#email-list .attendees-row").each(function() {
+    $(this).css({"display": "block"});
+  });
 }
 
 function logout() {
