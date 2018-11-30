@@ -16,6 +16,9 @@ async function exportEmails() {
   var copyIconWrapper = document.createElement("span");
   copyIconWrapper.id = "copy-icon";
   copyIconWrapper.appendChild(copyIcon);
+  var copyIconWrapper = document.createElement("span");
+  copyIconWrapper.id = "copy-icon";
+  copyIconWrapper.appendChild(copyIcon);
 
   modal.content.appendChild(copyField);
   modal.content.appendChild(copyIconWrapper);

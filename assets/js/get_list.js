@@ -50,7 +50,7 @@ async function getAcceptedList() {
   response.forEach(function(user) {
     var template = document.getElementById("attendee-template");
     var attendee = template.content.cloneNode(true);
-    if (user.acceptance_status === "none") return;
+    if (user.acceptance_status !== "queue") return;
     var summary = [user.acceptance_status.charAt(0).toUpperCase() + user.acceptance_status.slice(1), user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
 
     summary.forEach(function(data) {
@@ -59,6 +59,10 @@ async function getAcceptedList() {
       element.append(node);
       attendee.querySelector("summary ul").appendChild(element)
     })
+
+    attendee.querySelector("summary").insertAdjacentHTML('afterbegin',
+      "<span class='unaccept-icon'><span title='Remove Attendee From Queue'><img src='/assets/icons/user-unaccept.svg'></span></span>"
+    );
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
     attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));

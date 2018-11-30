@@ -1,35 +1,29 @@
 @font-face {
-  src: url('/assets/fonts/Roboto-Thin.ttf');
-  font-family: 'Roboto';
-  font-weight: 200;
+	src: url("../fonts/Poppins-Light.ttf");
+	font-family: "Poppins";
+	font-weight: 300;
 }
 
 @font-face {
-  src: url('/assets/fonts/Roboto-Light.ttf');
-  font-family: 'Roboto';
-  font-weight: 300;
+	src: url("../fonts/Poppins-Regular.ttf");
+	font-family: "Poppins";
+	font-weight: 400;
 }
 
 @font-face {
-  src: url('/assets/fonts/Roboto-Regular.ttf');
-  font-family: 'Roboto';
-  font-weight: 400;
+	src: url("../fonts/Poppins-Medium.ttf");
+	font-family: "Poppins";
+	font-weight: 500;
 }
 
 @font-face {
-  src: url('/assets/fonts/Roboto-Medium.ttf');
-  font-family: 'Roboto';
-  font-weight: 500;
+	src: url("../fonts/Poppins-Bold.ttf");
+	font-family: "Poppins";
+	font-weight: 700;
 }
 
 @font-face {
-  src: url('/assets/fonts/Roboto-Bold.ttf');
-  font-family: 'Roboto';
-  font-weight: 600;
-}
-
-@font-face {
-  src: url('/assets/fonts/Roboto-Black.ttf');
-  font-family: 'Roboto';
-  font-weight: 700;
+	src: url("../fonts/Poppins-Black.ttf");
+	font-family: "Poppins";
+	font-weight: 900;
 }

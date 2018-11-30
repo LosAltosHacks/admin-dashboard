@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="554px" height="344px" viewBox="0 0 554 344" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>bright</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-148.000000, -253.000000)" fill-rule="nonzero">
+            <g id="bright" transform="translate(148.000000, 253.000000)">
+                <polygon id="Shape" fill="#54A6EC" points="0.005 228.946 251.905 228.946 251.905 343.446 114.505 343.446"></polygon>
+                <polygon id="Shape" fill="#68C5FF" points="0.005 0.046 0.005 229.046 114.505 343.546 114.505 0.146"></polygon>
+                <polygon id="Shape" fill="#54A6EC" points="324.425 0.046 438.925 343.446 553.425 343.446 438.925 0.046"></polygon>
+                <polygon id="Shape" fill="#68C5FF" points="209.925 343.446 324.425 0.046 438.925 0.046 324.425 343.446"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

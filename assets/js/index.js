@@ -58,7 +58,18 @@ $(document).ready(function() {
 
   $(document).on('click', ".delete-icon > span", function(e) {
     e.preventDefault();
-    deleteUser($(this).closest(".attendees-row").attr("data-id"))
+    deleteUser($(this).closest(".attendees-row").attr("data-id"));
+    let row = $(this).closest(".attendees-row");
+    row.css({"background-color": "#e53935"});
+    row.css({"color": "white"});
+    row.slideUp(function() {
+      row.remove();
+    });
+  })
+
+  $(document).on('click', ".unaccept-icon > span", function(e) {
+    e.preventDefault();
+    accept($(this).closest(".attendees-row").attr("data-id"), "none");
     let row = $(this).closest(".attendees-row");
     row.css({"background-color": "#e53935"});
     row.css({"color": "white"});
@@ -96,8 +107,6 @@ $(document).ready(function() {
 function getPanel(panel) {
   $('.panel').css({display: "none"});
   $('#' + panel).css({display: "block"});
-  if (panel !== "bulk-acceptance") $("#confirm-acceptance").css({display: "none"});
-  else $("#confirm-acceptance").css({display: "block"});
   updateLists();
 }
 
@@ -112,11 +121,16 @@ function hideAll() {
 function confirmAccept() {
   $("#unaccepted-list .accept").each(function(index, element) {
     if ($(element).is(":checked")) {
-      let id = $(element).closest(".attendees-row").attr("data-id");
+      let row = $(element).closest(".attendees-row");
+      row.css({"background-color": "#66bb6a"});
+      row.css({"color": "white"});
+      row.slideUp(function() {
+        row.remove();
+      });
+      let id = row.attr("data-id");
       accept(id, "queue");
     }
   })
-  updateLists();
 }
 
 function createModal() {

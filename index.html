@@ -32,7 +32,6 @@
           <li onclick="exportEmails()" id="export-emails">Copy Emails</li>
           <li onclick="expandAll()" id="expand-all">Expand All</li>
           <li onclick="hideAll()" id="hide-all">Hide All</li>
-          <li style="display: none" onclick="confirmAccept()" id="confirm-acceptance">Confirm Acceptance</li>
         </ul>
       </div>
     </div>
@@ -105,7 +104,7 @@
 
   <!-- Bulk Acceptance Queue -->
   <div id="bulk-acceptance" class="panel">
-    <h1>Acceptance Queue</h1>
+    <h1>Acceptance Panel</h1>
     <div id="unaccepted-list" class="list">
       <div class="header">
         <ul>
@@ -117,6 +116,7 @@
         </ul>
       </div>
     </div>
+    <span id="bulk-accept-button" onclick="confirmAccept();"><img src="/assets/icons/check.svg"></span>
   </div>
 
   <!-- Scripts -->
