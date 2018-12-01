@@ -127,13 +127,19 @@ $(document).ready(function() {
       })
     })
   })
+
+  $("#themes .slider").click(function() {
+    $("body").toggleClass("dark").toggleClass("");
+  });
 })
 
 function getPanel(panel) {
-  if (panel === "email-list") $("#search-bar").css({display: "block"});
-  else $("#search-bar").css({display: "none"});
-  $('.panel').css({display: "none"});
-  $('#' + panel).css({display: "block"});
+  if (panel === "email-list") $("#search-bar").show();
+  else $("#search-bar").hide();
+  if (panel === "acceptance-queue") $("#export-emails").show();
+  else $("#export-emails").hide();
+  $('.panel').hide();
+  $('#' + panel).show();
   updateLists();
 }
 

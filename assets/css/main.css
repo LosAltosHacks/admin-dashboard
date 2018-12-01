@@ -580,6 +580,7 @@ body.dark {
 }
 
 .dark .header.fix {
+  background: linear-gradient(to bottom, rgb(0, 255, 255), rgba(0, 255, 255, 0.8));
   background-color: rgba(0, 255, 255, 0.6);
 }
 
@@ -594,4 +595,131 @@ body.dark {
 
 .dark #menu-button {
   box-shadow: 0 0 20px;
+}
+
+.dark #copy-icon img, .dark #confirm-accept-icon img {
+  filter: invert(1);
+}
+
+.dark #copy-icon:hover img, .dark #confirm-accept-icon:hover img {
+  filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7)) invert(1)
+}
+
+
+
+#themes {
+  padding-right: 2em !important;
+  display: flex !important;
+  cursor: auto !important;
+}
+  #themes > span {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  #themes > span img {
+    filter: invert(1);
+    width: 20px;
+    height: 20px;
+  }
+
+.switch {
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196F3;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.switch input:checked + .slider {
+  background-color: black;
+}
+
+.switch input:checked + .slider:before {
+  background-color: rgb(0, 255, 255);
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px black;
+}
+
+.switch input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.dark::-webkit-scrollbar-track {
+    background-color: rgba(0, 255, 255, 0.2);
+}
+.dark::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 255, 255);
+    border-radius: 5px;
+}
+.dark::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 255, 255, 0.7);
 }
