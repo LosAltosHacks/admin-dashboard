@@ -306,11 +306,20 @@ function showEditPanel(e) {
           "<option value='none'>None</option><option value='waitlisted'>Waitlisted</option><option value='rejected'>Rejected</option><option value='queue'>Queue</option><option value='accepted'>Accepted</option>"
         )
         switch (value) {
-          case "Male":
+          case "none":
             selection.options[0].selected = true;
             break;
-          case "Female":
+          case "waitlisted":
             selection.options[1].selected = true;
+            break;
+          case "rejected":
+            selection.options[2].selected = true;
+            break;
+          case "queue":
+            selection.options[3].selected = true;
+            break;
+          case "accepted":
+            selection.options[4].selected = true;
             break;
           default:
             selection.options[0].selected = true;
