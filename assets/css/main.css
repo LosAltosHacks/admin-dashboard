@@ -605,8 +605,7 @@ body.dark {
   filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7)) invert(1)
 }
 
-
-
+/* Themes */
 #themes {
   padding-right: 2em !important;
   display: flex !important;
@@ -690,36 +689,29 @@ body.dark {
   border-radius: 50%;
 }
 
-
-
-
-
-
-
-
-
-
+/* Scroll Bar */
 ::-webkit-scrollbar {
-    width: 5px;
+  z-index: 999;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(0, 0, 0, 0.4);
-    border-radius: 5px;
+  background-color: rgb(0, 0, 0, 0.4);
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .dark::-webkit-scrollbar-track {
-    background-color: rgba(0, 255, 255, 0.2);
+  background-color: rgba(0, 255, 255, 0.2);
 }
 .dark::-webkit-scrollbar-thumb {
-    background-color: rgb(0, 255, 255);
-    border-radius: 5px;
+  background-color: rgb(0, 255, 255);
+  border-radius: 5px;
 }
 .dark::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 255, 255, 0.7);
+  background-color: rgba(0, 255, 255, 0.7);
 }

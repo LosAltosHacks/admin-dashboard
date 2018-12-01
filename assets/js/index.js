@@ -96,6 +96,9 @@ $(document).ready(function() {
     $("#accepted-list .attendees-row").each(function() {
       accept($(this).attr("data-id"), "accepted");
     })
+    $(".modal").animate({"height": "toggle"}, function() {
+      $(".modal").remove();
+    })
   })
 
   $(document).on('click', ".modal .close-icon", function() {
@@ -131,6 +134,25 @@ $(document).ready(function() {
   $("#themes .slider").click(function() {
     $("body").toggleClass("dark").toggleClass("");
   });
+
+  var lastChecked = null;
+
+  $(document).on('click', '.accept', function(e) {
+    if(!lastChecked) {
+          lastChecked = this;
+          return;
+      }
+
+      if(e.shiftKey) {
+        console.log(this);
+        var start = $('.accept').index(this);
+        var end = $('.accept').index(lastChecked);
+
+        $('.accept').slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', lastChecked.checked);
+      }
+
+      lastChecked = this;
+    });
 })
 
 function getPanel(panel) {
