@@ -245,7 +245,7 @@ body {
     }
 
     #bulk-accept-button {
-      background-color: #66bb6a;
+      background-color: #4db6ac;
       position: fixed;
       right: calc(20px + 3em);
       bottom: 10px;
@@ -365,14 +365,20 @@ body {
   padding-top: 2px;
   padding-bottom: 2px;
 }
+  #edit-modal li * {
+    font-family: "Poppins", Fallback, sans-serif;
+    outline: none;
+  }
   #edit-modal input[type="text"], #edit-modal input[type="number"], #edit-modal input[type="email"], #edit-modal input[type="tel"] {
-    border: 1px solid #cccccc;
+    border: .5px solid rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    border-radius: 20px;
   }
 
 #copy-field {
   resize: vertical;
   min-height: 5em;
-  height: auto;
+  height: 10em;
   max-height: 20em;
   width: 80%;
   border: 1px solid #CCCCCC !important;
@@ -566,3 +572,26 @@ body {
     #search-button:hover > img {
       transform: scale(1.2);
     }
+
+/* Dark Theme */
+body.dark {
+  background-color: black;
+  color: white;
+}
+
+.dark .header.fix {
+  background-color: rgba(0, 255, 255, 0.6);
+}
+
+.dark .list summary, .dark .list .header {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.dark .modal {
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+.dark #menu-button {
+  box-shadow: 0 0 20px;
+}

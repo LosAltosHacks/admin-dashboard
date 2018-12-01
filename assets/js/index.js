@@ -341,3 +341,10 @@ function logout() {
   window.location.href = "/login.html";
   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }
+
+function changeTheme(theme) {
+  if (theme === "dark") {
+    $('body').addClass('dark');
+  } else {
+  }
+}
