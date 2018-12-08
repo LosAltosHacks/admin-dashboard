@@ -1,4 +1,4 @@
-server = "https://www.losaltoshacks.com/registration";
+server = "https://api.losaltoshacks.com";
 
 // Listeners for controls
 let jwt_auth = localStorage.jwt_auth;
