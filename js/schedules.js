@@ -41,7 +41,7 @@ var Schedules = {
         time: "10 PM",
         name: "Capture The Flag",
         location: "Everywhere"
-      }, 
+      },
     ]
   },
   "March 24" : {
@@ -59,12 +59,7 @@ var Schedules = {
       },
       {
         time: "8 AM",
-        name: "Submissions to Devpost",
-        location: "Everywhere"
-      },
-      {
-        time: "8 AM",
-        name: "Judges Arrive",
+        name: "Submissions to Devpost;\nJudges Arrive",
         location: "Everywhere"
       },
       {
