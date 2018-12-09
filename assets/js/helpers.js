@@ -86,6 +86,10 @@ function request(method, url, data) {
       if (this.readyState == 4 && this.status >= 200 && this.status < 300) {
         resolve(this.response);
       } else {
+        if (this.response.message.description === "Not authorized") {
+          jwt_auth = "";
+          logout();
+        }
         reject({
           status: this.status,
           message: this.response.message
@@ -110,4 +114,11 @@ function updateLists() {
   getList();
   getAcceptedList();
   getUnacceptedList();
+  getSubscribedList();
+}
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "/login.html";
+  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }

@@ -1,3 +1,13 @@
+async function getSubscribedList() {
+  $('#email-list ul').empty();
+  let response = await request("GET", "/email_list/v1/subscriptions");
+  response.forEach(function(email) {
+    $('#email-list ul').remove();
+    $('#email-list').append('<ul></ul>');
+    $('#email-list ul').append("<li>" + email + "</li>");
+  })
+}
+
 async function getList() {
   let response = await request("GET", "/registration/v1/list");
   response.forEach(function(user) {
@@ -125,6 +135,7 @@ async function getUnacceptedList() {
   })
 }
 
+getSubscribedList();
 getList();
 getAcceptedList();
 getUnacceptedList();

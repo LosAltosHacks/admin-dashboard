@@ -375,6 +375,17 @@ body {
     border-radius: 20px;
   }
 
+#email-list li {
+  width: 100%;
+  list-style-type: none;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+  #email-list li:hover {
+    background-color: rgba(77, 184, 255, 0.2);
+  }
+
 #copy-field {
   resize: vertical;
   min-height: 5em;
@@ -603,6 +614,11 @@ body.dark {
 
 .dark #copy-icon:hover img, .dark #confirm-accept-icon:hover img {
   filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7)) invert(1)
+}
+
+.dark #email-list li {
+  border-top: 0.5px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Themes */

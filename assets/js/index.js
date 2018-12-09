@@ -1,8 +1,8 @@
-server = "https://www.losaltoshacks.com/registration";
+server = "https://api.losaltoshacks.com";
 
 // Listeners for controls
 let jwt_auth = localStorage.jwt_auth;
-// jwt_auth = "foobar";
+// let jwt_auth = "foobar";
 if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
   window.location.href = "/login.html";
 }
@@ -156,10 +156,12 @@ $(document).ready(function() {
 })
 
 function getPanel(panel) {
-  if (panel === "email-list") $("#search-bar").show();
+  if (panel === "attendee-list") $("#search-bar").show();
   else $("#search-bar").hide();
   if (panel === "acceptance-queue") $("#export-emails").show();
   else $("#export-emails").hide();
+  if (panel === "email-list") $("export-sub-emails").show();
+  else $("#export-sub-emails").hide();
   $('.panel').hide();
   $('#' + panel).show();
   updateLists();
@@ -357,7 +359,7 @@ function showEditPanel(e) {
 function searchUpdated(query) {
   getUser(query).then(function(result) {
     var ids = result.map(function(item) { return item.user_id });
-    $("#email-list .attendees-row").each(function() {
+    $("#attendee-list .attendees-row").each(function() {
       if (ids.includes($(this).attr('data-id'))) {
         return;
       } else {
@@ -368,15 +370,9 @@ function searchUpdated(query) {
 }
 
 function cancelSearch() {
-  $("#email-list .attendees-row").each(function() {
+  $("#attendee-list .attendees-row").each(function() {
     $(this).css({"display": "block"});
   });
-}
-
-function logout() {
-  localStorage.clear();
-  window.location.href = "/login.html";
-  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }
 
 function changeTheme(theme) {

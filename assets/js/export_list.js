@@ -28,3 +28,29 @@ async function exportEmails() {
   document.body.appendChild(modal.container);
   $(".modal").animate({"height": "toggle"})
 }
+
+async function exportSubEmails() {
+  var copyText = "";
+
+  let result = await request("get", "/email_list/v1/subscriptions");
+  result.forEach(function(user) {
+    copyText += user + "\n";
+  })
+
+  var modal = createModal();
+
+  var copyField = document.createElement("textarea");
+  copyField.id = "copy-field";
+  copyField.value = copyText;
+  var copyIcon = document.createElement("img");
+  copyIcon.src = "/assets/icons/copy.svg";
+  var copyIconWrapper = document.createElement("span");
+  copyIconWrapper.id = "copy-icon";
+  copyIconWrapper.appendChild(copyIcon);
+
+  modal.content.appendChild(copyField);
+  modal.content.appendChild(copyIconWrapper);
+  modal.content.appendChild(confirmIconWrapper);
+  document.body.appendChild(modal.container);
+  $(".modal").animate({"height": "toggle"})
+}

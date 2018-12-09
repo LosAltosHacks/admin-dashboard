@@ -23,14 +23,17 @@
         <h2>Pages</h2>
         <ul>
           <li onclick="getPanel('email-list')">Email List</li>
+          <li onclick="getPanel('attendee-list')">Attendees List</li>
           <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
           <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
-          <li onclick="getPanel('check-in')">Check-In Panel</li>
+          <!-- Until Check-in gets implemented -->
+          <!-- <li onclick="getPanel('check-in')">Check-In Panel</li> -->
         </ul>
         <h2>Tools</h2>
         <ul>
           <li id="search-bar"><input type="text" placeholder="Search Query"><span id="search-button"><img src="/assets/icons/search.svg"></span></li>
-          <li onclick="exportEmails()" id="export-emails">Copy Emails</li>
+          <li onclick="exportSubEmails()" id="export-sub-emails">Copy Emails</li>
+          <li onclick="exportEmails()" id="export-emails" style="display: none">Copy Emails</li>
           <li onclick="expandAll()" id="expand-all">Expand All</li>
           <li onclick="hideAll()" id="hide-all">Hide All</li>
         </ul>
@@ -88,6 +91,13 @@
 
   <!-- Email List -->
   <div id="email-list" class="panel">
+    <h1>Email List</h1>
+    <div id="email-list" class="list">
+    </div>
+  </div>
+
+  <!-- Attendee List -->
+  <div id="attendee-list" class="panel">
     <h1>Attendees List</h1>
     <div id="attendees-list" class="list">
       <div class="header">
