@@ -1,19 +1,6 @@
 :root {
     --site-width: 45rem;
-    --side-padding: calc((100vw - var(--site-width)) / 2);
-    --nav-background-color: rgba(240, 245, 255, 0.9);
-    --nav-height: 3rem;
-
-    --accent-color: #3fb2ff;
-    --accent-hover-color: #34495e;
-
-    --blue: #3fb2ff;
-    --orange: #f39c12;
-    --darkblue: #34495e;
-
     --vw: 1vw;
-
-    color: rgba(0, 0, 0, 0.9);
     font-size: calc(12px + var(--vw));
     font-family: 'Poppins', 'Open Sans', sans-serif;
     text-align: center;
@@ -42,6 +29,9 @@ footer {
     flex-direction: column;
     justify-content: center;
 }
+  footer > div > p {
+    margin: 0 auto;
+  }
 
 p,
 h1,
@@ -1123,3 +1113,19 @@ footer a.link-group-item:hover {
       display: none;
     }
 }
+
+/* Scrollbar Customization (Todo Later) */
+
+	::-webkit-scrollbar {
+		width: 5px;
+		background-color: black;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: rgba(255, 255, 255, 0.6);
+		border-radius: 2.5px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: rgba(255, 255, 255, 0.3);
+	}
