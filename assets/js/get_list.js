@@ -2,9 +2,9 @@ async function getSubscribedList() {
   $('#email-list ul').empty();
   let response = await request("GET", "/email_list/v1/subscriptions");
   response.forEach(function(email) {
-    $('#email-list ul').remove();
-    $('#email-list').append('<ul></ul>');
-    $('#email-list ul > li').textContent = email;
+    var element = document.createElement("li");
+    element.textContent = email;
+    $('body').querySelector("#email-list ul").appendChild(element);
   })
 }
 
