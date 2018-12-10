@@ -2,9 +2,9 @@ async function getSubscribedList() {
   $('#email-list ul').empty();
   let response = await request("GET", "/email_list/v1/subscriptions");
   response.forEach(function(email) {
-    $('#email-list ul').remove();
-    $('#email-list').append('<ul></ul>');
-    $('#email-list ul').append("<li>" + email + "</li>");
+    var element = document.createElement("li");
+    element.textContent = email;
+    document.querySelector("#email-list ul").appendChild(element);
   })
 }
 
@@ -17,8 +17,7 @@ async function getList() {
 
     summary.forEach(function(data) {
       var element = document.createElement("li");
-      var node = document.createTextNode(data);
-      element.append(node);
+      element.textContent = data;
       attendee.querySelector("summary ul").appendChild(element)
     })
 
@@ -64,8 +63,7 @@ async function getAcceptedList() {
 
     summary.forEach(function(data) {
       var element = document.createElement("li");
-      var node = document.createTextNode(data);
-      element.append(node);
+      element.textContent = data;
       attendee.querySelector("summary ul").appendChild(element)
     })
 
@@ -111,8 +109,7 @@ async function getUnacceptedList() {
 
     summary.forEach(function(data) {
       var element = document.createElement("li");
-      var node = document.createTextNode(data);
-      element.append(node);
+      element.textContent = data;
       attendee.querySelector("summary ul").appendChild(element);
     })
 

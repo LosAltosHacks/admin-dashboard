@@ -216,13 +216,13 @@ function showHistory(e) {
   var user_id = $(e.target).closest(".attendees-row").attr("data-id");
   getHistory(user_id).then(function(result) {
     var header = document.createElement("h3");
-    header.appendChild(document.createTextNode("Attendee <" + user_id + ">"));
+    header.textContent = user_id;
     modal.content.appendChild(header);
     var wrapper = document.createElement("div");
     result.forEach(function(entry) {
       var details = "";
       for (var i=0; i<Object.keys(entry).length; i++) {
-        details += "<li><b>" + Object.keys(entry)[i] + ":</b> " + Object.values(entry)[i] + "</li>";
+        details += "<li><b>" + escapeHTML(Object.keys(entry)[i]) + ":</b> " + escapeHTML(Object.values(entry)[i]) + "</li>";
       }
       wrapper.insertAdjacentHTML('afterbegin',
         "<details><summary>" + (new Date(entry.timestamp.replace(" ", "T") + "Z")) + "</summary><div class='history-details'><ul>" + details + "</ul></div></details>"
@@ -243,7 +243,7 @@ function showEditPanel(e) {
   getUser({query: user_id}).then(function(result) {
     var attendee = result[result.length-1];
     var header = document.createElement("h3");
-    header.appendChild(document.createTextNode("Attendee <" + user_id + ">"));
+    header.textContent = user_id;
     modal.content.appendChild(header);
     var wrapper = document.createElement("div");
     var list = document.createElement("ul");
