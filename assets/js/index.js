@@ -216,7 +216,7 @@ function showHistory(e) {
   var user_id = $(e.target).closest(".attendees-row").attr("data-id");
   getHistory(user_id).then(function(result) {
     var header = document.createElement("h3");
-    header.appendChild(document.createTextNode("Attendee <" + user_id + ">"));
+    header.textContent = "Attendee <" + user_id + ">";
     modal.content.appendChild(header);
     var wrapper = document.createElement("div");
     result.forEach(function(entry) {
