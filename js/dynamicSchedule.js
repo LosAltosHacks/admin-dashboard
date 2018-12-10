@@ -61,8 +61,11 @@ function updateActiveEvent(key) {
   activeTracker[key] = true;
   displayDynamicSchedule();
 }
+var timeline_displayedEvents = [];
+
 function reInitSchedule() {
   //reinit tracker and sidelist.
+  timeline_displayedEvents = [];
   initTracker();
   initSideList();
   displayDynamicSchedule();
@@ -70,7 +73,6 @@ function reInitSchedule() {
 
 
 //handle displaying the active event. 
-var timeline_displayedEvents = [];
 function displayDynamicSchedule() {
   //get the active schedule item
   var activeEvent = findActiveEvent();
@@ -105,6 +107,7 @@ function displayDynamicSchedule() {
       break;
     }
   }
+  
   //if the element exists in the timeline list, don't recreate it. If not, create a new timeline. 
   if (!displayedEventsKey) {
     timeline_displayedEvents = [];
@@ -131,7 +134,6 @@ displayDynamicSchedule();
 $('#schedule').on('click','.scheduleLink',function(){
   var nextActiveEventKey = $(this).attr('data-linkTo');
   var id = $(this).attr("id");
-
   if (nextActiveEventKey != "null") {
     updateActiveEvent(nextActiveEventKey);
   }
@@ -151,7 +153,8 @@ $('#schedule').on('click','.scheduleLink',function(){
           $("#toggleDay").html("View Sunday");
           eventDay = days[dayKey];
           scheduleData = Schedules[eventDay].sched;
-          reInitSchedule()
+          reInitSchedule();
+          updateActiveEvent(Schedules[eventDay].sched.length - 1)
         }
     }
   }
