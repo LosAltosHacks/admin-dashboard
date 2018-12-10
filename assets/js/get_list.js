@@ -4,7 +4,7 @@ async function getSubscribedList() {
   response.forEach(function(email) {
     $('#email-list ul').remove();
     $('#email-list').append('<ul></ul>');
-    $('#email-list ul').append("<li>" + email + "</li>");
+    $('#email-list ul > li').textContent = email;
   })
 }
 
@@ -17,8 +17,7 @@ async function getList() {
 
     summary.forEach(function(data) {
       var element = document.createElement("li");
-      var node = document.createTextNode(data);
-      element.append(node);
+      element.textContent = data;
       attendee.querySelector("summary ul").appendChild(element)
     })
 
@@ -64,8 +63,7 @@ async function getAcceptedList() {
 
     summary.forEach(function(data) {
       var element = document.createElement("li");
-      var node = document.createTextNode(data);
-      element.append(node);
+      element.textContent = data;
       attendee.querySelector("summary ul").appendChild(element)
     })
 
@@ -111,8 +109,7 @@ async function getUnacceptedList() {
 
     summary.forEach(function(data) {
       var element = document.createElement("li");
-      var node = document.createTextNode(data);
-      element.append(node);
+      element.textContent = data;
       attendee.querySelector("summary ul").appendChild(element);
     })
 
