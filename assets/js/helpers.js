@@ -122,3 +122,7 @@ function logout() {
   window.location.href = "/login.html";
   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }
+
+function escapeHTML(s) {
+  return s.replace(/[&"'<>`]/g, '');
+}
