@@ -4,7 +4,7 @@ async function getSubscribedList() {
   response.forEach(function(email) {
     var element = document.createElement("li");
     element.textContent = email;
-    $('body').querySelector("#email-list ul").appendChild(element);
+    document.querySelector("#email-list ul").appendChild(element);
   })
 }
 
