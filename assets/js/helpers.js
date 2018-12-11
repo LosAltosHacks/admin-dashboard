@@ -102,6 +102,7 @@ function request(method, url, data) {
         status: this.status,
         message: this.statusText
       });
+      logout();
     }
 
     if (data) xhttp.send(JSON.stringify(data));

@@ -1,5 +1,6 @@
 async function getSubscribedList() {
-  $('#email-list ul').empty();
+  $('#email-list ul').remove();
+  document.querySelector("#email-list").appendChild(document.createElement("ul"));
   let response = await request("GET", "/email_list/v1/subscriptions");
   response.forEach(function(email) {
     var element = document.createElement("li");
