@@ -1,4 +1,6 @@
 :root {
+    --accent-color: #3fb2ff;
+    --accent-hover-color: #34495e;
     --blue: #3fb2ff;
     --site-width: 45rem;
     --vw: 1vw;
