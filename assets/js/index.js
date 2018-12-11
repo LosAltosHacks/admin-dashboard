@@ -1,14 +1,18 @@
-server = "https://api.losaltoshacks.com";
+// server = "https://api.losaltoshacks.com";
+server = "http://localhost:5000"
 
 // Listeners for controls
-let jwt_auth = localStorage.jwt_auth;
-if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
-  window.location.href = "/login.html";
-}
+// let jwt_auth = localStorage.jwt_auth;
+let jwt_auth = "foobar";
+// if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
+//   window.location.href = "/login.html";
+// }
 
 let edited_fields = {};
 
 $(document).ready(function() {
+  if (localStorage.theme) changeTheme(localStorage.theme);
+
   // Decorative Controls
   $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
   $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name + "</h4>");
@@ -132,6 +136,8 @@ $(document).ready(function() {
 
   $("#themes .slider").click(function() {
     $("body").toggleClass("dark").toggleClass("");
+    if ($("body").hasClass("dark")) localStorage.setItem('theme', 'dark');
+    else localStorage.setItem('theme', 'light');
   });
 
   var lastChecked = null;
@@ -376,7 +382,12 @@ function cancelSearch() {
 
 function changeTheme(theme) {
   if (theme === "dark") {
+    $("#themes .switch > input").prop('checked', true);
     $('body').addClass('dark');
+    localStorage.setItem('theme', 'dark');
   } else {
+    $("#themes .switch > input").prop('checked', false);
+    $('body').removeClass('dark');
+    localStorage.setItem('theme', 'light');
   }
 }
