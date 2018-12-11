@@ -1,4 +1,5 @@
 :root {
+    --blue: #3fb2ff;
     --site-width: 45rem;
     --vw: 1vw;
     font-size: calc(12px + var(--vw));
