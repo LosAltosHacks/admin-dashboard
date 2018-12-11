@@ -50,7 +50,6 @@ async function exportSubEmails() {
 
   modal.content.appendChild(copyField);
   modal.content.appendChild(copyIconWrapper);
-  modal.content.appendChild(confirmIconWrapper);
   document.body.appendChild(modal.container);
   $(".modal").animate({"height": "toggle"})
 }
