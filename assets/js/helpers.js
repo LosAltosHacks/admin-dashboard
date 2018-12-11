@@ -116,9 +116,7 @@ function updateLists() {
 }
 
 function logout() {
-  var theme = localStorage.theme;
-  localStorage.clear();
-  localStorage.setItem('theme', theme);
+  localStorage.removeItem('jwt_auth');
   window.location.href = "/login.html";
   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }
