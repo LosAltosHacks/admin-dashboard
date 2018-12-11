@@ -117,6 +117,8 @@ function updateLists() {
 
 function logout() {
   localStorage.removeItem('jwt_auth');
+  localStorage.removeItem('name');
+  localStorage.removeItem('prof_image');
   window.location.href = "/login.html";
   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }

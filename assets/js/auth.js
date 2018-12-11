@@ -32,7 +32,6 @@ function init() {
 
 async function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
-  localStorage.setItem('id', profile.getId());
   localStorage.setItem('name', profile.getName());
   localStorage.setItem('prof_image', profile.getImageUrl());
   var result = await request("post", "/oauth/v1/login", {token: googleUser.getAuthResponse().id_token});
