@@ -2,7 +2,6 @@ server = "https://api.losaltoshacks.com";
 
 // Listeners for controls
 let jwt_auth = localStorage.jwt_auth;
-// let jwt_auth = "foobar";
 if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
   window.location.href = "/login.html";
 }

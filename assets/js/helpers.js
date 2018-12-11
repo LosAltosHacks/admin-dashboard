@@ -86,10 +86,7 @@ function request(method, url, data) {
       if (this.readyState == 4 && this.status >= 200 && this.status < 300) {
         resolve(this.response);
       } else {
-        if (this.response.message.description === "Not authorized") {
-          jwt_auth = "";
-          logout();
-        }
+        logout();
         reject({
           status: this.status,
           message: this.response.message
@@ -98,11 +95,11 @@ function request(method, url, data) {
     }
 
     xhttp.onerror = function() {
+      logout();
       reject({
         status: this.status,
         message: this.statusText
       });
-      logout();
     }
 
     if (data) xhttp.send(JSON.stringify(data));
