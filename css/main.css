@@ -1119,16 +1119,37 @@ footer a.link-group-item:hover {
 
 /* Scrollbar Customization (Todo Later) */
 
-	::-webkit-scrollbar {
-		width: 5px;
-		background-color: black;
-	}
+::-webkit-scrollbar {
+	width: 5px;
+	background-color: black;
+}
 
-	::-webkit-scrollbar-thumb {
-		background: rgba(255, 255, 255, 0.6);
-		border-radius: 2.5px;
-	}
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.6);
+	border-radius: 2.5px;
+}
 
-	::-webkit-scrollbar-thumb:hover {
-		background: rgba(255, 255, 255, 0.3);
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+/* device-specific bug fixes */
+/* iOS landscape bug */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) { 
+	#logo-main {
+		height: auto;
 	}
+}
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) { 
+	#logo-main {
+		height: auto;
+	}
+}
+	
