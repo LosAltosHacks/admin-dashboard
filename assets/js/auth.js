@@ -1,3 +1,4 @@
+"use strict";
 if (localStorage.jwt_auth) window.location.href = "/";
 
 window.onbeforeunload = function(e) {

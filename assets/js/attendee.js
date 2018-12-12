@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 // import { escapeHTML } from "helpers.js";
 
 let AttendeeRenderType = Object.freeze({

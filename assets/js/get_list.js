@@ -1,3 +1,4 @@
+"use strict";
 // import { Attendee } from "attendee.js";
 
 async function getSubscribedList() {

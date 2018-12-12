@@ -1,4 +1,5 @@
-server = "https://api.losaltoshacks.com";
+"use strict";
+let server = "https://api.losaltoshacks.com";
 
 // Listeners for controls
 let jwt_auth = localStorage.jwt_auth;
