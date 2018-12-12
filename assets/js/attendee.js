@@ -63,7 +63,9 @@ class Attendee {
             <ul>
                 ${renderType == AttendeeRenderType.UNACCEPTED_LIST ?
                     '<li class="acceptance-checkbox"><input class="accept" type="checkbox"></li>':
-                    `<li>${procData.acceptance_status ? "Yes" : "No"}</li>`
+                    `<li>${
+                        procData.acceptance_status.charAt(0).toUpperCase() + procData.acceptance_status.substr(1)
+                    }</li>`
                 }
                 <li>${procData.first_name}</li>
                 <li>${procData.surname}</li>
