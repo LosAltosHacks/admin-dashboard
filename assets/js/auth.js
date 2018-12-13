@@ -1,5 +1,7 @@
 "use strict";
-if (localStorage.jwt_auth) window.location.href = "/";
+// silenet dependency on google api script
+
+// if (localStorage.jwt_auth) window.location.href = "/";
 
 window.onbeforeunload = function(e) {
   gapi.auth2.getAuthInstance().signOut(); // Prevent auto-login after logout

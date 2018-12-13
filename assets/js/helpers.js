@@ -1,4 +1,8 @@
 "use strict";
+import {SERVER, jwt_auth} from "./index.js"
+import {getList, getAcceptedList, getUnacceptedList, getSubscribedList} from "./get_list.js"
+
+
 async function signup(user) {
   if (!user.first_name || !user.surname || !user.email || !user.age || !user.school || !user.grade || !user.student_phone_number || !user.gender || !user.tshirt_size || !user.previous_hackathons) return false;
   else if (user.age < 18 && (!user.guardian_name || !user.guardian_email || !user.guardian_phone_number)) return false;
@@ -11,7 +15,7 @@ async function modify(user_id, params) {
   return result;
 }
 
-async function accept(user_id, status) {
+export async function accept(user_id, status) {
   if (status != "none" && status != "waitlisted" && status != "rejected" && status != "queue" && status != "accepted") return false;
   modify(user_id, {acceptance_status: status});
 }
@@ -29,7 +33,7 @@ async function deleteUser(user_id) {
   return result;
 }
 
-async function getUser(query) {
+export async function getUser(query) {
   let result = await request("POST", "/registration/v1/search", {query: query});
   return result;
 }
@@ -76,11 +80,11 @@ function fakeEmail() {
   return text;
 }
 
-function request(method, url, data) {
+export function request(method, url, data) {
   return new Promise(function (resolve, reject) {
     let xhttp = new XMLHttpRequest();
     xhttp.responseType = 'json';
-    xhttp.open(method, server + url, true);
+    xhttp.open(method, SERVER + url, true);
     if (jwt_auth) xhttp.setRequestHeader("Authorization", "Bearer " + jwt_auth);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onload = function() {
@@ -110,7 +114,7 @@ function request(method, url, data) {
   })
 }
 
-function updateLists() {
+export function updateLists() {
   $('.list > *').not('.header').remove();
   getList();
   getAcceptedList();
@@ -118,12 +122,12 @@ function updateLists() {
   getSubscribedList();
 }
 
-function logout() {
+export function logout() {
   localStorage.clear();
   window.location.href = "/login.html";
   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
 }
 
-function escapeHTML(s) {
+export function escapeHTML(s) {
   return s.replace(/[&"'<>`]/g, '');
 }

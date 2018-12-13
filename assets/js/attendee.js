@@ -1,13 +1,13 @@
 "use strict";
-// import { escapeHTML } from "helpers.js";
+import { escapeHTML } from "./helpers.js";
 
-let AttendeeRenderType = Object.freeze({
+export const AttendeeRenderType = Object.freeze({
     ATTENDEE_LIST: 1,
     ACCEPTED_LIST: 2,
     UNACCEPTED_LIST: 3,
 });
 
-class Attendee {
+export class Attendee {
   constructor(obj) {
     this.data = {};
     this.data.user_id = obj.user_id;

@@ -1,4 +1,9 @@
 "use strict";
+import {request, getUser} from "./helpers.js"
+import {createModal} from "./index.js"
+
+
+
 async function exportEmails() {
   var copyText = "";
 
@@ -29,6 +34,9 @@ async function exportEmails() {
   document.body.appendChild(modal.container);
   $(".modal").animate({"height": "toggle"})
 }
+document.getElementById("export-emails").addEventListener('click', exportEmails);
+
+
 
 async function exportSubEmails() {
   var copyText = "";
@@ -55,3 +63,4 @@ async function exportSubEmails() {
   document.body.appendChild(modal.container);
   $(".modal").animate({"height": "toggle"})
 }
+document.getElementById("export-sub-emails").addEventListener('click', exportSubEmails);

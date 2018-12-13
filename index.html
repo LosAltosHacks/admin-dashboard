@@ -22,20 +22,20 @@
       <div>
         <h2>Pages</h2>
         <ul>
-          <li onclick="getPanel('email-list')">Email List</li>
-          <li onclick="getPanel('attendee-list')">Attendees List</li>
-          <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
-          <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
+          <li id="email-list-panel">Email List</li>
+          <li id="attendees-list-panel">Attendees List</li>
+          <li id="acceptance-queue-panel">Acceptance Queue</li>
+          <li id="bulk-acceptance-panel">Bulk Acceptance</li>
           <!-- Until Check-in gets implemented -->
           <!-- <li onclick="getPanel('check-in')">Check-In Panel</li> -->
         </ul>
         <h2>Tools</h2>
         <ul>
           <li id="search-bar"><input type="text" placeholder="Search Query"><span id="search-button"><img src="/assets/icons/search.svg"></span></li>
-          <li onclick="exportSubEmails()" id="export-sub-emails">Copy Emails</li>
-          <li onclick="exportEmails()" id="export-emails" style="display: none">Copy Emails</li>
-          <li onclick="expandAll()" id="expand-all">Expand All</li>
-          <li onclick="hideAll()" id="hide-all">Hide All</li>
+          <li id="export-sub-emails">Copy Emails</li>
+          <li id="export-emails" style="display: none">Copy Emails</li>
+          <li id="expand-all">Expand All</li>
+          <li id="hide-all">Hide All</li>
         </ul>
         <h2>Change Theme</h2>
         <ul>
@@ -109,17 +109,11 @@
         </ul>
       </div>
     </div>
-    <span id="bulk-accept-button" onclick="confirmAccept();"><img src="/assets/icons/check.svg"></span>
+    <span id="bulk-accept-button"><img src="/assets/icons/check.svg"></span>
   </div>
 
   <!-- Scripts -->
-  <script src="./assets/js/jquery.min.js"></script>
-  <script src="./assets/js/index.js"></script>
-  <script src="./assets/js/helpers.js"></script>
-  <script src="./assets/js/attendee.js"></script>
-  <script src="./assets/js/get_list.js" async defer></script>
-  <script src="./assets/js/export_list.js"></script>
   <script src="https://apis.google.com/js/api:client.js"></script>
-
+  <script type="module" src="./assets/js/index.js"></script>
 </body>
 </html>

@@ -1,7 +1,10 @@
 "use strict";
-// import { Attendee } from "attendee.js";
+import { Attendee, AttendeeRenderType } from "./attendee.js";
+import { request, getUser } from "./helpers.js"
+import { SERVER } from './index.js';
 
-async function getSubscribedList() {
+
+export async function getSubscribedList() {
   $('#email-list ul').empty();
   let response = await request("GET", "/email_list/v1/subscriptions");
   response.forEach(function(email) {
@@ -11,7 +14,7 @@ async function getSubscribedList() {
   })
 }
 
-async function getList() {
+export async function getList() {
   let response = await request("GET", "/registration/v1/list");
   response.forEach(userData => {
     let attendee = new Attendee(userData);
@@ -20,7 +23,7 @@ async function getList() {
   })
 }
 
-async function getAcceptedList() {
+export async function getAcceptedList() {
   let response = await getUser({acceptance_status: "queue"});
   response.forEach(userData => {
     let attendee = new Attendee(userData);
@@ -29,7 +32,7 @@ async function getAcceptedList() {
   })
 }
 
-async function getUnacceptedList() {
+export async function getUnacceptedList() {
   let response = await getUser({acceptance_status: "none"});
   response.forEach(userData => {
     let attendee = new Attendee(userData);
@@ -38,7 +41,10 @@ async function getUnacceptedList() {
   })
 }
 
+// temporary solution to hoist the async to where other modules have been parsed and imported
+setTimeout(() => {
 getSubscribedList();
 getList();
 getAcceptedList();
 getUnacceptedList();
+}, 0);
