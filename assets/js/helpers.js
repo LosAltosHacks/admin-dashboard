@@ -1,7 +1,10 @@
 "use strict";
-import {SERVER, jwt_auth} from "./index.js"
+// import {jwt_auth} from "./index.js"
 import {getList, getAcceptedList, getUnacceptedList, getSubscribedList} from "./get_list.js"
 
+let jwt_auth = localStorage.jwt_auth;
+
+export const SERVER = "https://api.losaltoshacks.com";
 
 async function signup(user) {
   if (!user.first_name || !user.surname || !user.email || !user.age || !user.school || !user.grade || !user.student_phone_number || !user.gender || !user.tshirt_size || !user.previous_hackathons) return false;

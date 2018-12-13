@@ -1,7 +1,6 @@
 "use strict";
 import { Attendee, AttendeeRenderType } from "./attendee.js";
 import { request, getUser } from "./helpers.js"
-import { SERVER } from './index.js';
 
 
 export async function getSubscribedList() {
@@ -40,11 +39,3 @@ export async function getUnacceptedList() {
     document.getElementById("unaccepted-list").insertBefore(element, document.getElementById("unaccepted-list").children[1]);
   })
 }
-
-// temporary solution to hoist the async to where other modules have been parsed and imported
-setTimeout(() => {
-getSubscribedList();
-getList();
-getAcceptedList();
-getUnacceptedList();
-}, 0);

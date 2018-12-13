@@ -1,13 +1,14 @@
 "use strict";
 import * as jQuery from './jquery.min.js';
 import { getUser, updateLists, accept, logout} from './helpers.js';
-import "./export_list.js" // runs the content of the script
+import {getList, getAcceptedList, getUnacceptedList, getSubscribedList} from "./get_list.js"
+import {exportListInit} from "./export_list.js" // runs the content of the script
+
 
 // export for others scripts to use
 window.$ = $;
 window.jQuery = jQuery;
 
-export const SERVER = "http://localhost:5000";
 
 // Listeners for controls
 export let jwt_auth = localStorage.jwt_auth;
@@ -19,10 +20,19 @@ if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
 let edited_fields = {};
 
 $(document).ready(function() {
-  document.getElementById("email-list-panel").addEventListener('click', () => {getPanel("email-list")});
-  document.getElementById("attendees-list-panel").addEventListener('click', () => {getPanel("attendee-list")});
-  document.getElementById("acceptance-queue-panel").addEventListener('click', () => {getPanel("acceptance-queue")});
-  document.getElementById("bulk-acceptance-panel").addEventListener('click', () => {getPanel("bulk-acceptance")});
+  // if (document.getElementById("menu")) { // uses the existence of a menu to tell if we're on /
+    document.getElementById("email-list-panel").addEventListener('click', () => {getPanel("email-list")});
+    document.getElementById("attendees-list-panel").addEventListener('click', () => {getPanel("attendee-list")});
+    document.getElementById("acceptance-queue-panel").addEventListener('click', () => {getPanel("acceptance-queue")});
+    document.getElementById("bulk-acceptance-panel").addEventListener('click', () => {getPanel("bulk-acceptance")});
+
+    document.getElementById("expand-all").addEventListener('click', expandAll);
+    document.getElementById("hide-all").addEventListener('click', hideAll);
+
+    document.getElementById("bulk-accept-button").addEventListener('click', confirmAccept);
+
+    exportListInit();
+  // }
 
   // Decorative Controls
   $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
@@ -167,7 +177,16 @@ $(document).ready(function() {
 
       lastChecked = this;
     });
-})
+});
+
+// temporary solution to hoist the async to where other modules have been parsed and imported
+setTimeout(() => {
+  getSubscribedList();
+  getList();
+  getAcceptedList();
+  getUnacceptedList();
+}, 0);
+
 
 export function getPanel(panel) {
   if (panel === "attendee-list") $("#search-bar").show();
@@ -182,15 +201,12 @@ export function getPanel(panel) {
 }
 
 function expandAll() {
-  console.log($("details"));
   $("details").attr('open', '');
 }
-document.getElementById("expand-all").addEventListener('click', expandAll);
 
 function hideAll() {
   $("details").removeAttr('open');
 }
-document.getElementById("hide-all").addEventListener('click', hideAll);
 
 function confirmAccept() {
   $("#unaccepted-list .accept").each(function(index, element) {
@@ -206,7 +222,6 @@ function confirmAccept() {
     }
   })
 }
-document.getElementById("bulk-accept-button").addEventListener('click', confirmAccept);
 
 export function createModal() {
   var modal = document.createElement("div");

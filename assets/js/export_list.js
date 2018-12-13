@@ -34,7 +34,6 @@ async function exportEmails() {
   document.body.appendChild(modal.container);
   $(".modal").animate({"height": "toggle"})
 }
-document.getElementById("export-emails").addEventListener('click', exportEmails);
 
 
 
@@ -63,4 +62,8 @@ async function exportSubEmails() {
   document.body.appendChild(modal.container);
   $(".modal").animate({"height": "toggle"})
 }
-document.getElementById("export-sub-emails").addEventListener('click', exportSubEmails);
+
+export function exportListInit() {
+  document.getElementById("export-sub-emails").addEventListener('click', exportSubEmails);
+  document.getElementById("export-emails").addEventListener('click', exportEmails);
+}

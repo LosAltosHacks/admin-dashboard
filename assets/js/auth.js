@@ -1,7 +1,12 @@
 "use strict";
-// silenet dependency on google api script
+import { request } from "./helpers.js";
+import * as jQuery from './jquery.min.js';
+window.$ = $;
+window.jQuery = jQuery;
 
-// if (localStorage.jwt_auth) window.location.href = "/";
+// silent dependency on google api script, which can not be used as a module
+
+if (localStorage.jwt_auth) window.location.href = "/";
 
 window.onbeforeunload = function(e) {
   gapi.auth2.getAuthInstance().signOut(); // Prevent auto-login after logout
