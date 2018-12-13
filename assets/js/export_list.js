@@ -1,16 +1,14 @@
 "use strict";
-import {request, getUser} from "./helpers.js"
-import {createModal} from "./index.js"
-
-
+import { request, getUser } from "./helpers.js";
+import { createModal } from "./index.js";
 
 async function exportEmails() {
   var copyText = "";
 
-  let result = await getUser({acceptance_status: "queue"});
+  let result = await getUser({ acceptance_status: "queue" });
   result.forEach(function(user) {
     copyText += user.email + "\n";
-  })
+  });
 
   var modal = createModal();
 
@@ -32,10 +30,8 @@ async function exportEmails() {
   modal.content.appendChild(copyIconWrapper);
   modal.content.appendChild(confirmIconWrapper);
   document.body.appendChild(modal.container);
-  $(".modal").animate({"height": "toggle"})
+  $(".modal").animate({ height: "toggle" });
 }
-
-
 
 async function exportSubEmails() {
   var copyText = "";
@@ -43,7 +39,7 @@ async function exportSubEmails() {
   let result = await request("get", "/email_list/v1/subscriptions");
   result.forEach(function(user) {
     copyText += user + "\n";
-  })
+  });
 
   var modal = createModal();
 
@@ -60,10 +56,14 @@ async function exportSubEmails() {
   modal.content.appendChild(copyIconWrapper);
   modal.content.appendChild(confirmIconWrapper);
   document.body.appendChild(modal.container);
-  $(".modal").animate({"height": "toggle"})
+  $(".modal").animate({ height: "toggle" });
 }
 
 export function exportListInit() {
-  document.getElementById("export-sub-emails").addEventListener('click', exportSubEmails);
-  document.getElementById("export-emails").addEventListener('click', exportEmails);
+  document
+    .getElementById("export-sub-emails")
+    .addEventListener("click", exportSubEmails);
+  document
+    .getElementById("export-emails")
+    .addEventListener("click", exportEmails);
 }

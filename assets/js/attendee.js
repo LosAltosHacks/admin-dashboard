@@ -2,9 +2,9 @@
 import { escapeHTML } from "./helpers.js";
 
 export const AttendeeRenderType = Object.freeze({
-    ATTENDEE_LIST: 1,
-    ACCEPTED_LIST: 2,
-    UNACCEPTED_LIST: 3,
+  ATTENDEE_LIST: 1,
+  ACCEPTED_LIST: 2,
+  UNACCEPTED_LIST: 3
 });
 
 export class Attendee {
@@ -49,23 +49,30 @@ export class Attendee {
 
     this.elements[renderType].innerHTML = `
     <details>
-        <summary title="${procData.first_name + " " + procData.surname + " <" + procData.user_id + ">"}">
+        <summary title="${procData.first_name +
+          " " +
+          procData.surname +
+          " <" +
+          procData.user_id +
+          ">"}">
             ${(() => {
-                switch (renderType) {
-                    case AttendeeRenderType.ATTENDEE_LIST:
-                        return "<span class='delete-icon'><span title='Delete Attendee'><img src='/assets/icons/close.svg'></span></span>";
-                    case AttendeeRenderType.ACCEPTED_LIST:
-                        return "<span class='unaccept-icon'><span title='Remove Attendee From Queue'><img src='/assets/icons/user-unaccept.svg'></span></span>";
-                    default:
-                        return "";
-                }
+              switch (renderType) {
+                case AttendeeRenderType.ATTENDEE_LIST:
+                  return "<span class='delete-icon'><span title='Delete Attendee'><img src='/assets/icons/close.svg'></span></span>";
+                case AttendeeRenderType.ACCEPTED_LIST:
+                  return "<span class='unaccept-icon'><span title='Remove Attendee From Queue'><img src='/assets/icons/user-unaccept.svg'></span></span>";
+                default:
+                  return "";
+              }
             })()}
             <ul>
-                ${renderType == AttendeeRenderType.UNACCEPTED_LIST ?
-                    '<li class="acceptance-checkbox"><input class="accept" type="checkbox"></li>':
-                    `<li>${
-                        procData.acceptance_status.charAt(0).toUpperCase() + procData.acceptance_status.substr(1)
-                    }</li>`
+                ${
+                  renderType == AttendeeRenderType.UNACCEPTED_LIST
+                    ? '<li class="acceptance-checkbox"><input class="accept" type="checkbox"></li>'
+                    : `<li>${procData.acceptance_status
+                        .charAt(0)
+                        .toUpperCase() +
+                        procData.acceptance_status.substr(1)}</li>`
                 }
                 <li>${procData.first_name}</li>
                 <li>${procData.surname}</li>
