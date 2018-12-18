@@ -2,4 +2,4 @@ version: 0.2
 phases:
   build:
     commands:
-      - aws s3 sync --exclude "buildspec.yml" --delete . "s3://www.losaltoshacks.com"
+      - aws s3 sync --exclude "buildspec.yml" --delete . "s3://$DEPLOY_BUCKET"
