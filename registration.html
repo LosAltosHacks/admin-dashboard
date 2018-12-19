@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Los Altos Hacks IV - Event Registration</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta property="og:title" content="Los Altos Hacks IV" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://www.losaltoshacks.com/" />
+	<meta property="og:description" content="A 24-hour high school hackathon. Coming early 2019." />
+	<meta property="og:image" content="https://www.losaltoshacks.com/images/social-media.jpg" />
+
+	<meta name="twitter:title" content="Los Altos Hacks IV">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@losaltoshacks">
+	<meta name="twitter:description" content="A 24-hour high school hackathon. Coming early 2019.">
+	<meta name="twitter:image" content="http://www.losaltoshacks.com/images/social-media.jpg">
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="apple-touch-icon" href="touch-icon.png">
+
+	<link href="css/fonts.css" rel="stylesheet">
+	<link href="css/reg.css" rel="stylesheet">
+</head>
+
+<body>
+	<main>
+		<section id="top">
+			<div class="gradient-drop"></div>
+			<div class="bdg-sect">
+				<div class="badge freerot">
+					<div class="bdg-front">
+						<span 				  id="bdg-name"></span>
+						<span 				  id="bdg-age"></span>
+						<span 				  id="bdg-school"></span>
+						<span 				  id="bdg-grade-age"></span>
+					</div>
+					<div class="bdg-back">
+						<span class="no-warp" id="bdg-email"></span>
+						<span class="no-warp" id="bdg-phone"></span>
+						<span class="no-warp" id="bdg-parent-name"></span>
+						<span class="no-warp" id="bdg-parent-email"></span>
+						<span class="no-warp" id="bdg-exp"></span>
+						<span class="no-warp" id="bdg-shirt"></span>
+						<span 				  id="bdg-linkedin"></span>
+						<span				  id="bdg-github"></span>
+					</div>
+				</div>
+				<a href="#" id="confirmBadge"><h3>Click to confirm your information!</h3></a>
+				<div id="regDone" class="text-center">
+					<p>You've completed the registration process. You should have received an email to confirm this process.</p>
+					<button class="lahBtn force-center" id="backHome"><span class="buttonLabel">Head Back Home &rsaquo;</span></button>
+				</div>
+			</div>
+			<div class="field-sect">
+				<div class="reg-form">
+					<div class="page" id="welcomePage">
+						<div class="head-logo">
+							<img src="/images/Los-Altos-Hacks-Logo-Flat.svg">
+						</div>
+						<h3 class="text-center">Welcome to the Los Altos Hacks IV Application!</h3>
+						<p class="text-muted text-left">Los Altos Hacks IV will take place on March 24-25, 2018 at the Juniper Aspiration Dome in Sunnyvale, California. This application is for those who are planning to attend. After you have submitted your application, we will notify you closer to the event date if you have been accepted. Los Altos Hacks is free of charge for all high school students. For more information, visit https://losaltoshacks.com.</p>
+						<button class="lahBtn text-center force-center" id="welcomeProgress"><span class="buttonLabel">Construct Your Badge</span></button>
+						<div class="downwardProgression"></div>
+					</div>
+					<div class="page unloadedPage" id="namePage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks - 1/3</span>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-first">What is your first name?</h3>
+								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-first">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-last">What is your last name?</h3>
+								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-last">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-age">How old are you?</h3>
+								<input class="slInp num" type="text" placeholder="Type your answer here..." id="en-age">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-school">What high school do you currently attend?</h3>
+								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-school">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-grade">What grade are you in?</h3>
+								<div class="radio-group" id="en-grade">
+							    	<input class="radioBox" type="radio" name="en-grade" id="en-grade-9" value="9" disabled>
+									<label class="radio-option" for="en-grade-9">
+										<span class="radio-title">9</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-grade" id="en-grade-10" value="10" disabled>
+									<label class="radio-option" for="en-grade-10">
+										<span class="radio-title">10</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-grade" id="en-grade-11" value="11" disabled>
+									<label class="radio-option" for="en-grade-11">
+										<span class="radio-title">11</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-grade" id="en-grade-12" value="12" disabled>
+									<label class="radio-option" for="en-grade-12">
+										<span class="radio-title">12</span>
+									</label>
+								</div>
+							</div>
+							<button class="lahBtn disabled" id="contactPageBtn"><span class="buttonLabel">Contact Info &rsaquo;</span></button>
+						</div>
+					</div>
+					<div class="page unloadedPage" id="contactPage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks - 2/3</span>
+							<p class="text-muted">The information from further questions will be used internally only and not distributed or printed onto your physical badge.</p>
+							<div class="qGrp focus">
+								<h3 class="slim-title" for="en-gender">What is your gender?</h3>
+								<div class="selectSplit">
+									<select class="slSel" id="en-genderSelect">
+										<option value="select" selected disabled>Select</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+										<option value="Other">Other</option>
+										<option value="decline">Decline to State</option>
+									</select>
+									<input class="slInp hidden" type="text" placeholder="Type your answer here..." id="en-gender">
+								</div>
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-email">What is your email address?</h3>
+								<input class="slInp email" type="text" placeholder="Enter your email here" id="en-email">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-phone">What is your phone number? (optional)</h3>
+								<input class="slInp optional" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="en-phone">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-allergies">What are your dietary restrictions?</h3>
+								<input class="slInp" type="text" placeholder="allergic to peanuts, lactose intolerant, etc." id="en-allergies">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-phone">What is your parent's name?</h3>
+								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-par-name">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-phone">What is your parent's email?</h3>
+								<input class="slInp email" type="text" placeholder="Type your answer here..." id="en-par-email">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-phone">What is your parent's phone number? (optional)</h3>
+								<input class="slInp optional" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="en-par-phone">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-shirtsize">What is your t-shirt size?</h3>
+								<div class="radio-group" id="en-shirtsize">
+							    	<input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-S" value="S" disabled>
+									<label class="radio-option" for="en-shirtsize-S">
+										<span class="radio-title">S</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-M" value="M" disabled>
+									<label class="radio-option" for="en-shirtsize-M">
+										<span class="radio-title">M</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-L" value="L" disabled>
+									<label class="radio-option" for="en-shirtsize-L">
+										<span class="radio-title">L</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-XL" value="XL" disabled>
+									<label class="radio-option" for="en-shirtsize-XL">
+										<span class="radio-title">XL</span>
+									</label>
+								</div>
+							</div>
+							<button class="lahBtn goBack" id="hackerBGBack"><span class="buttonLabel">&lsaquo; Back</span></button>
+							<button class="lahBtn disabled" id="hackerBGBtn"><span class="buttonLabel">Hacker Background &rsaquo;</span></button>
+						</div>
+					</div>
+					<div class="page unloadedPage" id="HDPage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks - 3/3</span>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-linkedin">What is your Linkedin Profile URL? (optional)</h3>
+								<input class="slInp social optional" type="text" placeholder="https://linkedin.com/in/johnsmith" id="en-linkedin">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-github">What is your Github URL? (optional)</h3>
+								<input class="slInp social optional" type="text" placeholder="https://github.com/losaltoshacks" id="en-github">
+							</div>
+							<div class="qGrp focus">
+								<h3 class="slim-title" for="en-attendednum">How many hackathons have you attended?</h3>
+								<div class="radio-group" id="en-attendednum">
+							    	<input class="radioBox" type="radio" name="en-attendednum" id="en-attendednum-0" value="0">
+									<label class="radio-option" for="en-attendednum-0">
+										<span class="radio-title">0</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-attendednum" id="en-attendednum-1" value="1">
+									<label class="radio-option" for="en-attendednum-1">
+										<span class="radio-title">1</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-attendednum" id="en-attendednum-2" value="2">
+									<label class="radio-option" for="en-attendednum-2">
+										<span class="radio-title">2</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-attendednum" id="en-attendednum-3" value="3">
+									<label class="radio-option" for="en-attendednum-3">
+										<span class="radio-title">3</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-attendednum" id="en-attendednum-4" value="4">
+									<label class="radio-option" for="en-attendednum-4">
+										<span class="radio-title">4</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-attendednum" id="en-attendednum-5" value="5">
+									<label class="radio-option" for="en-attendednum-4">
+										<span class="radio-title">5+</span>
+									</label>
+								</div>
+							</div>
+							<button class="lahBtn goBack" id="finRegBack"><span class="buttonLabel">&lsaquo; Back</span></button>
+							<button class="lahBtn disabled" id="finReg"><span class="buttonLabel">Finalize Registration &rsaquo;</span></button>
+						</div>
+					</div>
+					<div class="page unloadedPage" id="finalizePage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks - Finalize</span>
+							<div class="qGrp focus">
+								<h3 class="slim-title fineprint" for="en-mlhcode">I agree to the MLH Code of Conduct</h3>
+								<input class="termsCheck" type="checkbox" id="en-mlhcode" value="accepted">
+							    <label for="en-mlhcode"></label>
+							</div>
+							<div class="qGrp focus">
+								<h3 class="slim-title fineprint" for="en-mlhterms">I agree to the terms of both the MLH Contest Terms and Conditions (1) and the MLH Privacy Policy (2). Please note that you may receive pre and post-event informational e-mails and occasional messages about hackathons from MLH as per the MLH Privacy Policy.</h3>
+								<input class="termsCheck" type="checkbox" id="en-mlhterms" value="accepted">
+							    <label for="en-mlhterms"></label>
+							</div>
+							<div class="qGrp focus">
+								<h3 class="slim-title fineprint" for="en-lahpriv">By submitting your application, you acknowledge and agree that the organization behind Los Altos Hacks III (Youth Leadership Incubator Inc dba Hack+) may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact legal@hackplus.io for any clarifications, questions, or requests regarding this agreement.</h3>
+								<input class="termsCheck" type="checkbox" id="en-lahpriv" value="accepted">
+							    <label for="en-lahpriv"></label>
+							</div>
+							<button class="lahBtn goBack" id="sendRegBack"><span class="buttonLabel">&lsaquo; Back</span></button>
+							<button class="lahBtn disabled" id="sendReg"><span class="buttonLabel">Submit &rsaquo;</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js" integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U=" crossorigin="anonymous"></script>
+	<script src="js/reg.min.js"></script>
+</body>
+</html>
