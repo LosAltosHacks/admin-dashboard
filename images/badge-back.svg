@@ -6,6 +6,13 @@
 <g>
 	<defs>
 		<rect id="SVGID_1_" width="1191" height="1951"/>
+	    <style type="text/css">
+		@font-face {
+			src: url("/fonts/Poppins-Bold.ttf");
+			font-family: "Poppins-Bold";
+			font-weight: 700;
+		}
+	    </style>
 	</defs>
 	<defs>
 		<rect id="SVGID_2_" x="-1" width="1192.3" height="289.2"/>
@@ -52,7 +59,7 @@
 		L166.9,568z"/>
 </g>
 <rect x="-1" y="688" fill="#3781B4" stroke="#000000" stroke-miterlimit="10" width="1193.1" height="496.6"/>
-<text transform="matrix(1 0 0 1 285.0442 780.8576)" fill="#FCFCFC" font-family="'Poppins-Bold'" font-size="61px">PARENT / GUARDIAN</text>
+<text transform="matrix(1 0 0 1 285.0442 780.8576)" fill="#FCFCFC" font-family="'Poppins-Bold', Tahoma" font-size="61px">PARENT / GUARDIAN</text>
 <g id="email_1_">
 	<path id="_x3C_Compound_Path_x3E__1_" fill="#FFFFFF" d="M253.2,1010.8H115.8c-6.3,0-11.4,5.1-11.4,11.4v91.6
 		c0,6.3,5.1,11.4,11.4,11.4h137.4c6.3,0,11.4-5.1,11.4-11.4v-91.6C264.6,1015.9,259.5,1010.8,253.2,1010.8z M155,1078.7l-37.2,37.2
@@ -76,5 +83,5 @@
 		 M341.3,1586.3h-22.1c0,0,0-39.5,0-40.6c0-6.1-5-11.1-11.1-11.1c-6.1,0-11.1,5-11.1,11.1c0,0.9,0.2,40.6,0.2,40.6H275v-66.2h22.1
 		v11.1c3-4.7,7.3-11.2,19.7-11.2c15.1,0,24.5,9.5,24.5,30.6V1586.3z"/>
 </g>
-<text transform="matrix(1 0 0 1 132.8321 1328.9072)"><tspan x="0" y="0" fill="#3781B4" font-family="'Poppins-Bold'" font-size="61px">EXP: </tspan><tspan x="146.1" y="0" fill="#3781B4" font-family="'Poppins-Bold'" font-size="61px" letter-spacing="19">	</tspan><tspan x="180" y="0" fill="#3781B4" font-family="'Poppins-Bold'" font-size="61px" letter-spacing="21">												</tspan><tspan x="612" y="0" fill="#3781B4" font-family="'Poppins-Bold'" font-size="61px">SHIRT: </tspan></text>
+<text transform="matrix(1 0 0 1 132.8321 1328.9072)"><tspan x="0" y="0" fill="#3781B4" font-family="Tahoma, 'Poppins-Bold'" font-size="61px">EXP: </tspan><tspan x="146.1" y="0" fill="#3781B4" font-family="Tahoma, 'Poppins-Bold'" font-size="61px" letter-spacing="19">	</tspan><tspan x="180" y="0" fill="#3781B4" font-family="Tahoma, 'Poppins-Bold'" font-size="61px" letter-spacing="21">												</tspan><tspan x="612" y="0" fill="#3781B4" font-family="Tahoma, 'Poppins-Bold'" font-size="61px">SHIRT: </tspan></text>
 </svg>
