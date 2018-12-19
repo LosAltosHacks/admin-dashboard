@@ -49,6 +49,10 @@ $(document).ready(function() {
     })
   })
 
+  $(".sync").click(function() {
+    updateLists();
+  })
+
   // Essential Controls
   $("#select-all").change(function() {
     if ($(this).is(':checked')) {

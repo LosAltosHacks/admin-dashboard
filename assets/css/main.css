@@ -118,6 +118,18 @@ body {
         }
     }
 
+.sync {
+  margin-left: 5px;
+  cursor: pointer;
+}
+  .sync img {
+    height: 0.8em;
+    transition: transform 1s;
+  }
+  .sync:hover img {
+    transform: rotate(360deg);
+  }
+
 .attendees-details {
   padding: 10px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
