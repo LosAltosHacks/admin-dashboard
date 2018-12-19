@@ -293,9 +293,11 @@ div#overlay {
     text-align: center;
     display: block;
     padding: calc(40px - .8em);
-    background-color: rgba(18, 53, 76, 0.8);
+    background-color: var(--blue);;
     width: 300px;
     height: 80px;
+    color: white;
+    border-radius: 4px;
   }
 
 h1.head-text {
