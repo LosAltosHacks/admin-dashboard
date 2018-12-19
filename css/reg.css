@@ -30,6 +30,7 @@ html, body {
 	width: 0;
 	transition: all 1s ease;
 	flex-basis: 0%;
+	overflow: hidden;
 }
 .field-sect.open {
 	flex-basis: 150%;
