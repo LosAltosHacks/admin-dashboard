@@ -232,12 +232,14 @@ $('#contactPageBtn').click(function() {
 	if($(this).is('.disabled')) return;
 	var age = $('#en-age').val().trim();
 	if(parseInt(age) >= 18) {
+		$('.grdn').hide();
 		$('#en-par-name').val('n/a').prop('disabled', true);
 		$('#en-par-email').val('n/a').prop('disabled', true);
 		$('#en-par-phone').val('n/a').prop('disabled', true);
 		$('#bdg-parent-name').text('n/a');
 		$('#bdg-parent-email').text('n/a');
 	} else {
+		$('.grdn').show();
 		$('#en-par-name').prop('disabled', false);
 		$('#en-par-email').prop('disabled', false);
 		$('#en-par-phone').prop('disabled', false);
@@ -294,10 +296,7 @@ $('#sendReg').click(function() {
 	db['age'] = parseInt($('#en-age').val().trim());
 	db['school'] = $('#en-school').val().trim();
 	db['grade'] = parseInt($('#en-grade .radioBox:checked').val());
-	if($('#en-phone').val().trim().length == 0)
-		db['student_phone_number'] = $('#en-par-phone').val().trim();
-	else
-		db['student_phone_number'] = $('#en-phone').val().trim();
+	db['student_phone_number'] = $('#en-phone').val().trim();
 	db['gender'] = $('#en-gender').val().trim();
 	db['tshirt_size'] = $('#en-shirtsize .radioBox:checked').val();
 	db['previous_hackathons'] = $('#en-attendednum .radioBox:checked').val();
@@ -313,7 +312,6 @@ $('#sendReg').click(function() {
 		db['linkedin_profile'] = $('#en-linkedin').val().trim();
 	if($('#en-allergies').val().trim().length != 0)
 		db['dietary_restrictions'] = $('#en-allergies').val().trim();
-		
 	$.post(lah_api+'/registration/v1/signup', db).done(function() {
 		if(smallui) {
 			$('#confirmBadge').fadeOut();
