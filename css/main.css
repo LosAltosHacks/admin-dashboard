@@ -280,6 +280,24 @@ div#overlay {
     min-height: 10rem;
 }
 
+#signup-button {
+  display: block;
+  cursor: pointer;
+}
+  #signup-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 7px 3px rgba(0, 0, 0,0.25);
+  }
+  #signup-button span {
+    font-size: 0.7rem;
+    text-align: center;
+    display: block;
+    padding: calc(40px - .8em);
+    background-color: rgba(18, 53, 76, 0.8);
+    width: 300px;
+    height: 80px;
+  }
+
 h1.head-text {
     font-size: 7vh;
 }
@@ -1135,21 +1153,20 @@ footer a.link-group-item:hover {
 
 /* device-specific bug fixes */
 /* iOS landscape bug */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 667px) 
-and (orientation : landscape) { 
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : landscape) {
 	#logo-main {
 		height: auto;
 	}
 }
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 812px) 
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3)
-and (orientation : landscape) { 
+and (orientation : landscape) {
 	#logo-main {
 		height: auto;
 	}
 }
-	
