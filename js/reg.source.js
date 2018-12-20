@@ -52,10 +52,10 @@ function redrawWindow() {
 	$('.gradient-drop').css('opacity', 1);
 	$('.field-sect').addClass('open');
 }
-$('.slInp').focus(function() {
+$('.slInp, .slSel').focus(function() {
 	$(this).closest('.qGrp').addClass('focus');
 });
-$('.slInp').blur(function() {
+$('.slInp, .slSel').blur(function() {
 	$(this).closest('.qGrp.focus').removeClass('focus');
 });
 $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
