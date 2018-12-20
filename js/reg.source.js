@@ -1,5 +1,24 @@
 var lah_api = "https://api.losaltoshacks.com";
 
+$(document).ready(function() {
+  var file = new XMLHttpRequest();
+  file.open("GET", "docs/schools.csv", true);
+  file.onreadystatechange = function() {
+    var response = file.responseText;
+    var schools = response.split(/\r\n|\n/).splice(1);
+    schools.forEach(function(school) {
+      school = school.replace(/['"]+/g, '');
+    })
+    console.log(schools);
+    $("#en-school").autocomplete({source: function(request, response) {
+        var results = $.ui.autocomplete.filter(schools, request.term);
+
+        response(results.slice(0, 5));
+    }});
+  }
+  file.send();
+})
+
 $(function() {
     $('input[data-mask]').each(function() {
       var input = $(this);
@@ -26,7 +45,7 @@ function redrawWindow() {
 		smallui = true;
 	else
 		smallui = false;
-	
+
 	var screenHeight = $(window).height();
 	var badgeHeight = $('.badge').height();
 	$('.badge').css('margin-top', (screenHeight/2 - badgeHeight/2)+'px');
@@ -72,7 +91,7 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
 		$('#bdg-school').text(school.match(/\b(\w)/g).join('').toUpperCase());
 	if(grade > 0)
 		$('#bdg-grade-age').text(grade+'th' + ageAddon);
-	else 
+	else
 		$('#bdg-grade-age').text('');
 	var allFilled = true;
 	$('.slInp', '#namePage').each(function() {
@@ -84,7 +103,7 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
 	if(allFilled) {
 		$('#en-grade .radioBox').removeAttr('disabled');
 		$('#en-grade').closest('.qGrp').addClass('focus');
-		
+
 		if($('#en-grade .radioBox:checked').val().trim() != "")
 			$('#contactPageBtn').removeClass('disabled');
 		else
@@ -136,7 +155,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
 			$(this).removeClass('invalidInp');
 		}
 	}
-	
+
 	$('#bdg-email').text(email).prop('title', email);
 	//detect clipping
 	if($('#bdg-email')[0].offsetWidth < $('#bdg-email')[0].scrollWidth) {
@@ -149,7 +168,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
 	$('#bdg-parent-name').text(parname);
 	$('#bdg-parent-email').text(paremail);
 	$('#bdg-shirt').text(tshirt);
-	
+
 	var allFilled = true;
 	$('.slInp', '#contactPage').each(function() {
 		if($(this).val().trim() == "" || $(this).is('.invalidInp')) {
@@ -161,7 +180,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
 	if(allFilled) {
 		$('#en-shirtsize .radioBox').removeAttr('disabled');
 		$('#en-shirtsize').closest('.qGrp').addClass('focus');
-	
+
 		if($('#en-shirtsize .radioBox:checked').val().trim() != "")
 			$('#hackerBGBtn').removeClass('disabled');
 		else
@@ -172,7 +191,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
 		$('#en-shirtsize').closest('.qGrp').removeClass('focus');
 		$('#en-shirtsize .radioBox').attr('disabled', '');
 	}
-	
+
 });
 $('.slInp, .radioBox', '#HDPage').on('input change', function() {
 	//https://www.linkedin.com/in/somename or https://www.linkedin.com/in/first-last-12345678
@@ -180,7 +199,7 @@ $('.slInp, .radioBox', '#HDPage').on('input change', function() {
 	//
 	var github = $('#en-github').val().trim();
 	var attended = $('#en-attendednum .radioBox:checked').val();
-	
+
 	if($(this).is('.slInp.social')) {
 		var value = $(this).val();
 		var result = (value.length > 0 && (value.indexOf('linkedin.com/in/') == -1  && value.indexOf('github.com/') == -1));
@@ -244,7 +263,7 @@ $('#contactPageBtn').click(function() {
 		$('#en-par-email').prop('disabled', false);
 		$('#en-par-phone').prop('disabled', false);
 	}
-	
+
 	$('#namePage').addClass('pullOffscreen');
 	$('.badge').addClass('flip');
 	$('#contactPage').removeClass('unloadedPage');
@@ -300,7 +319,7 @@ $('#sendReg').click(function() {
 	db['gender'] = $('#en-gender').val().trim();
 	db['tshirt_size'] = $('#en-shirtsize .radioBox:checked').val();
 	db['previous_hackathons'] = $('#en-attendednum .radioBox:checked').val();
-	
+
 	if(db['age'] < 18) {
 		db['guardian_name'] = $('#en-par-name').val().trim();
 		db['guardian_email'] = $('#en-par-email').val().trim();
@@ -322,8 +341,8 @@ $('#sendReg').click(function() {
 			$('.bdg-sect').css('width', '100vw').css('flex-basis', 'auto');
 			return;
 		}
-	
-	
+
+
 		$('.badge').removeClass('flip');
 		$('#regDone').fadeIn();
 		$('#confirmBadge').fadeOut();
@@ -340,6 +359,6 @@ $('.termsCheck', '#finalizePage').on('change', function() {
 	var $nextQGroup = $thisQGroup.nextAll();
 	if($('.termsCheck:not(:checked)', '#finalizePage').length == 0)
 		$('#sendReg').removeClass('disabled');
-	else 
+	else
 		$('#sendReg').addClass('disabled');
 });
