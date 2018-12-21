@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Los Altos Hacks IV</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+	<meta property="og:title" content="Los Altos Hacks IV" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://www.losaltoshacks.com/" />
+	<meta property="og:description" content="A 24-hour high school hackathon. Coming early 2019." />
+	<meta property="og:image" content="https://www.losaltoshacks.com/images/social-media.jpg" />
+
+	<meta name="twitter:title" content="Los Altos Hacks IV">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@losaltoshacks">
+	<meta name="twitter:description" content="A 24-hour high school hackathon. Coming early 2019.">
+	<meta name="twitter:image" content="http://www.losaltoshacks.com/images/social-media.jpg">
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="apple-touch-icon" href="touch-icon.png">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link href="css/fonts.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<main>
+		<!-- Nav -->
+		<section id="nav">
+			<div class="row" id="nav-row">
+				<div class="nav-icon">
+					<img src="images/Los-Altos-Hacks-Logo-Flat.svg" id="nav-brand">
+				</div>
+				<div class="nav-links">
+					<div class="nav-link">
+						<a href="./#about" onclick="">About</a>
+					</div>
+					<div class="nav-link">
+						<a href="./#faq">FAQ</a>
+					</div>
+					<div class="nav-link">
+						<a href="./#schedule">Schedule</a>
+					</div>
+					<div class="nav-link">
+						<a href="./#sponsors">Sponsors</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Top -->
+		<section id="top">
+			<div id="top-canvas">
+				<div id="overlay"></div>
+				<video autoplay muted loop id="bg-video">
+					<source src="images/video.mp4" type="video/mp4">
+					</video>
+				</div>
+				<div class="row" id="logo-main">
+					<h3>Successfully confirmed your email! Keep checking your email to get updates regarding the status of your application.</h3>
+					<br>
+					<img src="images/Los-Altos-Hacks-Logo.svg">
+					<h1 class="head-text">Los Altos Hacks IV</h1>
+				</div>
+				<div class="row" id="top-text">
+					<div id="info-left">
+						<h4 class="dateline">March 23 - 24, 2019</h4>
+						<h4>Juniper Aspiration Dome</h4>
+						<p class="mt-0 text-muted">1081 Innovation Way, Sunnyvale, CA</p>
+					</div>
+				</div>
+				<!-- reserved for implementation use -->
+				<template id="template-apply">
+					
+				</template>
+				<template id="template-countdown">
+					<h2 class="gradient-text">Get Ready!</h2>
+					<div>
+						<div>
+							<h3 id="countdown-label">Opening Ceremony starts in</h3>
+							<p><date id="countdown"></date></p>
+						</div>
+					</div>
+				</template>
+				<template id="template-event">
+					<h2 class="gradient-text">Hacking In Progress!</h2>
+					<a class="button darkblue" href="/dashboard" target="_blank"><span>Visit Dashboard</span></a>
+				</template>
+				<template id="template-post-event">
+					<a class="button darkblue" href="https://losaltoshacks3.devpost.com/submissions" target="_blank"><span>View Submissions &amp; Winners</span></a>
+				</template>
+			</section>
+		</main>
+		<footer>
+			<div class="row">
+				<div class="row-inner">
+					<div class="footer-wrapper row">
+						<div class="footer-sect">
+							<div class="footer-icon">
+								<img src="images/Los-Altos-Hacks-Logo-Flat.svg" id="footer-brand">
+							</div>
+						</div>
+						<div class="footer-sect">
+							<div class="link-group-head">Past Sites</div>
+							<a href="2016" class="link-group-item">2016</a>
+							<a href="2017" class="link-group-item">2017</a>
+							<a href="2018" class="link-group-item">2018</a>
+						</div>
+						<div class="footer-sect">
+							<div class="link-group-head">Social Media</div>
+							<a href="https://www.facebook.com/losaltoshacks" class="link-group-item">Facebook</a>
+							<a href="https://twitter.com/losaltoshacks" class="link-group-item">Twitter</a>
+							<a href="https://instagram.com/losaltoshacks" class="link-group-item">Instagram</a>
+						</div>
+						<div class="footer-sect">
+							<div class="link-group-head">&nbsp;</div>
+						</div>
+					</div>
+
+				</div>
+				<p class="text-tiny" id="copyText">Copyright © 2018 Los Altos Hacks. All rights reserved.</p>
+
+			</div>
+		</footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/top.js"></script>
+		<script src="js/schedules.js"></script>
+		<script src="js/dynamicSchedule.js"></script>
+	</body>
+
+	</html>
