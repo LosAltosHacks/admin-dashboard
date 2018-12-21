@@ -11,7 +11,7 @@ let edited_fields = {};
 $(document).ready(function() {
   if (localStorage.theme) changeTheme(localStorage.theme);
 
-  // Decorative Controls
+  Decorative Controls
   $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
   $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
 
@@ -228,7 +228,8 @@ function showHistory(e) {
     result.forEach(function(entry) {
       var details = "";
       for (var i=0; i<Object.keys(entry).length; i++) {
-        details += "<li><b>" + escapeHTML(Object.keys(entry)[i]) + ":</b> " + escapeHTML(Object.values(entry)[i]) + "</li>";
+        details += "<li><b>" + escapeHTML(String(Object.keys(entry)[i])) + ":</b> " + escapeHTML(String(Object.values(entry)[i])) + "</li>";
+
       }
       wrapper.insertAdjacentHTML('afterbegin',
         "<details><summary>" + (new Date(entry.timestamp.replace(" ", "T") + "Z")) + "</summary><div class='history-details'><ul>" + details + "</ul></div></details>"
