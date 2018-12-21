@@ -289,7 +289,7 @@ div#overlay {
     box-shadow: 0 5px 7px 3px rgba(0, 0, 0,0.25);
   }
   #signup-button span {
-    font-size: 0.7rem;
+    font-size: 1.5em;
     text-align: center;
     display: block;
     padding: calc(40px - .8em);
@@ -1076,6 +1076,14 @@ footer a.link-group-item:hover {
   }
   .head-text {
     font-size: 1.5rem !important;
+  }
+}
+
+/* flex layout for header */
+@media only screen and (max-width: 682px) {
+  #info-left, #info-right {
+    margin: 0 auto;
+    text-align: center;
   }
 }
 
