@@ -57,14 +57,13 @@
 			</div>
 			<div class="field-sect">
 				<div class="reg-form">
-					<div class="page" id="welcomePage">
+					<div class="page" id="welcomePage" style="padding:10px">
 						<div class="head-logo">
 							<img src="/images/Los-Altos-Hacks-Logo-Flat.svg">
 						</div>
 						<h3 class="text-center">Welcome to the Los Altos Hacks IV Application!</h3>
-						<p class="text-muted text-left">Los Altos Hacks IV will take place on March 24-25, 2018 at the Juniper Aspiration Dome in Sunnyvale, California. This application is for those who are planning to attend. After you have submitted your application, we will notify you closer to the event date if you have been accepted. Los Altos Hacks is free of charge for all high school students. For more information, visit https://losaltoshacks.com.</p>
+						<p class="text-muted text-left">Los Altos Hacks IV will take place on March 24-25, 2018 at the Juniper Aspiration Dome in Sunnyvale, California. This application is for those who are planning to attend. After you have submitted your application, we will notify you closer to the event date if you have been accepted. Los Altos Hacks is free of charge for all high school students. For more information, visit <a href="https://losaltoshacks.com">www.losaltoshacks.com</a>.</p>
 						<button class="lahBtn text-center force-center" id="welcomeProgress"><span class="buttonLabel">Construct Your Badge</span></button>
-						<div class="downwardProgression"></div>
 					</div>
 					<div class="page unloadedPage" id="namePage">
 						<div class="backdropHov">
@@ -83,7 +82,7 @@
 							</div>
 							<div class="qGrp">
 								<h3 class="slim-title" for="en-school">What high school do you currently attend?</h3>
-								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-school">
+								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-school" >
 							</div>
 							<div class="qGrp">
 								<h3 class="slim-title" for="en-grade">What grade are you in?</h3>
@@ -131,24 +130,24 @@
 								<input class="slInp email" type="text" placeholder="Enter your email here" id="en-email">
 							</div>
 							<div class="qGrp">
-								<h3 class="slim-title" for="en-phone">What is your phone number? (optional)</h3>
-								<input class="slInp optional" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="en-phone">
+								<h3 class="slim-title" for="en-phone">What is your phone number?</h3>
+								<input class="slInp" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="en-phone">
 							</div>
 							<div class="qGrp">
-								<h3 class="slim-title" for="en-allergies">What are your dietary restrictions?</h3>
-								<input class="slInp" type="text" placeholder="allergic to peanuts, lactose intolerant, etc." id="en-allergies">
+								<h3 class="slim-title" for="en-allergies">What are your dietary restrictions? (optional)</h3>
+								<input class="slInp optional" type="text" placeholder="allergic to peanuts, lactose intolerant, etc." id="en-allergies">
 							</div>
-							<div class="qGrp">
-								<h3 class="slim-title" for="en-phone">What is your parent's name?</h3>
+							<div class="qGrp grdn">
+								<h3 class="slim-title" for="en-phone">What is your parent's full name?</h3>
 								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-par-name">
 							</div>
-							<div class="qGrp">
+							<div class="qGrp grdn">
 								<h3 class="slim-title" for="en-phone">What is your parent's email?</h3>
 								<input class="slInp email" type="text" placeholder="Type your answer here..." id="en-par-email">
 							</div>
-							<div class="qGrp">
-								<h3 class="slim-title" for="en-phone">What is your parent's phone number? (optional)</h3>
-								<input class="slInp optional" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="en-par-phone">
+							<div class="qGrp grdn">
+								<h3 class="slim-title" for="en-phone">What is your parent's phone number?</h3>
+								<input class="slInp" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="en-par-phone">
 							</div>
 							<div class="qGrp">
 								<h3 class="slim-title" for="en-shirtsize">What is your t-shirt size?</h3>
@@ -210,7 +209,7 @@
 										<span class="radio-title">4</span>
 									</label>
 								    <input class="radioBox" type="radio" name="en-attendednum" id="en-attendednum-5" value="5">
-									<label class="radio-option" for="en-attendednum-4">
+									<label class="radio-option" for="en-attendednum-5">
 										<span class="radio-title">5+</span>
 									</label>
 								</div>
@@ -233,7 +232,7 @@
 							    <label for="en-mlhterms"></label>
 							</div>
 							<div class="qGrp focus">
-								<h3 class="slim-title fineprint" for="en-lahpriv">By submitting your application, you acknowledge and agree that the organization behind Los Altos Hacks III (Youth Leadership Incubator Inc dba Hack+) may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact legal@hackplus.io for any clarifications, questions, or requests regarding this agreement.</h3>
+								<h3 class="slim-title fineprint" for="en-lahpriv">By submitting your application, you acknowledge and agree that Los Altos Hacks IV may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a> for any clarifications, questions, or requests regarding this agreement.</h3>
 								<input class="termsCheck" type="checkbox" id="en-lahpriv" value="accepted">
 							    <label for="en-lahpriv"></label>
 							</div>
@@ -245,8 +244,13 @@
 			</div>
 		</section>
 	</main>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+  crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js" integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U=" crossorigin="anonymous"></script>
-	<script src="js/reg.min.js"></script>
+	<script src="js/reg.source.js"></script>
 </body>
 </html>

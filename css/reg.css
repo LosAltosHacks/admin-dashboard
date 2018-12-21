@@ -5,14 +5,52 @@
 	text-align: left;
 }
 
+.ui-autocomplete {
+	z-index: 100;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 0;
+	width: calc(55vw - 90px) !important;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	max-height: 15em;
+	overflow-y: scroll;
+}
+	.ui-autocomplete li {
+		padding-left: 1em !important;
+		color: black;
+		list-style-type: none;
+		cursor: pointer;
+		transition: padding-left .3s;
+	}
+	.ui-autocomplete li:hover {
+		background-color: rgba(255, 255, 255, 0.6);
+		padding-left: 1.5em !important;
+	}
+	.ui-autocomplete li:last-child:hover {
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+
 html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: black;			
+	background-color: black;
 }
+a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+a {
+    color: #3fb2ff;
+    font-weight: 600;
+}
+a:hover {
+    box-shadow: inset 0 -3px;
+}
+
 #top {
 	width: 100vw;
 	height: 100vh;
@@ -30,6 +68,7 @@ html, body {
 	width: 0;
 	transition: all 1s ease;
 	flex-basis: 0%;
+	overflow: hidden;
 }
 .field-sect.open {
 	flex-basis: 150%;
@@ -45,7 +84,7 @@ html, body {
 	user-select: none;
     transform-style: preserve-3d;
 	transform-origin: center right;
-	
+
 }
 .badge .bdg-front {
 	box-shadow: 0 3px 6px 0px rgba(0,0,0,0.6);
@@ -87,7 +126,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	z-index: 1;
-	background: linear-gradient(to bottom, rgba(0,0,0,1) 55%,rgba(48,136,195,1) 55%,rgba(48,136,195,1) 55%,rgba(48,136,195,1) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,1) 55%,rgba(38,107,154,1) 55%,rgba(38,107,154,1) 100%);
 	transition: opacity 1.8s ease-in-out;
 }
 .reg-form {
@@ -112,7 +151,7 @@ html, body {
 	max-height: 100vh;
 	width: 100%;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .reg-form .page.unloadedPage {
 	max-height: 0;
@@ -125,25 +164,30 @@ html, body {
 	width: 32em;
 	max-width: 100%;
 	margin: 0 auto;
-	min-height: 40vh;
+	height: 30vh;
 }
+	.head-logo > img {
+		height: 100%;
+		margin: 0 auto;
+		display: block;
+	}
 p.text-muted {
 	color: rgba(255,255,255,0.9);
 }
 .lahBtn {
+	z-index: 999;
 	line-height: 2rem;
-    border-radius: 5px;
-	background-color: #0f70b1;
-    padding: 5px 20px;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    font-weight: bolder;
-		display: block;
+  border-radius: 5px;
+	background-color: rgb(11, 71, 111);
+  padding: 5px 20px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: bolder;
+	display: block;
 	cursor: pointer;
-	box-shadow: 0 0 0em rgba(255, 255, 255, 0.0);
 	opacity: 0.8;
-	transition: box-shadow 0.4s, opacity 0.4s;
-	border-color: rgb(11, 71, 111);
+	transition: opacity 0.4s;
+	border: 0;
 }
 .lahBtn > .buttonLabel {
 	color: white;
@@ -160,7 +204,6 @@ p.text-muted {
 }
 .lahBtn:hover {
 	opacity: 1;
-	box-shadow: 0 0 2em rgba(255, 255, 255, 0.2);
 }
 .lahBtn.disabled {
 	opacity: 0.4;
@@ -204,6 +247,9 @@ p.text-muted {
     letter-spacing: 1.2px;
     font-size: 12px;
 }
+#welcomePage > h3 {
+	margin-bottom: 8vh;
+}
 h3.slim-title {
 	margin: 0.5rem 0;
 }
@@ -211,15 +257,17 @@ h3.fineprint {
 	font-size: 0.8rem;
 }
 .slInp {
-    font-size: 1.5rem;
-    line-height: 1.2rem;
-    background: none;
-    border: none;
-    height: 1.5rem;
-    padding: 5px;
-    color: white;
-    width: 100%;
-    border-bottom: 0px solid white;
+	font-family: "Poppins", sans-serif;
+	font-weight: lighter;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  background: none;
+  border: none;
+  height: 1.5rem;
+  padding: 5px;
+  color: white;
+  width: 100%;
+  border-bottom: 0px solid white;
 	transition: border-bottom 0.3s;
 }
 .slInp.invalidInp {
@@ -235,6 +283,9 @@ h3.fineprint {
 }
 .slInp::placeholder {
 	color: rgba(255, 255, 255, 0.4);
+}
+input.slInp::-ms-input-placeholder {
+	color: white;
 }
 .qGrp {
 	margin: 15px 0;
@@ -256,14 +307,14 @@ h3.fineprint {
 	white-space: nowrap;
 	color: black;
 	font-weight: bolder;
-	
+
 	color: transparent;
     background-color: #737373;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
     text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.41);
-	
+
 }
 .badge span.no-warp {
     -webkit-transform: none;
@@ -278,7 +329,7 @@ h3.fineprint {
 	top: 90%;
 	left: 80%;
 	font-size: 15px;
-	
+
 }
 .badge #bdg-grade-age {
 	top: 90%;
@@ -296,7 +347,7 @@ h3.fineprint {
     overflow: hidden;
 	color: #464646;
 	font-size: 12px;
-	
+
 }
 .badge #bdg-phone {
     top: 26.5%;
@@ -435,14 +486,18 @@ input[type="checkbox"]:checked + label:after {
 .selectSplit > .slSel {
 	display: inline-block;
 	flex-basis: 10%;
-	height: calc(1.5rem + 10px);
+	height: calc(1.5rem + 20px);
 	background-color: rgb(15, 112, 177);
-    border: 1px solid rgb(11, 71, 111);
-    color: white;
-    font-size: 1.2rem;
+	font-family: "Poppins", sans-serif;
+	border: 0;
+	padding: 5px;
+	border-radius: 5px;
+  color: white;
+  font-size: 1.2rem;
 }
 .selectSplit > .slInp {
 	flex-basis: 90%;
+	margin: 10px;
 }
 .selectSplit > .slInp.hidden {
 	visibility: hidden;
@@ -480,4 +535,3 @@ input[type="checkbox"]:checked + label:after {
 		height: 110vh;
 	}
 }
-
