@@ -191,7 +191,7 @@ p.text-tiny {
 }
 
 .row.columns-half > * {
-    flex: 1 50%;
+    flex: 1 auto;
 }
 
 .row.columns-tiny > * {
@@ -298,6 +298,7 @@ div#overlay {
     height: 80px;
     color: white;
     border-radius: 4px;
+    margin: 0 auto;
   }
 
 h1.head-text {
@@ -734,7 +735,12 @@ figure:hover img {
 .footer-icon #footer-brand {
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
+  .footer-icon #footer-brand:hover {
+    filter: drop-shadow(0 0 2px white);
+    transform: scale(1.1);
+  }
 
 .nav-links {
     flex-basis: 50%;
@@ -828,6 +834,7 @@ footer a.link-group-item:hover {
     text-align: left;
     color: white;
     height: 100vh;
+    min-height: 30em;
 }
 
 #event-name {
