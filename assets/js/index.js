@@ -257,10 +257,10 @@ function showEditPanel(e) {
   var user_id = $(e.target).closest(".attendees-row").attr("data-id");
   modal.container.setAttribute("data-id", user_id);
 
-  getUser({query: user_id}).then(function(result) {
+  getUser(user_id).then(function(result) {
     var attendee = result[result.length-1];
     var header = document.createElement("h3");
-    header.textContent = user_id;
+    header.textContent = "User <" + user_id + ">";
     modal.content.appendChild(header);
     var wrapper = document.createElement("div");
     var list = document.createElement("ul");
