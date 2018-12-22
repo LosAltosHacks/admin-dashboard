@@ -54,3 +54,6 @@ $('.lah-input-group .reg-button').click(function() {
 		$btn.prop('disabled', false);
 	})
 });
+$('.footer-icon > img').click(function() {
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+})
