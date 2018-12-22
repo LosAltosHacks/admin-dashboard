@@ -298,6 +298,7 @@ div#overlay {
     height: 80px;
     color: white;
     border-radius: 4px;
+    margin: 0 auto;
   }
 
 h1.head-text {
