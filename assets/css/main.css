@@ -39,6 +39,9 @@ body {
 .list {
 
 }
+  .list a {
+    color: rgb(0, 115, 191)
+  }
   .header {
     width: 100%;
   }
@@ -600,6 +603,10 @@ body {
 body.dark {
   background-color: black;
   color: white;
+}
+
+.dark .list a {
+  color: rgb(80, 186, 255);
 }
 
 .dark .header.fix {
