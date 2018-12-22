@@ -42,7 +42,7 @@ async function getList() {
 
     if (user.github_username) {
       var github_link = document.createElement("a");
-      github_link.href = user.github_username;
+      github_link.href = !user.github_username.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.github_username : user.github_username;
       github_link.appendChild(document.createTextNode(user.github_username.substring(user.github_username.indexOf('.com/')+5).replace(/[/]/g, "")));
       attendee.querySelector(".github-user").appendChild(github_link);
     }
@@ -50,7 +50,7 @@ async function getList() {
 
     if (user.linkedin_profile) {
       var linkedin_link = document.createElement("a");
-      linkedin_link.href = user.github_username;
+      linkedin_link.href = !user.linkedin_profile.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.linkedin_profile : user.linkedin_profile;
       linkedin_link.appendChild(document.createTextNode(user.linkedin_profile.substring(user.linkedin_profile.indexOf('/in/')+4).replace(/[/]/g, "")));
       attendee.querySelector(".linkedin-prof").appendChild(linkedin_link);
     }
@@ -162,7 +162,7 @@ async function getUnacceptedList() {
 
     if (user.github_username) {
       var github_link = document.createElement("a");
-      github_link.href = user.github_username;
+      github_link.href = !user.github_username.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.github_username : user.github_username;
       github_link.appendChild(document.createTextNode(user.github_username.substring(user.github_username.indexOf('.com/')+5).replace(/[/]/g, "")));
       attendee.querySelector(".github-user").appendChild(github_link);
     }
@@ -170,7 +170,7 @@ async function getUnacceptedList() {
 
     if (user.linkedin_profile) {
       var linkedin_link = document.createElement("a");
-      linkedin_link.href = user.github_username;
+      linkedin_link.href = !user.linkedin_profile.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.linkedin_profile : user.linkedin_profile;
       linkedin_link.appendChild(document.createTextNode(user.linkedin_profile.substring(user.linkedin_profile.indexOf('/in/')+4).replace(/[/]/g, "")));
       attendee.querySelector(".linkedin-prof").appendChild(linkedin_link);
     }
