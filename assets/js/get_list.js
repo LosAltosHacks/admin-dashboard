@@ -88,6 +88,8 @@ async function getAcceptedList() {
     attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username ? user.github_username : ""));
     attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile ? user.linkedin_profile : ""));
     attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+    attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
+    attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 
     document.getElementById("accepted-list").insertBefore(attendee, document.getElementById("accepted-list").children[1]);
   })
@@ -130,6 +132,8 @@ async function getUnacceptedList() {
     attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username ? user.github_username : ""));
     attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile ? user.linkedin_profile : ""));
     attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+    attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
+    attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 
     document.getElementById("unaccepted-list").insertBefore(attendee, document.getElementById("unaccepted-list").children[1]);
   })
