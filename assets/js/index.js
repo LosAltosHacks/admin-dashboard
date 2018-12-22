@@ -1,6 +1,6 @@
 server = "https://api.losaltoshacks.com";
 
-// Listeners for controls
+Listeners for controls
 let jwt_auth = localStorage.jwt_auth;
 if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
   window.location.href = "/login.html";
@@ -27,10 +27,13 @@ $(document).ready(function() {
     logout();
   });
 
-  let origin = $('.header').offset().top;
   $(document).scroll(function() {
-    if ($(window).scrollTop() > origin) $('.header').addClass('fix');
-    if ($(window).scrollTop() < origin) $('.header').removeClass('fix');
+    var height;
+    $(".header").each(function() {
+      if ($(this).height() > 0) height = $(this).height();
+    })
+    if ($(window).scrollTop() > height) $('.header').addClass('fix');
+    if ($(window).scrollTop() < height) $('.header').removeClass('fix');
   })
 
   $("#menu-button").click(function() {
