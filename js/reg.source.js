@@ -21,7 +21,11 @@ $(document).ready(function() {
   })
 
   $('.lahBtn').not('.disabled').click(function() {
-    console.log('hi');
+
+    if (!($('#contactPage').hasClass('pullOffscreen') || $('#contactPage').hasClass('unloadedPage')) || !($('#HDPage').hasClass('pullOffscreen') || $('#HDPage').hasClass('unloadedPage'))) {
+      $('.badge').addClass('flip');
+    }
+
     var first, last, age, school, grade, ageAddon;
 
     if ($('#en-first').val()) {
