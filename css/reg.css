@@ -64,6 +64,9 @@ a:hover {
 	flex-basis: 100%;
 	perspective: 600px;
 }
+#confirmBadge:hover {
+	box-shadow: unset;
+}
 .field-sect {
 	transition: all 1s ease;
 	flex-basis: 0%;
