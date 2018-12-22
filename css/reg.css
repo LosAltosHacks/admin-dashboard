@@ -363,7 +363,7 @@ input.slInp::-ms-input-placeholder {
 .badge #bdg-phone {
     top: 26.5%;
     left: 50px;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: normal;
 }
 .badge #bdg-parent-name {
