@@ -228,7 +228,8 @@ function showHistory(e) {
     result.forEach(function(entry) {
       var details = "";
       for (var i=0; i<Object.keys(entry).length; i++) {
-        details += "<li><b>" + escapeHTML(Object.keys(entry)[i]) + ":</b> " + escapeHTML(Object.values(entry)[i]) + "</li>";
+        details += "<li><b>" + escapeHTML(String(Object.keys(entry)[i])) + ":</b> " + escapeHTML(String(Object.values(entry)[i])) + "</li>";
+
       }
       wrapper.insertAdjacentHTML('afterbegin',
         "<details><summary>" + (new Date(entry.timestamp.replace(" ", "T") + "Z")) + "</summary><div class='history-details'><ul>" + details + "</ul></div></details>"
