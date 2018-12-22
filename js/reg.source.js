@@ -102,6 +102,7 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
     }
   }
   if ($('#en-grade .radioBox:checked').val()) {
+    var grade = $('#en-grade .radioBox:checked').val();
     if(grade > 0 && ageAddon)
   		$('#bdg-grade-age').text(grade+'th' + ageAddon);
   	else
