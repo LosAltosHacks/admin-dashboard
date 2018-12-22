@@ -27,10 +27,13 @@ $(document).ready(function() {
     logout();
   });
 
-  let origin = $('.header').offset().top;
   $(document).scroll(function() {
-    if ($(window).scrollTop() > origin) $('.header').addClass('fix');
-    if ($(window).scrollTop() < origin) $('.header').removeClass('fix');
+    var height;
+    $(".header").each(function() {
+      if ($(this).height() > 0) height = $(this).height();
+    })
+    if ($(window).scrollTop() > height) $('.header').addClass('fix');
+    if ($(window).scrollTop() < height) $('.header').removeClass('fix');
   })
 
   $("#menu-button").click(function() {
@@ -74,13 +77,15 @@ $(document).ready(function() {
 
   $(document).on('click', ".delete-icon > span", function(e) {
     e.preventDefault();
-    deleteUser($(this).closest(".attendees-row").attr("data-id"));
-    let row = $(this).closest(".attendees-row");
-    row.css({"background-color": "#e53935"});
-    row.css({"color": "white"});
-    row.slideUp(function() {
-      row.remove();
-    });
+    if (confirm("Are you sure you want to delete user " + $(this).closest(".attendees-row").attr("data-id") + "?")) {
+      deleteUser($(this).closest(".attendees-row").attr("data-id"));
+      let row = $(this).closest(".attendees-row");
+      row.css({"background-color": "#e53935"});
+      row.css({"color": "white"});
+      row.slideUp(function() {
+        row.remove();
+      });
+    }
   })
 
   $(document).on('click', ".unaccept-icon > span", function(e) {
