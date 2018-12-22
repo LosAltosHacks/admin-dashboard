@@ -191,7 +191,7 @@ p.text-tiny {
 }
 
 .row.columns-half > * {
-    flex: 1 50%;
+    flex: 1 auto;
 }
 
 .row.columns-tiny > * {
@@ -834,6 +834,7 @@ footer a.link-group-item:hover {
     text-align: left;
     color: white;
     height: 100vh;
+    min-height: 30em;
 }
 
 #event-name {
