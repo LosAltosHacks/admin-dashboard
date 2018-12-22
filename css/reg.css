@@ -513,6 +513,7 @@ input[type="checkbox"]:checked + label:after {
 .selectSplit > .slInp {
 	flex-basis: 90%;
 	margin: 10px;
+	max-width: 50%;
 }
 .selectSplit > .slInp.hidden {
 	visibility: hidden;
