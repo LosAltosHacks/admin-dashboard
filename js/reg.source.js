@@ -12,19 +12,16 @@ $(document).ready(function() {
     console.log(schools);
     $("#en-school").autocomplete({source: function(request, response) {
         var results = $.ui.autocomplete.filter(schools, request.term);
-
         response(results.slice(0, 5));
     }});
   }
   file.send();
+
+  $('input[data-mask]').on('input change', function() {
+    if ($(this).val()) $(this).setMask("phone-us");
+  })
 })
 
-$(function() {
-    $('input[data-mask]').each(function() {
-      var input = $(this);
-      input.setMask(input.data('mask'));
-    });
-})
 var smallui = false;
 if($(window).width() > 700) {
 	var screenHeight = $(window).height();
@@ -74,27 +71,50 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
 			}
 		}
 	}
-	var first = $('#en-first').val().trim();
-	var last = $('#en-last').val().trim();
-	var age = $('#en-age').val().trim();
-	var school = $('#en-school').val().trim();
-	var grade = $('#en-grade .radioBox:checked').val();
-	first = first.charAt(0).toUpperCase() + first.slice(1);
-	last = last.charAt(0).toUpperCase() + last.slice(1);
-	$('#bdg-name').text(first + " " + last);
-	if($('#bdg-name').width() > $('.badge').width()) {
-		//truncate
-		$('#bdg-name').text(first.charAt(0) + ". " + last);
-	}
-	var ageAddon = (age > 0) ? " ("+age+")" : "";
-	if(school != "")
-		$('#bdg-school').text(school.match(/\b(\w)/g).join('').toUpperCase());
-	if(grade > 0)
-		$('#bdg-grade-age').text(grade+'th' + ageAddon);
-	else
-		$('#bdg-grade-age').text('');
+
+  var first, last, age, school, grade, ageAddon;
+
+  if ($('#en-first').val()) {
+    first = $('#en-first').val().trim();
+    first = first.charAt(0).toUpperCase() + first.slice(1);
+  }
+  if ($('#en-last').val()) {
+    last = $('#en-last').val().trim();
+    last = last.charAt(0).toUpperCase() + last.slice(1);
+  }
+  if (first && last) {
+    $('#bdg-name').text(first + " " + last);
+    if($('#bdg-name').width() > $('.badge').width()) {
+  		//truncate
+  		$('#bdg-name').text(first.charAt(0) + ". " + last);
+  	}
+  }
+  if ($('#en-age').val()) {
+    age = $('#en-age').val().trim();
+    ageAddon = (age > 0) ? " ("+age+")" : "";
+  }
+  if ($('#en-school').val()) {
+    school = $('#en-school').val().trim();
+    if(school != "") {
+      var abbrev = school.match(/\b(\w)/g).join('').toUpperCase();
+      if (school.split(" ").length === 1 && school.length <= 4) $('#bdg-school').text(school.toUpperCase());
+      else if (abbrev.length > 4) $('#bdg-school').text(abbrev.substring(0, 4));
+      else $('#bdg-school').text(abbrev);
+    }
+  }
+  if ($('#en-grade .radioBox:checked').val()) {
+    if(grade > 0 && ageAddon)
+  		$('#bdg-grade-age').text(grade+'th' + ageAddon);
+  	else
+  		$('#bdg-grade-age').text('');
+  }
+
 	var allFilled = true;
 	$('.slInp', '#namePage').each(function() {
+    if (!$(this).val()) {
+      allFilled = false;
+      return false;
+    }
 		if($(this).val().trim() == "" || $(this).is('.invalidInp')) {
 			allFilled = false;
 			return false;
@@ -104,7 +124,7 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
 		$('#en-grade .radioBox').removeAttr('disabled');
 		$('#en-grade').closest('.qGrp').addClass('focus');
 
-		if($('#en-grade .radioBox:checked').val().trim() != "")
+		if($('#en-grade .radioBox:checked').val() && $('#en-grade .radioBox:checked').val().trim() != "")
 			$('#contactPageBtn').removeClass('disabled');
 		else
 			$('#contactPageBtn').addClass('disabled');
@@ -181,7 +201,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
 		$('#en-shirtsize .radioBox').removeAttr('disabled');
 		$('#en-shirtsize').closest('.qGrp').addClass('focus');
 
-		if($('#en-shirtsize .radioBox:checked').val().trim() != "")
+		if($('#en-shirtsize .radioBox:checked').val() && $('#en-shirtsize .radioBox:checked').val().trim() != "")
 			$('#hackerBGBtn').removeClass('disabled');
 		else
 			$('#hackerBGBtn').addClass('disabled');
