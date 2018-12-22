@@ -734,7 +734,12 @@ figure:hover img {
 .footer-icon #footer-brand {
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
+  .footer-icon #footer-brand:hover {
+    filter: drop-shadow(0 0 2px white);
+    transform: scale(1.1);
+  }
 
 .nav-links {
     flex-basis: 50%;
