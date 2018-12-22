@@ -64,6 +64,9 @@ a:hover {
 	flex-basis: 100%;
 	perspective: 600px;
 }
+#confirmBadge:hover {
+	box-shadow: unset;
+}
 .field-sect {
 	transition: all 1s ease;
 	flex-basis: 0%;
@@ -128,6 +131,11 @@ a:hover {
 	background: linear-gradient(to bottom, rgba(0,0,0,1) 55%,rgba(38,107,154,1) 55%,rgba(38,107,154,1) 100%);
 	transition: opacity 1.8s ease-in-out;
 }
+.page {
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 10px;
+}
 .reg-form {
 	box-sizing: border-box;
 	width: 55vw;
@@ -166,9 +174,11 @@ a:hover {
 	height: 30vh;
 }
 	.head-logo > img {
+		max-width: 100%;
 		height: 100%;
 		margin: 0 auto;
 		display: block;
+
 	}
 p.text-muted {
 	color: rgba(255,255,255,0.9);
@@ -235,6 +245,8 @@ p.text-muted {
 	margin: 10px;
 	position: relative;
 	padding: 25px;
+	margin: 10px auto;
+	width: 100%;
 }
 .descriptor {
 	position: absolute;
@@ -246,8 +258,8 @@ p.text-muted {
     letter-spacing: 1.2px;
     font-size: 12px;
 }
-#welcomePage > h3 {
-	margin-bottom: 8vh;
+#welcomePage > p {
+	margin-top: 80px;
 }
 h3.slim-title {
 	margin: 0.5rem 0;
@@ -437,6 +449,9 @@ input.slInp::-ms-input-placeholder {
 	opacity: 0;
 	display: block;
 }
+	.bdg-sect #confirmBadget:hover {
+		box-shadow: none;
+	}
 #regDone {
 	display: none;
 }

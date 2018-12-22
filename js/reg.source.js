@@ -9,7 +9,6 @@ $(document).ready(function() {
     schools.forEach(function(school) {
       school = school.replace(/['"]+/g, '');
     })
-    console.log(schools);
     $("#en-school").autocomplete({source: function(request, response) {
         var results = $.ui.autocomplete.filter(schools, request.term);
         response(results.slice(0, 5));
