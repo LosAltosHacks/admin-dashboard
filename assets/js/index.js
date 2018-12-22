@@ -1,6 +1,6 @@
 server = "https://api.losaltoshacks.com";
 
-Listeners for controls
+// Listeners for controls
 let jwt_auth = localStorage.jwt_auth;
 if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
   window.location.href = "/login.html";
@@ -77,13 +77,15 @@ $(document).ready(function() {
 
   $(document).on('click', ".delete-icon > span", function(e) {
     e.preventDefault();
-    deleteUser($(this).closest(".attendees-row").attr("data-id"));
-    let row = $(this).closest(".attendees-row");
-    row.css({"background-color": "#e53935"});
-    row.css({"color": "white"});
-    row.slideUp(function() {
-      row.remove();
-    });
+    if (confirm("Are you sure you want to delete user " + $(this).closest(".attendees-row").attr("data-id") + "?")) {
+      deleteUser($(this).closest(".attendees-row").attr("data-id"));
+      let row = $(this).closest(".attendees-row");
+      row.css({"background-color": "#e53935"});
+      row.css({"color": "white"});
+      row.slideUp(function() {
+        row.remove();
+      });
+    }
   })
 
   $(document).on('click', ".unaccept-icon > span", function(e) {
