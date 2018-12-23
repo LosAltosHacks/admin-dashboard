@@ -5,5 +5,6 @@ phases:
       - aws s3 sync --exclude "buildspec.yml" --delete . "s3://$DEPLOY_BUCKET"
       - |
         if [ -n "$CLOUDFRONT_DISTRIBUTION" ]; then
+          echo "Invalidate CloudFront cache"
           aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths "/*"
         fi
