@@ -3,3 +3,7 @@ phases:
   build:
     commands:
       - aws s3 sync --exclude "buildspec.yml" --delete . "s3://$DEPLOY_BUCKET"
+      - |
+        if [ -n "$CLOUDFRONT_DISTRIBUTION" ]; then
+          aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths "/*"
+        fi
