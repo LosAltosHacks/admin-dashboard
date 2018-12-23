@@ -39,8 +39,23 @@ async function getList() {
     attendee.querySelector(".g-name").appendChild(document.createTextNode(user.guardian_name ? user.guardian_name : ""));
     attendee.querySelector(".g-email").appendChild(document.createTextNode(user.guardian_email ? user.guardian_email : ""));
     attendee.querySelector(".g-tel").appendChild(document.createTextNode(user.guardian_phone_number ? user.guardian_phone_number : ""));
-    attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username ? user.github_username : ""));
-    attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile ? user.linkedin_profile : ""));
+
+    if (user.github_username) {
+      var github_link = document.createElement("a");
+      github_link.href = !user.github_username.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.github_username : user.github_username;
+      github_link.appendChild(document.createTextNode(user.github_username.substring(user.github_username.indexOf('.com/')+5).replace(/[/]/g, "")));
+      attendee.querySelector(".github-user").appendChild(github_link);
+    }
+    else attendee.querySelector(".github-user").appendChild(document.createTextNode("Not Given"));
+
+    if (user.linkedin_profile) {
+      var linkedin_link = document.createElement("a");
+      linkedin_link.href = !user.linkedin_profile.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.linkedin_profile : user.linkedin_profile;
+      linkedin_link.appendChild(document.createTextNode(user.linkedin_profile.substring(user.linkedin_profile.indexOf('/in/')+4).replace(/[/]/g, "")));
+      attendee.querySelector(".linkedin-prof").appendChild(linkedin_link);
+    }
+    else attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode("Not Given"));
+
     attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
     attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
     attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
@@ -85,9 +100,26 @@ async function getAcceptedList() {
     attendee.querySelector(".g-name").appendChild(document.createTextNode(user.guardian_name ? user.guardian_name : ""));
     attendee.querySelector(".g-email").appendChild(document.createTextNode(user.guardian_email ? user.guardian_email : ""));
     attendee.querySelector(".g-tel").appendChild(document.createTextNode(user.guardian_phone_number ? user.guardian_phone_number : ""));
-    attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username ? user.github_username : ""));
-    attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile ? user.linkedin_profile : ""));
+
+    if (user.github_username) {
+      var github_link = document.createElement("a");
+      github_link.href = !user.github_username.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.github_username : user.github_username;
+      github_link.appendChild(document.createTextNode(user.github_username.substring(user.github_username.indexOf('.com/')+5).replace(/[/]/g, "")));
+      attendee.querySelector(".github-user").appendChild(github_link);
+    }
+    else attendee.querySelector(".github-user").appendChild(document.createTextNode("Not Given"));
+
+    if (user.linkedin_profile) {
+      var linkedin_link = document.createElement("a");
+      linkedin_link.href = !user.linkedin_profile.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.linkedin_profile : user.linkedin_profile;
+      linkedin_link.appendChild(document.createTextNode(user.linkedin_profile.substring(user.linkedin_profile.indexOf('/in/')+4).replace(/[/]/g, "")));
+      attendee.querySelector(".linkedin-prof").appendChild(linkedin_link);
+    }
+    else attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode("Not Given"));
+
     attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+    attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
+    attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 
     document.getElementById("accepted-list").insertBefore(attendee, document.getElementById("accepted-list").children[1]);
   })
@@ -127,9 +159,26 @@ async function getUnacceptedList() {
     attendee.querySelector(".g-name").appendChild(document.createTextNode(user.guardian_name ? user.guardian_name : ""));
     attendee.querySelector(".g-email").appendChild(document.createTextNode(user.guardian_email ? user.guardian_email : ""));
     attendee.querySelector(".g-tel").appendChild(document.createTextNode(user.guardian_phone_number ? user.guardian_phone_number : ""));
-    attendee.querySelector(".github-user").appendChild(document.createTextNode(user.github_username ? user.github_username : ""));
-    attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode(user.linkedin_profile ? user.linkedin_profile : ""));
+
+    if (user.github_username) {
+      var github_link = document.createElement("a");
+      github_link.href = !user.github_username.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.github_username : user.github_username;
+      github_link.appendChild(document.createTextNode(user.github_username.substring(user.github_username.indexOf('.com/')+5).replace(/[/]/g, "")));
+      attendee.querySelector(".github-user").appendChild(github_link);
+    }
+    else attendee.querySelector(".github-user").appendChild(document.createTextNode("Not Given"));
+
+    if (user.linkedin_profile) {
+      var linkedin_link = document.createElement("a");
+      linkedin_link.href = !user.linkedin_profile.match(/^[a-zA-Z]+:\/\//) ? 'https://' + user.linkedin_profile : user.linkedin_profile;
+      linkedin_link.appendChild(document.createTextNode(user.linkedin_profile.substring(user.linkedin_profile.indexOf('/in/')+4).replace(/[/]/g, "")));
+      attendee.querySelector(".linkedin-prof").appendChild(linkedin_link);
+    }
+    else attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode("Not Given"));
+
     attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+    attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
+    attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 
     document.getElementById("unaccepted-list").insertBefore(attendee, document.getElementById("unaccepted-list").children[1]);
   })
