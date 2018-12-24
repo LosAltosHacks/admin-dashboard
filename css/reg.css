@@ -57,6 +57,7 @@ a:hover {
 	display: flex;
 }
 .bdg-sect, .field-sect {
+	position: relative;
 	z-index: 2;
 }
 .bdg-sect {
@@ -535,7 +536,7 @@ input[type="checkbox"]:checked + label:after {
 	}
 	.gradient-drop {
 		background: none;
-		background-color: #3088c3 !important;
+		background-color: rgba(38,107,154,1) !important;
 		transition: none;
 	}
 	.field-sect {
