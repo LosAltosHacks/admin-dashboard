@@ -1003,7 +1003,7 @@ footer a.link-group-item:hover {
 @media only screen and (max-width: 900px) {
     #logo-main {
         position: absolute;
-        top: 3rem;
+        top: 5rem;
     }
 
     #logo-main img {
