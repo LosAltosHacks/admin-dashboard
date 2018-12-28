@@ -1,10 +1,12 @@
-server = "https://api.losaltoshacks.com";
+// server = "https://api.losaltoshacks.com";
+server = "http://localhost:5000";
 
 // Listeners for controls
-let jwt_auth = localStorage.jwt_auth;
-if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
-  window.location.href = "/login.html";
-}
+// let jwt_auth = localStorage.jwt_auth;
+// if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
+//   window.location.href = "/login.html";
+// }
+let jwt_auth = "foobar";
 
 let edited_fields = {};
 
@@ -12,8 +14,8 @@ $(document).ready(function() {
   if (localStorage.theme) changeTheme(localStorage.theme);
 
   // Decorative Controls
-  $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
-  $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
+  // $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
+  // $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
 
   $("#profile > #profile-pic").hover(function() {
     $(this).css({'background-image': "url('/assets/icons/sign-out.svg')"});

@@ -11,6 +11,7 @@ async function getSubscribedList() {
 
 async function getList() {
   let response = await request("GET", "/registration/v1/list");
+  document.getElementById("attendees-count").innerHTML = response.length;
   response.forEach(function(user) {
     var template = document.getElementById("attendee-template");
     var attendee = template.content.cloneNode(true);
