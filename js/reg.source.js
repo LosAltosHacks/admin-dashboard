@@ -112,7 +112,7 @@ $(document).ready(function() {
 		} else {
 			$('#en-race').val(value).addClass('hidden');
 		}
-    if (value == "decline") {
+    if (value == "decline" || value == "select") {
       $('#en-race').val("");
     }
 	}
