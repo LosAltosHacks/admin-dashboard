@@ -92,6 +92,7 @@ async function getAcceptedList() {
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
     attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));
+    attendee.querySelector(".race").appendChild(document.createTextNode(user.race));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
@@ -151,6 +152,7 @@ async function getUnacceptedList() {
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
     attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));
+    attendee.querySelector(".race").appendChild(document.createTextNode(user.race));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
