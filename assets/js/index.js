@@ -10,6 +10,7 @@ let edited_fields = {};
 
 $(document).ready(function() {
   if (localStorage.theme) changeTheme(localStorage.theme);
+  if (localStorage.panel) getPanel(localStorage.panel);
 
   // Decorative Controls
   $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
@@ -177,6 +178,7 @@ function getPanel(panel) {
   else $("#export-sub-emails").hide();
   $('.panel').hide();
   $('#' + panel).show();
+  localStorage.setItem("panel", panel);
   updateLists();
 }
 
