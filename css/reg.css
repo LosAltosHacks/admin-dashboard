@@ -268,6 +268,11 @@ h3.slim-title {
 }
 h3.fineprint {
 	font-size: 0.8rem;
+	font-weight: 300;
+}
+h3.fineprint a {
+	font-weight: 300;
+	color: orange;
 }
 .slInp {
 	font-family: "Poppins", sans-serif;
