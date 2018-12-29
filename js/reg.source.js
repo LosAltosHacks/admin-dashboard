@@ -90,7 +90,7 @@ $(document).ready(function() {
   		$('#en-grade .radioBox').attr('disabled', '');
   	}
   });
-	if($(this).is('.slSel')) {
+	if($(this).is('#en-genderSelect')) {
 		//we're really just shadow-inputting into #en-gender
 		var value = $(this).val();
 		if(value == "Other") {
@@ -99,8 +99,25 @@ $(document).ready(function() {
 		} else {
 			$('#en-gender').val(value).addClass('hidden');
 		}
+    if (value == "decline") {
+      $('#en-gender').val("");
+    }
+	}
+  if($(this).is('#en-raceSelect')) {
+		//we're really just shadow-inputting into #en-race
+		var value = $(this).val();
+		if(value == "Other") {
+			//show the value field
+			$('#en-race').removeClass('hidden').val("");
+		} else {
+			$('#en-race').val(value).addClass('hidden');
+		}
+    if (value == "decline") {
+      $('#en-race').val("");
+    }
 	}
 	var gender = $('#en-gender').val().trim();
+  var race = $('#en-race').val().trim();
 	var email = $('#en-email').val().trim();
 	var phone = $('#en-phone').val().trim();
 	var parname = $('#en-par-name').val().trim();
@@ -327,7 +344,7 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
 	}
 });
 $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
-	if($(this).is('.slSel')) {
+	if($(this).is('#en-genderSelect')) {
 		//we're really just shadow-inputting into #en-gender
 		var value = $(this).val();
 		if(value == "Other") {
@@ -336,6 +353,22 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
 		} else {
 			$('#en-gender').val(value).addClass('hidden');
 		}
+    if (value == "decline") {
+      $('#en-gender').val("");
+    }
+	}
+  if($(this).is('#en-raceSelect')) {
+		//we're really just shadow-inputting into #en-race
+		var value = $(this).val();
+		if(value == "Other") {
+			//show the value field
+			$('#en-race').removeClass('hidden').val("");
+		} else {
+			$('#en-race').val(value).addClass('hidden');
+		}
+    if (value == "decline") {
+      $('#en-race').val("");
+    }
 	}
 	var gender = $('#en-gender').val().trim();
 	var email = $('#en-email').val().trim();
@@ -530,6 +563,7 @@ $('#sendReg').click(function() {
 	db['gender'] = $('#en-gender').val().trim();
 	db['tshirt_size'] = $('#en-shirtsize .radioBox:checked').val();
 	db['previous_hackathons'] = $('#en-attendednum .radioBox:checked').val();
+  if ($('#en-race').val().trim().length != 0) db['ethnicity'] = $('#en-race').val().trim();
 
 	if(db['age'] < 18) {
 		db['guardian_name'] = $('#en-par-name').val().trim();
