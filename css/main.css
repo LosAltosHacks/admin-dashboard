@@ -763,7 +763,7 @@ figure:hover img {
 }
 
 .nav-links > .nav-link a:hover {
-    color: #aaa;
+    color: #02a2dd;
 }
 
 footer .footer-wrapper {
@@ -1003,7 +1003,7 @@ footer a.link-group-item:hover {
 @media only screen and (max-width: 900px) {
     #logo-main {
         position: absolute;
-        top: 3rem;
+        top: 5rem;
     }
 
     #logo-main img {
