@@ -30,7 +30,8 @@ async function getList() {
     );
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
-    attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));
+    attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender === "" ? "Decline to State" : user.gender));
+    attendee.querySelector(".race").appendChild(document.createTextNode(user.ethnicity === "" ? "Decline to State" : user.ethnicity));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
@@ -91,8 +92,8 @@ async function getAcceptedList() {
     );
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
-    attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));
-    attendee.querySelector(".race").appendChild(document.createTextNode(user.race));
+    attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender === "" ? "Decline to State" : user.gender));
+    attendee.querySelector(".race").appendChild(document.createTextNode(user.ethnicity === "" ? "Decline to State" : user.ethnicity));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
@@ -151,8 +152,8 @@ async function getUnacceptedList() {
     })
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
-    attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender));
-    attendee.querySelector(".race").appendChild(document.createTextNode(user.race));
+    attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender === "" ? "Decline to State" : user.gender));
+    attendee.querySelector(".race").appendChild(document.createTextNode(user.ethnicity === "" ? "Decline to State" : user.ethnicity));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
