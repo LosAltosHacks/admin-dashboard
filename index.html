@@ -26,6 +26,7 @@
           <li onclick="getPanel('attendee-list')">Attendees List</li>
           <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
           <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
+          <li onclick="getPanel('statistics')">Statistics</li>
           <!-- Until Check-in gets implemented -->
           <!-- <li onclick="getPanel('check-in')">Check-In Panel</li> -->
         </ul>
@@ -148,8 +149,31 @@
     <span id="bulk-accept-button" onclick="confirmAccept();"><img src="/assets/icons/check.svg"></span>
   </div>
 
+  <!-- Statistics -->
+  <div id="statistics" class="panel">
+    <h1>Statistics</h1>
+    <div>
+      <div id="data-panel">
+        <p><b>Countdown:</b> <span id="countdown">12:00:00</span></p>
+        <p><b>Applications Count:</b> <span id="apps-count"></span></p>
+        <p><b>Accepted:</b> <span id="accept-count"></span></p>
+        <p><b>Application Timeline</b></p>
+        <div id="calendar"></div>
+      </div>
+      <div id="chart-panel">
+        <p><b>Gender Demographics</b></p>
+        <div id="gender-demo" class="graph"></div>
+        <p><b>Race Demographics</b></p>
+        <div id="race-demo" class="graph"></div>
+        <p><b>Age Demographics</b></p>
+        <div id="age-demo" class="graph"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="./assets/js/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="./assets/js/index.js"></script>
   <script src="./assets/js/helpers.js"></script>
   <script src="./assets/js/get_list.js" async defer></script>
