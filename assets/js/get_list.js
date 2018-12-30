@@ -31,7 +31,7 @@ async function getList() {
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
     attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender === "" ? "Decline to State" : user.gender));
-    attendee.querySelector(".race").appendChild(document.createTextNode(user.ethnicity === "" ? "Decline to State" : user.ethnicity));
+    attendee.querySelector(".race").appendChild(document.createTextNode(!user.ethnicity || user.ethnicity === "" ? "Decline to State" : user.ethnicity));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
@@ -58,7 +58,7 @@ async function getList() {
     }
     else attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode("Not Given"));
 
-    attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+    attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : "Not Specified"));
     attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
     attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 
@@ -93,7 +93,7 @@ async function getAcceptedList() {
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
     attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender === "" ? "Decline to State" : user.gender));
-    attendee.querySelector(".race").appendChild(document.createTextNode(user.ethnicity === "" ? "Decline to State" : user.ethnicity));
+    attendee.querySelector(".race").appendChild(document.createTextNode(!user.ethnicity || user.ethnicity === "" ? "Decline to State" : user.ethnicity));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
@@ -120,7 +120,7 @@ async function getAcceptedList() {
     }
     else attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode("Not Given"));
 
-    attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+    attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : "Not Specified"));
     attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
     attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 
@@ -153,7 +153,7 @@ async function getUnacceptedList() {
 
     attendee.querySelector(".attendees-row").setAttribute("data-id", user.user_id);
     attendee.querySelector(".gender").appendChild(document.createTextNode(user.gender === "" ? "Decline to State" : user.gender));
-    attendee.querySelector(".race").appendChild(document.createTextNode(user.ethnicity === "" ? "Decline to State" : user.ethnicity));
+    attendee.querySelector(".race").appendChild(document.createTextNode(!user.ethnicity || user.ethnicity === "" ? "Decline to State" : user.ethnicity));
     attendee.querySelector(".age").appendChild(document.createTextNode(user.age));
     attendee.querySelector(".school").appendChild(document.createTextNode(user.school));
     attendee.querySelector(".grade").appendChild(document.createTextNode(user.grade));
@@ -180,7 +180,7 @@ async function getUnacceptedList() {
     }
     else attendee.querySelector(".linkedin-prof").appendChild(document.createTextNode("Not Given"));
 
-    attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : ""));
+    attendee.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : "Not Specified"));
     attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
     attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 

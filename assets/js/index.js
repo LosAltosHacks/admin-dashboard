@@ -167,6 +167,9 @@ $(document).ready(function() {
 
       lastChecked = this;
     });
+
+    getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
+    getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
 })
 
 function getPanel(panel) {
@@ -238,7 +241,6 @@ function showHistory(e) {
       var details = "";
       for (var i=0; i<Object.keys(entry).length; i++) {
         details += "<li><b>" + escapeHTML(String(Object.keys(entry)[i])) + ":</b> " + escapeHTML(String(Object.values(entry)[i])) + "</li>";
-
       }
       wrapper.insertAdjacentHTML('afterbegin',
         "<details><summary>" + (new Date(entry.timestamp.replace(" ", "T") + "Z")) + "</summary><div class='history-details'><ul>" + details + "</ul></div></details>"
@@ -402,3 +404,134 @@ function changeTheme(theme) {
     localStorage.setItem('theme', 'light');
   }
 }
+
+google.charts.load('current', {'packages': ['bar', 'corechart', 'calendar'], 'callback': drawChart});
+
+// Draw the chart and set the chart values
+function drawChart() {
+  getUser("").then(function(result) {
+    var genders = {Other: 0, "Decline to State": 0};
+    var races = {Other: 0, "Did Not State": 0};
+    var ages = {Other: 0, "21+": 0};
+    var dates = {};
+    if (result.length == 0) return;
+
+    result.forEach(function(user) {
+      if (user.gender === "decline") genders["Decline to State"]++;
+      else if (genders[user.gender]) genders[user.gender]++;
+      else genders[user.gender] = 1;
+      if (!user.ethnicity) races["Did Not State"]++;
+      else if (races[user.ethnicity]) races[user.ethnicity]++;
+      else races[user.ethnicity] = 1;
+      if (user.age >= 21) ages["21+"]++;
+      else if (ages[user.age]) ages[user.age]++;
+      else ages[user.age] = 1;
+      var date = (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString();
+      if (dates[date]) dates[date]++;
+      else dates[date] = 1;
+    })
+
+    var genderData = new google.visualization.DataTable();
+    genderData.addColumn('string', 'Gender');
+    genderData.addColumn('number', 'Count');
+
+    for (var i=0; i<Object.keys(genders).length; i++) {
+      genderData.addRow([Object.keys(genders)[i], Object.values(genders)[i]]);
+    }
+
+    var ethnicityData = new google.visualization.DataTable();
+    ethnicityData.addColumn('string', 'Ethnicity');
+    ethnicityData.addColumn('number', 'Count');
+
+    for (var i=0; i<Object.keys(races).length; i++) {
+      ethnicityData.addRow([Object.keys(races)[i], Object.values(races)[i]]);
+    }
+
+    var ageData = new google.visualization.DataTable();
+    ageData.addColumn('string', 'Age');
+    ageData.addColumn('number', 'Count');
+
+    for (var i=0; i<Object.keys(ages).length; i++) {
+      ageData.addRow([Object.keys(ages)[i].toString(), Object.values(ages)[i]]);
+    }
+
+    var applyData = new google.visualization.DataTable();
+    applyData.addColumn('date', 'Date');
+    applyData.addColumn('number', 'Number of Applications');
+
+    for (var i=0; i<Object.keys(dates).length; i++) {
+      applyData.addRow([new Date(Object.keys(dates)[i]), Object.values(dates)[i]]);
+    }
+
+    var genderColors = {
+      'Male': '#90caf9',
+      'Female': '#f48fb1',
+      'Other': '#90a4ae'
+    }
+
+    var genderSlices = [];
+    for (var i=0; i<genderData.getNumberOfRows(); i++) {
+      if (genderColors[genderData.getValue(i, 0)]) genderSlices.push({
+        color: genderColors[genderData.getValue(i, 0)]
+      })
+      else genderSlices.push({});
+    }
+
+    var genderOptions = {
+      sliceVisibilityThreshold: .15,
+      fontName: 'Poppins',
+      slices: genderSlices
+    };
+
+    // This is kinda racist
+    // var ethnicityColors = {
+    //   'White/Caucasian': '#ffccbc',
+    //   'Asian/Pacific Islander': '#ffe082',
+    //   'Black/African American': '#757575',
+    //   'Hispanic': '#8d6e63',
+    //   'Other': '#90a4ae'
+    // }
+
+    var ethnicityOptions = {
+      sliceVisibilityThreshold: .15,
+      fontName: 'Poppins'
+    };
+    var ageOptions = {
+      legend: {
+        position: 'none',
+        fontName: 'Poppins'
+      }
+    };
+    var applyOptions = {
+      fontName: 'Poppins'
+    }
+
+    var genderChart = new google.visualization.PieChart(document.getElementById('gender-demo'));
+    var ethnicityChart = new google.visualization.PieChart(document.getElementById('race-demo'));
+    var ageChart = new google.charts.Bar(document.getElementById('age-demo'));
+    var applyChart = new google.visualization.Calendar(document.getElementById('calendar'));
+
+    genderChart.draw(genderData, genderOptions);
+    ethnicityChart.draw(ethnicityChart, ethnicityOptions);
+    ageChart.draw(ageData, google.charts.Bar.convertOptions(ageOptions));
+    // applyChart.draw(applyData, applyOptions);
+  })
+}
+
+// Countdown
+var countDownDate = new Date("Mar 23, 2019 9:00:00").getTime();
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "EVENT STARTED";
+  }
+  // drawChart();
+}, 1000);
