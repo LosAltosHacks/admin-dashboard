@@ -405,7 +405,7 @@ function changeTheme(theme) {
   }
 }
 
-google.charts.load('current', {'packages': ['bar', 'corechart', 'calendar'], 'callback': drawChart});
+google.charts.load('current', {'packages': ['bar', 'corechart', 'controls', 'charteditor'], 'callback': drawChart});
 
 // Draw the chart and set the chart values
 function drawChart() {
@@ -413,7 +413,7 @@ function drawChart() {
     var genders = {"Decline to State": 0};
     var races = {"Did Not State": 0};
     var ages = {"21+": 0};
-    var dates = {};
+    var dates = {"2018 6 20": 2, "2018 6 19": 1, "2018 6 21": 5};
     if (result.length == 0) return;
 
     result.forEach(function(user) {
@@ -463,6 +463,8 @@ function drawChart() {
       applyData.addRow([new Date(Object.keys(dates)[i]), Object.values(dates)[i]]);
     }
 
+    console.log(applyData);
+
     var genderColors = {
       'Male': '#90caf9',
       'Female': '#f48fb1',
@@ -478,7 +480,7 @@ function drawChart() {
     }
 
     var genderOptions = {
-      sliceVisibilityThreshold: .15,
+      sliceVisibilityThreshold: .1,
       fontName: 'Poppins',
       slices: genderSlices
     };
@@ -493,28 +495,63 @@ function drawChart() {
     // }
 
     var ethnicityOptions = {
-      sliceVisibilityThreshold: .15,
+      sliceVisibilityThreshold: .05,
       fontName: 'Poppins'
     };
     var ageOptions = {
       legend: {
-        position: 'none',
-        fontName: 'Poppins'
-      }
-    };
-    var applyOptions = {
+        position: 'none'
+      },
       fontName: 'Poppins'
-    }
+    };
 
     var genderChart = new google.visualization.PieChart(document.getElementById('gender-demo'));
     var ethnicityChart = new google.visualization.PieChart(document.getElementById('race-demo'));
     var ageChart = new google.charts.Bar(document.getElementById('age-demo'));
-    var applyChart = new google.visualization.Calendar(document.getElementById('calendar'));
 
     genderChart.draw(genderData, genderOptions);
     ethnicityChart.draw(ethnicityData, ethnicityOptions);
     ageChart.draw(ageData, google.charts.Bar.convertOptions(ageOptions));
-    // applyChart.draw(applyData, applyOptions);
+
+    var dashboard = new google.visualization.Dashboard(document.getElementById('timeline'));
+    var controls = new google.visualization.ControlWrapper({
+      controlType: 'ChartRangeFilter',
+      containerId: 'controls',
+      options: {
+        fontName: 'Poppins',
+        filterColumnIndex: 0,
+        ui: {
+          chartOptions: {
+            height: 50,
+            width: 600,
+            chartArea: {
+              width: '80%'
+            }
+          }
+        }
+      }
+    })
+    var chart = new google.visualization.ChartWrapper({
+        chartType: 'LineChart',
+        containerId: 'chart',
+        options: {
+          fontName: 'Poppins',
+          legend: 'none'
+        }
+    });
+
+    function setOptions (wrapper) {
+
+        wrapper.setOption('width', 620);
+        wrapper.setOption('chartArea.width', '80%');
+
+    }
+
+    setOptions(chart);
+
+
+    dashboard.bind([controls], [chart]);
+    dashboard.draw(applyData);
   })
 }
 

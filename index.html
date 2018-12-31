@@ -154,12 +154,15 @@
   <div id="statistics" class="panel">
     <h1>Statistics</h1>
     <div>
+      <div id="timeline">
+        <p style="margin-left: 10px"><b>Application Timeline</b></p>
+        <div id="chart"></div>
+        <div id="controls"></div>
+      </div>
       <div id="data-panel">
         <p><b>Countdown:</b> <span id="countdown">12:00:00</span></p>
         <p><b>Applications Count:</b> <span id="apps-count"></span></p>
         <p><b>Accepted:</b> <span id="accept-count"></span></p>
-        <p><b>Application Timeline</b></p>
-        <div id="calendar"></div>
       </div>
       <div id="chart-panel">
         <p><b>Gender Demographics</b></p>
@@ -173,8 +176,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="./assets/js/jquery.min.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="./assets/js/jquery.min.js"></script>
   <script src="./assets/js/index.js"></script>
   <script src="./assets/js/helpers.js"></script>
   <script src="./assets/js/get_list.js" async defer></script>
