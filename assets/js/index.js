@@ -413,7 +413,7 @@ function drawChart() {
     var genders = {"Decline to State": 0};
     var races = {"Did Not State": 0};
     var ages = {"21+": 0};
-    var dates = {"2018 6 20": 2, "2018 6 19": 1, "2018 6 21": 5};
+    var dates = {};
     if (result.length == 0) return;
 
     result.forEach(function(user) {
