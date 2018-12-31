@@ -325,6 +325,7 @@ body {
     height: 100%;
     width: 100%;
     right: 0;
+    overflow-y: auto;
   }
     #menu-panel > div {
       position: absolute;
@@ -722,6 +723,21 @@ body.dark {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+#data-panel {
+  float: left;
+  width: 50%;
+  display: inline-block;
+  margin: 0;
+  padding: 10px;
+}
+
+#chart-panel {
+  float: left;
+  width: 50%;
+  display: inline-block;
+  margin: 0;
 }
 
 /* Scroll Bar */
