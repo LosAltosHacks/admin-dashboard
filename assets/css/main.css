@@ -744,9 +744,9 @@ body.dark {
 #timeline {
   margin-bottom: 20px;
 }
-#timeline div {
+/* #timeline div {
   margin: 0 auto;
-}
+} */
 
 /* Scroll Bar */
 ::-webkit-scrollbar {
