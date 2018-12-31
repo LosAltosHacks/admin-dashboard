@@ -731,6 +731,7 @@ body.dark {
   display: inline-block;
   margin: 0;
   padding: 10px;
+  /* overflow: auto; */
 }
 
 #chart-panel {
@@ -738,6 +739,13 @@ body.dark {
   width: 50%;
   display: inline-block;
   margin: 0;
+}
+
+#timeline {
+  margin-bottom: 20px;
+}
+#timeline div {
+  margin: 0 auto;
 }
 
 /* Scroll Bar */
