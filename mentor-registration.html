@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Los Altos Hacks IV - Event Registration</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta property="og:title" content="Los Altos Hacks IV" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://www.losaltoshacks.com/" />
+	<meta property="og:description" content="A 24-hour high school hackathon. Coming early 2019." />
+	<meta property="og:image" content="https://www.losaltoshacks.com/images/social-media.jpg" />
+
+	<meta name="twitter:title" content="Los Altos Hacks IV">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@losaltoshacks">
+	<meta name="twitter:description" content="A 24-hour high school hackathon. Coming early 2019.">
+	<meta name="twitter:image" content="http://www.losaltoshacks.com/images/social-media.jpg">
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="apple-touch-icon" href="touch-icon.png">
+
+	<link href="css/fonts.css" rel="stylesheet">
+	<link href="css/mentor-reg.css" rel="stylesheet">
+</head>
+
+<body>
+	<main>
+		<section id="top">
+			<div class="gradient-drop"></div>
+			<div class="bdg-sect">
+				<div class="badge freerot">
+					<div class="bdg-front">
+						<span 				  id="bdg-name"></span>
+					</div>
+					<div class="bdg-back">
+						<span class="no-warp" id="bdg-email"></span>
+						<span class="no-warp" id="bdg-phone"></span>
+						<span class="no-warp" id="bdg-languages"></span>
+					</div>
+				</div>
+				<a href="#" id="confirmBadge"><h3>Click to confirm your information!</h3></a>
+				<div id="regDone" class="text-center">
+					<p>Your registration has been submitted. In order to complete the process, please check your email and follow our confirmation link.</p>
+					<button class="lahBtn force-center" id="backHome"><span class="buttonLabel">Head Back Home &rsaquo;</span></button>
+				</div>
+			</div>
+			<div class="field-sect">
+				<div class="reg-form">
+					<div class="page" id="welcomePage" style="padding:10px">
+						<div class="head-logo">
+							<img src="images/Los-Altos-Hacks-Logo-Flat.svg">
+						</div>
+						<h3 class="text-center">Welcome to the Los Altos Hacks IV Application!</h3>
+						<p class="text-muted text-left">Los Altos Hacks IV will take place on March 24-25, 2018 at the Juniper Aspiration Dome in Sunnyvale, California. This application is for those who are planning to attend. After you have submitted your application, we will notify you closer to the event date if you have been accepted. Los Altos Hacks is free of charge for all high school students. For more information, visit <a href="https://losaltoshacks.com">www.losaltoshacks.com</a>.</p>
+						<button class="lahBtn text-center force-center" id="welcomeProgress"><span class="buttonLabel">Construct Your Badge</span></button>
+					</div>
+					<div class="page unloadedPage" id="infoPage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks</span>
+							<p class="text-muted">The information from further questions will be used internally only and not distributed or printed onto your physical badge.</p>
+							<div class="qGrp focus front-field">
+								<h3 class="slim-title" for="en-name">What is your name?</h3>
+								<input class="slInp" type="text" placeholder="Type your answer here..." id="en-name">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-email">What is your email address?</h3>
+								<input class="slInp email" type="text" placeholder="Enter your email here" id="en-email">
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-phone">What is your phone number?</h3>
+								<input class="slInp" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="en-phone">
+							</div>
+							<div class="qGrp focus">
+								<h3 class="slim-title" for="en-over18">Are you over 18 years old?</h3>
+								<div class="radio-group" id="en-over18">
+							    	<input class="radioBox" type="radio" name="en-over18" id="en-isover18" value="yes">
+									<label class="radio-option" for="en-isover18">
+										<span class="radio-title">Yes</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-over18" id="en-notover18" value="no">
+									<label class="radio-option" for="en-notover18">
+										<span class="radio-title">No</span>
+									</label>
+								</div>
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-language">What languages are you proficient in?</h3>
+								<input class="slInp" type="text" id="en-language">
+							</div>
+							<div class="qGrp focus">
+								<h3 class="slim-title" for="en-shirtsize">What is your t-shirt size?</h3>
+								<div class="radio-group" id="en-shirtsize">
+							    	<input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-S" value="S" disabled>
+									<label class="radio-option" for="en-shirtsize-S">
+										<span class="radio-title">S</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-M" value="M" disabled>
+									<label class="radio-option" for="en-shirtsize-M">
+										<span class="radio-title">M</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-L" value="L" disabled>
+									<label class="radio-option" for="en-shirtsize-L">
+										<span class="radio-title">L</span>
+									</label>
+								    <input class="radioBox" type="radio" name="en-shirtsize" id="en-shirtsize-XL" value="XL" disabled>
+									<label class="radio-option" for="en-shirtsize-XL">
+										<span class="radio-title">XL</span>
+									</label>
+								</div>
+							</div>
+							<div class="qGrp">
+								<h3 class="slim-title" for="en-allergies">What are your dietary restrictions? (optional)</h3>
+								<input class="slInp optional" type="text" placeholder="allergic to peanuts, lactose intolerant, etc." id="en-allergies">
+							</div>
+							<button class="lahBtn disabled" id="finReg"><span class="buttonLabel">Finalize Registration &rsaquo;</span></button>
+						</div>
+					</div>
+					<div class="page unloadedPage" id="finalizePage">
+						<div class="backdropHov">
+							<span class="descriptor">Los Altos Hacks - Finalize</span>
+							<div class="qGrp focus">
+								<h3 class="slim-title fineprint" for="en-mlhcode">I have read and agree to the <a target="_blank" href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of Conduct</a></h3>
+								<input class="termsCheck" type="checkbox" id="en-mlhcode" value="accepted">
+							    <label for="en-mlhcode"></label>
+							</div>
+							<div class="qGrp focus">
+								<h3 class="slim-title fineprint" for="en-mlhterms">I authorize you to share my application/registration for event administration, ranking, MLH administration, pre- and post-event informational e-mails, and occasional messages about hackathons in-line with the <a target="_blank" href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a target="_blank" href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions">MLH Contest Terms and Conditions</a> and the <a target="_blank" href="https://mlh.io/privacy">MLH Privacy Policy</a>.</h3>
+								<input class="termsCheck" type="checkbox" id="en-mlhterms" value="accepted">
+							    <label for="en-mlhterms"></label>
+							</div>
+							<div class="qGrp focus">
+								<h3 class="slim-title fineprint" for="en-lahpriv">By submitting your application, you acknowledge and agree that Los Altos Hacks IV may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact <a target="_blank" href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a> for any clarifications, questions, or requests regarding this agreement.</h3>
+								<input class="termsCheck" type="checkbox" id="en-lahpriv" value="accepted">
+							    <label for="en-lahpriv"></label>
+							</div>
+							<button class="lahBtn goBack" id="sendRegBack"><span class="buttonLabel">&lsaquo; Back</span></button>
+							<button class="lahBtn disabled" id="sendReg"><span class="buttonLabel">Submit &rsaquo;</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<script src="js/jquery.min.js"></script>
+	<script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js" integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U=" crossorigin="anonymous"></script>
+	<script src="js/jquery.tagsinput.js"></script>
+	<script src="js/mentor-reg.source.js"></script>
+</body>
+</html>

@@ -96,7 +96,7 @@ a:hover {
 	position: absolute;
 	top:0;
 	left:0;
-	background-image: url('/images/badge.svg');
+	background-image: url('/images/mentor-badge.svg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100%;
@@ -113,7 +113,7 @@ a:hover {
 	position: absolute;
 	top:0;
 	left:0;
-	background-image: url('/images/badge-back.svg');
+	background-image: url('/images/mentor-badge-back.svg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100%;
@@ -129,7 +129,7 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	z-index: 1;
-	background: linear-gradient(to bottom, rgba(0,0,0,1) 55%,rgba(38,107,154,1) 55%,rgba(38,107,154,1) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,1) 55%,#ff6f00 55%,#ff6f00 100%);
 	transition: opacity 1.8s ease-in-out;
 }
 .page {
@@ -181,6 +181,10 @@ a:hover {
 		display: block;
 
 	}
+
+#en-over18 .radio-option {
+	font-size: 1.1em;
+}
 p.text-muted {
 	color: rgba(255,255,255,0.9);
 }
@@ -188,7 +192,7 @@ p.text-muted {
 	z-index: 999;
 	line-height: 2rem;
   border-radius: 5px;
-	background-color: rgb(11, 71, 111);
+	background-color: rgb(243, 155, 19);
   padding: 5px 20px;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -242,7 +246,7 @@ p.text-muted {
 .backdropHov {
 	box-sizing: border-box;
 	border-radius: 15px;
-	background-color: rgba(48,136,195,1);
+	background-color: rgb(211, 84, 0);
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 9px 1px;
 	margin: 10px;
 	position: relative;
@@ -254,7 +258,7 @@ p.text-muted {
 	position: absolute;
     right: 15px;
     top: 15px;
-    color: #005777;
+    color: rgba(243, 155, 19, 0.7);
     text-transform: uppercase;
     font-style: italic;
     letter-spacing: 1.2px;
@@ -274,7 +278,7 @@ h3.fineprint a {
 	font-weight: 300;
 	color: orange;
 }
-.slInp {
+.slInp, #en-language_tag {
 	font-family: "Poppins", sans-serif;
 	font-weight: lighter;
   font-size: 1.2rem;
@@ -283,17 +287,23 @@ h3.fineprint a {
   border: none;
   height: 1.5rem;
   padding: 5px;
-  color: white;
-  width: 100%;
-  border-bottom: 0px solid white;
+  color: white !important;
+  width: 100% !important;
+  border-bottom: 0px solid white !important;
+	transition: border-bottom 0.3s;
+}
+#en-language_tagsinput {
+	background: none;
+	border: none;
+	border-bottom: 0px solid white !important;
 	transition: border-bottom 0.3s;
 }
 .slInp.invalidInp {
     border-bottom: 2px solid red;
 }
-.slInp:focus {
-	outline: none;
-    border-bottom: 2px solid white;
+.slInp:focus, .focus > #en-language_tagsinput {
+	outline: none !important;
+    border-bottom: 2px solid white !important;
 }
 .slInp.invalidInp:focus {
 	outline: none;
@@ -419,9 +429,9 @@ input.slInp::-ms-input-placeholder {
 .radio-group .radio-option {
 	height: 100%;
 	min-width: 2.2rem;
-	background-color: rgb(15, 112, 177);
-	border-left: 1px solid rgb(11, 71, 111);
-	border-right: 1px solid rgb(11, 71, 111);
+	background-color: rgb(243, 155, 19);
+	border-left: 1px solid rgb(211, 84, 0);
+	border-right: 1px solid rgb(211, 84, 0);
 	display: inline-block;
 	font-size: 1.5rem;
 	line-height: calc(2.2rem - 4px);
@@ -462,7 +472,6 @@ input.slInp::-ms-input-placeholder {
 	display: none;
 }
 
-/* https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3 */
 input[type="checkbox"] {
   position: absolute;
   left: -150vw;
@@ -557,3 +566,11 @@ input[type="checkbox"]:checked + label:after {
 		height: 110vh;
 	}
 }
+
+div.tagsinput { border:1px solid #CCC; background: #FFF; padding:5px; overflow-y: auto;}
+div.tagsinput span.tag { -moz-border-radius:2px; -webkit-border-radius:2px; display: block; float: left; padding: 5px; text-decoration:none; background: rgb(243, 155, 19); color: white; margin-right: 5px; margin-bottom:5px;font-family: 'Poppins', sans-serif;  font-size:1rem;}
+div.tagsinput span.tag a { font-weight: bold; color: rgba(255, 255, 255, 0.5); text-decoration:none; font-size: 11px;  }
+div.tagsinput input { margin:0px; font-family: 'Poppins', sans-serif; border:1px solid transparent; padding:5px; background: transparent; color: #000; outline:0px;  margin-right:5px; margin-bottom:5px; }
+div.tagsinput div { display:block; float: left; }
+.tags_clear { clear: both; width: 100%; height: 0px; }
+.not_valid {background: rgba(183,28,28,0.7) !important; color: #90111A !important;}
