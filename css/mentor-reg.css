@@ -299,7 +299,7 @@ h3.fineprint a {
 	transition: border-bottom 0.3s;
 }
 .slInp.invalidInp {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid red !important;
 }
 .slInp:focus, .focus > #en-language_tagsinput {
 	outline: none !important;
@@ -307,7 +307,7 @@ h3.fineprint a {
 }
 .slInp.invalidInp:focus {
 	outline: none;
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid red !important;
 }
 .slInp::placeholder {
 	color: rgba(255, 255, 255, 0.4);
@@ -353,16 +353,17 @@ input.slInp::-ms-input-placeholder {
     top: 60%;
 	font-size: 20px;
 }
-.badge #bdg-school {
-	top: 90%;
-	left: 80%;
-	font-size: 15px;
-
-}
-.badge #bdg-grade-age {
-	top: 90%;
-	left: 25%;
-	font-size: 15px;
+.badge #bdg-languages {
+	font-weight: lighter;
+	text-shadow: none;
+	color: white;
+	font-size: 12px;
+	top: 140px;
+	left: 10px;
+	white-space: normal;
+	overflow-y: hidden;
+	height: 140px;
+	width: calc(100% - 20px);
 }
 .badge #bdg-email {
     top: 18.1%;
