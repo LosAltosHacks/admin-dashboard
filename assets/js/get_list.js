@@ -188,7 +188,47 @@ async function getUnacceptedList() {
   })
 }
 
+async function getMentorList() {
+  let response = await request("GET", "/mentor/v1/list");
+  document.getElementById("mentors-count").innerHTML = response.length;
+  response.forEach(function(user) {
+    var template = document.getElementById("mentor-template");
+    var mentor = template.content.cloneNode(true);
+    var summary = [user.acceptance_status == "none" ? "No" : user.acceptance_status.charAt(0).toUpperCase() + user.acceptance_status.slice(1), user.name, user.phone, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
+
+    summary.forEach(function(data) {
+      var element = document.createElement("li");
+      element.textContent = data;
+      mentor.querySelector("summary ul").appendChild(element)
+    })
+
+    mentor.querySelector("summary").setAttribute("title", user.name + " <" + user.mentor_id + ">");
+
+    mentor.querySelector("summary").insertAdjacentHTML('afterbegin',
+      "<span class='delete-icon'><span title='Delete Mentor'><img src='/assets/icons/close.svg'></span></span>"
+    );
+
+    mentor.querySelector(".mentor-row").setAttribute("data-id", user.mentor_id);
+    mentor.querySelector(".t-shirt").appendChild(document.createTextNode(user.tshirt_size));
+    mentor.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : "Not Specified"));
+    mentor.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
+    mentor.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
+    mentor.querySelector(".skillset").appendChild(document.createTextNode(user.skillset.split(',').join(', ')));
+
+    mentor.querySelector(".mentor-details").insertAdjacentHTML('beforeend',
+      "<span class='edit-icon'><span title='Edit Mentor Data'><img src='/assets/icons/user-edit.svg'></span></span>"
+    )
+
+    mentor.querySelector(".mentor-details").insertAdjacentHTML('beforeend',
+      "<span class='history-icon'><span title='View Edit History'><img src='/assets/icons/history.svg'></span></span>"
+    )
+
+    document.getElementById("mentors-list").insertBefore(mentor, document.getElementById("mentors-list").children[1]);
+  })
+}
+
 getSubscribedList();
 getList();
 getAcceptedList();
 getUnacceptedList();
+getMentorList();
