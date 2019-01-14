@@ -309,7 +309,6 @@ $('#welcomeProgress').click(function() {
 	$('#infoPage .slInp')[0].focus();
 });
 
-
 $('#confirmBadge').click(function(e) {
 	e.preventDefault();
 	$('.badge').toggleClass('flip');
@@ -334,11 +333,14 @@ $('#finReg').click(function() {
     })
     db['skillset'] = languages.substring(0, languages.length-1);
   }
-  $.post(lah_api+'feature/mentor', db).done(function() {
+  $.post(lah_api+'/mentor/v1/signup', db).done(function() {
 		if(smallui) {
 			$('#confirmBadge').fadeOut();
 			$('#regDone').fadeIn();
-			$('.field-sect').fadeOut();
+			$('.field-sect').fadeOut(function() {
+        $('#confirmBadge').remove();
+        $('.field-sect').remove();
+      })
 			$('.badge').fadeIn();
 			$('.badge').removeClass('flip');
 			$('.bdg-sect').css('width', '100vw').css('flex-basis', 'auto');
@@ -347,7 +349,10 @@ $('#finReg').click(function() {
 
 		$('.badge').removeClass('flip');
 		$('#regDone').fadeIn();
-		$('#confirmBadge').fadeOut();
+		$('#confirmBadge').fadeOut(function() {
+      $('#confirmBadge').remove();
+      $('.field-sect').remove();
+    })
 		$('.field-sect').removeClass('open');
 	}).fail(function(msg) {
 		//error handling
