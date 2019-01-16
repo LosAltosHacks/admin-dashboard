@@ -133,21 +133,26 @@ body {
     transform: rotate(360deg);
   }
 
-.attendees-details {
+.attendees-details, .mentor-details {
   padding: 10px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
   background-color: rgba(77, 184, 255, 0.4);
   position: relative;
 }
-  .attendees-details ul {
+  .attendees-details ul, .mentor-details ul {
     margin: 0;
     vertical-align: top;
     padding: 0.2em;
-    width: calc(100% / 3 - 0.2em);
     display: inline-block;
     font-weight: 300;
   }
-  .attendees-details li {
+  .attendees-details ul {
+    width: calc(100% / 3 - 0.2em);
+  }
+  .mentor-details ul {
+    width: calc(100% / 2 - 0.2em);
+  }
+  .attendees-details li, .mentor-details li {
     width: 100%;
     display: block;
     list-style-type: none;
