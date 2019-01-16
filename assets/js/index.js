@@ -196,7 +196,7 @@ function getPanel(panel) {
   $('.panel').hide();
   $('#' + panel).show();
   localStorage.setItem("panel", panel);
-  updateLists();
+  // updateLists();
 }
 
 function expandAll() {
