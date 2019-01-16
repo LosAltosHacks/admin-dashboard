@@ -185,7 +185,7 @@ $(document).ready(function() {
 
     getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
     getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
-    getMentor("").then(function(result) {document.getElementById("mentors-count").innerHTML = result.length})
+    getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
 })
 
 function getPanel(panel) {
