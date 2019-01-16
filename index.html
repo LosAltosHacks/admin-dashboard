@@ -200,27 +200,43 @@
     <div>
       <div id="timeline">
         <p style="margin-left: 10px"><b>Application Timeline</b></p>
-        <div id="chart"></div>
+        <div class="chart-wrapper">
+          <div id="chart"></div>
+        </div>
         <div id="controls"></div>
       </div>
       <div id="data-panel">
-        <p><b>Countdown:</b> <span id="countdown">12:00:00</span></p>
-        <p><b>Applications Count:</b> <span id="apps-count"></span></p>
-        <p><b>Accepted:</b> <span id="accept-count"></span></p>
-      </div>
-      <div id="chart-panel">
-        <p><b>Gender Demographics</b></p>
-        <div id="gender-demo" class="graph"></div>
-        <p><b>Race Demographics</b></p>
-        <div id="race-demo" class="graph"></div>
-        <p><b>Age Demographics</b></p>
-        <div id="age-demo" class="graph"></div>
+        <div class="data-card">
+          <h4>Summary</h4>
+          <p><b>Countdown:</b> <span id="countdown">12:00:00</span></p>
+          <p><b>Applications Count:</b> <span id="apps-count"></span></p>
+          <p><b>Accepted:</b> <span id="accept-count"></span></p>
+          <p><b>Mentors Count:</b> <span id="mentors-count"></span></p>
+        </div>
+        <div class="data-card">
+          <h4>Gender Demographics</h4>
+          <div class="chart-wrapper">
+            <div id="gender-demo" class="graph"></div>
+          </div>
+        </div>
+        <div class="data-card">
+          <h4>Race Demographics</h4>
+          <div class="chart-wrapper">
+            <div id="race-demo" class="graph"></div>
+          </div>
+        </div>
+        <div class="data-card">
+          <h4>Age Demographics</h4>
+          <div class="chart-wrapper">
+            <div id="age-demo" class="graph"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
-  <!-- <script src="https://www.gstatic.com/charts/loader.js"></script> -->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="./assets/js/jquery.min.js"></script>
   <script src="./assets/js/index.js"></script>
   <script src="./assets/js/helpers.js"></script>
