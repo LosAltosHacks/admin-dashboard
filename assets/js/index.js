@@ -183,6 +183,7 @@ $(document).ready(function() {
 
     getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
     getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
+    getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
 })
 
 function getPanel(panel) {
@@ -539,6 +540,10 @@ function changeTheme(theme) {
     localStorage.setItem('theme', 'light');
   }
 }
+
+$(window).resize(function() {
+  drawChart();
+})
 
 google.charts.load('current', {'packages': ['bar', 'corechart', 'controls', 'charteditor'], 'callback': drawChart});
 
