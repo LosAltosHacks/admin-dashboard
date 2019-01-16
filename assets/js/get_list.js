@@ -209,6 +209,7 @@ async function getMentorList() {
     );
 
     mentor.querySelector(".mentor-row").setAttribute("data-id", user.mentor_id);
+    mentor.querySelector(".over-18").appendChild(document.createTextNode(user.over_18 ? "Yes" : "No"));
     mentor.querySelector(".t-shirt").appendChild(document.createTextNode(user.tshirt_size));
     mentor.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : "Not Specified"));
     mentor.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
