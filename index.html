@@ -20,7 +20,7 @@
         <span></span>
       </div>
       <div>
-        <h2>Pages</h2>
+        <h2>Attendees</h2>
         <ul>
           <li onclick="getPanel('email-list')">Email List</li>
           <li onclick="getPanel('attendee-list')">Attendees List</li>
@@ -29,6 +29,10 @@
           <li onclick="getPanel('statistics')">Statistics</li>
           <!-- Until Check-in gets implemented -->
           <!-- <li onclick="getPanel('check-in')">Check-In Panel</li> -->
+        </ul>
+        <h2>Mentors</h2>
+        <ul>
+          <li onclick="getPanel('mentor-list')">Mentors List</li>
         </ul>
         <h2>Tools</h2>
         <ul>
@@ -93,6 +97,30 @@
     </div>
   </template>
 
+  <!-- Template for an attendee entry -->
+  <template id="mentor-template">
+    <div class="mentor-row">
+      <details>
+        <summary>
+          <ul>
+          </ul>
+        </summary>
+        <div class="mentor-details">
+          <ul>
+            <li class='over-18'><b>Over 18:</b> </li>
+            <li class='t-shirt'><b>T-Shirt Size:</b> </li>
+            <li class='diet-restrict'><b>Dietary Restrictions:</b> </li>
+            <li class='email-verified'><b>Email Verified:</b> </li>
+            <li class='signed-waiver'><b>Waiver Signed:</b> </li>
+          </ul>
+          <ul class='skillset'>
+            <b>Skillset:</b><br/>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </template>
+
   <!-- Email List -->
   <div id="email-list" class="panel">
     <h1>Email List <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
@@ -108,8 +136,24 @@
       <div class="header">
         <ul>
           <li>Accepted?</li><li>
-          First Name</li><li>
+          Full Name</li><li>
           Last Name</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attendee List -->
+  <div id="mentor-list" class="panel">
+    <h1>Mentors List (<span id="mentors-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="mentors-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Accepted?</li><li>
+          Full Name</li><li>
+          Phone Number</li><li>
           Email</li><li>
           Registration Date</li>
         </ul>
@@ -154,32 +198,51 @@
   <div id="statistics" class="panel">
     <h1>Statistics</h1>
     <div>
-      <div id="data-panel">
-        <p><b>Countdown:</b> <span id="countdown">12:00:00</span></p>
-        <p><b>Applications Count:</b> <span id="apps-count"></span></p>
-        <p><b>Accepted:</b> <span id="accept-count"></span></p>
-        <p><b>Application Timeline</b></p>
-        <div id="calendar"></div>
+      <div id="timeline">
+        <p style="margin-left: 10px"><b>Application Timeline</b></p>
+        <div class="chart-wrapper">
+          <div id="chart"></div>
+        </div>
+        <div id="controls"></div>
       </div>
-      <div id="chart-panel">
-        <p><b>Gender Demographics</b></p>
-        <div id="gender-demo" class="graph"></div>
-        <p><b>Race Demographics</b></p>
-        <div id="race-demo" class="graph"></div>
-        <p><b>Age Demographics</b></p>
-        <div id="age-demo" class="graph"></div>
+      <div id="data-panel">
+        <div class="data-card">
+          <h4>Summary</h4>
+          <p><b>Countdown:</b> <span id="countdown">12:00:00</span></p>
+          <p><b>Applications Count:</b> <span id="apps-count"></span></p>
+          <p><b>Accepted:</b> <span id="accept-count"></span></p>
+          <p><b>Mentors Count:</b> <span id="mentor-apps-count"></span></p>
+        </div>
+        <div class="data-card">
+          <h4>Gender Demographics</h4>
+          <div class="chart-wrapper">
+            <div id="gender-demo" class="graph"></div>
+          </div>
+        </div>
+        <div class="data-card">
+          <h4>Race Demographics</h4>
+          <div class="chart-wrapper">
+            <div id="race-demo" class="graph"></div>
+          </div>
+        </div>
+        <div class="data-card">
+          <h4>Age Demographics</h4>
+          <div class="chart-wrapper">
+            <div id="age-demo" class="graph"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="./assets/js/jquery.min.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="./assets/js/jquery.min.js"></script>
   <script src="./assets/js/index.js"></script>
   <script src="./assets/js/helpers.js"></script>
   <script src="./assets/js/get_list.js" async defer></script>
   <script src="./assets/js/export_list.js"></script>
-  <script src="https://apis.google.com/js/api:client.js"></script>
+  <!-- <script src="https://apis.google.com/js/api:client.js"></script> -->
 
 </body>
 </html>

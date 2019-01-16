@@ -10,6 +10,11 @@ async function modify(user_id, params) {
   return result;
 }
 
+async function modifyMentor(mentor_id, params) {
+  let result = await request("POST", "/mentor/v1/modify/" + mentor_id, params);
+  return result;
+}
+
 async function accept(user_id, status) {
   if (status != "none" && status != "waitlisted" && status != "rejected" && status != "queue" && status != "accepted") return false;
   modify(user_id, {acceptance_status: status});
@@ -28,13 +33,28 @@ async function deleteUser(user_id) {
   return result;
 }
 
+async function deleteMentor(mentor_id) {
+  let result = await request("GET", "/mentor/v1/delete/" + mentor_id);
+  return result;
+}
+
 async function getUser(query) {
   let result = await request("POST", "/registration/v1/search", {query: query});
   return result;
 }
 
+async function getMentor(query) {
+  let result = await request("POST", "/mentor/v1/search", {query: query});
+  return result;
+}
+
 async function getHistory(user_id) {
   let result = await request("GET", "/registration/v1/history/" + user_id);
+  return result;
+}
+
+async function getMentorHistory(mentor_id) {
+  let result = await request("GET", "/mentor/v1/history/" + mentor_id);
   return result;
 }
 
@@ -113,6 +133,7 @@ function updateLists() {
   getAcceptedList();
   getUnacceptedList();
   getSubscribedList();
+  getMentorList();
 }
 
 function logout() {
