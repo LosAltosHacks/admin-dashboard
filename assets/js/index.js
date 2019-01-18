@@ -81,8 +81,8 @@ $(document).ready(function() {
   $(document).on('click', ".delete-icon > span", function(e) {
     e.preventDefault();
     console.log($(e.target).closest('div')[0].className);
-    if (confirm("Are you sure you want to delete user " + $(this).closest(".mentor-row").attr("data-id") + "?")) {
-      if ($(e.target).closest('div')[0].className === "mentor-row") {
+    if ($(e.target).closest('div')[0].className === "mentor-row") {
+      if (confirm("Are you sure you want to delete user " + $(this).closest(".mentor-row").attr("data-id") + "?")) {
         deleteMentor($(this).closest(".mentor-row").attr("data-id"));
         let row = $(this).closest(".mentor-row");
         row.css({"background-color": "#e53935"});
@@ -91,7 +91,9 @@ $(document).ready(function() {
           row.remove();
         });
       }
-      else {
+    }
+    else {
+      if (confirm("Are you sure you want to delete user " + $(this).closest(".attendees-row").attr("data-id") + "?")) {
         deleteUser($(this).closest(".attendees-row").attr("data-id"));
         let row = $(this).closest(".attendees-row");
         row.css({"background-color": "#e53935"});
@@ -137,7 +139,7 @@ $(document).ready(function() {
     document.execCommand('copy', true);
   });
 
-  $(document).on('change', "#edit-modal li *", function() {
+  $(document).on('change', "#edit-modal li *, #mentor-edit-modal li *", function() {
     var field_name = $(this).closest("li").text().split(":")[0];
     let field_val;
     if ($(this).attr('type') === "checkbox") field_val = $(this).is(":checked");
@@ -147,13 +149,24 @@ $(document).ready(function() {
 
   $(document).on('click', "#finish-edit-icon", function() {
     // if ($(this).closest('.modal').id === "")
-    modify($(this).closest("#edit-modal").attr("data-id"), edited_fields).then(function(result) {
-      edited_fields = {};
-      $(".modal").animate({"height": "toggle"}, function() {
-        $(".modal").remove();
-        updateLists();
+    if ($('#edit-modal').length == 0) {
+      modifyMentor($(this).closest("#mentor-edit-modal").attr("data-id"), edited_fields).then(function(result) {
+        edited_fields = {};
+        $(".modal").animate({"height": "toggle"}, function() {
+          $(".modal").remove();
+          updateLists();
+        })
       })
-    })
+    }
+    else {
+      modify($(this).closest("#edit-modal").attr("data-id"), edited_fields).then(function(result) {
+        edited_fields = {};
+        $(".modal").animate({"height": "toggle"}, function() {
+          $(".modal").remove();
+          updateLists();
+        })
+      })
+    }
   })
 
   $("#themes .slider").click(function() {
@@ -291,9 +304,9 @@ function showHistory(e) {
 
 function showEditPanel(e) {
   var modal = createModal();
-  modal.container.id = "mentor-edit-modal";
 
   if ($(e.target).closest('div')[0].className === "mentor-details") {
+    modal.container.id = "mentor-edit-modal";
     var mentor_id = $(e.target).closest(".mentor-row").attr("data-id")
     modal.container.setAttribute("data-id", mentor_id);
 
@@ -390,6 +403,7 @@ function showEditPanel(e) {
     })
   }
   else {
+    modal.container.id = "edit-modal";
     var user_id = $(e.target).closest(".attendees-row").attr("data-id");
     modal.container.setAttribute("data-id", user_id);
 
