@@ -1,10 +1,13 @@
-server = "https://api.losaltoshacks.com";
+// server = "https://api.losaltoshacks.com";
+server = "http://localhost:5000";
 
 // Listeners for controls
-let jwt_auth = localStorage.jwt_auth;
-if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
-  window.location.href = "/login.html";
-}
+// let jwt_auth = localStorage.jwt_auth;
+// if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
+//   window.location.href = "/login.html";
+// }
+// let jwt_auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imxlb0Bsb3NhbHRvc2hhY2tzLmNvbSIsImV4cGlyYXRpb24iOjE1NTA1ODY4MTIwNzksImlzX2xhaCI6dHJ1ZX0.7geR76FyxfWhPk4o3h1QQuJKzVDL_xPeKbqlWW6VuQc";
+let jwt_auth = "foobar";
 
 let edited_fields = {};
 
@@ -13,8 +16,8 @@ $(document).ready(function() {
   if (localStorage.panel) getPanel(localStorage.panel);
 
   // Decorative Controls
-  $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
-  $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
+  // $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
+  // $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
 
   $("#profile > #profile-pic").hover(function() {
     $(this).css({'background-image': "url('/assets/icons/sign-out.svg')"});
@@ -76,6 +79,23 @@ $(document).ready(function() {
 
   $("#search-bar > input").click(function() {
     $(this).select();
+  })
+
+  $("#checkin-search > input[type='text']").on("input", function() {
+    if ($(this).val().trim().length == 0) {
+      $('#checkin-list> figure').show()
+      return;
+    }
+    $('#checkin-list > figure').hide()
+    getUser($(this).val().trim()).then(function(result) {
+      if (result.length == 0) return;
+      let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.user_id : null))];
+      $('#checkin-list > figure').each(function(index, e) {
+        if (user_ids.includes($(e).attr('data-id'))) {
+          $(e).show();
+        }
+      })
+    })
   })
 
   $(document).on('click', ".delete-icon > span", function(e) {
@@ -194,9 +214,25 @@ $(document).ready(function() {
       lastChecked = this;
     });
 
-    getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
-    getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
-    getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
+  $(document).on('click', '.check-in', function(e) {
+    console.log($(this).closest('figure').attr('data-id'));
+    $(this).removeClass('check-in');
+    $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
+    $(this).addClass('check-out');
+    $(this).text('Check Out');
+  })
+
+  $(document).on('click', '.check-out', function(e) {
+    console.log($(this).closest('figure').attr('data-id'));
+    $(this).removeClass('check-out');
+    $(this).closest('figure').find('img').css("animation", "checkout .8s alternate-reverse");
+    $(this).addClass('check-in');
+    $(this).text('Check In');
+  })
+
+  getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
+  getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
+  getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
 })
 
 function getPanel(panel) {
@@ -253,6 +289,12 @@ function createModal() {
   if ($('.modal').length) $('.modal').remove();
   return {container: modal, content: content};
 }
+
+// function showDetails(e) {
+//   var modal = createModal();
+//   modal.container.id = "details-modal";
+//
+// }
 
 function showHistory(e) {
   var modal = createModal();

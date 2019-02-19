@@ -67,8 +67,8 @@ async function getMentorHistory(mentor_id) {
 async function populateUsers(n) {
   for (var i=0; i<n; i++) {
     signup({
-      first_name: "First",
-      surname: "Last",
+      first_name: fakeEmail(),
+      surname: fakeEmail(),
       email: fakeEmail(),
       age: Math.floor(Math.random() * 20),
       school: "High School",
@@ -132,22 +132,22 @@ function request(method, url, data) {
   })
 }
 
-function updateLists() {
-  $('.list > *').not('.header').remove();
-  getList();
-  getAcceptedList();
-  getUnacceptedList();
-  getSubscribedList();
-  getMentorList();
-}
+// function updateLists() {
+//   $('.list > *').not('.header').remove();
+//   getList();
+//   getAcceptedList();
+//   getUnacceptedList();
+//   getSubscribedList();
+//   getMentorList();
+// }
 
-function logout() {
-  localStorage.removeItem('jwt_auth');
-  localStorage.removeItem('name');
-  localStorage.removeItem('prof_image');
-  window.location.href = "/login.html";
-  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
-}
+// function logout() {
+//   localStorage.removeItem('jwt_auth');
+//   localStorage.removeItem('name');
+//   localStorage.removeItem('prof_image');
+//   window.location.href = "/login.html";
+//   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
+// }
 
 function escapeHTML(s) {
   return s.replace(/[&"'<>`]/g, '');
