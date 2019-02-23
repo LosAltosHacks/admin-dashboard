@@ -16,7 +16,7 @@ async function checkout(badge_data) {
 }
 
 async function getMeal(badge_data, meal_number, allowed_servings) {
-  let result = await request("POST", "/reigstration/v1/meal", {badge_data: badge_data, meal_number: meal_number, allowed_servings: allowed_servings});
+  let result = await request("POST", "/registration/v1/meal", {badge_data: badge_data, meal_number: meal_number, allowed_servings: allowed_servings});
   return result;
 }
 
