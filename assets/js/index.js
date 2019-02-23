@@ -78,13 +78,13 @@ $(document).ready(function() {
     $(this).select();
   })
 
-  $("#checkin-search > input[type='text']").on("input", function() {
+  $("#checkin-search > input[type='text']").on("input change keyup", function() {
     if ($(this).val().trim().length == 0) {
-      $('#checkin-list> figure').show()
+      $('#checkin-list > figure').show()
       return;
     }
     $('#checkin-list > figure').hide()
-    getUser($(this).val().trim()).then(function(result) {
+    getUser({first_name: $(this).val().trim()}).then(function(result) {
       if (result.length == 0) return;
       let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.user_id : null))];
       $('#checkin-list > figure').each(function(index, e) {
@@ -93,7 +93,16 @@ $(document).ready(function() {
         }
       })
     })
-    getMentor($(this).val().trim()).then(function(result) {
+    getUser({surname: $(this).val().trim()}).then(function(result) {
+      if (result.length == 0) return;
+      let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.user_id : null))];
+      $('#checkin-list > figure').each(function(index, e) {
+        if (user_ids.includes($(e).attr('data-id'))) {
+          $(e).show()
+        }
+      })
+    })
+    getMentor({name: $(this).val().trim()}).then(function(result) {
       if (result.length == 0) return;
       let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.mentor_id : null))];
       $('#checkin-list > figure').each(function(index, e) {
