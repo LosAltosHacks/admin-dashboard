@@ -1,13 +1,10 @@
-// server = "https://api.losaltoshacks.com";
-server = "http://localhost:5000";
+server = "https://api.losaltoshacks.com";
 
 // Listeners for controls
-// let jwt_auth = localStorage.jwt_auth;
-// if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
-//   window.location.href = "/login.html";
-// }
-// let jwt_auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imxlb0Bsb3NhbHRvc2hhY2tzLmNvbSIsImV4cGlyYXRpb24iOjE1NTA1ODY4MTIwNzksImlzX2xhaCI6dHJ1ZX0.7geR76FyxfWhPk4o3h1QQuJKzVDL_xPeKbqlWW6VuQc";
-let jwt_auth = "foobar";
+let jwt_auth = localStorage.jwt_auth;
+if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
+  window.location.href = "/login.html";
+}
 
 let edited_fields = {};
 
@@ -16,8 +13,8 @@ $(document).ready(function() {
   if (localStorage.panel) getPanel(localStorage.panel);
 
   // Decorative Controls
-  // $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
-  // $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
+  $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
+  $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
 
   $("#profile > #profile-pic").hover(function() {
     $(this).css({'background-image': "url('/assets/icons/sign-out.svg')"});
