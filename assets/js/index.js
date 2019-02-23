@@ -92,7 +92,16 @@ $(document).ready(function() {
       let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.user_id : null))];
       $('#checkin-list > figure').each(function(index, e) {
         if (user_ids.includes($(e).attr('data-id'))) {
-          $(e).show();
+          $(e).show()
+        }
+      })
+    })
+    getMentor($(this).val().trim()).then(function(result) {
+      if (result.length == 0) return;
+      let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.mentor_id : null))];
+      $('#checkin-list > figure').each(function(index, e) {
+        if (user_ids.includes($(e).attr('data-id'))) {
+          $(e).show()
         }
       })
     })
@@ -158,6 +167,37 @@ $(document).ready(function() {
     $("#copy-field").select();
     document.execCommand('copy', true);
   });
+  $(document).on('click', 'figure > img', function(e) {checkInEdit(e);});
+
+  $(document).on('change', '#attendee-checkin-modal li *, #mentor-checkin-modal li *', function() {
+    var field_name = $(this).closest("li").text().split(":")[0];
+    let field_val;
+    if ($(this).attr('type') === "checkbox") field_val = $(this).is(":checked");
+    else field_val = $(this).val();
+    edited_fields[field_name] = field_val;
+  })
+
+  $(document).on('click', "#finish-checkin-edit", function() {
+    // if ($(this).closest('.modal').id === "")
+    if ($('#attendee-checkin-modal').length == 0) {
+      modifyMentor($(this).closest("#mentor-checkin-modal").attr("data-id"), edited_fields).then(function(result) {
+        edited_fields = {};
+        $(".modal").animate({"height": "toggle"}, function() {
+          $(".modal").remove();
+          updateLists();
+        })
+      })
+    }
+    else {
+      modify($(this).closest("#attendee-checkin-modal").attr("data-id"), edited_fields).then(function(result) {
+        edited_fields = {};
+        $(".modal").animate({"height": "toggle"}, function() {
+          $(".modal").remove();
+          updateLists();
+        })
+      })
+    }
+  })
 
   $(document).on('change', "#edit-modal li *, #mentor-edit-modal li *", function() {
     var field_name = $(this).closest("li").text().split(":")[0];
@@ -337,6 +377,228 @@ function showHistory(e) {
           "<details><summary>" + (new Date(entry.timestamp.replace(" ", "T") + "Z")) + "</summary><div class='history-details'><ul>" + details + "</ul></div></details>"
         );
       })
+      modal.content.appendChild(wrapper);
+      document.body.appendChild(modal.container);
+      $(".modal").animate({"height": "toggle"})
+    })
+  }
+}
+
+function checkInEdit(e) {
+  var modal = createModal();
+
+  if ($(e.target).closest('figure')[0].className === "mentor") {
+    modal.container.id = "mentor-checkin-modal";
+    var mentor_id = $(e.target).closest('figure').attr('data-id');
+    modal.container.setAttribute("data-id", mentor_id);
+
+    getMentor(mentor_id).then(function(result) {
+      var mentor = result[result.length-1];
+      var header = document.createElement("h3");
+      header.textContent = "Mentor <" + mentor_id + ">";
+      modal.content.appendChild(header);
+      var wrapper = document.createElement("div");
+      var list = document.createElement("ul");
+      for (var i=0; i<Object.keys(mentor).length; i++) {
+        var key = Object.keys(mentor)[i];
+        var value = Object.values(mentor)[i];
+        var option = document.createElement("li");
+        option.appendChild(document.createTextNode(key + ": "))
+        option.setAttribute("data-edit", key);
+        var edit = document.createElement("input");
+
+        if (key === "tshirt_size") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='S'>S</option><option value='M'>M</option><option value='L'>L</option><option value='XL'>XL</option>"
+          )
+          switch (value) {
+            case "S":
+              selection.options[0].selected = true;
+              break;
+            case "M":
+              selection.options[1].selected = true;
+              break;
+            case "L":
+              selection.options[2].selected = true;
+              break;
+            case "XL":
+              selection.options[3].selected = true;
+              break;
+            default:
+              selection.options[1].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        if (key === "acceptance_status") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='none'>None</option><option value='waitlisted'>Waitlisted</option><option value='rejected'>Rejected</option><option value='queue'>Queue</option><option value='accepted'>Accepted</option>"
+          )
+          switch (value) {
+            case "none":
+              selection.options[0].selected = true;
+              break;
+            case "waitlisted":
+              selection.options[1].selected = true;
+              break;
+            case "rejected":
+              selection.options[2].selected = true;
+              break;
+            case "queue":
+              selection.options[3].selected = true;
+              break;
+            case "accepted":
+              selection.options[4].selected = true;
+              break;
+            default:
+              selection.options[0].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        else if (key === "email") edit.type = "email";
+        else if (key === "phone") edit.type = "tel";
+        else if (key === "email_verified" || key === "signed_waiver") {
+          edit.type = "checkbox";
+          edit.checked = value;
+        }
+        else edit.type = "text";
+        edit.value = value;
+        option.appendChild(edit);
+        list.appendChild(option);
+      }
+
+      modal.content.insertAdjacentHTML('afterbegin',
+        "<span id='finish-checkin-edit' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
+      );
+
+      wrapper.appendChild(list);
+      modal.content.appendChild(wrapper);
+      document.body.appendChild(modal.container);
+      $(".modal").animate({"height": "toggle"})
+    })
+  }
+  else {
+    modal.container.id = "attendee-checkin-modal";
+    var user_id = $(e.target).closest("figure").attr("data-id");
+    modal.container.setAttribute("data-id", user_id);
+
+    getUser(user_id).then(function(result) {
+      var attendee = result[result.length-1];
+      var header = document.createElement("h3");
+      header.textContent = "User <" + user_id + ">";
+      modal.content.appendChild(header);
+      var wrapper = document.createElement("div");
+      var list = document.createElement("ul");
+      for (var i=0; i<Object.keys(attendee).length; i++) {
+        var key = Object.keys(attendee)[i];
+        var value = Object.values(attendee)[i];
+        var option = document.createElement("li");
+        option.appendChild(document.createTextNode(key + ": "))
+        option.setAttribute("data-edit", key);
+
+        var edit = document.createElement("input");
+        if (key === "user_id" || key === "timestamp") continue;
+        if (key === "tshirt_size") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='S'>S</option><option value='M'>M</option><option value='L'>L</option><option value='XL'>XL</option>"
+          )
+          switch (value) {
+            case "S":
+              selection.options[0].selected = true;
+              break;
+            case "M":
+              selection.options[1].selected = true;
+              break;
+            case "L":
+              selection.options[2].selected = true;
+              break;
+            case "XL":
+              selection.options[3].selected = true;
+              break;
+            default:
+              selection.options[1].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        if (key === "gender") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='Male'>Male</option><option value='Female'>Female</option>"
+          )
+          switch (value) {
+            case "Male":
+              selection.options[0].selected = true;
+              break;
+            case "Female":
+              selection.options[1].selected = true;
+              break;
+            default:
+              selection.options[0].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        if (key === "acceptance_status") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='none'>None</option><option value='waitlisted'>Waitlisted</option><option value='rejected'>Rejected</option><option value='queue'>Queue</option><option value='accepted'>Accepted</option>"
+          )
+          switch (value) {
+            case "none":
+              selection.options[0].selected = true;
+              break;
+            case "waitlisted":
+              selection.options[1].selected = true;
+              break;
+            case "rejected":
+              selection.options[2].selected = true;
+              break;
+            case "queue":
+              selection.options[3].selected = true;
+              break;
+            case "accepted":
+              selection.options[4].selected = true;
+              break;
+            default:
+              selection.options[0].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+
+        else if (key === "age" || key === "grade" || key === "previous_hackathons") edit.type = "number";
+        else if (key === "email" || key === "guardian_email") edit.type = "email";
+        else if (key === "student_phone_number" || key === "guardian_phone_number") edit.type = "tel";
+        else if (key === "email_verified" || key === "signed_waiver") {
+          edit.type = "checkbox";
+          edit.checked = value;
+        }
+        else edit.type = "text";
+        edit.value = value;
+        option.appendChild(edit);
+        list.appendChild(option);
+      }
+
+      modal.content.insertAdjacentHTML('afterbegin',
+        "<span id='finish-checkin-edit' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
+      );
+
+      wrapper.appendChild(list);
       modal.content.appendChild(wrapper);
       document.body.appendChild(modal.container);
       $(".modal").animate({"height": "toggle"})

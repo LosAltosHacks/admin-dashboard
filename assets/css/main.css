@@ -381,16 +381,19 @@ body {
 #history-modal li {
   list-style-type: none;
 }
-#edit-modal li {
+#edit-modal li, #mentor-edit-modal li, #attendee-checkin-modal li, #mentor-checkin-modal li {
   list-style-type: none;
   padding-top: 2px;
   padding-bottom: 2px;
 }
-  #edit-modal li * {
+  #edit-modal li *, #mentor-edit-modal li *, #attendee-checkin-modal li *, #mentor-checkin-modal il * {
     font-family: "Poppins", Fallback, sans-serif;
     outline: none;
   }
-  #edit-modal input[type="text"], #edit-modal input[type="number"], #edit-modal input[type="email"], #edit-modal input[type="tel"] {
+  #edit-modal input[type="text"], #edit-modal input[type="number"], #edit-modal input[type="email"], #edit-modal input[type="tel"],
+  #mentor-edit-modal input[type="text"], #mentor-edit-modal input[type="number"], #mentor-edit-modal input[type="email"], #mentor-edit-modal input[type="tel"],
+  #attendee-checkin-modal input[type="text"], #attendee-checkin-modal input[type="number"], #attendee-checkin-modal input[type="email"], #attendee-checkin-modal input[type="tel"],
+  #mentor-checkin-modal input[type="text"], #mentor-checkin-modal input[type="number"], #mentor-checkin-modal input[type="email"], #mentor-checkin-modal input[type="tel"]  {
     border: .5px solid rgba(0, 0, 0, 0.2);
     padding: 4px;
     border-radius: 20px;
@@ -485,7 +488,7 @@ body {
   filter: invert(1);
 }
 
-#finish-edit-icon {
+#finish-edit-icon, #finish-checkin-edit {
   position: absolute;
   bottom: 5px;
   right: 5px;
@@ -497,10 +500,10 @@ body {
   cursor: pointer;
   transition: transform .5s;
 }
-#finish-edit-icon:hover {
+#finish-edit-icon:hover, #finish-checkin-edit:hover {
   transform: scale(1.2);
 }
-#finish-edit-icon img {
+#finish-edit-icon img, #finish-checkin-edit img {
   height: 20px;
   width: 20px;
   filter: invert(1);
@@ -757,7 +760,8 @@ body.dark {
   #checkin-list > figure {
     border: .5px solid rgba(0, 0, 0 , 0.4);
     padding: 10px;
-    margin: 5px;
+    margin: 5px auto;
+    width: 95%;
     border-radius: 10px;
     max-width: 250px;
   }
@@ -794,7 +798,6 @@ body.dark {
 .check-in {
   cursor: pointer;
   display: block;
-  width: 50%;
   padding: 10px 5px;
   transition: transform .5s, box-shadow .5s;
   border-radius: 5px;
@@ -809,7 +812,6 @@ body.dark {
 .check-out {
   cursor: pointer;
   display: block;
-  width: 50%;
   padding: 10px 5px;
   transition: transform .5s, box-shadow .5s;
   border-radius: 5px;
