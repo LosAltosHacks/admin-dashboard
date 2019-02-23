@@ -115,7 +115,6 @@ $(document).ready(function() {
 
   $(document).on('click', ".delete-icon > span", function(e) {
     e.preventDefault();
-    console.log($(e.target).closest('div')[0].className);
     if ($(e.target).closest('div')[0].className === "mentor-row") {
       if (confirm("Are you sure you want to delete user " + $(this).closest(".mentor-row").attr("data-id") + "?")) {
         deleteMentor($(this).closest(".mentor-row").attr("data-id"));
@@ -250,7 +249,6 @@ $(document).ready(function() {
       }
 
       if(e.shiftKey) {
-        console.log(this);
         var start = $('.accept').index(this);
         var end = $('.accept').index(lastChecked);
 
@@ -261,7 +259,8 @@ $(document).ready(function() {
     });
 
   $(document).on('click', '.check-in', function(e) {
-    console.log($(this).closest('figure').attr('data-id'));
+    var id = $(this).closest('figure').attr('data-id');
+    
     $(this).removeClass('check-in');
     $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
     $(this).addClass('check-out');
@@ -269,7 +268,7 @@ $(document).ready(function() {
   })
 
   $(document).on('click', '.check-out', function(e) {
-    console.log($(this).closest('figure').attr('data-id'));
+    var id = $(this).closest('figure').attr('data-id');
     $(this).removeClass('check-out');
     $(this).closest('figure').find('img').css("animation", "checkout .8s alternate-reverse");
     $(this).addClass('check-in');

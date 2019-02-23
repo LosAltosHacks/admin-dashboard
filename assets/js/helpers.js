@@ -5,6 +5,21 @@ async function signup(user) {
   return result;
 }
 
+async function checkin(user_id, badge_data) {
+  let result = await request("POST", "/registration/v1/sign-in", {user_id: user_id, badge_data: badge_data});
+  return result;
+}
+
+async function checkout(badge_data) {
+  let result = await request("POST", "/registration/v1/sign-out", {badget_data: badge_data});
+  return result;
+}
+
+async function getMeal(badge_data, meal_number, allowed_servings) {
+  let result = await request("POST", "/reigstration/v1/meal", {badge_data: badge_data, meal_number: meal_number, allowed_servings: allowed_servings});
+  return result;
+}
+
 async function modify(user_id, params) {
   let result = await request("POST", "/registration/v1/modify/" + user_id, params);
   return result;
