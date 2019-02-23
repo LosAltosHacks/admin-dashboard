@@ -20,6 +20,9 @@
         <span></span>
       </div>
       <div>
+        <ul>
+          <li onclick="getPanel('dayof')">Day Of</li>
+        </ul>
         <h2>Attendees</h2>
         <ul>
           <li onclick="getPanel('email-list')">Email List</li>
@@ -120,6 +123,17 @@
       </details>
     </div>
   </template>
+
+  <div id="dayof" class="panel">
+    <h1>Day Of Check-In</h1>
+
+    <div id="checkin-search">
+      <input type="text" placeholder="Attendee">
+    </div>
+
+    <div id="checkin-list">
+    </div>
+  </div>
 
   <!-- Email List -->
   <div id="email-list" class="panel">
