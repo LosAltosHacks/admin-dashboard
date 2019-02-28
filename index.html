@@ -28,14 +28,18 @@
           <li onclick="getPanel('email-list')">Email List</li>
           <li onclick="getPanel('attendee-list')">Attendees List</li>
           <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
+          <li onclick="getPanel('rejection-queue')">Rejection Queue</li>
+          <li onclick="getPanel('waitlist')">Waitlist</li>
           <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
           <li onclick="getPanel('statistics')">Statistics</li>
-          <!-- Until Check-in gets implemented -->
-          <!-- <li onclick="getPanel('check-in')">Check-In Panel</li> -->
         </ul>
         <h2>Mentors</h2>
         <ul>
           <li onclick="getPanel('mentor-list')">Mentors List</li>
+        </ul>
+        <h2>Others</h2>
+        <ul>
+          <li onclick="getPanel('chaperones')">Chaperones</li>
         </ul>
         <h2>Tools</h2>
         <ul>
@@ -159,7 +163,7 @@
     </div>
   </div>
 
-  <!-- Attendee List -->
+  <!-- Mentor List -->
   <div id="mentor-list" class="panel">
     <h1>Mentors List (<span id="mentors-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="mentors-list" class="list">
@@ -168,6 +172,22 @@
           <li>Accepted?</li><li>
           Full Name</li><li>
           Phone Number</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chaperones List -->
+  <div id="chaperones" class="panel">
+    <h1>Attendees List (<span id="attendees-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="chaperones-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Accepted?</li><li>
+          Full Name</li><li>
+          Last Name</li><li>
           Email</li><li>
           Registration Date</li>
         </ul>
@@ -191,13 +211,36 @@
     </div>
   </div>
 
+  <!-- Rejection Queue -->
+  <div id="rejection-queue" class="panel">
+    <h1>Rejection Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="rejected-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Acceptance Status</li><li>
+          First Name</li><li>
+          Last Name</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <!-- Bulk Acceptance Queue -->
   <div id="bulk-acceptance" class="panel">
     <h1>Acceptance Panel <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="unaccepted-list" class="list">
       <div class="header">
         <ul>
-          <li>Accept<input id="select-all" type="checkbox"></li><li>
+          <li>
+            <select id="select-status">
+              <option value="accepted">Accept</option>
+              <option value="waitlisted">Waitlist</option>
+              <option value="rejected">Reject</option>
+            </select>
+            <input id="select-all" type="checkbox">
+          </li><li>
           First Name</li><li>
           Last Name</li><li>
           Email</li><li>
@@ -206,6 +249,26 @@
       </div>
     </div>
     <span id="bulk-accept-button" onclick="confirmAccept();"><img src="/assets/icons/check.svg"></span>
+  </div>
+
+  <!-- Waitlist -->
+  <div id="waitlist" class="panel">
+    <h1>Waitlist <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="waitlist-list" class="list">
+      <div class="header">
+        <ul>
+          <li>
+            Accept
+            <input id="waitlist-select-all" type="checkbox">
+          </li><li>
+          First Name</li><li>
+          Last Name</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
+    <span id="waitlist-accept-button" onclick="acceptWaitlist();"><img src="/assets/icons/check.svg"></span>
   </div>
 
   <!-- Statistics -->

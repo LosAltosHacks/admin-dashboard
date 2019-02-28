@@ -62,9 +62,17 @@ $(document).ready(function() {
   // Essential Controls
   $("#select-all").change(function() {
     if ($(this).is(':checked')) {
-      $(".accept").prop("checked", true);
+      $("#bulk-acceptance .accept").prop("checked", true);
     } else {
-      $(".accept").prop("checked", false);
+      $("#bulk-acceptance .accept").prop("checked", false);
+    }
+  })
+
+  $("#waitlist-select-all").change(function() {
+    if ($(this).is(':checked')) {
+      $("#waitlist .accept").prop("checked", true);
+    } else {
+      $("#waitlist .accept").prop("checked", false);
     }
   })
 
@@ -79,37 +87,17 @@ $(document).ready(function() {
   })
 
   $("#checkin-search > input[type='text']").on("input change keyup", function() {
-    if ($(this).val().trim().length == 0) {
+    let query = $(this).val().toLowerCase();
+    if (query.trim().length == 0) {
       $('#checkin-list > figure').show()
       return;
     }
     $('#checkin-list > figure').hide()
-    getUser({first_name: $(this).val().trim()}).then(function(result) {
-      if (result.length == 0) return;
-      let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.user_id : null))];
-      $('#checkin-list > figure').each(function(index, e) {
-        if (user_ids.includes($(e).attr('data-id'))) {
-          $(e).show()
-        }
-      })
-    })
-    getUser({surname: $(this).val().trim()}).then(function(result) {
-      if (result.length == 0) return;
-      let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.user_id : null))];
-      $('#checkin-list > figure').each(function(index, e) {
-        if (user_ids.includes($(e).attr('data-id'))) {
-          $(e).show()
-        }
-      })
-    })
-    getMentor({name: $(this).val().trim()}).then(function(result) {
-      if (result.length == 0) return;
-      let user_ids = [...new Set(result.map(user => (!user.outdated) ? user.mentor_id : null))];
-      $('#checkin-list > figure').each(function(index, e) {
-        if (user_ids.includes($(e).attr('data-id'))) {
-          $(e).show()
-        }
-      })
+
+    $("#checkin-list > figure .name").each(function(index, e) {
+      if ($(e).text().toLowerCase().includes(query)) {
+        $(e).closest("figure").show();
+      }
     })
   })
 
@@ -260,7 +248,7 @@ $(document).ready(function() {
 
   $(document).on('click', '.check-in', function(e) {
     var id = $(this).closest('figure').attr('data-id');
-    
+
     $(this).removeClass('check-in');
     $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
     $(this).addClass('check-out');
@@ -275,9 +263,9 @@ $(document).ready(function() {
     $(this).text('Check In');
   })
 
-  getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
-  getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
-  getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
+  // getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
+  // getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
+  // getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
 })
 
 function getPanel(panel) {
@@ -291,6 +279,34 @@ function getPanel(panel) {
   $('#' + panel).show();
   localStorage.setItem("panel", panel);
   // updateLists();
+
+  switch(panel) {
+    case "email-list":
+      getSubscribedList();
+      break;
+    case "attendee-list":
+      getList();
+      break;
+    case "acceptance-queue":
+      getAcceptedList();
+      break;
+    case "bulk-acceptance":
+      getUnacceptedList();
+      break;
+    case "dayof":
+      getCheckIn();
+      break;
+    case "mentor-list":
+      getMentorList();
+      break;
+    case "rejection-queue":
+      getRejectedList();
+      break;
+    case "waitlist":
+      getWaitlist();
+      break;
+    default: break;
+  }
 }
 
 function expandAll() {
@@ -311,7 +327,22 @@ function confirmAccept() {
         row.remove();
       });
       let id = row.attr("data-id");
-      accept(id, "queue");
+      accept(id, $("#select-status").val());
+    }
+  })
+}
+
+function acceptWaitlist() {
+  $("#waitlist-list .accept").each(function(index, element) {
+    if ($(element).is(":checked")) {
+      let row = $(element).closest(".attendees-row");
+      row.css({"background-color": "#66bb6a"});
+      row.css({"color": "white"});
+      row.slideUp(function() {
+        row.remove();
+      });
+      let id = row.attr("data-id");
+      accept(id, "accepted");
     }
   })
 }
@@ -479,7 +510,7 @@ function checkInEdit(e) {
         list.appendChild(option);
       }
 
-      modal.content.insertAdjacentHTML('afterbegin',
+      modal.container.insertAdjacentHTML('afterbegin',
         "<span id='finish-checkin-edit' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
       );
 
@@ -599,7 +630,7 @@ function checkInEdit(e) {
         list.appendChild(option);
       }
 
-      modal.content.insertAdjacentHTML('afterbegin',
+      modal.container.insertAdjacentHTML('afterbegin',
         "<span id='finish-checkin-edit' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
       );
 
@@ -701,7 +732,7 @@ function showEditPanel(e) {
         list.appendChild(option);
       }
 
-      modal.content.insertAdjacentHTML('afterbegin',
+      modal.container.insertAdjacentHTML('afterbegin',
         "<span id='finish-edit-icon' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
       );
 
@@ -821,7 +852,7 @@ function showEditPanel(e) {
         list.appendChild(option);
       }
 
-      modal.content.insertAdjacentHTML('afterbegin',
+      modal.container.insertAdjacentHTML('afterbegin',
         "<span id='finish-edit-icon' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
       );
 
