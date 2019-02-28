@@ -79,28 +79,55 @@ async function getMentorHistory(mentor_id) {
 }
 
 // For development purposes only
-async function populateUsers(n) {
-  for (var i=0; i<n; i++) {
-    signup({
-      first_name: fakeEmail(),
-      surname: fakeEmail(),
-      email: fakeEmail(),
-      age: Math.floor(Math.random() * 20),
-      school: "High School",
-      grade: Math.floor(Math.random() * 3) + 9,
-      student_phone_number: "111111111",
-      guardian_name: "Guardian Name",
-      guardian_email: fakeEmail(),
-      guardian_phone_number: "2222222222",
-      gender: "Female",
-      tshirt_size: "M",
-      previous_hackathons: Math.floor(Math.random()*10),
-      github_username: fakeEmail(),
-      linkedin_profile: fakeEmail(),
-      dietary_restrictions: "None"
-    });
+// async function populateUsers(n) {
+//   for (var i=0; i<n; i++) {
+//     signup({
+//       first_name: fakeEmail(),
+//       surname: fakeEmail(),
+//       email: fakeEmail(),
+//       age: Math.floor(Math.random() * 20),
+//       school: "High School",
+//       grade: Math.floor(Math.random() * 3) + 9,
+//       student_phone_number: "111111111",
+//       guardian_name: "Guardian Name",
+//       guardian_email: fakeEmail(),
+//       guardian_phone_number: "2222222222",
+//       gender: "Female",
+//       tshirt_size: "M",
+//       previous_hackathons: Math.floor(Math.random()*10),
+//       github_username: fakeEmail(),
+//       linkedin_profile: fakeEmail(),
+//       dietary_restrictions: "None"
+//     });
+//   }
+//   updateLists();
+// }
+
+function addTestEntry(type, n) {
+  switch(n) {
+    case "attendee":
+      for (var i=0; i<n; i++) {
+        signup({
+          first_name: "TestEntryFirst" + i,
+          surname: "TestEntryLast" + i,
+          email: fakeEmail(),
+          age: Math.floor(Math.random() * 6) + 13,
+          school: "Test High School",
+          grade: Math.floor(Math.random() * r) + 9,
+          student_phone_number: "1111111111",
+          guardian_name: "TestGuardian",
+          guardian_email: fakeEmail(),
+          guardian_phone_number: "1111111111",
+          gender: "Male",
+          tshirt_size: "M",
+          previous_hackathons: Math.floor(Math.random()*8),
+          github_username: "testgithub",
+          linkedin_profile: "https://www.linkedin.com/in/test-linkedin/",
+          diestary_restrictions: "None"
+        })
+      }
+      
   }
-  updateLists();
 }
 
 function fakeEmail() {
@@ -156,13 +183,13 @@ function request(method, url, data) {
 //   getMentorList();
 // }
 
-function logout() {
-  localStorage.removeItem('jwt_auth');
-  localStorage.removeItem('name');
-  localStorage.removeItem('prof_image');
-  window.location.href = "/login.html";
-  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
-}
+// function logout() {
+//   localStorage.removeItem('jwt_auth');
+//   localStorage.removeItem('name');
+//   localStorage.removeItem('prof_image');
+//   window.location.href = "/login.html";
+//   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
+// }
 
 function escapeHTML(s) {
   return s.replace(/[&"'<>`]/g, '');

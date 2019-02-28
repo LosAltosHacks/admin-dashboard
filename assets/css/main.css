@@ -264,7 +264,7 @@ body {
       filter: invert(1);
     }
 
-    #bulk-accept-button {
+    #bulk-accept-button, #waitlist-accept-button {
       background-color: #4db6ac;
       position: fixed;
       right: calc(20px + 3em);
@@ -280,10 +280,10 @@ body {
       height: 3em;
       padding: 0.75em;
     }
-      #bulk-accept-button:hover {
+      #bulk-accept-button:hover, #waitlist-accept-button:hover {
         transform: scale(1.2);
       }
-      #bulk-accept-button img {
+      #bulk-accept-button img, #waitlist-accept-button img {
         height: 1.5em;
         width: 1.5em;
         filter: invert(1);
@@ -371,11 +371,12 @@ body {
   width: 500px;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  max-height: 80vh;
-  overflow-y: auto;
+  height: 80vh;
 }
   .modal-content {
     padding: 10px;
+    height: 100%;
+    overflow-y: auto;
   }
 
 #history-modal li {
@@ -395,7 +396,7 @@ body {
   #attendee-checkin-modal input[type="text"], #attendee-checkin-modal input[type="number"], #attendee-checkin-modal input[type="email"], #attendee-checkin-modal input[type="tel"],
   #mentor-checkin-modal input[type="text"], #mentor-checkin-modal input[type="number"], #mentor-checkin-modal input[type="email"], #mentor-checkin-modal input[type="tel"]  {
     border: .5px solid rgba(0, 0, 0, 0.2);
-    padding: 4px;
+    padding: 4px 10px;
     border-radius: 20px;
   }
 
@@ -467,10 +468,17 @@ body {
     transition: transform .5s, filter .5s;
   }
 
+#select-status {
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border: 0;
+}
+
 .close-icon {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   width: 30px;
   height: 30px;
   padding: 5px;
@@ -490,8 +498,8 @@ body {
 
 #finish-edit-icon, #finish-checkin-edit {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 10px;
+  right: 10px;
   width: 30px;
   height: 30px;
   padding: 5px;
