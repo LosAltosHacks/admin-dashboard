@@ -1,14 +1,10 @@
-// server = "https://api.losaltoshacks.com";
-server = "http://localhost:5000";
+server = "https://api.losaltoshacks.com";
 
 // Listeners for controls
-// let jwt_auth = localStorage.jwt_auth;
-// if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
-//   window.location.href = "/login.html";
-// }
-
-// let jwt_auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imxlb0Bsb3NhbHRvc2hhY2tzLmNvbSIsImV4cGlyYXRpb24iOjE1NTE0MDM0MTg5NjcsImlzX2xhaCI6dHJ1ZX0.2oYFMyObfVrBhAmR8xbnrZ1CvsSkRnzcT8Z0x0VO6Tg";
-let jwt_auth = "foobar";
+let jwt_auth = localStorage.jwt_auth;
+if (window.location.pathname !== "/login.html" && !localStorage.jwt_auth) {
+  window.location.href = "/login.html";
+}
 
 let edited_fields = {};
 
@@ -17,8 +13,8 @@ $(document).ready(function() {
   if (localStorage.panel) getPanel(localStorage.panel);
 
   // Decorative Controls
-  // $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
-  // $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
+  $("#profile > #profile-pic").css({'background-image': "url('" + localStorage.prof_image + "')"});
+  $("#profile > span").not("#profile-pic").append("<h4>" + localStorage.name.split(' ')[0] + " " + localStorage.name.split(' ')[1].charAt(0) + ".</h4>");
 
   $("#profile > #profile-pic").hover(function() {
     $(this).css({'background-image': "url('/assets/icons/sign-out.svg')"});
@@ -912,6 +908,7 @@ function drawChart() {
     var races = {"Did Not State": 0};
     var ages = {"21+": 0};
     var dates = {};
+    var grades = {};
     if (result.length == 0) return;
 
     result.forEach(function(user) {
@@ -927,6 +924,8 @@ function drawChart() {
       var date = (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString();
       if (dates[date]) dates[date]++;
       else dates[date] = 1;
+      if (grades[user.grade]) grades[user.grade]++;
+      else grades[user.grade] = 1;
     })
 
     var genderData = new google.visualization.DataTable();
@@ -953,6 +952,14 @@ function drawChart() {
       ageData.addRow([Object.keys(ages)[i].toString(), Object.values(ages)[i]]);
     }
 
+    var gradeData = new google.visualization.DataTable();
+    gradeData.addColumn('string', 'Grade');
+    gradeData.addColumn('number', 'Count');
+
+    for (var i=0; i<Object.keys(grades).length; i++) {
+      gradeData.addRow([Object.keys(grades)[i].toString(), Object.values(grades)[i]]);
+    }
+
     var applyData = new google.visualization.DataTable();
     applyData.addColumn('date', 'Date');
     applyData.addColumn('number', 'Number of Applications');
@@ -960,8 +967,6 @@ function drawChart() {
     for (var i=0; i<Object.keys(dates).length; i++) {
       applyData.addRow([new Date(Object.keys(dates)[i]), Object.values(dates)[i]]);
     }
-
-    console.log(applyData);
 
     var genderColors = {
       'Male': '#90caf9',
@@ -1002,14 +1007,22 @@ function drawChart() {
       },
       fontName: 'Poppins'
     };
+    var gradeOptions = {
+      legend: {
+        position: 'none'
+      },
+      fontName: 'Poppins'
+    };
 
     var genderChart = new google.visualization.PieChart(document.getElementById('gender-demo'));
     var ethnicityChart = new google.visualization.PieChart(document.getElementById('race-demo'));
     var ageChart = new google.charts.Bar(document.getElementById('age-demo'));
+    var gradeChart = new google.charts.Bar(document.getElementById('grade-demo'));
 
     genderChart.draw(genderData, genderOptions);
     ethnicityChart.draw(ethnicityData, ethnicityOptions);
     ageChart.draw(ageData, google.charts.Bar.convertOptions(ageOptions));
+    gradeChart.draw(gradeData, google.charts.Bar.convertOptions(gradeOptions));
 
     var dashboard = new google.visualization.Dashboard(document.getElementById('timeline'));
     var controls = new google.visualization.ControlWrapper({
@@ -1054,19 +1067,19 @@ function drawChart() {
 }
 
 // Countdown
-var countDownDate = new Date("Mar 23, 2019 9:00:00").getTime();
-var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "EVENT STARTED";
-  }
-  // drawChart();
-}, 1000);
+// var countDownDate = new Date("Mar 23, 2019 9:00:00").getTime();
+// var x = setInterval(function() {
+//   var now = new Date().getTime();
+//   var distance = countDownDate - now;
+//   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//   document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+//   + minutes + "m " + seconds + "s ";
+//   if (distance < 0) {
+//     clearInterval(x);
+//     document.getElementById("countdown").innerHTML = "EVENT STARTED";
+//   }
+//   // drawChart();
+// }, 1000);
