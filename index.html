@@ -158,7 +158,7 @@
 
   <!-- Email List -->
   <div id="email-list" class="panel">
-    <h1>Email List <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Email List <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
 
     <div id="email-list" class="list">
     </div>
@@ -166,7 +166,7 @@
 
   <!-- Attendee List -->
   <div id="attendee-list" class="panel">
-    <h1>Attendees List (<span id="attendees-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Attendees List (<span id="attendees-count"></span>) <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="attendees-list" class="list">
       <div class="header">
         <ul>
@@ -182,7 +182,7 @@
 
   <!-- Mentor List -->
   <div id="mentor-list" class="panel">
-    <h1>Mentors List (<span id="mentors-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Mentors List (<span id="mentors-count"></span>) <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="mentors-list" class="list">
       <div class="header">
         <ul>
@@ -198,7 +198,7 @@
 
   <!-- Acceptance Queue -->
   <div id="acceptance-queue" class="panel">
-    <h1>Acceptance Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Acceptance Queue <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="accepted-list" class="list">
       <div class="header">
         <ul>
@@ -214,7 +214,7 @@
 
   <!-- Rejection Queue -->
   <div id="rejection-queue" class="panel">
-    <h1>Rejection Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Rejection Queue <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="rejected-list" class="list">
       <div class="header">
         <ul>
@@ -230,7 +230,16 @@
 
   <!-- Bulk Acceptance Queue -->
   <div id="bulk-acceptance" class="panel">
-    <h1>Acceptance Panel <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Acceptance Panel <select id="acceptance-sort">
+        <option value="" selected="selected">Sort By</option>
+        <option value="gender">Gender</option>
+        <option value="race">Ethnicity</option>
+        <option value="grade">Grade</option>
+        <option value="age">Age</option>
+        <option value="school">School</option>
+        <option value="signed-waiver">Waiver</option>
+        <option value="email-verified">Email Verification</option>
+      <select><!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="unaccepted-list" class="list">
       <div class="header">
         <ul>
