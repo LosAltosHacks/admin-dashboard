@@ -5,6 +5,12 @@ async function signup(user) {
   return result;
 }
 
+async function guestSignUp(guest) {
+  if (!guest.kind || !guest.name || !guest.phone || !guest.email) return false;
+  let result = await request("POST", "/guest/v1/signup", guest);
+  return result;
+}
+
 async function checkin(user_id, badge_data) {
   let result = await request("POST", "/registration/v1/sign-in", {user_id: user_id, badge_data: badge_data});
   return result;
@@ -69,7 +75,7 @@ async function getMentor(query) {
 }
 
 async function listVIP() {
-  let result = await request("GET", "/chaperone/v1/list");
+  let result = await request("GET", "/guest/v1/list");
   return result;
 }
 

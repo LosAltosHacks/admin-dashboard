@@ -128,6 +128,9 @@ body {
   .guest-row {
     list-style-type: none;
   }
+  .guest-row:hover {
+    /* filter: brightness(1.2); */
+  }
   .guest-row > ul {
     padding-left: 0;
     padding: 5px;
@@ -188,6 +191,35 @@ body {
 #add-vip-form > ul > li {
   list-style-type: none;
   margin: 10px 0;
+}
+
+#edit-guest {
+  width: 30px;
+  height: 30px;
+  display: block;
+  padding: 5px;
+  background-color: #1e88e5;
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  transition: transform .5s;
+  cursor: pointer;
+}
+  #edit-guest:hover {
+    transform: scale(1.1);
+  }
+#edit-guest > img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+}
+
+#acceptance-sort {
+  font-family: 'Poppins', sans-serif;
+  font-size: .5em;
+  margin: 0 20px;
+  padding: 5px;
+  border-radius: calc(.5em + 10px);
 }
 
 .sync {

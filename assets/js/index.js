@@ -43,6 +43,28 @@ $(document).ready(function() {
     $("#menu-panel").animate({"width": "toggle"});
   })
 
+  $("#add-vip").click(function(e) {
+    e.stopPropagation();
+    $(".modal").remove();
+    addVIPForm()
+  });
+
+  $(document).on("click", "#finish-add-vip", function() {
+    var type = $(this).closest('.modal').find('select').val();
+    var name = $(this).closest('.modal').find('input[name="name"]').val();
+    var phone = $(this).closest('.modal').find('input[name="phone"]').val();
+    var email = $(this).closest('.modal').find('input[name="email"]').val();
+    if (name.trim().length == 0 || phone.trim().length == 0 || email.trim().length == 0) alert("Please complete all fields!")
+    else {
+      guestSignUp({kind: type, name: name, phone: phone, email: email}).then(function() {
+        getVIP();
+      });
+      $(".modal").animate({"height": "toggle"}, function() {
+        $(".modal").remove();
+      })
+    }
+  })
+
   $("body > div").not("#menu").click(function() {
     if ($("#menu-panel").css("display") === "block" && $("#menu-panel").width() == $("#menu-panel").parent().width()) {
       $("#menu-panel").animate({"width": "toggle"});
@@ -50,6 +72,7 @@ $(document).ready(function() {
   })
 
   $("body > div").not(".modal").click(function() {
+    console.log('hi');
     $(".modal").animate({"height": "toggle"}, function() {
       $(".modal").remove();
     })
@@ -222,6 +245,14 @@ $(document).ready(function() {
     }
   })
 
+  $("#acceptance-sort").change(function() {
+    if ($("#acceptance-sort").val() === "") {
+      getUnacceptedList();
+      return;
+    }
+    bulkAcceptSort($("#acceptance-sort").val());
+  })
+
   $("#themes .slider").click(function() {
     $("body").toggleClass("dark").toggleClass("");
     if ($("body").hasClass("dark")) localStorage.setItem('theme', 'dark');
@@ -370,9 +401,31 @@ function createModal() {
 }
 
 function addVIPForm() {
-  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Special Guest</h2><form id='add-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
+  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Special Guest</h2><form id='add-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li></ul></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
   $modal.appendTo('body');
   $(".modal").animate({"height": "toggle"})
+}
+
+function editVIP(id) {
+  // var response = await
+  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Special Guest</h2><form id='edit-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li><li>Waiver Signed: <input type='checkbox' name='signed_waiver'></li></ul></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
+
+}
+
+function bulkAcceptSort(field) {
+  var values = [];
+  $("#unaccepted-list .attendees-row").each(function(index, e) {
+    values.push([$(e).find('.' + field).text().replace(/^(.*?)\: /, ""), $(e).attr('data-id')]);
+  })
+  values.sort();
+  var elems = [];
+  values.forEach(function(value) {
+    elems.push($("#unaccepted-list").find(".attendees-row[data-id='" + value[1] + "']"));
+  })
+  $("#unaccepted-list .attendees-row").remove();
+  elems.forEach(function($elem) {
+    $elem.appendTo("#unaccepted-list");
+  })
 }
 
 // function showDetails(e) {
