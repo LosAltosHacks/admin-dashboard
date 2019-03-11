@@ -76,6 +76,15 @@ async function getList() {
   })
 }
 
+async function getVIP() {
+  let response = await listVIP();
+  $('#attendee-list .attendees-row, #attendee-list > p').remove();
+  if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#vip');
+  response.forEach(function(guest) {
+    $("<li class='guest-row " + guest.kind + "'><ul><li>" + guest.kind.slice(0, 1).toUpperCase() + guest.kind.slice(1) + "</li><li>" + guest.name + "</li><li>" + guest.phone + "</li><li>" + guest.email + "</li><li>" + (guest.signed_waiver ? "Yes" : "No") + "</li></ul></li>").appendTo('#vip-list > ul');
+  })
+}
+
 async function getAcceptedList() {
   let response = await getUser({acceptance_status: "accepted"});
   $('#acceptance-queue .attendees-row, #acceptance-queue > p').remove();

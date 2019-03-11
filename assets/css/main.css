@@ -121,6 +121,75 @@ body {
         }
     }
 
+#vip-list > ul {
+  padding: 0;
+  margin: 0;
+}
+  .guest-row {
+    list-style-type: none;
+  }
+  .guest-row > ul {
+    padding-left: 0;
+    padding: 5px;
+    width: calc(100% - 1.2em);
+    margin: 0;
+    display: inline-block;
+    margin-left: 5px;
+  }
+  .guest-row li {
+    list-style-type: none;
+    display: inline-block;
+    word-break: break-all;
+  }
+  .guest-row li:nth-child(1) { width: 15%; }
+  .guest-row li:nth-child(2) { width: 20%; }
+  .guest-row li:nth-child(3) { width: 20%; }
+  .guest-row li:nth-child(4) { width: 30%; }
+  .guest-row li:nth-child(5) { width: calc(15% - 1.2em); }
+  .judge { background-color: #64dad3; }
+  .chaperone { background-color: #cca0f7; }
+  .sponsor { background-color: #a6f7a0; }
+
+#add-vip {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  background-color: #1e88e5;
+  margin: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  transition: transform .5s;
+}
+  #add-vip:hover {
+    transform: scale(1.2);
+  }
+  #add-vip > img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+  }
+
+#add-vip-form select, #add-vip-form input {
+  margin-left: 5px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 1em;
+  border: .5px solid #ccc;
+  height: 2em;
+  padding: 0 10px;
+  outline: none;
+}
+#add-vip-form > ul {
+  margin: 0;
+  padding: 5px;
+}
+#add-vip-form > ul > li {
+  list-style-type: none;
+  margin: 10px 0;
+}
+
 .sync {
   margin-left: 5px;
   cursor: pointer;
@@ -496,7 +565,7 @@ body {
   filter: invert(1);
 }
 
-#finish-edit-icon, #finish-checkin-edit {
+#finish-edit-icon, #finish-checkin-edit, #finish-add-vip {
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -508,10 +577,10 @@ body {
   cursor: pointer;
   transition: transform .5s;
 }
-#finish-edit-icon:hover, #finish-checkin-edit:hover {
+#finish-edit-icon:hover, #finish-checkin-edit:hover, #finish-add-vip:hover {
   transform: scale(1.2);
 }
-#finish-edit-icon img, #finish-checkin-edit img {
+#finish-edit-icon img, #finish-checkin-edit img, #finish-add-vip img {
   height: 20px;
   width: 20px;
   filter: invert(1);

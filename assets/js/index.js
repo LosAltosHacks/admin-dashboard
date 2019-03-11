@@ -281,6 +281,9 @@ function getPanel(panel) {
   // updateLists();
 
   switch(panel) {
+    case "vip":
+      getVIP();
+      break;
     case "email-list":
       getSubscribedList();
       break;
@@ -364,6 +367,12 @@ function createModal() {
   modal.style.display = "none";
   if ($('.modal').length) $('.modal').remove();
   return {container: modal, content: content};
+}
+
+function addVIPForm() {
+  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Special Guest</h2><form id='add-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
+  $modal.appendTo('body');
+  $(".modal").animate({"height": "toggle"})
 }
 
 // function showDetails(e) {
