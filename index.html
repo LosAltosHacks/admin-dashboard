@@ -20,8 +20,10 @@
         <span></span>
       </div>
       <div>
+        <h2>Day Of</h2>
         <ul>
-          <li onclick="getPanel('dayof')">Day Of</li>
+          <li onclick="getPanel('dayof')">Check In</li>
+          <li onclick="getPanel('vip')">VIP</li>
         </ul>
         <h2>Attendees</h2>
         <ul>
@@ -36,10 +38,6 @@
         <h2>Mentors</h2>
         <ul>
           <li onclick="getPanel('mentor-list')">Mentors List</li>
-        </ul>
-        <h2>Others</h2>
-        <ul>
-          <li onclick="getPanel('chaperones')">Chaperones</li>
         </ul>
         <h2>Tools</h2>
         <ul>
@@ -139,6 +137,25 @@
     </div>
   </div>
 
+  <!-- VIP List -->
+  <div id="vip" class="panel">
+    <h1>Special Guests (VIPs)</h1>
+    <div id="vip-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Type</li><li>
+          Full Name</li><li>
+          Phone</li><li>
+          Email</li><li>
+          Signed Waiver</li>
+        </ul>
+      </div>
+      <ul>
+      </ul>
+    </div>
+    <div id="add-vip"><img src="./assets/icons/add.svg"></div>
+  </div>
+
   <!-- Email List -->
   <div id="email-list" class="panel">
     <h1>Email List <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
@@ -172,22 +189,6 @@
           <li>Accepted?</li><li>
           Full Name</li><li>
           Phone Number</li><li>
-          Email</li><li>
-          Registration Date</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Chaperones List -->
-  <div id="chaperones" class="panel">
-    <h1>Attendees List (<span id="attendees-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
-    <div id="chaperones-list" class="list">
-      <div class="header">
-        <ul>
-          <li>Accepted?</li><li>
-          Full Name</li><li>
-          Last Name</li><li>
           Email</li><li>
           Registration Date</li>
         </ul>

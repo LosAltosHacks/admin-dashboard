@@ -68,6 +68,11 @@ async function getMentor(query) {
   return result;
 }
 
+async function listVIP() {
+  let result = await request("GET", "/chaperone/v1/list");
+  return result;
+}
+
 async function getHistory(user_id) {
   let result = await request("GET", "/registration/v1/history/" + user_id);
   return result;
@@ -126,7 +131,7 @@ function addTestEntry(type, n) {
           diestary_restrictions: "None"
         })
       }
-      
+
   }
 }
 
@@ -183,13 +188,13 @@ function request(method, url, data) {
 //   getMentorList();
 // }
 
-// function logout() {
-//   localStorage.removeItem('jwt_auth');
-//   localStorage.removeItem('name');
-//   localStorage.removeItem('prof_image');
-//   window.location.href = "/login.html";
-//   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
-// }
+function logout() {
+  localStorage.removeItem('jwt_auth');
+  localStorage.removeItem('name');
+  localStorage.removeItem('prof_image');
+  window.location.href = "/login.html";
+  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
+}
 
 function escapeHTML(s) {
   return s.replace(/[&"'<>`]/g, '');
