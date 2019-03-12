@@ -81,7 +81,7 @@ async function getVIP() {
   $('.guest-row, #vip > p').remove();
   if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#vip');
   response.forEach(function(guest) {
-    $("<li data-id='" + guest.guest_id + "' class='guest-row " + guest.kind + "'><span id='edit-guest'><img src='/assets/icons/user-edit.svg'></span><ul><li>" + guest.kind.slice(0, 1).toUpperCase() + guest.kind.slice(1) + "</li><li>" + guest.name + "</li><li>" + guest.phone + "</li><li>" + guest.email + "</li><li>" + (guest.signed_waiver ? "Yes" : "No") + "</li></ul></li>").appendTo('#vip-list > ul');
+    $("<li data-id='" + guest.guest_id + "' class='guest-row " + guest.kind + "'><span class='edit-guest'><img src='/assets/icons/user-edit.svg'></span><ul><li>" + guest.kind.slice(0, 1).toUpperCase() + guest.kind.slice(1) + "</li><li>" + guest.name + "</li><li>" + guest.phone + "</li><li>" + guest.email + "</li><li>" + (guest.signed_waiver ? "Yes" : "No") + "</li></ul></li>").appendTo('#vip-list > ul');
   })
 }
 
@@ -370,10 +370,12 @@ async function getMentorList() {
 }
 
 async function getCheckIn() {
-  let attendees = await request("GET", "/registration/v1/list");
+  let attendees = await getUser({"acceptance_status": "accepted"});
+  let waitlisted_attendees = await getUser({"acceptance_status": "waitlisted"})
+  attendees = attendees.concat(waitlisted_attendees);
   $("#checkin-list figure").remove();
   attendees.forEach(function(user) {
-    $figure = $('<figure><img src="/assets/icons/attendee.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
+    $figure = $('<figure><span class="checkin-accept-status" title="' + (user.acceptance_status === "accepted" ? "This attendee has been accepted." : "This attendee is in the waitlist") + '"><img src="/assets/icons/' + user.acceptance_status + '.svg"></span><img src="/assets/icons/attendee.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
     $figure.addClass('attendee');
     $figure.attr('data-id', user.user_id);
     $figure.find('.name').text(user.first_name + " " + user.surname);
@@ -381,13 +383,25 @@ async function getCheckIn() {
     $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
     $figure.appendTo("#checkin-list");
   })
-  let mentors = await request("GET", "/mentor/v1/list");
+  let mentors = await getMentor({"acceptance_status": "accepted"});
+  let waitlisted_mentors = await getMentor({"acceptance_status": "waitlisted"})
+  mentors = mentors.concat(waitlisted_mentors);
   mentors.forEach(function(user) {
     $figure = $('<figure><img src="/assets/icons/mentor.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
     $figure.addClass('mentor');
     $figure.attr('data-id', user.mentor_id);
     $figure.find('.name').text(user.name);
     $figure.find('.age').text(user.over_18 ? "Over 18" : "Underaged");
+    $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
+    $figure.appendTo("#checkin-list");
+  })
+  let guests = await request("GET", "/guest/v1/list");
+  guests.forEach(function(user) {
+    $figure = $('<figure><img src="/assets/icons/' + user.kind + '.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="guest-type"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
+    $figure.addClass(user.kind);
+    $figure.attr('data-id', user.guest_id);
+    $figure.find('.name').text(user.name);
+    $figure.find('.guest-type').text(user.kind.slice(0, 1).toUpperCase() + user.kind.slice(1));
     $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
     $figure.appendTo("#checkin-list");
   })

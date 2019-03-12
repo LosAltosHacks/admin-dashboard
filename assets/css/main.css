@@ -149,9 +149,9 @@ body {
   .guest-row li:nth-child(3) { width: 20%; }
   .guest-row li:nth-child(4) { width: 30%; }
   .guest-row li:nth-child(5) { width: calc(15% - 1.2em); }
-  .judge { background-color: #64dad3; }
-  .chaperone { background-color: #cca0f7; }
-  .sponsor { background-color: #a6f7a0; }
+  .guest-row.judge { background-color: #64dad3; }
+  .guest-row.chaperone { background-color: #cca0f7; }
+  .guest-row.sponsor { background-color: #a6f7a0; }
 
 #add-vip {
   width: 40px;
@@ -175,7 +175,7 @@ body {
     filter: invert(1);
   }
 
-#add-vip-form select, #add-vip-form input {
+#add-vip-form select, #add-vip-form input, #edit-vip-form select, #edit-vip-form input {
   margin-left: 5px;
   font-family: 'Poppins', sans-serif;
   border-radius: 1em;
@@ -184,16 +184,38 @@ body {
   padding: 0 10px;
   outline: none;
 }
-#add-vip-form > ul {
+#add-vip-form > ul, #edit-vip-form > ul {
   margin: 0;
   padding: 5px;
 }
-#add-vip-form > ul > li {
+#add-vip-form > ul > li, #edit-vip-form > ul > li {
   list-style-type: none;
   margin: 10px 0;
 }
+#edit-vip-form input[type='checkbox'] {
+  margin: 0;
+  height: 1em;
+  margin-left: 10px;
+}
+#delete-guest {
+  margin-left: 5px;
+  background-color: #e53935;
+  padding: 5px;
+  display: block;
+  width: 100px;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform .5s, box-shadow .5s;
+}
+  #delete-guest:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  }
 
-#edit-guest {
+.edit-guest {
   width: 30px;
   height: 30px;
   display: block;
@@ -205,10 +227,10 @@ body {
   transition: transform .5s;
   cursor: pointer;
 }
-  #edit-guest:hover {
+  .edit-guest:hover {
     transform: scale(1.1);
   }
-#edit-guest > img {
+.edit-guest > img {
   width: 20px;
   height: 20px;
   filter: invert(1);
@@ -597,7 +619,7 @@ body {
   filter: invert(1);
 }
 
-#finish-edit-icon, #finish-checkin-edit, #finish-add-vip {
+#finish-edit-icon, #finish-checkin-edit, #finish-add-vip, #finish-edit-vip {
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -609,10 +631,10 @@ body {
   cursor: pointer;
   transition: transform .5s;
 }
-#finish-edit-icon:hover, #finish-checkin-edit:hover, #finish-add-vip:hover {
+#finish-edit-icon:hover, #finish-checkin-edit:hover, #finish-add-vip:hover, #finish-edit-vip:hover {
   transform: scale(1.2);
 }
-#finish-edit-icon img, #finish-checkin-edit img, #finish-add-vip img {
+#finish-edit-icon img, #finish-checkin-edit img, #finish-add-vip img, #finish-edit-vip img {
   height: 20px;
   width: 20px;
   filter: invert(1);
@@ -931,6 +953,17 @@ body.dark {
   .check-out:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+  }
+
+.checkin-accept-status {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  opacity: .3;
+  transition: transform .5s;
+}
+  .checkin-accept-status:hover {
+    transform: scale(1.2);
   }
 
 #data-panel {

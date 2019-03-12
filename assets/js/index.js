@@ -72,7 +72,6 @@ $(document).ready(function() {
   })
 
   $("body > div").not(".modal").click(function() {
-    console.log('hi');
     $(".modal").animate({"height": "toggle"}, function() {
       $(".modal").remove();
     })
@@ -215,11 +214,17 @@ $(document).ready(function() {
     }
   })
 
-  $(document).on('change', "#edit-modal li *, #mentor-edit-modal li *", function() {
+  $(document).on('input change', "#edit-modal li *, #mentor-edit-modal li *", function() {
     var field_name = $(this).closest("li").text().split(":")[0];
     let field_val;
     if ($(this).attr('type') === "checkbox") field_val = $(this).is(":checked");
     else field_val = $(this).val();
+    edited_fields[field_name] = field_val;
+  })
+
+  $(document).on('input change', "#edit-vip-form li *", function() {
+    var field_name = $(this).attr('name');
+    var field_val = $(this).attr('type') === "checkbox" ? $(this).is(":checked") : $(this).val();
     edited_fields[field_name] = field_val;
   })
 
@@ -230,7 +235,7 @@ $(document).ready(function() {
         edited_fields = {};
         $(".modal").animate({"height": "toggle"}, function() {
           $(".modal").remove();
-          updateLists();
+          getMentorList();
         })
       })
     }
@@ -239,10 +244,19 @@ $(document).ready(function() {
         edited_fields = {};
         $(".modal").animate({"height": "toggle"}, function() {
           $(".modal").remove();
-          updateLists();
         })
       })
     }
+  })
+
+  $(document).on('click', "#finish-edit-vip", function() {
+    modifyGuest($(this).closest(".modal").attr("data-id"), edited_fields).then(function(result) {
+      edited_fields = {};
+      $(".modal").animate({"height": "toggle"}, function() {
+        $(".modal").remove();
+        getVIP();
+      })
+    })
   })
 
   $("#acceptance-sort").change(function() {
@@ -292,6 +306,26 @@ $(document).ready(function() {
     $(this).closest('figure').find('img').css("animation", "checkout .8s alternate-reverse");
     $(this).addClass('check-in');
     $(this).text('Check In');
+  })
+
+  $(document).on('click', '.edit-guest', function(e) {
+    var id = $(this).closest('.guest-row').attr('data-id');
+    editVIP(id);
+  })
+
+  $(document).on('click', '#delete-guest', function(e) {
+    let id = $(this).closest('.modal').attr('data-id');
+    if (confirm("Are you sure you want to delete guest <" + id + ">?")) {
+      removeGuest(id).then(function() {
+        $('.modal').animate({"height": "toggle"}, function() {
+          $('.modal').remove();
+        })
+        $('.guest-row[data-id="' + id + '"]').css({"background-color": "#e53935"});
+        $('.guest-row[data-id="' + id + '"]').animate({"height": "toggle"}, function() {
+          $('.guest-row[data-id="' + id + '"]').remove();
+        })
+      })
+    }
   })
 
   // getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
@@ -401,14 +435,24 @@ function createModal() {
 }
 
 function addVIPForm() {
-  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Special Guest</h2><form id='add-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li></ul></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
+  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Guest</h2><form id='add-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li></ul></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
   $modal.appendTo('body');
   $(".modal").animate({"height": "toggle"})
 }
 
 function editVIP(id) {
   // var response = await
-  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Special Guest</h2><form id='edit-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li><li>Waiver Signed: <input type='checkbox' name='signed_waiver'></li></ul></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
+  var $modal = $("<div class='modal' style='display:none' data-id='" + id + "'><div class='modal-content'><h2>Modify Guest</h2><form id='edit-vip-form'><ul><li>Type: <select id='guest-type' name='kind'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li><li>Waiver Signed: <input type='checkbox' name='signed_waiver'></li></ul></form><span id='delete-guest'>Delete</span></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-edit-vip' title='Finish Editing Guest Info'><img src='/assets/icons/check.svg'></span></div>")
+  getGuest(id).then(function(guests) {
+    guest = guests[0];
+    $modal.find("select").val(guest.kind);
+    $modal.find("input[name='name']").val(guest.name);
+    $modal.find("input[name='email']").val(guest.email);
+    $modal.find("input[name='phone']").val(guest.phone);
+    // $modal.find("input[name='signed_waiver']")
+    $modal.appendTo('body');
+    $(".modal").animate({"height": "toggle"});
+  });
 
 }
 
