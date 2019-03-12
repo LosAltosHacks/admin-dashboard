@@ -11,6 +11,21 @@ async function guestSignUp(guest) {
   return result;
 }
 
+async function getGuest(query) {
+  let result = await request("POST", "/guest/v1/search", {query: query});
+  return result;
+}
+
+async function modifyGuest(guest_id, params) {
+  let result = await request("POST", "/guest/v1/modify/" + guest_id, params);
+  return result;
+}
+
+async function removeGuest(guest_id) {
+  let result = await request("GET", "/guest/v1/delete/" + guest_id);
+  return result;
+}
+
 async function checkin(user_id, badge_data) {
   let result = await request("POST", "/registration/v1/sign-in", {user_id: user_id, badge_data: badge_data});
   return result;
