@@ -1,32 +1,14 @@
 async function exportEmails() {
   var copyText = "";
-
-  let result = await getUser({acceptance_status: "queue"});
-  result.forEach(function(user) {
-    copyText += user.email + "\n";
+  $("#accepted-list .attendees-row summary li:nth-child(4)").each(function(i, e) {
+    copyText += $(e).text() + "\n";
   })
-
-  var modal = createModal();
-
-  var copyField = document.createElement("textarea");
-  copyField.id = "copy-field";
-  copyField.value = copyText;
-  var copyIcon = document.createElement("img");
-  copyIcon.src = "/assets/icons/copy.svg";
-  var copyIconWrapper = document.createElement("span");
-  copyIconWrapper.id = "copy-icon";
-  copyIconWrapper.appendChild(copyIcon);
-  var confirmIcon = document.createElement("img");
-  confirmIcon.src = "/assets/icons/check.svg";
-  var confirmIconWrapper = document.createElement("span");
-  confirmIconWrapper.id = "confirm-accept-icon";
-  confirmIconWrapper.appendChild(confirmIcon);
-
-  modal.content.appendChild(copyField);
-  modal.content.appendChild(copyIconWrapper);
-  modal.content.appendChild(confirmIconWrapper);
-  document.body.appendChild(modal.container);
-  $(".modal").animate({"height": "toggle"})
+  $("<textarea id='copy-text' type='text' style='position:absolute;top:1px;left:1px'></textarea>").appendTo('body');
+  $('#copy-text').val(copyText);
+  $('#copy-text').select();
+  document.execCommand('copy');
+  $('#copy-text').remove();
+  alert('Emails added to clipboard! Here are the emails you have copied:\n' + copyText);
 }
 
 async function exportSubEmails() {
@@ -45,7 +27,7 @@ async function exportSubEmails() {
   var copyIcon = document.createElement("img");
   copyIcon.src = "/assets/icons/copy.svg";
   var copyIconWrapper = document.createElement("span");
-  copyIconWrapper.id = "copy-icon";
+  copyIconWrapper.id = "";
   copyIconWrapper.appendChild(copyIcon);
 
   modal.content.appendChild(copyField);
