@@ -86,7 +86,7 @@ async function getVIP() {
 }
 
 async function getAcceptedList() {
-  let response = await getUser({acceptance_status: "accepted"});
+  let response = await getUser({acceptance_status: "queue"});
   $('#acceptance-queue .attendees-row, #acceptance-queue > p').remove();
   if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#acceptance-queue')
   response.forEach(function(user) {
