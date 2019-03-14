@@ -20,15 +20,20 @@
         <span></span>
       </div>
       <div>
+        <h2>Day Of</h2>
+        <ul>
+          <li onclick="getPanel('dayof')">Check In</li>
+          <li onclick="getPanel('vip')">Guests</li>
+        </ul>
         <h2>Attendees</h2>
         <ul>
           <li onclick="getPanel('email-list')">Email List</li>
           <li onclick="getPanel('attendee-list')">Attendees List</li>
           <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
+          <li onclick="getPanel('rejection-queue')">Rejection Queue</li>
+          <li onclick="getPanel('waitlist')">Waitlist</li>
           <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
           <li onclick="getPanel('statistics')">Statistics</li>
-          <!-- Until Check-in gets implemented -->
-          <!-- <li onclick="getPanel('check-in')">Check-In Panel</li> -->
         </ul>
         <h2>Mentors</h2>
         <ul>
@@ -121,9 +126,39 @@
     </div>
   </template>
 
+  <div id="dayof" class="panel">
+    <h1>Day Of Check-In</h1>
+
+    <div id="checkin-search">
+      <input type="text" placeholder="Attendee">
+    </div>
+
+    <div id="checkin-list">
+    </div>
+  </div>
+
+  <!-- VIP List -->
+  <div id="vip" class="panel">
+    <h1>Guests</h1>
+    <div id="vip-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Type</li><li>
+          Full Name</li><li>
+          Phone</li><li>
+          Email</li><li>
+          Signed Waiver</li>
+        </ul>
+      </div>
+      <ul>
+      </ul>
+    </div>
+    <div id="add-vip"><img src="./assets/icons/add.svg"></div>
+  </div>
+
   <!-- Email List -->
   <div id="email-list" class="panel">
-    <h1>Email List <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Email List <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
 
     <div id="email-list" class="list">
     </div>
@@ -131,12 +166,12 @@
 
   <!-- Attendee List -->
   <div id="attendee-list" class="panel">
-    <h1>Attendees List (<span id="attendees-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Attendees List (<span id="attendees-count"></span>) <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="attendees-list" class="list">
       <div class="header">
         <ul>
           <li>Accepted?</li><li>
-          Full Name</li><li>
+          First Name</li><li>
           Last Name</li><li>
           Email</li><li>
           Registration Date</li>
@@ -145,9 +180,9 @@
     </div>
   </div>
 
-  <!-- Attendee List -->
+  <!-- Mentor List -->
   <div id="mentor-list" class="panel">
-    <h1>Mentors List (<span id="mentors-count"></span>) <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Mentors List (<span id="mentors-count"></span>) <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="mentors-list" class="list">
       <div class="header">
         <ul>
@@ -163,8 +198,24 @@
 
   <!-- Acceptance Queue -->
   <div id="acceptance-queue" class="panel">
-    <h1>Acceptance Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Acceptance Queue <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="accepted-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Acceptance Status</li><li>
+          First Name</li><li>
+          Last Name</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rejection Queue -->
+  <div id="rejection-queue" class="panel">
+    <h1>Rejection Queue <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
+    <div id="rejected-list" class="list">
       <div class="header">
         <ul>
           <li>Acceptance Status</li><li>
@@ -179,11 +230,27 @@
 
   <!-- Bulk Acceptance Queue -->
   <div id="bulk-acceptance" class="panel">
-    <h1>Acceptance Panel <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Acceptance Panel <select id="acceptance-sort">
+        <option value="" selected="selected">Sort By</option>
+        <option value="gender">Gender</option>
+        <option value="race">Ethnicity</option>
+        <option value="grade">Grade</option>
+        <option value="age">Age</option>
+        <option value="school">School</option>
+        <option value="signed-waiver">Waiver</option>
+        <option value="email-verified">Email Verification</option>
+      <select><!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
     <div id="unaccepted-list" class="list">
       <div class="header">
         <ul>
-          <li>Accept<input id="select-all" type="checkbox"></li><li>
+          <li>
+            <select id="select-status">
+              <option value="accepted">Accept</option>
+              <option value="waitlisted">Waitlist</option>
+              <option value="rejected">Reject</option>
+            </select>
+            <input id="select-all" type="checkbox">
+          </li><li>
           First Name</li><li>
           Last Name</li><li>
           Email</li><li>
@@ -192,6 +259,26 @@
       </div>
     </div>
     <span id="bulk-accept-button" onclick="confirmAccept();"><img src="/assets/icons/check.svg"></span>
+  </div>
+
+  <!-- Waitlist -->
+  <div id="waitlist" class="panel">
+    <h1>Waitlist <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="waitlist-list" class="list">
+      <div class="header">
+        <ul>
+          <li>
+            Accept
+            <input id="waitlist-select-all" type="checkbox">
+          </li><li>
+          First Name</li><li>
+          Last Name</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
+    <span id="waitlist-accept-button" onclick="acceptWaitlist();"><img src="/assets/icons/check.svg"></span>
   </div>
 
   <!-- Statistics -->
@@ -229,6 +316,12 @@
           <h4>Age Demographics</h4>
           <div class="chart-wrapper">
             <div id="age-demo" class="graph"></div>
+          </div>
+        </div>
+        <div class="data-card">
+          <h4>Grades Distribution</h4>
+          <div class="chart-wrapper">
+            <div id="grade-demo" class="graph"></div>
           </div>
         </div>
       </div>

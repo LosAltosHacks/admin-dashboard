@@ -121,6 +121,129 @@ body {
         }
     }
 
+#vip-list > ul {
+  padding: 0;
+  margin: 0;
+}
+  .guest-row {
+    list-style-type: none;
+  }
+  .guest-row:hover {
+    /* filter: brightness(1.2); */
+  }
+  .guest-row > ul {
+    padding-left: 0;
+    padding: 5px;
+    width: calc(100% - 1.2em);
+    margin: 0;
+    display: inline-block;
+    margin-left: 5px;
+  }
+  .guest-row li {
+    list-style-type: none;
+    display: inline-block;
+    word-break: break-all;
+  }
+  .guest-row li:nth-child(1) { width: 15%; }
+  .guest-row li:nth-child(2) { width: 20%; }
+  .guest-row li:nth-child(3) { width: 20%; }
+  .guest-row li:nth-child(4) { width: 30%; }
+  .guest-row li:nth-child(5) { width: calc(15% - 1.2em); }
+  .guest-row.judge { background-color: #64dad3; }
+  .guest-row.chaperone { background-color: #cca0f7; }
+  .guest-row.sponsor { background-color: #a6f7a0; }
+
+#add-vip {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  background-color: #1e88e5;
+  margin: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  transition: transform .5s;
+}
+  #add-vip:hover {
+    transform: scale(1.2);
+  }
+  #add-vip > img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+  }
+
+#add-vip-form select, #add-vip-form input, #edit-vip-form select, #edit-vip-form input {
+  margin-left: 5px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 1em;
+  border: .5px solid #ccc;
+  height: 2em;
+  padding: 0 10px;
+  outline: none;
+}
+#add-vip-form > ul, #edit-vip-form > ul {
+  margin: 0;
+  padding: 5px;
+}
+#add-vip-form > ul > li, #edit-vip-form > ul > li {
+  list-style-type: none;
+  margin: 10px 0;
+}
+#edit-vip-form input[type='checkbox'] {
+  margin: 0;
+  height: 1em;
+  margin-left: 10px;
+}
+#delete-guest {
+  margin-left: 5px;
+  background-color: #e53935;
+  padding: 5px;
+  display: block;
+  width: 100px;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform .5s, box-shadow .5s;
+}
+  #delete-guest:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  }
+
+.edit-guest {
+  width: 30px;
+  height: 30px;
+  display: block;
+  padding: 5px;
+  background-color: #1e88e5;
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  transition: transform .5s;
+  cursor: pointer;
+}
+  .edit-guest:hover {
+    transform: scale(1.1);
+  }
+.edit-guest > img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+}
+
+#acceptance-sort {
+  font-family: 'Poppins', sans-serif;
+  font-size: .5em;
+  margin: 0 20px;
+  padding: 5px;
+  border-radius: calc(.5em + 10px);
+}
+
 .sync {
   margin-left: 5px;
   cursor: pointer;
@@ -264,7 +387,7 @@ body {
       filter: invert(1);
     }
 
-    #bulk-accept-button {
+    #bulk-accept-button, #waitlist-accept-button {
       background-color: #4db6ac;
       position: fixed;
       right: calc(20px + 3em);
@@ -280,10 +403,10 @@ body {
       height: 3em;
       padding: 0.75em;
     }
-      #bulk-accept-button:hover {
+      #bulk-accept-button:hover, #waitlist-accept-button:hover {
         transform: scale(1.2);
       }
-      #bulk-accept-button img {
+      #bulk-accept-button img, #waitlist-accept-button img {
         height: 1.5em;
         width: 1.5em;
         filter: invert(1);
@@ -371,28 +494,32 @@ body {
   width: 500px;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  max-height: 80vh;
-  overflow-y: auto;
+  height: 80vh;
 }
   .modal-content {
     padding: 10px;
+    height: 100%;
+    overflow-y: auto;
   }
 
 #history-modal li {
   list-style-type: none;
 }
-#edit-modal li {
+#edit-modal li, #mentor-edit-modal li, #attendee-checkin-modal li, #mentor-checkin-modal li {
   list-style-type: none;
   padding-top: 2px;
   padding-bottom: 2px;
 }
-  #edit-modal li * {
+  #edit-modal li *, #mentor-edit-modal li *, #attendee-checkin-modal li *, #mentor-checkin-modal il * {
     font-family: "Poppins", Fallback, sans-serif;
     outline: none;
   }
-  #edit-modal input[type="text"], #edit-modal input[type="number"], #edit-modal input[type="email"], #edit-modal input[type="tel"] {
+  #edit-modal input[type="text"], #edit-modal input[type="number"], #edit-modal input[type="email"], #edit-modal input[type="tel"],
+  #mentor-edit-modal input[type="text"], #mentor-edit-modal input[type="number"], #mentor-edit-modal input[type="email"], #mentor-edit-modal input[type="tel"],
+  #attendee-checkin-modal input[type="text"], #attendee-checkin-modal input[type="number"], #attendee-checkin-modal input[type="email"], #attendee-checkin-modal input[type="tel"],
+  #mentor-checkin-modal input[type="text"], #mentor-checkin-modal input[type="number"], #mentor-checkin-modal input[type="email"], #mentor-checkin-modal input[type="tel"]  {
     border: .5px solid rgba(0, 0, 0, 0.2);
-    padding: 4px;
+    padding: 4px 10px;
     border-radius: 20px;
   }
 
@@ -464,10 +591,17 @@ body {
     transition: transform .5s, filter .5s;
   }
 
+#select-status {
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border: 0;
+}
+
 .close-icon {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   width: 30px;
   height: 30px;
   padding: 5px;
@@ -485,10 +619,10 @@ body {
   filter: invert(1);
 }
 
-#finish-edit-icon {
+#finish-edit-icon, #finish-checkin-edit, #finish-add-vip, #finish-edit-vip {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 10px;
+  right: 10px;
   width: 30px;
   height: 30px;
   padding: 5px;
@@ -497,10 +631,10 @@ body {
   cursor: pointer;
   transition: transform .5s;
 }
-#finish-edit-icon:hover {
+#finish-edit-icon:hover, #finish-checkin-edit:hover, #finish-add-vip:hover, #finish-edit-vip:hover {
   transform: scale(1.2);
 }
-#finish-edit-icon img {
+#finish-edit-icon img, #finish-checkin-edit img, #finish-add-vip img, #finish-edit-vip img {
   height: 20px;
   width: 20px;
   filter: invert(1);
@@ -729,6 +863,108 @@ body.dark {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#checkin-search {
+  margin-bottom: 40px;
+}
+#checkin-search > input {
+  font-family: 'Poppins', sans-serif;
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  padding: 5px 15px;
+  border-radius: calc(1em + 2.5px);
+  border: .8px solid rgba(0, 0, 0, 0.2);
+  font-weight: 200;
+  outline: none;
+  transition: transform .5s;
+}
+
+#checkin-list {
+  display: grid;
+  grid-auto-rows: minmax(min-content, 200px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+  width: 80%;
+  margin: 0 auto;
+}
+  #checkin-list > figure {
+    border: .5px solid rgba(0, 0, 0 , 0.4);
+    padding: 10px;
+    margin: 5px auto;
+    width: 95%;
+    border-radius: 10px;
+    max-width: 250px;
+  }
+  #checkin-list > figure > img {
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+    transition: transform .5s;
+    cursor: pointer;
+  }
+    #checkin-list > figure > img:hover {
+      transform: scale(1.1);
+    }
+    @keyframes checkin {
+      from {
+        filter: none;
+      }
+      to {
+        filter: hue-rotate(-140deg) brightness(2);
+      }
+    }
+    @keyframes checkout {
+      from {
+        filter: none;
+      }
+      to {
+        filter: hue-rotate(135deg);
+      }
+    }
+  #checkin-list figcaption {
+    word-break: break-word;
+  }
+
+.check-in {
+  cursor: pointer;
+  display: block;
+  padding: 10px 5px;
+  transition: transform .5s, box-shadow .5s;
+  border-radius: 5px;
+  border: .5px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+  content: 'Check In';
+}
+  .check-in:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+  }
+.check-out {
+  cursor: pointer;
+  display: block;
+  padding: 10px 5px;
+  transition: transform .5s, box-shadow .5s;
+  border-radius: 5px;
+  border: .5px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+  content: 'Check Out';
+}
+  .check-out:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+  }
+
+.checkin-accept-status {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  opacity: .3;
+  transition: transform .5s;
+}
+  .checkin-accept-status:hover {
+    transform: scale(1.2);
+  }
 
 #data-panel {
   display: flex;

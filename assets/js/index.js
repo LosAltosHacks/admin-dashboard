@@ -43,6 +43,28 @@ $(document).ready(function() {
     $("#menu-panel").animate({"width": "toggle"});
   })
 
+  $("#add-vip").click(function(e) {
+    e.stopPropagation();
+    $(".modal").remove();
+    addVIPForm()
+  });
+
+  $(document).on("click", "#finish-add-vip", function() {
+    var type = $(this).closest('.modal').find('select').val();
+    var name = $(this).closest('.modal').find('input[name="name"]').val();
+    var phone = $(this).closest('.modal').find('input[name="phone"]').val();
+    var email = $(this).closest('.modal').find('input[name="email"]').val();
+    if (name.trim().length == 0 || phone.trim().length == 0 || email.trim().length == 0) alert("Please complete all fields!")
+    else {
+      guestSignUp({kind: type, name: name, phone: phone, email: email}).then(function() {
+        getVIP();
+      });
+      $(".modal").animate({"height": "toggle"}, function() {
+        $(".modal").remove();
+      })
+    }
+  })
+
   $("body > div").not("#menu").click(function() {
     if ($("#menu-panel").css("display") === "block" && $("#menu-panel").width() == $("#menu-panel").parent().width()) {
       $("#menu-panel").animate({"width": "toggle"});
@@ -62,9 +84,17 @@ $(document).ready(function() {
   // Essential Controls
   $("#select-all").change(function() {
     if ($(this).is(':checked')) {
-      $(".accept").prop("checked", true);
+      $("#bulk-acceptance .accept").prop("checked", true);
     } else {
-      $(".accept").prop("checked", false);
+      $("#bulk-acceptance .accept").prop("checked", false);
+    }
+  })
+
+  $("#waitlist-select-all").change(function() {
+    if ($(this).is(':checked')) {
+      $("#waitlist .accept").prop("checked", true);
+    } else {
+      $("#waitlist .accept").prop("checked", false);
     }
   })
 
@@ -78,9 +108,23 @@ $(document).ready(function() {
     $(this).select();
   })
 
+  $("#checkin-search > input[type='text']").on("input change keyup", function() {
+    let query = $(this).val().toLowerCase();
+    if (query.trim().length == 0) {
+      $('#checkin-list > figure').show()
+      return;
+    }
+    $('#checkin-list > figure').hide()
+
+    $("#checkin-list > figure .name").each(function(index, e) {
+      if ($(e).text().toLowerCase().includes(query)) {
+        $(e).closest("figure").show();
+      }
+    })
+  })
+
   $(document).on('click', ".delete-icon > span", function(e) {
     e.preventDefault();
-    console.log($(e.target).closest('div')[0].className);
     if ($(e.target).closest('div')[0].className === "mentor-row") {
       if (confirm("Are you sure you want to delete user " + $(this).closest(".mentor-row").attr("data-id") + "?")) {
         deleteMentor($(this).closest(".mentor-row").attr("data-id"));
@@ -138,12 +182,49 @@ $(document).ready(function() {
     $("#copy-field").select();
     document.execCommand('copy', true);
   });
+  $(document).on('click', 'figure > img', function(e) {checkInEdit(e);});
 
-  $(document).on('change', "#edit-modal li *, #mentor-edit-modal li *", function() {
+  $(document).on('change', '#attendee-checkin-modal li *, #mentor-checkin-modal li *', function() {
     var field_name = $(this).closest("li").text().split(":")[0];
     let field_val;
     if ($(this).attr('type') === "checkbox") field_val = $(this).is(":checked");
     else field_val = $(this).val();
+    edited_fields[field_name] = field_val;
+  })
+
+  $(document).on('click', "#finish-checkin-edit", function() {
+    // if ($(this).closest('.modal').id === "")
+    if ($('#attendee-checkin-modal').length == 0) {
+      modifyMentor($(this).closest("#mentor-checkin-modal").attr("data-id"), edited_fields).then(function(result) {
+        edited_fields = {};
+        $(".modal").animate({"height": "toggle"}, function() {
+          $(".modal").remove();
+          updateLists();
+        })
+      })
+    }
+    else {
+      modify($(this).closest("#attendee-checkin-modal").attr("data-id"), edited_fields).then(function(result) {
+        edited_fields = {};
+        $(".modal").animate({"height": "toggle"}, function() {
+          $(".modal").remove();
+          updateLists();
+        })
+      })
+    }
+  })
+
+  $(document).on('input change', "#edit-modal li *, #mentor-edit-modal li *", function() {
+    var field_name = $(this).closest("li").text().split(":")[0];
+    let field_val;
+    if ($(this).attr('type') === "checkbox") field_val = $(this).is(":checked");
+    else field_val = $(this).val();
+    edited_fields[field_name] = field_val;
+  })
+
+  $(document).on('input change', "#edit-vip-form li *", function() {
+    var field_name = $(this).attr('name');
+    var field_val = $(this).attr('type') === "checkbox" ? $(this).is(":checked") : $(this).val();
     edited_fields[field_name] = field_val;
   })
 
@@ -154,7 +235,7 @@ $(document).ready(function() {
         edited_fields = {};
         $(".modal").animate({"height": "toggle"}, function() {
           $(".modal").remove();
-          updateLists();
+          getMentorList();
         })
       })
     }
@@ -163,10 +244,27 @@ $(document).ready(function() {
         edited_fields = {};
         $(".modal").animate({"height": "toggle"}, function() {
           $(".modal").remove();
-          updateLists();
         })
       })
     }
+  })
+
+  $(document).on('click', "#finish-edit-vip", function() {
+    modifyGuest($(this).closest(".modal").attr("data-id"), edited_fields).then(function(result) {
+      edited_fields = {};
+      $(".modal").animate({"height": "toggle"}, function() {
+        $(".modal").remove();
+        getVIP();
+      })
+    })
+  })
+
+  $("#acceptance-sort").change(function() {
+    if ($("#acceptance-sort").val() === "") {
+      getUnacceptedList();
+      return;
+    }
+    bulkAcceptSort($("#acceptance-sort").val());
   })
 
   $("#themes .slider").click(function() {
@@ -184,7 +282,6 @@ $(document).ready(function() {
       }
 
       if(e.shiftKey) {
-        console.log(this);
         var start = $('.accept').index(this);
         var end = $('.accept').index(lastChecked);
 
@@ -194,9 +291,49 @@ $(document).ready(function() {
       lastChecked = this;
     });
 
-    getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
-    getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
-    getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
+  $(document).on('click', '.check-in', function(e) {
+    var id = $(this).closest('figure').attr('data-id');
+    checkin(id).then(function() {
+      $(this).removeClass('check-in');
+      $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
+      $(this).addClass('check-out');
+      $(this).text('Check Out');
+    });
+  })
+
+  $(document).on('click', '.check-out', function(e) {
+    var id = $(this).closest('figure').attr('data-id');
+    checkout(id).then(function() {
+      $(this).removeClass('check-out');
+      $(this).closest('figure').find('img').css("animation", "checkout .8s alternate-reverse");
+      $(this).addClass('check-in');
+      $(this).text('Check In');
+    })
+  })
+
+  $(document).on('click', '.edit-guest', function(e) {
+    var id = $(this).closest('.guest-row').attr('data-id');
+    editVIP(id);
+  })
+
+  $(document).on('click', '#delete-guest', function(e) {
+    let id = $(this).closest('.modal').attr('data-id');
+    if (confirm("Are you sure you want to delete guest <" + id + ">?")) {
+      removeGuest(id).then(function() {
+        $('.modal').animate({"height": "toggle"}, function() {
+          $('.modal').remove();
+        })
+        $('.guest-row[data-id="' + id + '"]').css({"background-color": "#e53935"});
+        $('.guest-row[data-id="' + id + '"]').animate({"height": "toggle"}, function() {
+          $('.guest-row[data-id="' + id + '"]').remove();
+        })
+      })
+    }
+  })
+
+  // getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
+  // getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
+  // getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
 })
 
 function getPanel(panel) {
@@ -210,6 +347,37 @@ function getPanel(panel) {
   $('#' + panel).show();
   localStorage.setItem("panel", panel);
   // updateLists();
+
+  switch(panel) {
+    case "vip":
+      getVIP();
+      break;
+    case "email-list":
+      getSubscribedList();
+      break;
+    case "attendee-list":
+      getList();
+      break;
+    case "acceptance-queue":
+      getAcceptedList();
+      break;
+    case "bulk-acceptance":
+      getUnacceptedList();
+      break;
+    case "dayof":
+      getCheckIn();
+      break;
+    case "mentor-list":
+      getMentorList();
+      break;
+    case "rejection-queue":
+      getRejectedList();
+      break;
+    case "waitlist":
+      getWaitlist();
+      break;
+    default: break;
+  }
 }
 
 function expandAll() {
@@ -230,7 +398,22 @@ function confirmAccept() {
         row.remove();
       });
       let id = row.attr("data-id");
-      accept(id, "queue");
+      accept(id, $("#select-status").val());
+    }
+  })
+}
+
+function acceptWaitlist() {
+  $("#waitlist-list .accept").each(function(index, element) {
+    if ($(element).is(":checked")) {
+      let row = $(element).closest(".attendees-row");
+      row.css({"background-color": "#66bb6a"});
+      row.css({"color": "white"});
+      row.slideUp(function() {
+        row.remove();
+      });
+      let id = row.attr("data-id");
+      accept(id, "accepted");
     }
   })
 }
@@ -253,6 +436,50 @@ function createModal() {
   if ($('.modal').length) $('.modal').remove();
   return {container: modal, content: content};
 }
+
+function addVIPForm() {
+  var $modal = $("<div class='modal' style='display:none'><div class='modal-content'><h2>Add Guest</h2><form id='add-vip-form'><ul><li>Type: <select id='guest-type'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li></ul></form></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-add-vip' title='Complete Guest Signup'><img src='/assets/icons/check.svg'></span></div>")
+  $modal.appendTo('body');
+  $(".modal").animate({"height": "toggle"})
+}
+
+function editVIP(id) {
+  // var response = await
+  var $modal = $("<div class='modal' style='display:none' data-id='" + id + "'><div class='modal-content'><h2>Modify Guest</h2><form id='edit-vip-form'><ul><li>Type: <select id='guest-type' name='kind'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li><li>Waiver Signed: <input type='checkbox' name='signed_waiver'></li></ul></form><span id='delete-guest'>Delete</span></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-edit-vip' title='Finish Editing Guest Info'><img src='/assets/icons/check.svg'></span></div>")
+  getGuest(id).then(function(guests) {
+    guest = guests[0];
+    $modal.find("select").val(guest.kind);
+    $modal.find("input[name='name']").val(guest.name);
+    $modal.find("input[name='email']").val(guest.email);
+    $modal.find("input[name='phone']").val(guest.phone);
+    // $modal.find("input[name='signed_waiver']")
+    $modal.appendTo('body');
+    $(".modal").animate({"height": "toggle"});
+  });
+
+}
+
+function bulkAcceptSort(field) {
+  var values = [];
+  $("#unaccepted-list .attendees-row").each(function(index, e) {
+    values.push([$(e).find('.' + field).text().replace(/^(.*?)\: /, ""), $(e).attr('data-id')]);
+  })
+  values.sort();
+  var elems = [];
+  values.forEach(function(value) {
+    elems.push($("#unaccepted-list").find(".attendees-row[data-id='" + value[1] + "']"));
+  })
+  $("#unaccepted-list .attendees-row").remove();
+  elems.forEach(function($elem) {
+    $elem.appendTo("#unaccepted-list");
+  })
+}
+
+// function showDetails(e) {
+//   var modal = createModal();
+//   modal.container.id = "details-modal";
+//
+// }
 
 function showHistory(e) {
   var modal = createModal();
@@ -295,6 +522,228 @@ function showHistory(e) {
           "<details><summary>" + (new Date(entry.timestamp.replace(" ", "T") + "Z")) + "</summary><div class='history-details'><ul>" + details + "</ul></div></details>"
         );
       })
+      modal.content.appendChild(wrapper);
+      document.body.appendChild(modal.container);
+      $(".modal").animate({"height": "toggle"})
+    })
+  }
+}
+
+function checkInEdit(e) {
+  var modal = createModal();
+
+  if ($(e.target).closest('figure')[0].className === "mentor") {
+    modal.container.id = "mentor-checkin-modal";
+    var mentor_id = $(e.target).closest('figure').attr('data-id');
+    modal.container.setAttribute("data-id", mentor_id);
+
+    getMentor(mentor_id).then(function(result) {
+      var mentor = result[result.length-1];
+      var header = document.createElement("h3");
+      header.textContent = "Mentor <" + mentor_id + ">";
+      modal.content.appendChild(header);
+      var wrapper = document.createElement("div");
+      var list = document.createElement("ul");
+      for (var i=0; i<Object.keys(mentor).length; i++) {
+        var key = Object.keys(mentor)[i];
+        var value = Object.values(mentor)[i];
+        var option = document.createElement("li");
+        option.appendChild(document.createTextNode(key + ": "))
+        option.setAttribute("data-edit", key);
+        var edit = document.createElement("input");
+
+        if (key === "tshirt_size") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='S'>S</option><option value='M'>M</option><option value='L'>L</option><option value='XL'>XL</option>"
+          )
+          switch (value) {
+            case "S":
+              selection.options[0].selected = true;
+              break;
+            case "M":
+              selection.options[1].selected = true;
+              break;
+            case "L":
+              selection.options[2].selected = true;
+              break;
+            case "XL":
+              selection.options[3].selected = true;
+              break;
+            default:
+              selection.options[1].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        if (key === "acceptance_status") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='none'>None</option><option value='waitlisted'>Waitlisted</option><option value='rejected'>Rejected</option><option value='queue'>Queue</option><option value='accepted'>Accepted</option>"
+          )
+          switch (value) {
+            case "none":
+              selection.options[0].selected = true;
+              break;
+            case "waitlisted":
+              selection.options[1].selected = true;
+              break;
+            case "rejected":
+              selection.options[2].selected = true;
+              break;
+            case "queue":
+              selection.options[3].selected = true;
+              break;
+            case "accepted":
+              selection.options[4].selected = true;
+              break;
+            default:
+              selection.options[0].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        else if (key === "email") edit.type = "email";
+        else if (key === "phone") edit.type = "tel";
+        else if (key === "email_verified" || key === "signed_waiver") {
+          edit.type = "checkbox";
+          edit.checked = value;
+        }
+        else edit.type = "text";
+        edit.value = value;
+        option.appendChild(edit);
+        list.appendChild(option);
+      }
+
+      modal.container.insertAdjacentHTML('afterbegin',
+        "<span id='finish-checkin-edit' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
+      );
+
+      wrapper.appendChild(list);
+      modal.content.appendChild(wrapper);
+      document.body.appendChild(modal.container);
+      $(".modal").animate({"height": "toggle"})
+    })
+  }
+  else {
+    modal.container.id = "attendee-checkin-modal";
+    var user_id = $(e.target).closest("figure").attr("data-id");
+    modal.container.setAttribute("data-id", user_id);
+
+    getUser(user_id).then(function(result) {
+      var attendee = result[result.length-1];
+      var header = document.createElement("h3");
+      header.textContent = "User <" + user_id + ">";
+      modal.content.appendChild(header);
+      var wrapper = document.createElement("div");
+      var list = document.createElement("ul");
+      for (var i=0; i<Object.keys(attendee).length; i++) {
+        var key = Object.keys(attendee)[i];
+        var value = Object.values(attendee)[i];
+        var option = document.createElement("li");
+        option.appendChild(document.createTextNode(key + ": "))
+        option.setAttribute("data-edit", key);
+
+        var edit = document.createElement("input");
+        if (key === "user_id" || key === "timestamp") continue;
+        if (key === "tshirt_size") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='S'>S</option><option value='M'>M</option><option value='L'>L</option><option value='XL'>XL</option>"
+          )
+          switch (value) {
+            case "S":
+              selection.options[0].selected = true;
+              break;
+            case "M":
+              selection.options[1].selected = true;
+              break;
+            case "L":
+              selection.options[2].selected = true;
+              break;
+            case "XL":
+              selection.options[3].selected = true;
+              break;
+            default:
+              selection.options[1].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        if (key === "gender") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='Male'>Male</option><option value='Female'>Female</option>"
+          )
+          switch (value) {
+            case "Male":
+              selection.options[0].selected = true;
+              break;
+            case "Female":
+              selection.options[1].selected = true;
+              break;
+            default:
+              selection.options[0].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+        if (key === "acceptance_status") {
+          var selection = document.createElement("select");
+          selection.insertAdjacentHTML('beforeend',
+            "<option value='none'>None</option><option value='waitlisted'>Waitlisted</option><option value='rejected'>Rejected</option><option value='queue'>Queue</option><option value='accepted'>Accepted</option>"
+          )
+          switch (value) {
+            case "none":
+              selection.options[0].selected = true;
+              break;
+            case "waitlisted":
+              selection.options[1].selected = true;
+              break;
+            case "rejected":
+              selection.options[2].selected = true;
+              break;
+            case "queue":
+              selection.options[3].selected = true;
+              break;
+            case "accepted":
+              selection.options[4].selected = true;
+              break;
+            default:
+              selection.options[0].selected = true;
+              break;
+          }
+          option.appendChild(selection);
+          list.appendChild(option);
+          continue;
+        }
+
+        else if (key === "age" || key === "grade" || key === "previous_hackathons") edit.type = "number";
+        else if (key === "email" || key === "guardian_email") edit.type = "email";
+        else if (key === "student_phone_number" || key === "guardian_phone_number") edit.type = "tel";
+        else if (key === "email_verified" || key === "signed_waiver") {
+          edit.type = "checkbox";
+          edit.checked = value;
+        }
+        else edit.type = "text";
+        edit.value = value;
+        option.appendChild(edit);
+        list.appendChild(option);
+      }
+
+      modal.container.insertAdjacentHTML('afterbegin',
+        "<span id='finish-checkin-edit' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
+      );
+
+      wrapper.appendChild(list);
       modal.content.appendChild(wrapper);
       document.body.appendChild(modal.container);
       $(".modal").animate({"height": "toggle"})
@@ -392,7 +841,7 @@ function showEditPanel(e) {
         list.appendChild(option);
       }
 
-      modal.content.insertAdjacentHTML('afterbegin',
+      modal.container.insertAdjacentHTML('afterbegin',
         "<span id='finish-edit-icon' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
       );
 
@@ -512,7 +961,7 @@ function showEditPanel(e) {
         list.appendChild(option);
       }
 
-      modal.content.insertAdjacentHTML('afterbegin',
+      modal.container.insertAdjacentHTML('afterbegin',
         "<span id='finish-edit-icon' title='Finish Edits'><img src='/assets/icons/check.svg'></span>"
       );
 
@@ -568,6 +1017,7 @@ function drawChart() {
     var races = {"Did Not State": 0};
     var ages = {"21+": 0};
     var dates = {};
+    var grades = {};
     if (result.length == 0) return;
 
     result.forEach(function(user) {
@@ -583,6 +1033,8 @@ function drawChart() {
       var date = (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString();
       if (dates[date]) dates[date]++;
       else dates[date] = 1;
+      if (grades[user.grade]) grades[user.grade]++;
+      else grades[user.grade] = 1;
     })
 
     var genderData = new google.visualization.DataTable();
@@ -609,6 +1061,14 @@ function drawChart() {
       ageData.addRow([Object.keys(ages)[i].toString(), Object.values(ages)[i]]);
     }
 
+    var gradeData = new google.visualization.DataTable();
+    gradeData.addColumn('string', 'Grade');
+    gradeData.addColumn('number', 'Count');
+
+    for (var i=0; i<Object.keys(grades).length; i++) {
+      gradeData.addRow([Object.keys(grades)[i].toString(), Object.values(grades)[i]]);
+    }
+
     var applyData = new google.visualization.DataTable();
     applyData.addColumn('date', 'Date');
     applyData.addColumn('number', 'Number of Applications');
@@ -616,8 +1076,6 @@ function drawChart() {
     for (var i=0; i<Object.keys(dates).length; i++) {
       applyData.addRow([new Date(Object.keys(dates)[i]), Object.values(dates)[i]]);
     }
-
-    console.log(applyData);
 
     var genderColors = {
       'Male': '#90caf9',
@@ -658,14 +1116,22 @@ function drawChart() {
       },
       fontName: 'Poppins'
     };
+    var gradeOptions = {
+      legend: {
+        position: 'none'
+      },
+      fontName: 'Poppins'
+    };
 
     var genderChart = new google.visualization.PieChart(document.getElementById('gender-demo'));
     var ethnicityChart = new google.visualization.PieChart(document.getElementById('race-demo'));
     var ageChart = new google.charts.Bar(document.getElementById('age-demo'));
+    var gradeChart = new google.charts.Bar(document.getElementById('grade-demo'));
 
     genderChart.draw(genderData, genderOptions);
     ethnicityChart.draw(ethnicityData, ethnicityOptions);
     ageChart.draw(ageData, google.charts.Bar.convertOptions(ageOptions));
+    gradeChart.draw(gradeData, google.charts.Bar.convertOptions(gradeOptions));
 
     var dashboard = new google.visualization.Dashboard(document.getElementById('timeline'));
     var controls = new google.visualization.ControlWrapper({
@@ -710,19 +1176,19 @@ function drawChart() {
 }
 
 // Countdown
-var countDownDate = new Date("Mar 23, 2019 9:00:00").getTime();
-var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "EVENT STARTED";
-  }
-  // drawChart();
-}, 1000);
+// var countDownDate = new Date("Mar 23, 2019 9:00:00").getTime();
+// var x = setInterval(function() {
+//   var now = new Date().getTime();
+//   var distance = countDownDate - now;
+//   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//   document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+//   + minutes + "m " + seconds + "s ";
+//   if (distance < 0) {
+//     clearInterval(x);
+//     document.getElementById("countdown").innerHTML = "EVENT STARTED";
+//   }
+//   // drawChart();
+// }, 1000);
