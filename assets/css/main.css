@@ -534,69 +534,34 @@ body {
     background-color: rgba(77, 184, 255, 0.2);
   }
 
-#copy-field {
-  resize: vertical;
-  min-height: 5em;
-  height: 10em;
-  max-height: 20em;
-  width: 80%;
-  border: 1px solid #CCCCCC !important;
-}
-  #copy-icon {
-    display: inline-block;
-    padding: 0.5em;
-    position: absolute;
-    top: 5px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color .3s;
-    border-radius: 50%;
-  }
-  #copy-icon:active {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  #copy-icon:hover img {
-    transform: translateY(-2px);
-    filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7));
-  }
-  #copy-icon img {
-    height: 1.5em;
-    width: 1.5em;
-    transition: transform .5s, filter .5s;
-  }
-
-  #confirm-accept-icon {
-    display: inline-block;
-    padding: 0.5em;
-    position: absolute;
-    top: 35px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color .3s, transform .5s;
-    border-radius: 50%;
-  }
-  #confirm-accept-icon:active {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  #confirm-accept-icon:hover {
-    transform: translateY(-2px);
-  }
-  #confirm-accept-icon:hover img {
-    transform: translateY(-2px);
-    filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7));
-  }
-  #confirm-accept-icon img {
-    height: 1.5em;
-    width: 1.5em;
-    transition: transform .5s, filter .5s;
-  }
-
 #select-status {
   font-size: 1em;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   border: 0;
 }
+
+#copy-emails {
+  width: 3em;
+  height: 3em;
+  padding: 0.75em;
+  display: block;
+  position: fixed;
+  top: 4.5em;
+  right: 1em;
+  background-color: green;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform .5s;
+}
+  #copy-emails:hover {
+    transform: scale(1.2);
+  }
+  #copy-emails > img {
+    width: 100%;
+    height: 100%;
+    filter: invert(1);
+  }
 
 .close-icon {
   position: absolute;
@@ -765,19 +730,6 @@ body.dark {
 
 .dark #menu-button {
   box-shadow: 0 0 20px;
-}
-
-.dark #copy-icon img, .dark #confirm-accept-icon img {
-  filter: invert(1);
-}
-
-.dark #copy-icon:hover img, .dark #confirm-accept-icon:hover img {
-  filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.7)) invert(1)
-}
-
-.dark #email-list li {
-  border-top: 0.5px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Themes */
