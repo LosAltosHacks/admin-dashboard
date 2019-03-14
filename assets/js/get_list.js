@@ -384,14 +384,12 @@ async function getCheckIn() {
     $figure.appendTo("#checkin-list");
   })
   let mentors = await getMentor({"acceptance_status": "accepted"});
-  let waitlisted_mentors = await getMentor({"acceptance_status": "waitlisted"})
-  mentors = mentors.concat(waitlisted_mentors);
   mentors.forEach(function(user) {
     $figure = $('<figure><img src="/assets/icons/mentor.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
     $figure.addClass('mentor');
     $figure.attr('data-id', user.mentor_id);
     $figure.find('.name').text(user.name);
-    $figure.find('.age').text(user.over_18 ? "Over 18" : "Underaged");
+    $figure.find('.age').text(user.over_18 ? "Over 18" : "Under 18");
     $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
     $figure.appendTo("#checkin-list");
   })

@@ -293,19 +293,22 @@ $(document).ready(function() {
 
   $(document).on('click', '.check-in', function(e) {
     var id = $(this).closest('figure').attr('data-id');
-
-    $(this).removeClass('check-in');
-    $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
-    $(this).addClass('check-out');
-    $(this).text('Check Out');
+    checkin(id).then(function() {
+      $(this).removeClass('check-in');
+      $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
+      $(this).addClass('check-out');
+      $(this).text('Check Out');
+    });
   })
 
   $(document).on('click', '.check-out', function(e) {
     var id = $(this).closest('figure').attr('data-id');
-    $(this).removeClass('check-out');
-    $(this).closest('figure').find('img').css("animation", "checkout .8s alternate-reverse");
-    $(this).addClass('check-in');
-    $(this).text('Check In');
+    checkout(id).then(function() {
+      $(this).removeClass('check-out');
+      $(this).closest('figure').find('img').css("animation", "checkout .8s alternate-reverse");
+      $(this).addClass('check-in');
+      $(this).text('Check In');
+    })
   })
 
   $(document).on('click', '.edit-guest', function(e) {
