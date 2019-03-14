@@ -108,6 +108,10 @@ $(document).ready(function() {
     $(this).select();
   })
 
+  $("#copy-emails").click(function() {
+    exportEmails();
+  })
+
   $("#checkin-search > input[type='text']").on("input change keyup", function() {
     let query = $(this).val().toLowerCase();
     if (query.trim().length == 0) {
@@ -158,17 +162,6 @@ $(document).ready(function() {
     row.slideUp(function() {
       row.remove();
     });
-  })
-
-  $(document).on('click', "#confirm-accept-icon", function(e) {
-    e.preventDefault();
-    // $("#copy-field").val().split("\n") // for more robust implementation
-    $("#accepted-list .attendees-row").each(function() {
-      accept($(this).attr("data-id"), "accepted");
-    })
-    $(".modal").animate({"height": "toggle"}, function() {
-      $(".modal").remove();
-    })
   })
 
   $(document).on('click', ".modal .close-icon", function() {
