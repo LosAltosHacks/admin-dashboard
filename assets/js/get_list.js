@@ -378,6 +378,7 @@ async function getCheckIn() {
     $figure = $('<figure><span class="checkin-accept-status" title="' + (user.acceptance_status === "accepted" ? "This attendee has been accepted." : "This attendee is in the waitlist") + '"><img src="/assets/icons/' + user.acceptance_status + '.svg"></span><img src="/assets/icons/attendee.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
     $figure.addClass('attendee');
     $figure.attr('data-id', user.user_id);
+    $figure.addClass(user.acceptance_status === "accepted" ? "accepted" : "waitlisted")
     $figure.find('.name').text(user.first_name + " " + user.surname);
     $figure.find('.age').text(user.age);
     $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
@@ -403,4 +404,8 @@ async function getCheckIn() {
     $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
     $figure.appendTo("#checkin-list");
   })
+  $("#accepted-count").text($('figure.accepted').length);
+  $("#waitlisted-count").text($('figure.waitlisted').length);
+  $("#checked-in-count").text($('figure.checked-in').length);
+  $("#not-checked-in-count").text($('figure').length - $('figure.checked-in').length);
 }
