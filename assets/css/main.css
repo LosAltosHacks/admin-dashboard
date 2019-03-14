@@ -563,6 +563,10 @@ body {
     filter: invert(1);
   }
 
+#dayof > p {
+  margin-left: 20px;
+}
+
 .close-icon {
   position: absolute;
   top: 10px;
