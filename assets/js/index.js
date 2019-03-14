@@ -171,10 +171,6 @@ $(document).ready(function() {
   })
   $(document).on('click', ".history-icon > span", function(e) {showHistory(e);});
   $(document).on('click', ".edit-icon > span", function(e) {showEditPanel(e);});
-  $(document).on('click', "#copy-icon", function() {
-    $("#copy-field").select();
-    document.execCommand('copy', true);
-  });
   $(document).on('click', 'figure > img', function(e) {checkInEdit(e);});
 
   $(document).on('change', '#attendee-checkin-modal li *, #mentor-checkin-modal li *', function() {
@@ -332,8 +328,6 @@ $(document).ready(function() {
 function getPanel(panel) {
   if (panel === "attendee-list") $("#search-bar").show();
   else $("#search-bar").hide();
-  if (panel === "acceptance-queue") $("#export-emails").show();
-  else $("#export-emails").hide();
   if (panel === "email-list") $("export-sub-emails").show();
   else $("#export-sub-emails").hide();
   $('.panel').hide();
