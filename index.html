@@ -43,7 +43,6 @@
         <ul>
           <li id="search-bar"><input type="text" placeholder="Search Query"><span id="search-button"><img src="/assets/icons/search.svg"></span></li>
           <li onclick="exportSubEmails()" id="export-sub-emails">Copy Emails</li>
-          <li onclick="exportEmails()" id="export-emails" style="display: none">Copy Emails</li>
           <li onclick="expandAll()" id="expand-all">Expand All</li>
           <li onclick="hideAll()" id="hide-all">Hide All</li>
         </ul>
@@ -128,6 +127,10 @@
 
   <div id="dayof" class="panel">
     <h1>Day Of Check-In</h1>
+    <p>Total Accepted: <span id="accepted-count"></span></p>
+    <p>Total Waitlisted: <span id="waitlisted-count"></span></p>
+    <p>Checked In: <span id="checked-in-count"></span></p>
+    <p>Not Checked In: <span id="not-checked-in-count"></span></p>
 
     <div id="checkin-search">
       <input type="text" placeholder="Attendee">
@@ -158,7 +161,7 @@
 
   <!-- Email List -->
   <div id="email-list" class="panel">
-    <h1>Email List <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
+    <h1>Email List <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
 
     <div id="email-list" class="list">
     </div>
@@ -166,7 +169,7 @@
 
   <!-- Attendee List -->
   <div id="attendee-list" class="panel">
-    <h1>Attendees List (<span id="attendees-count"></span>) <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
+    <h1>Attendees List (<span id="attendees-count"></span>) <span class="sync" onclick="getList()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="attendees-list" class="list">
       <div class="header">
         <ul>
@@ -182,7 +185,7 @@
 
   <!-- Mentor List -->
   <div id="mentor-list" class="panel">
-    <h1>Mentors List (<span id="mentors-count"></span>) <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
+    <h1>Mentors List (<span id="mentors-count"></span>) <span class="sync" onclick="getMentorList()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="mentors-list" class="list">
       <div class="header">
         <ul>
@@ -199,7 +202,7 @@
   <!-- Acceptance Queue -->
   <div id="acceptance-queue" class="panel">
     <span id="copy-emails"><img src="./assets/icons/copy.svg"></span>
-    <h1>Acceptance Queue <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
+    <h1>Acceptance Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="accepted-list" class="list">
       <div class="header">
         <ul>
@@ -215,7 +218,7 @@
 
   <!-- Rejection Queue -->
   <div id="rejection-queue" class="panel">
-    <h1>Rejection Queue <!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
+    <h1>Rejection Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="rejected-list" class="list">
       <div class="header">
         <ul>
@@ -240,13 +243,13 @@
         <option value="school">School</option>
         <option value="signed-waiver">Waiver</option>
         <option value="email-verified">Email Verification</option>
-      <select><!--<span class="sync"><img src="/assets/icons/sync.svg"></span>--></h1>
+      <select><span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="unaccepted-list" class="list">
       <div class="header">
         <ul>
           <li>
             <select id="select-status">
-              <option value="accepted">Accept</option>
+              <option value="queue">Accept</option>
               <option value="waitlisted">Waitlist</option>
               <option value="rejected">Reject</option>
             </select>
@@ -336,7 +339,6 @@
   <script src="./assets/js/helpers.js"></script>
   <script src="./assets/js/get_list.js" async defer></script>
   <script src="./assets/js/export_list.js"></script>
-  <!-- <script src="https://apis.google.com/js/api:client.js"></script> -->
 
 </body>
 </html>
