@@ -640,6 +640,36 @@ body {
   filter: invert(1);
 }
 
+#announcement-form {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+  #announcement-form > input, #announcement-form > textarea {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+    border: #dddddd solid 1px;
+  }
+  #announcement-content {
+    height: 50vh;
+    resize: none;
+  }
+  #announcement-submit {
+    background-color: #1e88e5;
+    transition: transform .5s;
+    cursor: pointer;
+    color: white;
+  }
+    #announcement-submit:hover {
+      transform: translateY(-5px);
+    }
+
+
 /* Login */
 
 #login-page {
