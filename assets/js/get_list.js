@@ -323,7 +323,7 @@ async function getRejectedList() {
     attendee.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
     attendee.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
 
-    document.getElementById("rejected-list").insertBefore(attendee, document.getElementById("waitlist-list").children[1]);
+    document.getElementById("rejected-list").insertBefore(attendee, document.getElementById("rejected-list").children[1]);
   })
 }
 
