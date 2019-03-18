@@ -400,7 +400,7 @@ function acceptWaitlist() {
         row.remove();
       });
       let id = row.attr("data-id");
-      accept(id, "accepted");
+      accept(id, "queue");
     }
   })
 }
