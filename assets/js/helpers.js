@@ -64,7 +64,7 @@ async function modifyMentor(mentor_id, params) {
 }
 
 async function accept(user_id, status) {
-  if (status != "none" && status != "waitlisted" && status != "rejected" && status != "queue" && status != "accepted") return false;
+  if (status != "none" && status != "waitlisted" && status != "rejected" && status != "queue" && status != "accepted" && status != "waitlist_queue") return false;
   modify(user_id, {acceptance_status: status});
 }
 
@@ -111,57 +111,32 @@ async function getMentorHistory(mentor_id) {
   return result;
 }
 
-// For development purposes only
-// async function populateUsers(n) {
-//   for (var i=0; i<n; i++) {
-//     signup({
-//       first_name: fakeEmail(),
-//       surname: fakeEmail(),
-//       email: fakeEmail(),
-//       age: Math.floor(Math.random() * 20),
-//       school: "High School",
-//       grade: Math.floor(Math.random() * 3) + 9,
-//       student_phone_number: "111111111",
-//       guardian_name: "Guardian Name",
-//       guardian_email: fakeEmail(),
-//       guardian_phone_number: "2222222222",
-//       gender: "Female",
-//       tshirt_size: "M",
-//       previous_hackathons: Math.floor(Math.random()*10),
-//       github_username: fakeEmail(),
-//       linkedin_profile: fakeEmail(),
-//       dietary_restrictions: "None"
-//     });
+// function addTestEntry(type, n) {
+//   switch(n) {
+//     case "attendee":
+//       for (var i=0; i<n; i++) {
+//         signup({
+//           first_name: "TestEntryFirst" + i,
+//           surname: "TestEntryLast" + i,
+//           email: fakeEmail(),
+//           age: Math.floor(Math.random() * 6) + 13,
+//           school: "Test High School",
+//           grade: Math.floor(Math.random() * r) + 9,
+//           student_phone_number: "1111111111",
+//           guardian_name: "TestGuardian",
+//           guardian_email: fakeEmail(),
+//           guardian_phone_number: "1111111111",
+//           gender: "Male",
+//           tshirt_size: "M",
+//           previous_hackathons: Math.floor(Math.random()*8),
+//           github_username: "testgithub",
+//           linkedin_profile: "https://www.linkedin.com/in/test-linkedin/",
+//           diestary_restrictions: "None"
+//         })
+//       }
+//
 //   }
-//   updateLists();
 // }
-
-function addTestEntry(type, n) {
-  switch(n) {
-    case "attendee":
-      for (var i=0; i<n; i++) {
-        signup({
-          first_name: "TestEntryFirst" + i,
-          surname: "TestEntryLast" + i,
-          email: fakeEmail(),
-          age: Math.floor(Math.random() * 6) + 13,
-          school: "Test High School",
-          grade: Math.floor(Math.random() * r) + 9,
-          student_phone_number: "1111111111",
-          guardian_name: "TestGuardian",
-          guardian_email: fakeEmail(),
-          guardian_phone_number: "1111111111",
-          gender: "Male",
-          tshirt_size: "M",
-          previous_hackathons: Math.floor(Math.random()*8),
-          github_username: "testgithub",
-          linkedin_profile: "https://www.linkedin.com/in/test-linkedin/",
-          diestary_restrictions: "None"
-        })
-      }
-
-  }
-}
 
 function fakeEmail() {
   var text = "";
@@ -206,15 +181,6 @@ function request(method, url, data) {
     else xhttp.send();
   })
 }
-
-// function updateLists() {
-//   $('.list > *').not('.header').remove();
-//   getList();
-//   getAcceptedList();
-//   getUnacceptedList();
-//   getSubscribedList();
-//   getMentorList();
-// }
 
 function logout() {
   localStorage.removeItem('jwt_auth');

@@ -77,10 +77,6 @@ $(document).ready(function() {
     })
   })
 
-  $(".sync").click(function() {
-    updateLists();
-  })
-
   // Essential Controls
   $("#select-all").change(function() {
     if ($(this).is(':checked')) {
@@ -192,7 +188,6 @@ $(document).ready(function() {
         edited_fields = {};
         $(".modal").animate({"height": "toggle"}, function() {
           $(".modal").remove();
-          updateLists();
         })
       })
     }
@@ -201,7 +196,6 @@ $(document).ready(function() {
         edited_fields = {};
         $(".modal").animate({"height": "toggle"}, function() {
           $(".modal").remove();
-          updateLists();
         })
       })
     }
@@ -337,7 +331,6 @@ function getPanel(panel) {
   $('.panel').hide();
   $('#' + panel).show();
   localStorage.setItem("panel", panel);
-  // updateLists();
 
   switch(panel) {
     case "vip":
@@ -367,6 +360,9 @@ function getPanel(panel) {
     case "waitlist":
       getWaitlist();
       break;
+    case "waitlist-queue":
+      getWaitlistQueue();
+      break;
     default: break;
   }
 }
@@ -380,6 +376,9 @@ function hideAll() {
 }
 
 function confirmAccept() {
+  let user_ids = [];
+  let names = [];
+  let select_status = $("#select-status").val();
   $("#unaccepted-list .accept").each(function(index, element) {
     if ($(element).is(":checked")) {
       let row = $(element).closest(".attendees-row");
@@ -389,9 +388,16 @@ function confirmAccept() {
         row.remove();
       });
       let id = row.attr("data-id");
-      accept(id, $("#select-status").val());
+      user_ids.push(id);
+      names.push($(element).closest("ul").find("li:nth-child(2)").text() + " " + $(element).closest("ul").find("li:nth-child(3)").text())
     }
   })
+  if (user_ids.length !== 0) if (confirm("Do you want to change the status of " + names.join(", ") + " to " + select_status + "?")) {
+    user_ids.forEach(function(id) {
+      console.log(id);
+      accept(id, select_status);
+    });
+  }
 }
 
 function acceptWaitlist() {
@@ -435,7 +441,6 @@ function addVIPForm() {
 }
 
 function editVIP(id) {
-  // var response = await
   var $modal = $("<div class='modal' style='display:none' data-id='" + id + "'><div class='modal-content'><h2>Modify Guest</h2><form id='edit-vip-form'><ul><li>Type: <select id='guest-type' name='kind'><option value='judge'>Judge</option><option value='chaperone'>Chaperone</option><option value='sponsor'>Sponsor</option></select></li><li>Name: <input type='text' name='name'></li><li>Phone: <input type='tel' name='phone'></li><li>Email: <input type='email' name='email'></li><li>Waiver Signed: <input type='checkbox' name='signed_waiver'></li></ul></form><span id='delete-guest'>Delete</span></div><span class='close-icon' title='Close Modal'><img src='/assets/icons/close.svg'></span><span id='finish-edit-vip' title='Finish Editing Guest Info'><img src='/assets/icons/check.svg'></span></div>")
   getGuest(id).then(function(guests) {
     guest = guests[0];
@@ -465,12 +470,6 @@ function bulkAcceptSort(field) {
     $elem.appendTo("#unaccepted-list");
   })
 }
-
-// function showDetails(e) {
-//   var modal = createModal();
-//   modal.container.id = "details-modal";
-//
-// }
 
 function showHistory(e) {
   var modal = createModal();
@@ -1088,15 +1087,6 @@ function drawChart() {
       slices: genderSlices
     };
 
-    // This is kinda racist
-    // var ethnicityColors = {
-    //   'White/Caucasian': '#ffccbc',
-    //   'Asian/Pacific Islander': '#ffe082',
-    //   'Black/African American': '#757575',
-    //   'Hispanic': '#8d6e63',
-    //   'Other': '#90a4ae'
-    // }
-
     var ethnicityOptions = {
       sliceVisibilityThreshold: .05,
       fontName: 'Poppins'
@@ -1165,21 +1155,3 @@ function drawChart() {
     dashboard.draw(applyData);
   })
 }
-
-// Countdown
-// var countDownDate = new Date("Mar 23, 2019 9:00:00").getTime();
-// var x = setInterval(function() {
-//   var now = new Date().getTime();
-//   var distance = countDownDate - now;
-//   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-//   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-//   document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-//   + minutes + "m " + seconds + "s ";
-//   if (distance < 0) {
-//     clearInterval(x);
-//     document.getElementById("countdown").innerHTML = "EVENT STARTED";
-//   }
-//   // drawChart();
-// }, 1000);

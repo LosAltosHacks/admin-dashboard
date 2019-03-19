@@ -266,7 +266,7 @@ async function getWaitlist() {
 }
 
 async function getWaitlistQueue() {
-  let resposne = await getUser({acceptance_status: "waitlist_queue"});
+  let response = await getUser({acceptance_status: "waitlist_queue"});
   $('#waitlist-queue .attendees-row, #waitlist-queue > p').remove();
   if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#waitlist-queue');
   response.forEach(function(user) {
