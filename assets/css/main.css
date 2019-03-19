@@ -104,8 +104,8 @@ body {
       color: white;
     }
     .list details[open] > summary + * {
-    	animation: DetailsOpen 0.5s linear;
-    	animation-direction: reverse;
+      animation: DetailsOpen 0.5s linear;
+      animation-direction: reverse;
     }
 
     @keyframes DetailsOpen {
@@ -541,7 +541,7 @@ body {
   border: 0;
 }
 
-#copy-emails {
+#copy-emails, #copy-waitlist-emails {
   width: 3em;
   height: 3em;
   padding: 0.75em;
@@ -554,10 +554,10 @@ body {
   cursor: pointer;
   transition: transform .5s;
 }
-  #copy-emails:hover {
+  #copy-emails:hover, #copy-waitlist-emails:hover {
     transform: scale(1.2);
   }
-  #copy-emails > img {
+  #copy-emails > img , #copy-waitlist-emails > img {
     width: 100%;
     height: 100%;
     filter: invert(1);

@@ -112,6 +112,10 @@ $(document).ready(function() {
     exportEmails();
   })
 
+  $("#copy-waitlist-emails").click(function() {
+    exportWaitlistEmails();
+  })
+
   $("#checkin-search > input[type='text']").on("input change keyup", function() {
     let query = $(this).val().toLowerCase();
     if (query.trim().length == 0) {

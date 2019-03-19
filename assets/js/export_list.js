@@ -19,6 +19,27 @@ async function exportEmails() {
   }
 }
 
+async function exportWaitlistEmails() {
+  var copyText = "";
+  var users = [];
+  $("#waitlist-queue-list .attendees-row summary li:nth-child(4)").each(function(i, e) {
+    copyText += $(e).text() + "\n";
+  })
+  $("#waitlist-queue-list .attendees-row").each(function(i, e) {
+    users.push($(e).attr('data-id'));
+  })
+  $("<textarea id='copy-text' type='text' style='position:absolute;top:1px;left:1px'></textarea>").appendTo('body');
+  $('#copy-text').val(copyText);
+  $('#copy-text').select();
+  document.execCommand('copy');
+  $('#copy-text').remove();
+  if (confirm('Emails added to clipboard! Here are the emails you have copied:\n' + copyText + "\nDo you want to remove them from queue?")) {
+    users.forEach(function(user) {
+      accept(user, "waitlisted");
+    });
+  }
+}
+
 async function exportSubEmails() {
   var copyText = "";
 

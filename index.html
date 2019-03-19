@@ -33,6 +33,7 @@
           <li onclick="getPanel('acceptance-queue')">Acceptance Queue</li>
           <li onclick="getPanel('rejection-queue')">Rejection Queue</li>
           <li onclick="getPanel('waitlist')">Waitlist</li>
+          <li onclick="getPanel('waitlist-queue')">Waitlist Queue</li>
           <li onclick="getPanel('bulk-acceptance')">Bulk Acceptance</li>
           <li onclick="getPanel('statistics')">Statistics</li>
         </ul>
@@ -261,7 +262,7 @@
           <li>
             <select id="select-status">
               <option value="queue">Accept</option>
-              <option value="waitlisted">Waitlist</option>
+              <option value="waitlist_queue">Waitlist</option>
               <option value="rejected">Reject</option>
             </select>
             <input id="select-all" type="checkbox">
@@ -294,6 +295,22 @@
       </div>
     </div>
     <span id="waitlist-accept-button" onclick="acceptWaitlist();"><img src="/assets/icons/check.svg"></span>
+  </div>
+
+  <div id="waitlist-queue" class="panel">
+    <span id="copy-waitlist-emails"><img src="./assets/icons/copy.svg"></span>
+    <h1>Waitlist Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="waitlist-queue-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Acceptance Status</li><li>
+          First Name</li><li>
+          Last Name</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <!-- Statistics -->
