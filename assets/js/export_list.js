@@ -56,7 +56,7 @@ async function exportMentorEmails() {
   $('#copy-text').remove();
   if (confirm('Emails added to clipboard! Here are the emails you have copied:\n' + copyText + "\nDo you want to remove them from queue?")) {
     users.forEach(function(user) {
-      acceptMentor(user, "waitlisted");
+      acceptMentor(user, "accepted");
     });
   }
 }
