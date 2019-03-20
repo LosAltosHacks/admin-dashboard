@@ -58,8 +58,9 @@ async function modifyMentor(mentor_id, params) {
   return result;
 }
 
-async function modifyMentor(mentor_id, params) {
-  let result = await request("POST", "/mentor/v1/modify/" + mentor_id, params);
+async function acceptMentor(mentor_id, status) {
+  if (status != "none" && status != "waitlisted" && status != "rejected" && status != "queue" && status != "accepted" && status != "waitlist_queue") return false;
+  let result = await request("POST", "/mentor/v1/modify/" + mentor_id, {acceptance_status: status});
   return result;
 }
 

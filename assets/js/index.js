@@ -94,6 +94,22 @@ $(document).ready(function() {
     }
   })
 
+  $("#mentor-select-all").change(function() {
+    if ($(this).is(':checked')) {
+      $("#mentor-bulk-acceptance .accept").prop("checked", true);
+    } else {
+      $("#mentor-bulk-acceptance .accept").prop("checked", false);
+    }
+  })
+
+  $("#mentor-select-all").change(function() {
+    if ($(this).is(':checked')) {
+      $("#mentor .accept").prop("checked", true);
+    } else {
+      $("#mentor .accept").prop("checked", false);
+    }
+  })
+
   $("#search-button").click(function() {
     if ($("#search-bar > input").val().trim() === "") cancelSearch();
     searchUpdated($("#search-bar > input").val());
@@ -363,6 +379,12 @@ function getPanel(panel) {
     case "waitlist-queue":
       getWaitlistQueue();
       break;
+    case "mentor-bulk-acceptance":
+      getMentorBulkAccept();
+      break;
+    case "mentor-acceptance-queue":
+      getMentorAccept();
+      break;
     default: break;
   }
 }
@@ -396,6 +418,31 @@ function confirmAccept() {
     user_ids.forEach(function(id) {
       console.log(id);
       accept(id, select_status);
+    });
+  }
+}
+
+function confirmMentorAccept() {
+  let user_ids = [];
+  let names = [];
+  let select_status = $("#select-status").val();
+  $("#mentor-bulk-list .accept").each(function(index, element) {
+    if ($(element).is(":checked")) {
+      let row = $(element).closest(".mentor-row");
+      row.css({"background-color": "#66bb6a"});
+      row.css({"color": "white"});
+      row.slideUp(function() {
+        row.remove();
+      });
+      let id = row.attr("data-id");
+      user_ids.push(id);
+      names.push($(element).closest("ul").find("li:nth-child(2)").text() + " " + $(element).closest("ul").find("li:nth-child(3)").text())
+    }
+  })
+  if (user_ids.length !== 0) if (confirm("Do you want to change the status of " + names.join(", ") + " to queue?")) {
+    user_ids.forEach(function(id) {
+      console.log(id);
+      accept(id, "queue");
     });
   }
 }

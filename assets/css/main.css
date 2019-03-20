@@ -387,7 +387,7 @@ body {
       filter: invert(1);
     }
 
-    #bulk-accept-button, #waitlist-accept-button {
+    #bulk-accept-button, #waitlist-accept-button, #mentor-bulk-accept-button {
       background-color: #4db6ac;
       position: fixed;
       right: calc(20px + 3em);
@@ -403,10 +403,10 @@ body {
       height: 3em;
       padding: 0.75em;
     }
-      #bulk-accept-button:hover, #waitlist-accept-button:hover {
+      #bulk-accept-button:hover, #waitlist-accept-button:hover, #mentor-bulk-accept-button:hover {
         transform: scale(1.2);
       }
-      #bulk-accept-button img, #waitlist-accept-button img {
+      #bulk-accept-button img, #waitlist-accept-button img, #mentor-bulk-accept-button img {
         height: 1.5em;
         width: 1.5em;
         filter: invert(1);
@@ -541,7 +541,7 @@ body {
   border: 0;
 }
 
-#copy-emails, #copy-waitlist-emails {
+#copy-emails, #copy-waitlist-emails, #mentor-copy-emails {
   width: 3em;
   height: 3em;
   padding: 0.75em;
@@ -554,10 +554,10 @@ body {
   cursor: pointer;
   transition: transform .5s;
 }
-  #copy-emails:hover, #copy-waitlist-emails:hover {
+  #copy-emails:hover, #copy-waitlist-emails:hover, #mentor-copy-emails:hover {
     transform: scale(1.2);
   }
-  #copy-emails > img , #copy-waitlist-emails > img {
+  #copy-emails > img , #copy-waitlist-emails > img, #mentor-copy-emails > img {
     width: 100%;
     height: 100%;
     filter: invert(1);

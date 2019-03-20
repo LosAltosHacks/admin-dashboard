@@ -40,6 +40,8 @@
         <h2>Mentors</h2>
         <ul>
           <li onclick="getPanel('mentor-list')">Mentors List</li>
+          <li onclick="getPanel('mentor-bulk-acceptance')">Bulk Acceptance</li>
+          <li onclick="getPanel('mentor-acceptance-queue')">Acceptance Queue</li>
         </ul>
         <h2>Tools</h2>
         <ul>
@@ -275,6 +277,42 @@
       </div>
     </div>
     <span id="bulk-accept-button" onclick="confirmAccept();"><img src="/assets/icons/check.svg"></span>
+  </div>
+
+  <!-- Mentor Acceptance Queue -->
+  <div id="mentor-bulk-acceptance" class="panel">
+    <div id="mentor-bulk-list" class="list">
+      <div class="header">
+        <ul>
+          <li>
+            Accept
+            <input id="mentor-select-all" type="checkbox">
+          </li><li>
+          Name</li><li>
+          Phone</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
+    <span id="mentor-bulk-accept-button" onclick="confirmMentorAccept();"><img src="/assets/icons/check.svg"></span>
+  </div>
+
+  <!-- Mentor Acceptance Queue -->
+  <div id="mentor-acceptance-queue" class="panel">
+    <span id="mentor-copy-emails"><img src="./assets/icons/copy.svg"></span>
+    <h1>Acceptance Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="mentor-accepted-list" class="list">
+      <div class="header">
+        <ul>
+          <li>Acceptance Status</li><li>
+          First Name</li><li>
+          Last Name</li><li>
+          Email</li><li>
+          Registration Date</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <!-- Waitlist -->

@@ -203,6 +203,99 @@ async function getUnacceptedList() {
   })
 }
 
+async function getMentorBulkAccept() {
+  let response = await request("GET", "/mentor/v1/list");
+  $('.mentor-row, #mentor-bulk-acceptance > p').remove();
+  if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#mentor-bulk-list');
+  response.forEach(function(user) {
+    var template = document.getElementById("mentor-template");
+    var mentor = template.content.cloneNode(true);
+    var summary = [user.name, user.phone, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
+
+    var wrapper = document.createElement("li");
+    wrapper.classList.add("acceptance-checkbox");
+    var checkbox = document.createElement("input");
+    checkbox.classList.add("accept");
+    var type = document.createAttribute("type");
+    type.value = "checkbox";
+    checkbox.setAttributeNode(type);
+    wrapper.appendChild(checkbox);
+    mentor.querySelector("summary ul").appendChild(wrapper);
+
+    summary.forEach(function(data) {
+      var element = document.createElement("li");
+      element.textContent = data;
+      mentor.querySelector("summary ul").appendChild(element)
+    })
+
+    mentor.querySelector("summary").setAttribute("title", user.name + " <" + user.mentor_id + ">");
+
+    mentor.querySelector("summary").insertAdjacentHTML('afterbegin',
+      "<span class='delete-icon'><span title='Delete Mentor'><img src='/assets/icons/close.svg'></span></span>"
+    );
+
+    mentor.querySelector(".mentor-row").setAttribute("data-id", user.mentor_id);
+    mentor.querySelector(".over-18").appendChild(document.createTextNode(user.over_18 ? "Yes" : "No"));
+    mentor.querySelector(".t-shirt").appendChild(document.createTextNode(user.tshirt_size));
+    mentor.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : "Not Specified"));
+    mentor.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
+    mentor.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
+    mentor.querySelector(".skillset").appendChild(document.createTextNode(user.skillset.split(',').join(', ')));
+
+    mentor.querySelector(".mentor-details").insertAdjacentHTML('beforeend',
+      "<span class='edit-icon'><span title='Edit Mentor Data'><img src='/assets/icons/user-edit.svg'></span></span>"
+    )
+
+    mentor.querySelector(".mentor-details").insertAdjacentHTML('beforeend',
+      "<span class='history-icon'><span title='View Edit History'><img src='/assets/icons/history.svg'></span></span>"
+    )
+
+    document.getElementById("mentor-bulk-list").insertBefore(mentor, document.getElementById("mentor-bulk-list").children[1]);
+  })
+  $("#mentor-bulk-acceptance .delete-icon").remove();
+}
+
+async function getMentorAccept() {
+  let response = await getMentor({acceptance_status: "queue"});
+  $('.mentor-row, #mentor-accepted-list > p').remove();
+  if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#mentor-accepted-list');
+  response.forEach(function(user) {
+    var template = document.getElementById("mentor-template");
+    var mentor = template.content.cloneNode(true);
+    var summary = [user.acceptance_status.charAt(0).toUpperCase() + user.acceptance_status.slice(1) , user.name, user.phone, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
+
+    summary.forEach(function(data) {
+      var element = document.createElement("li");
+      element.textContent = data;
+      mentor.querySelector("summary ul").appendChild(element)
+    })
+
+    mentor.querySelector("summary").setAttribute("title", user.name + " <" + user.mentor_id + ">");
+
+    mentor.querySelector("summary").insertAdjacentHTML('afterbegin',
+      "<span class='delete-icon'><span title='Delete Mentor'><img src='/assets/icons/close.svg'></span></span>"
+    );
+
+    mentor.querySelector(".mentor-row").setAttribute("data-id", user.mentor_id);
+    mentor.querySelector(".over-18").appendChild(document.createTextNode(user.over_18 ? "Yes" : "No"));
+    mentor.querySelector(".t-shirt").appendChild(document.createTextNode(user.tshirt_size));
+    mentor.querySelector(".diet-restrict").appendChild(document.createTextNode(user.dietary_restrictions ? user.dietary_restrictions : "Not Specified"));
+    mentor.querySelector(".email-verified").appendChild(document.createTextNode(user.email_verified ? "Verified" : "Not Verified"));
+    mentor.querySelector(".signed-waiver").appendChild(document.createTextNode(user.signed_waiver ? "Signed" : "Not Signed"));
+    mentor.querySelector(".skillset").appendChild(document.createTextNode(user.skillset.split(',').join(', ')));
+
+    mentor.querySelector(".mentor-details").insertAdjacentHTML('beforeend',
+      "<span class='edit-icon'><span title='Edit Mentor Data'><img src='/assets/icons/user-edit.svg'></span></span>"
+    )
+
+    mentor.querySelector(".mentor-details").insertAdjacentHTML('beforeend',
+      "<span class='history-icon'><span title='View Edit History'><img src='/assets/icons/history.svg'></span></span>"
+    )
+
+    document.getElementById("mentor-accepted-list").insertBefore(mentor, document.getElementById("mentor-accepted-list").children[1]);
+  })
+}
+
 async function getWaitlist() {
   let response = await getUser({acceptance_status: "waitlisted"});
   $('#waitlist .attendees-row, #waitlist > p').remove();
@@ -272,17 +365,7 @@ async function getWaitlistQueue() {
   response.forEach(function(user) {
     var template = document.getElementById("attendee-template");
     var attendee = template.content.cloneNode(true);
-    var summary = [user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
-
-    var wrapper = document.createElement("li");
-    wrapper.classList.add("waitlist-queue-checkbox");
-    var checkbox = document.createElement("input");
-    var type = document.createAttribute("type");
-    type.value = "checkbox";
-    checkbox.setAttributeNode(type);
-    checkbox.classList.add("checkbox");
-    wrapper.appendChild(checkbox);
-    attendee.querySelector("summary ul").appendChild(wrapper);
+    var summary = [user.acceptance_status.charAt(0).toUpperCase() + user.acceptance_status.slice(1), user.first_name, user.surname, user.email, (new Date(user.timestamp.replace(" ", "T") + "Z")).toDateString()];
 
     summary.forEach(function(data) {
       var element = document.createElement("li");
