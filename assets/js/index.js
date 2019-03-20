@@ -436,13 +436,13 @@ function confirmMentorAccept() {
       });
       let id = row.attr("data-id");
       user_ids.push(id);
-      names.push($(element).closest("ul").find("li:nth-child(2)").text() + " " + $(element).closest("ul").find("li:nth-child(3)").text())
+      names.push($(element).closest("ul").find("li:nth-child(2)").text())
     }
   })
   if (user_ids.length !== 0) if (confirm("Do you want to change the status of " + names.join(", ") + " to queue?")) {
     user_ids.forEach(function(id) {
       console.log(id);
-      accept(id, "queue");
+      acceptMentor(id, "queue").then(result => console.log(result));
     });
   }
 }

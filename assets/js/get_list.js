@@ -204,7 +204,7 @@ async function getUnacceptedList() {
 }
 
 async function getMentorBulkAccept() {
-  let response = await request("GET", "/mentor/v1/list");
+  let response = await getMentor({acceptance_status: "none"});
   $('.mentor-row, #mentor-bulk-acceptance > p').remove();
   if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#mentor-bulk-list');
   response.forEach(function(user) {
