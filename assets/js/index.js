@@ -308,11 +308,14 @@ $(document).ready(function() {
 
   $(document).on('click', '.check-in', function(e) {
     var id = $(this).closest('figure').attr('data-id');
+    var name = $(this).closest('figcaption').find('.name').text();
+    var first_name = name.split(" ")[0];
+    var last_name = name.split(" ")[1];
+    var $this = $(this);
     checkin(id).then(function() {
-      $(this).removeClass('check-in');
-      $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
-      $(this).addClass('check-out');
-      $(this).text('Check Out');
+      print(id, first_name, last_name);
+      alert(`${name} has been checked in! Please wait while the badge prints...`);
+      getCheckIn();
     });
   })
 

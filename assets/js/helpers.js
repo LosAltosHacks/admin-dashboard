@@ -1,8 +1,3 @@
-async function hash(id) {
-  let result = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(id))
-  return btoa(result);
-}
-
 async function signup(user) {
   if (!user.first_name || !user.surname || !user.email || !user.age || !user.school || !user.grade || !user.student_phone_number || !user.gender || !user.tshirt_size || !user.previous_hackathons) return false;
   else if (user.age < 18 && (!user.guardian_name || !user.guardian_email || !user.guardian_phone_number)) return false;
@@ -32,14 +27,12 @@ async function removeGuest(guest_id) {
 }
 
 async function checkin(user_id) {
-  let badge_data = await hash(user_id);
-  let result = await request("POST", "/registration/v1/sign-in", {user_id: user_id, badge_data: badge_data});
+  let result = await request("POST", "/registration/v1/sign-in", {user_id: user_id, badge_data: user_id});
   return result;
 }
 
 async function checkout(user_id) {
-  let badge_data = await hash(user_id);
-  let result = await request("POST", "/registration/v1/sign-out", {badget_data: badge_data});
+  let result = await request("POST", "/registration/v1/sign-out", {badget_data: user_id});
   return result;
 }
 
