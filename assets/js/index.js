@@ -266,6 +266,14 @@ $(document).ready(function() {
     })
   })
 
+  $("#announcement-submit").click(function() {
+    if ($("#announcement-title").val().trim().length > 0 && $("#announcement-content").val().trim().length > 0 && confirm("Do you wish to send this announcement?")) {
+      writeNewPost($("#announcement-title").val(), $("#announcement-content").val(), $("#announcement-pin:checked").length == 1).then(function() {
+        alert("Your message has been successfully announced!");
+      });
+    }
+  })
+
   $("#acceptance-sort").change(function() {
     if ($("#acceptance-sort").val() === "") {
       getUnacceptedList();
@@ -338,9 +346,23 @@ $(document).ready(function() {
     }
   })
 
-  // getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
-  // getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
-  // getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
+  $(document).on('click', '.delete-announcement', function(e) {
+    let id = $(this).closest('.announcement').attr('data-id');
+    if (confirm("Are you sure you want to delete announcement \"" + $(this).closest('.announcement').find('.subject').text() + "\"?")) {
+      deleteAnnouncement(id).then(function() {
+        $(this).closest('.announcement').animate({
+          'height': 'toggle'
+        }, function() {
+          $(this).closest('.announcement').remove();
+        })
+      });
+    }
+  })
+
+  $(document).on('click', '.edit-announcement', function(e) {
+    let id = $(this).closest('.announcement').attr('data-id');
+    console.log(id);
+  })
 })
 
 function getPanel(panel) {
@@ -388,6 +410,9 @@ function getPanel(panel) {
       break;
     case "mentor-acceptance-queue":
       getMentorAccept();
+      break;
+    case "edit-announcements":
+      getAnnouncementsList();
       break;
     default: break;
   }

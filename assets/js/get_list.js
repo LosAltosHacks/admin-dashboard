@@ -205,7 +205,7 @@ async function getUnacceptedList() {
 
 async function getMentorBulkAccept() {
   let response = await getMentor({acceptance_status: "none"});
-  $('.mentor-row, #mentor-bulk-acceptance > p').remove();
+  $('.mentor-row, #mentor-bulk-list > p').remove();
   if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#mentor-bulk-list');
   response.forEach(function(user) {
     var template = document.getElementById("mentor-template");
@@ -553,4 +553,18 @@ async function getCheckIn() {
   $("#waitlisted-count").text($('figure.waitlisted').length);
   $("#checked-in-count").text($('figure.checked-in').length);
   $("#not-checked-in-count").text($('figure').length - $('figure.checked-in').length);
+}
+
+async function getAnnouncementsList() {
+  let result = await getAnnouncements();
+  $("#announcements-list > ul > li:not('.header')").remove();
+  result.forEach(function(doc) {
+    var $announcement = $("<li class='announcement'><span class='delete-announcement'><img src='./assets/icons/close.svg'></span><ul><li class='subject'></li><li class='content'></li><li class='timestamp'></li><span class='edit-announcement'><img src='./assets/icons/user-edit.svg'></span></ul></li>")
+    $announcement.attr('data-id', doc.id);
+    $announcement.find('.subject').text(doc.data().name)
+    $announcement.find('.content').text(doc.data().content)
+    $announcement.find('.timestamp').text("time")
+    if (doc.data().isPinned) $announcement.addClass('pinned');
+    $announcement.appendTo("#announcements-list > ul");
+  })
 }

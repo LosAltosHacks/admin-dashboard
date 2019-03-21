@@ -183,14 +183,42 @@ function request(method, url, data) {
   })
 }
 
-// function logout() {
-//   localStorage.removeItem('jwt_auth');
-//   localStorage.removeItem('name');
-//   localStorage.removeItem('prof_image');
-//   window.location.href = "/login.html";
-//   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
-// }
+function logout() {
+  localStorage.removeItem('jwt_auth');
+  localStorage.removeItem('name');
+  localStorage.removeItem('prof_image');
+  window.location.href = "/login.html";
+  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
+}
 
 function escapeHTML(s) {
   return s.replace(/[&"'<>`]/g, '');
+}
+
+async function writeNewPost(subject, content, pinned) {
+  let result = await db.collection("events").add({
+    name: subject,
+    content: content,
+    isPinned: pinned ? true : false
+  })
+  return result;
+}
+
+async function getAnnouncements() {
+  let result = db.collection("events").get();
+  return result;
+}
+
+async function deleteAnnouncement(id) {
+  let result = db.collection("events").doc(id).delete();
+  return result;
+}
+
+async function modifyAnnouncement(id, subject, content, pinned) {
+  let result = db.collection("events").doc(id).set({
+    name: subject,
+    content: content,
+    isPinned: pinned ? true : false
+  })
+  return result;
 }
