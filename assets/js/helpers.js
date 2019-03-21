@@ -222,3 +222,14 @@ async function modifyAnnouncement(id, subject, content, pinned) {
   })
   return result;
 }
+
+function print(id, first_name, last_name) {
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:8080/print",
+    contentType: "application/json",
+    data: JSON.stringify({id: id, first_name: first_name, last_name: last_name})
+  }).done(function(result) {
+    console.log(result);
+  })
+}
