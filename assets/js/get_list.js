@@ -520,7 +520,7 @@ async function getCheckIn() {
   attendees = attendees.concat(waitlisted_attendees);
   $("#checkin-list figure").remove();
   attendees.forEach(function(user) {
-    $figure = $('<figure><span class="checkin-accept-status" title="' + (user.acceptance_status === "accepted" ? "This attendee has been accepted." : "This attendee is in the waitlist") + '"><img src="/assets/icons/' + user.acceptance_status + '.svg"></span><img src="/assets/icons/attendee.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
+    $figure = $('<figure><span class="checkin-accept-status" title="' + (user.acceptance_status === "accepted" ? "This attendee has been accepted." : "This attendee is in the waitlist") + '"><img src="/assets/icons/' + user.acceptance_status + '.svg"></span><img src="/assets/icons/attendee.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
     $figure.addClass('attendee');
     $figure.attr('data-id', user.user_id);
     $figure.addClass(user.acceptance_status === "accepted" ? "accepted" : "waitlisted")
