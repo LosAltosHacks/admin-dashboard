@@ -810,6 +810,7 @@ body {
   text-align: center;
   color: red;
   font-weight: bold;
+  display: block;
 }
 
 /* Dark Theme */
