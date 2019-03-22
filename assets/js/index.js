@@ -270,6 +270,9 @@ $(document).ready(function() {
     if ($("#announcement-title").val().trim().length > 0 && $("#announcement-content").val().trim().length > 0 && confirm("Do you wish to send this announcement?")) {
       writeNewPost($("#announcement-title").val(), $("#announcement-content").val(), $("#announcement-pin:checked").length == 1).then(function() {
         alert("Your message has been successfully announced!");
+        $("#announcement-title, #announcement-content").val("");
+        $("#announcement-pin").prop("checked", false);
+        getPanel("edit-announcements");
       });
     }
   })
@@ -312,11 +315,14 @@ $(document).ready(function() {
     var first_name = name.split(" ")[0];
     var last_name = name.split(" ")[1];
     var $this = $(this);
-    checkin(id).then(function() {
-      print(id, first_name, last_name);
-      alert(`${name} has been checked in! Please wait while the badge prints...`);
-      getCheckIn();
-    });
+    print(id, first_name, last_name).then(function(result) {
+      if (result === "success") {
+        checkin(id).then(function() {
+          alert(`${name} has been checked in! The badge should finish printing shortly...`);
+          getCheckIn();
+        })
+      }
+    })
   })
 
   $(document).on('click', '.check-out', function(e) {

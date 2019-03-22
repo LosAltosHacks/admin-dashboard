@@ -192,7 +192,8 @@ async function writeNewPost(subject, content, pinned) {
   let result = await db.collection("events").add({
     name: subject,
     content: content,
-    isPinned: pinned ? true : false
+    isPinned: pinned ? true : false,
+    timePosted: new Date()
   })
   return result;
 }
@@ -216,13 +217,12 @@ async function modifyAnnouncement(id, subject, content, pinned) {
   return result;
 }
 
-function print(id, first_name, last_name) {
-  $.ajax({
+async function print(id, first_name, last_name) {
+  let result = await $.ajax({
     type: "POST",
     url: "http://localhost:8080/print",
     contentType: "application/json",
     data: JSON.stringify({id: id, first_name: first_name, last_name: last_name})
-  }).done(function(result) {
-    console.log(result);
   })
+  return result;
 }
