@@ -526,7 +526,7 @@ async function getCheckIn() {
     $figure.addClass(user.acceptance_status === "accepted" ? "accepted" : "waitlisted")
     $figure.find('.name').text(user.first_name + " " + user.surname);
     $figure.find('.age').text(user.age);
-    $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
+    $figure.find('.waiver').text(user.signed_waiver ? "" : "Waiver Not Signed");
     $figure.appendTo("#checkin-list");
   })
   let mentors = await getMentor({"acceptance_status": "accepted"});
