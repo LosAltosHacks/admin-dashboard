@@ -1007,6 +1007,12 @@ body.dark {
     transform: translateY(-5px);
     box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
   }
+  figure:not(.checked-in) .check-in {
+    background-color: rgba(0, 255, 0, 0.2);
+  }
+  figure.checked-in .check-in {
+    background-color: rgba(255, 0, 0, 0.2);
+  }
 .check-out {
   cursor: pointer;
   display: block;
