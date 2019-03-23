@@ -331,7 +331,7 @@ $(document).ready(function() {
       lastChecked = this;
     });
 
-  $(document).on('click', '.check-in', function(e) {
+  $(document).on('click', 'figure:not(".checked-in") .check-in', function(e) {
     var id = $(this).closest('figure').attr('data-id');
     var name = $(this).closest('figcaption').find('.name').text();
     var first_name = name.split(" ")[0];
@@ -339,9 +339,21 @@ $(document).ready(function() {
     var $this = $(this);
     if ($this.closest("figure").find(".waiver").text().trim().length != 0) if (confirm("This person did not sign the waiver yet. Do you still wish to check the person in?")) print(id, first_name, last_name).then(function(result) {
       if (result === "success") {
+        if ($this.closest("figure").hasClass("attendee")) modify(id, {signed_waiver: true});
+        else if ($this.closest("figure").hasClass("mentor")) modifyMentor(id, {signed_waiver: true});
+        else modifyGuest(id, {signed_waiver: true});
         checkin(id).then(function() {
           alert(`${name} has been checked in! The badge should finish printing shortly...`);
           getCheckIn();
+        })
+      } else {
+        print(id, first_name, last_name).then(function(result) {
+          if (result === "success") {
+            checkin(id).then(function() {
+              alert(`${name} has been checked in! The badge should finish printing shortly...`);
+              getCheckIn();
+            })
+          }
         })
       }
     })

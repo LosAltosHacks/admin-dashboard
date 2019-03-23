@@ -532,7 +532,7 @@ async function getCheckIn() {
   })
   let mentors = await getMentor({"acceptance_status": "accepted"});
   mentors.forEach(function(user) {
-    $figure = $('<figure><img src="/assets/icons/mentor.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">'+ (user.signed_in ? 'Check Out' : 'Check In') + '</div></figcaption></figure>');
+    $figure = $('<figure><img src="/assets/icons/mentor.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><span class="waiver"></span></p><div class="check-in">'+ (user.signed_in ? 'Check Out' : 'Check In') + '</div></figcaption></figure>');
     $figure.addClass('mentor');
     if (user.signed_in) $figure.addClass('checked-in');
     $figure.attr('data-id', user.mentor_id);
@@ -543,7 +543,7 @@ async function getCheckIn() {
   })
   let guests = await request("GET", "/guest/v1/list");
   guests.forEach(function(user) {
-    $figure = $('<figure><img src="/assets/icons/' + user.kind + '.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="guest-type"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">'+ (user.signed_in ? 'Check Out' : 'Check In') + '</div></figcaption></figure>');
+    $figure = $('<figure><img src="/assets/icons/' + user.kind + '.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="guest-type"></span></p><p><span class="waiver"></span></p><div class="check-in">'+ (user.signed_in ? 'Check Out' : 'Check In') + '</div></figcaption></figure>');
     $figure.addClass(user.kind);
     if (user.signed_in) $figure.addClass('checked-in');
     $figure.attr('data-id', user.guest_id);
