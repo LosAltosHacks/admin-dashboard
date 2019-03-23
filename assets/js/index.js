@@ -337,7 +337,7 @@ $(document).ready(function() {
     var first_name = name.split(" ")[0];
     var last_name = name.split(" ")[1];
     var $this = $(this);
-    print(id, first_name, last_name).then(function(result) {
+    if ($this.closest("figure").find(".waiver").text().trim().length != 0) if (confirm("This person did not sign the waiver yet. Do you still wish to check the person in?")) print(id, first_name, last_name).then(function(result) {
       if (result === "success") {
         checkin(id).then(function() {
           alert(`${name} has been checked in! The badge should finish printing shortly...`);
