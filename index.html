@@ -22,6 +22,7 @@
       <div>
         <h2>Day Of</h2>
         <ul>
+          <li onclick="getPanel('edit-announcements')">View Announcements</li>
           <li onclick="getPanel('announcements')">Make Announcement</li>
           <li onclick="getPanel('dayof')">Check In</li>
           <li onclick="getPanel('vip')">Guests</li>
@@ -133,6 +134,7 @@
     <h1>Make Announcements</h1>
 
     <form id="announcement-form">
+      <span style="display:block;text-align:center;margin-bottom:20px;"><label for="pin">Pin Message </label><input type="checkbox" id="announcement-pin" name="pin"></span>
       <input type="text" id="announcement-title" name="title" placeholder="Subject">
       <textarea id="announcement-content" name="content" placeholder="Message"></textarea>
       <input type="button" id="announcement-submit" value="Send">
@@ -140,7 +142,7 @@
   </div>
 
   <div id="dayof" class="panel">
-    <h1>Day Of Check-In</h1>
+    <h1>Day Of Check-In <span class="sync" onclick="getCheckIn()"><img src="/assets/icons/sync.svg"></span></h1>
     <p>Total Accepted: <span id="accepted-count"></span></p>
     <p>Total Waitlisted: <span id="waitlisted-count"></span></p>
     <p>Checked In: <span id="checked-in-count"></span></p>
@@ -154,9 +156,24 @@
     </div>
   </div>
 
+  <div id="edit-announcements" class="panel">
+    <h1>Announcements <span class="sync" onclick="getAnnouncementsList()"><img src="/assets/icons/sync.svg"></span></h1>
+    <div id="announcements-list">
+      <ul>
+        <li class="header">
+          <ul>
+            <li>Subject
+            </li><li>Message
+            </li><li>Timestamp
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <!-- VIP List -->
   <div id="vip" class="panel">
-    <h1>Guests</h1>
+    <h1>Guests <span class="sync" onclick="getVIP()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="vip-list" class="list">
       <div class="header">
         <ul>
@@ -175,7 +192,7 @@
 
   <!-- Email List -->
   <div id="email-list" class="panel">
-    <h1>Email List <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Email List <span class="sync" onclick="getSubscribedList()"><img src="/assets/icons/sync.svg"></span></h1>
 
     <div id="email-list" class="list">
     </div>
@@ -216,7 +233,7 @@
   <!-- Acceptance Queue -->
   <div id="acceptance-queue" class="panel">
     <span id="copy-emails"><img src="./assets/icons/copy.svg"></span>
-    <h1>Acceptance Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Acceptance Queue <span class="sync" onclick="getAcceptedList()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="accepted-list" class="list">
       <div class="header">
         <ul>
@@ -232,7 +249,7 @@
 
   <!-- Rejection Queue -->
   <div id="rejection-queue" class="panel">
-    <h1>Rejection Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Rejection Queue <span class="sync" onclick="getRejectedList()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="rejected-list" class="list">
       <div class="header">
         <ul>
@@ -257,7 +274,7 @@
         <option value="school">School</option>
         <option value="signed-waiver">Waiver</option>
         <option value="email-verified">Email Verification</option>
-      <select><span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+      <select><span class="sync" onclick="getUnacceptedList()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="unaccepted-list" class="list">
       <div class="header">
         <ul>
@@ -281,7 +298,7 @@
 
   <!-- Mentor Acceptance Queue -->
   <div id="mentor-bulk-acceptance" class="panel">
-    <h1>Mentor Bulk Acceptance Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Mentor Bulk Acceptance Queue <span class="sync" onclick="getMentorBulkAccept()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="mentor-bulk-list" class="list">
       <div class="header">
         <ul>
@@ -302,7 +319,7 @@
   <!-- Mentor Acceptance Queue -->
   <div id="mentor-acceptance-queue" class="panel">
     <span id="mentor-copy-emails"><img src="./assets/icons/copy.svg"></span>
-    <h1>Acceptance Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Acceptance Queue <span class="sync" onclick="getMentorAccept()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="mentor-accepted-list" class="list">
       <div class="header">
         <ul>
@@ -318,7 +335,7 @@
 
   <!-- Waitlist -->
   <div id="waitlist" class="panel">
-    <h1>Waitlist <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Waitlist <span class="sync" onclick="getWaitlist()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="waitlist-list" class="list">
       <div class="header">
         <ul>
@@ -338,7 +355,7 @@
 
   <div id="waitlist-queue" class="panel">
     <span id="copy-waitlist-emails"><img src="./assets/icons/copy.svg"></span>
-    <h1>Waitlist Queue <span class="sync"><img src="/assets/icons/sync.svg"></span></h1>
+    <h1>Waitlist Queue <span class="sync" onclick="getWaitlistQueue()"><img src="/assets/icons/sync.svg"></span></h1>
     <div id="waitlist-queue-list" class="list">
       <div class="header">
         <ul>
@@ -401,7 +418,7 @@
 
   <!-- Scripts -->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -413,7 +430,9 @@
       messagingSenderId: "944833452710"
     };
     firebase.initializeApp(config);
-  </script> -->
+    const db = firebase.firestore();
+    const dbEventsRef = db.collection("events");
+  </script>
   <script src="./assets/js/jquery.min.js"></script>
   <script src="./assets/js/get_list.js"></script>
   <script src="./assets/js/index.js"></script>

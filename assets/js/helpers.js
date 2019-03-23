@@ -1,8 +1,3 @@
-async function hash(id) {
-  let result = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(id))
-  return btoa(result);
-}
-
 async function signup(user) {
   if (!user.first_name || !user.surname || !user.email || !user.age || !user.school || !user.grade || !user.student_phone_number || !user.gender || !user.tshirt_size || !user.previous_hackathons) return false;
   else if (user.age < 18 && (!user.guardian_name || !user.guardian_email || !user.guardian_phone_number)) return false;
@@ -32,14 +27,12 @@ async function removeGuest(guest_id) {
 }
 
 async function checkin(user_id) {
-  let badge_data = await hash(user_id);
-  let result = await request("POST", "/registration/v1/sign-in", {user_id: user_id, badge_data: badge_data});
+  let result = await request("POST", "/dayof/v1/sign-in", {user_id: user_id, badge_data: user_id});
   return result;
 }
 
 async function checkout(user_id) {
-  let badge_data = await hash(user_id);
-  let result = await request("POST", "/registration/v1/sign-out", {badget_data: badge_data});
+  let result = await request("POST", "/dayof/v1/sign-out", {badget_data: user_id});
   return result;
 }
 
@@ -112,32 +105,32 @@ async function getMentorHistory(mentor_id) {
   return result;
 }
 
-// function addTestEntry(type, n) {
-//   switch(n) {
-//     case "attendee":
-//       for (var i=0; i<n; i++) {
-//         signup({
-//           first_name: "TestEntryFirst" + i,
-//           surname: "TestEntryLast" + i,
-//           email: fakeEmail(),
-//           age: Math.floor(Math.random() * 6) + 13,
-//           school: "Test High School",
-//           grade: Math.floor(Math.random() * r) + 9,
-//           student_phone_number: "1111111111",
-//           guardian_name: "TestGuardian",
-//           guardian_email: fakeEmail(),
-//           guardian_phone_number: "1111111111",
-//           gender: "Male",
-//           tshirt_size: "M",
-//           previous_hackathons: Math.floor(Math.random()*8),
-//           github_username: "testgithub",
-//           linkedin_profile: "https://www.linkedin.com/in/test-linkedin/",
-//           diestary_restrictions: "None"
-//         })
-//       }
-//
-//   }
-// }
+function addTestEntry() {
+  switch(type) {
+    case "attendee":
+      for (var i=0; i<n; i++) {
+        signup({
+          first_name: "TestEntryFirst" + i,
+          surname: "TestEntryLast" + i,
+          email: fakeEmail(),
+          age: Math.floor(Math.random() * 6) + 13,
+          school: "Test High School",
+          grade: Math.floor(Math.random() * r) + 9,
+          student_phone_number: "1111111111",
+          guardian_name: "TestGuardian",
+          guardian_email: fakeEmail(),
+          guardian_phone_number: "1111111111",
+          gender: "Male",
+          tshirt_size: "M",
+          previous_hackathons: Math.floor(Math.random()*8),
+          github_username: "testgithub",
+          linkedin_profile: "https://www.linkedin.com/in/test-linkedin/",
+          diestary_restrictions: "None"
+        })
+      }
+
+  }
+}
 
 function fakeEmail() {
   var text = "";
@@ -193,4 +186,44 @@ function request(method, url, data) {
 
 function escapeHTML(s) {
   return s.replace(/[&"'<>`]/g, '');
+}
+
+async function writeNewPost(subject, content, pinned) {
+  let result = await db.collection("events").add({
+    name: subject,
+    content: content,
+    isPinned: pinned ? true : false,
+    timePosted: new Date()
+  })
+  return result;
+}
+
+async function getAnnouncements() {
+  let result = db.collection("events").get();
+  return result;
+}
+
+async function deleteAnnouncement(id) {
+  let result = db.collection("events").doc(id).delete();
+  return result;
+}
+
+async function modifyAnnouncement(id, subject, content, pinned) {
+  let result = db.collection("events").doc(id).set({
+    name: subject,
+    content: content,
+    isPinned: pinned ? true : false,
+    timePosted: new Date()
+  })
+  return result;
+}
+
+async function print(id, first_name, last_name) {
+  let result = await $.ajax({
+    type: "POST",
+    url: "http://localhost:8080/print",
+    contentType: "application/json",
+    data: JSON.stringify({id: id, first_name: first_name, last_name: last_name})
+  })
+  return result;
 }

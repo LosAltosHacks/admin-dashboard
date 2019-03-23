@@ -266,6 +266,39 @@ $(document).ready(function() {
     })
   })
 
+  $(document).on('click', '.announcement:not(".editing") .edit-announcement', function() {
+    if ($('.announcement.edit').length > 0) return;
+    $(this).closest(".announcement").addClass("editing");
+    var subject = $(this).closest("ul").find(".subject").text();
+    var content = $(this).closest("ul").find(".content").text();
+    $(this).closest("ul").find(".subject").empty();
+    $(`<textarea>${subject}</textarea>`).appendTo($(this).closest("ul").find(".subject"));
+    $(this).closest("ul").find(".content").empty();
+    $(`<textarea>${content}</textarea>`).appendTo($(this).closest("ul").find(".content"));
+  })
+
+  $(document).on('click', '.announcement.editing .edit-announcement', function() {
+    if (confirm("Do you wish to publish this announcement?")) {
+      var pin = confirm("Pin this message?")
+      var id = $(this).closest(".announcement").attr("data-id");
+      var subject = $(this).closest("ul").find(".subject > textarea").val();
+      var content = $(this).closest("ul").find(".content > textarea").val();
+      modifyAnnouncement(id, subject, content, pin);
+      getAnnouncementsList();
+    }
+  })
+
+  $("#announcement-submit").click(function() {
+    if ($("#announcement-title").val().trim().length > 0 && $("#announcement-content").val().trim().length > 0 && confirm("Do you wish to send this announcement?")) {
+      writeNewPost($("#announcement-title").val(), $("#announcement-content").val(), $("#announcement-pin:checked").length == 1).then(function() {
+        alert("Your message has been successfully announced!");
+        $("#announcement-title, #announcement-content").val("");
+        $("#announcement-pin").prop("checked", false);
+        getPanel("edit-announcements");
+      });
+    }
+  })
+
   $("#acceptance-sort").change(function() {
     if ($("#acceptance-sort").val() === "") {
       getUnacceptedList();
@@ -300,12 +333,18 @@ $(document).ready(function() {
 
   $(document).on('click', '.check-in', function(e) {
     var id = $(this).closest('figure').attr('data-id');
-    checkin(id).then(function() {
-      $(this).removeClass('check-in');
-      $(this).closest('figure').find('img').css("animation", "checkin .8s alternate-reverse");
-      $(this).addClass('check-out');
-      $(this).text('Check Out');
-    });
+    var name = $(this).closest('figcaption').find('.name').text();
+    var first_name = name.split(" ")[0];
+    var last_name = name.split(" ")[1];
+    var $this = $(this);
+    if ($this.closest("figure").find(".waiver").text().trim().length != 0) if (confirm("This person did not sign the waiver yet. Do you still wish to check the person in?")) print(id, first_name, last_name).then(function(result) {
+      if (result === "success") {
+        checkin(id).then(function() {
+          alert(`${name} has been checked in! The badge should finish printing shortly...`);
+          getCheckIn();
+        })
+      }
+    })
   })
 
   $(document).on('click', '.check-out', function(e) {
@@ -338,9 +377,19 @@ $(document).ready(function() {
     }
   })
 
-  // getUser("").then(function(result) {document.getElementById("apps-count").innerHTML = result.length})
-  // getUser({acceptance_status: "queue"}).then(function(result) {document.getElementById("accept-count").innerHTML = result.length})
-  // getMentor("").then(function(result) {document.getElementById("mentor-apps-count").innerHTML = result.length})
+  $(document).on('click', '.delete-announcement', function(e) {
+    let id = $(this).closest('.announcement').attr('data-id');
+    if (confirm("Are you sure you want to delete announcement \"" + $(this).closest('.announcement').find('.subject').text() + "\"?")) {
+      deleteAnnouncement(id).then(function() {
+        getAnnouncementsList();
+      });
+    }
+  })
+
+  $(document).on('click', '.edit-announcement', function(e) {
+    let id = $(this).closest('.announcement').attr('data-id');
+    console.log(id);
+  })
 })
 
 function getPanel(panel) {
@@ -388,6 +437,9 @@ function getPanel(panel) {
       break;
     case "mentor-acceptance-queue":
       getMentorAccept();
+      break;
+    case "edit-announcements":
+      getAnnouncementsList();
       break;
     default: break;
   }

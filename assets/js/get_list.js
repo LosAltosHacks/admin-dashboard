@@ -205,7 +205,7 @@ async function getUnacceptedList() {
 
 async function getMentorBulkAccept() {
   let response = await getMentor({acceptance_status: "none"});
-  $('.mentor-row, #mentor-bulk-acceptance > p').remove();
+  $('.mentor-row, #mentor-bulk-list > p').remove();
   if (response.length == 0) $('<p style="text-align:center;color:rgba(0,0,0,0.5);margin-top:50px">There is nothing to show!</p>').appendTo('#mentor-bulk-list');
   response.forEach(function(user) {
     var template = document.getElementById("mentor-template");
@@ -520,37 +520,54 @@ async function getCheckIn() {
   attendees = attendees.concat(waitlisted_attendees);
   $("#checkin-list figure").remove();
   attendees.forEach(function(user) {
-    $figure = $('<figure><span class="checkin-accept-status" title="' + (user.acceptance_status === "accepted" ? "This attendee has been accepted." : "This attendee is in the waitlist") + '"><img src="/assets/icons/' + user.acceptance_status + '.svg"></span><img src="/assets/icons/attendee.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
+    $figure = $('<figure><span class="checkin-accept-status" title="' + (user.acceptance_status === "accepted" ? "This attendee has been accepted." : "This attendee is in the waitlist") + '"><img src="/assets/icons/' + user.acceptance_status + '.svg"></span><img src="/assets/icons/attendee.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><span class="waiver"></span></p><div class="check-in">'+ (user.signed_in ? 'Check Out' : 'Check In') + '</div></figcaption></figure>');
     $figure.addClass('attendee');
+    if (user.signed_in) $figure.addClass('checked-in');
     $figure.attr('data-id', user.user_id);
     $figure.addClass(user.acceptance_status === "accepted" ? "accepted" : "waitlisted")
     $figure.find('.name').text(user.first_name + " " + user.surname);
     $figure.find('.age').text(user.age);
-    $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
+    $figure.find('.waiver').text(user.signed_waiver ? "" : "Waiver Not Signed");
     $figure.appendTo("#checkin-list");
   })
   let mentors = await getMentor({"acceptance_status": "accepted"});
   mentors.forEach(function(user) {
-    $figure = $('<figure><img src="/assets/icons/mentor.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
+    $figure = $('<figure><img src="/assets/icons/mentor.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="age"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">'+ (user.signed_in ? 'Check Out' : 'Check In') + '</div></figcaption></figure>');
     $figure.addClass('mentor');
+    if (user.signed_in) $figure.addClass('checked-in');
     $figure.attr('data-id', user.mentor_id);
     $figure.find('.name').text(user.name);
     $figure.find('.age').text(user.over_18 ? "Over 18" : "Under 18");
-    $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
+    $figure.find('.waiver').text(user.signed_waiver ? "" : "Waiver Not Signed");
     $figure.appendTo("#checkin-list");
   })
   let guests = await request("GET", "/guest/v1/list");
   guests.forEach(function(user) {
-    $figure = $('<figure><img src="/assets/icons/' + user.kind + '.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="guest-type"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">Check In</div></figcaption></figure>');
+    $figure = $('<figure><img src="/assets/icons/' + user.kind + '.svg"><figcaption><p><b>Name</b>: <span class="name"></span><p><b>Age</b>: <span class="guest-type"></span></p><p><b>Waiver</b>: <span class="waiver"></span></p><div class="check-in">'+ (user.signed_in ? 'Check Out' : 'Check In') + '</div></figcaption></figure>');
     $figure.addClass(user.kind);
+    if (user.signed_in) $figure.addClass('checked-in');
     $figure.attr('data-id', user.guest_id);
     $figure.find('.name').text(user.name);
     $figure.find('.guest-type').text(user.kind.slice(0, 1).toUpperCase() + user.kind.slice(1));
-    $figure.find('.waiver').text(user.signed_waiver ? "Signed" : "Not Signed");
+    $figure.find('.waiver').text(user.signed_waiver ? "" : "Waiver Not Signed");
     $figure.appendTo("#checkin-list");
   })
   $("#accepted-count").text($('figure.accepted').length);
   $("#waitlisted-count").text($('figure.waitlisted').length);
   $("#checked-in-count").text($('figure.checked-in').length);
   $("#not-checked-in-count").text($('figure').length - $('figure.checked-in').length);
+}
+
+async function getAnnouncementsList() {
+  let result = await getAnnouncements();
+  $("#announcements-list > ul > li:not('.header')").remove();
+  result.forEach(function(doc) {
+    var $announcement = $("<li class='announcement'><span class='delete-announcement'><img src='./assets/icons/close.svg'></span><ul><li class='subject'></li><li class='content'></li><li class='timestamp'></li><span class='edit-announcement'><img src='./assets/icons/user-edit.svg'></span></ul></li>")
+    $announcement.attr('data-id', doc.id);
+    $announcement.find('.subject').text(doc.data().name)
+    $announcement.find('.content').text(doc.data().content)
+    $announcement.find('.timestamp').text(doc.data().timePosted.toDate())
+    if (doc.data().isPinned) $announcement.addClass('pinned');
+    $announcement.appendTo("#announcements-list > ul");
+  })
 }
