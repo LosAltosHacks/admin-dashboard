@@ -27,12 +27,12 @@ async function removeGuest(guest_id) {
 }
 
 async function checkin(user_id) {
-  let result = await request("POST", "/registration/v1/sign-in", {user_id: user_id, badge_data: user_id});
+  let result = await request("POST", "/dayof/v1/sign-in", {user_id: user_id, badge_data: user_id});
   return result;
 }
 
 async function checkout(user_id) {
-  let result = await request("POST", "/registration/v1/sign-out", {badget_data: user_id});
+  let result = await request("POST", "/dayof/v1/sign-out", {badget_data: user_id});
   return result;
 }
 
@@ -176,13 +176,13 @@ function request(method, url, data) {
   })
 }
 
-function logout() {
-  localStorage.removeItem('jwt_auth');
-  localStorage.removeItem('name');
-  localStorage.removeItem('prof_image');
-  window.location.href = "/login.html";
-  if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
-}
+// function logout() {
+//   localStorage.removeItem('jwt_auth');
+//   localStorage.removeItem('name');
+//   localStorage.removeItem('prof_image');
+//   window.location.href = "/login.html";
+//   if (gapi.auth2.getAuthInstance()) gapi.auth2.signout(); // Future implementation with scopes
+// }
 
 function escapeHTML(s) {
   return s.replace(/[&"'<>`]/g, '');
