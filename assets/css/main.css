@@ -707,6 +707,12 @@ body {
       filter: invert(1);
     }
 
+.announcement textarea {
+  resize: none;
+  width: 95%;
+  font-family: 'Poppins', sans-serif;
+}
+
 /* Login */
 
 #login-page {

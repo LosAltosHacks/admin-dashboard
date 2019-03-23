@@ -266,6 +266,28 @@ $(document).ready(function() {
     })
   })
 
+  $(document).on('click', '.announcement:not(".editing") .edit-announcement', function() {
+    if ($('.announcement.edit').length > 0) return;
+    $(this).closest(".announcement").addClass("editing");
+    var subject = $(this).closest("ul").find(".subject").text();
+    var content = $(this).closest("ul").find(".content").text();
+    $(this).closest("ul").find(".subject").empty();
+    $(`<textarea>${subject}</textarea>`).appendTo($(this).closest("ul").find(".subject"));
+    $(this).closest("ul").find(".content").empty();
+    $(`<textarea>${content}</textarea>`).appendTo($(this).closest("ul").find(".content"));
+  })
+
+  $(document).on('click', '.announcement.editing .edit-announcement', function() {
+    if (confirm("Do you wish to publish this announcement?")) {
+      var pin = confirm("Pin this message?")
+      var id = $(this).closest(".announcement").attr("data-id");
+      var subject = $(this).closest("ul").find(".subject > textarea").val();
+      var content = $(this).closest("ul").find(".content > textarea").val();
+      modifyAnnouncement(id, subject, content, pin);
+      getAnnouncementsList();
+    }
+  })
+
   $("#announcement-submit").click(function() {
     if ($("#announcement-title").val().trim().length > 0 && $("#announcement-content").val().trim().length > 0 && confirm("Do you wish to send this announcement?")) {
       writeNewPost($("#announcement-title").val(), $("#announcement-content").val(), $("#announcement-pin:checked").length == 1).then(function() {
@@ -359,11 +381,7 @@ $(document).ready(function() {
     let id = $(this).closest('.announcement').attr('data-id');
     if (confirm("Are you sure you want to delete announcement \"" + $(this).closest('.announcement').find('.subject').text() + "\"?")) {
       deleteAnnouncement(id).then(function() {
-        $(this).closest('.announcement').animate({
-          'height': 'toggle'
-        }, function() {
-          $(this).closest('.announcement').remove();
-        })
+        getAnnouncementsList();
       });
     }
   })

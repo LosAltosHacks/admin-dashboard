@@ -563,7 +563,7 @@ async function getAnnouncementsList() {
     $announcement.attr('data-id', doc.id);
     $announcement.find('.subject').text(doc.data().name)
     $announcement.find('.content').text(doc.data().content)
-    $announcement.find('.timestamp').text("time")
+    $announcement.find('.timestamp').text(doc.data().timePosted.toDate())
     if (doc.data().isPinned) $announcement.addClass('pinned');
     $announcement.appendTo("#announcements-list > ul");
   })

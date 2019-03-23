@@ -105,32 +105,32 @@ async function getMentorHistory(mentor_id) {
   return result;
 }
 
-// function addTestEntry(type, n) {
-//   switch(n) {
-//     case "attendee":
-//       for (var i=0; i<n; i++) {
-//         signup({
-//           first_name: "TestEntryFirst" + i,
-//           surname: "TestEntryLast" + i,
-//           email: fakeEmail(),
-//           age: Math.floor(Math.random() * 6) + 13,
-//           school: "Test High School",
-//           grade: Math.floor(Math.random() * r) + 9,
-//           student_phone_number: "1111111111",
-//           guardian_name: "TestGuardian",
-//           guardian_email: fakeEmail(),
-//           guardian_phone_number: "1111111111",
-//           gender: "Male",
-//           tshirt_size: "M",
-//           previous_hackathons: Math.floor(Math.random()*8),
-//           github_username: "testgithub",
-//           linkedin_profile: "https://www.linkedin.com/in/test-linkedin/",
-//           diestary_restrictions: "None"
-//         })
-//       }
-//
-//   }
-// }
+function addTestEntry() {
+  switch(type) {
+    case "attendee":
+      for (var i=0; i<n; i++) {
+        signup({
+          first_name: "TestEntryFirst" + i,
+          surname: "TestEntryLast" + i,
+          email: fakeEmail(),
+          age: Math.floor(Math.random() * 6) + 13,
+          school: "Test High School",
+          grade: Math.floor(Math.random() * r) + 9,
+          student_phone_number: "1111111111",
+          guardian_name: "TestGuardian",
+          guardian_email: fakeEmail(),
+          guardian_phone_number: "1111111111",
+          gender: "Male",
+          tshirt_size: "M",
+          previous_hackathons: Math.floor(Math.random()*8),
+          github_username: "testgithub",
+          linkedin_profile: "https://www.linkedin.com/in/test-linkedin/",
+          diestary_restrictions: "None"
+        })
+      }
+
+  }
+}
 
 function fakeEmail() {
   var text = "";
@@ -212,7 +212,8 @@ async function modifyAnnouncement(id, subject, content, pinned) {
   let result = db.collection("events").doc(id).set({
     name: subject,
     content: content,
-    isPinned: pinned ? true : false
+    isPinned: pinned ? true : false,
+    timePosted: new Date()
   })
   return result;
 }
