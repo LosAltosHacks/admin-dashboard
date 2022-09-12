@@ -5,27 +5,28 @@ window.onbeforeunload = function(e) {
 };
 
 function init() {
-  gapi.load('auth2', function() {
-    auth2 = gapi.auth2.init({
-      client_id: '191344389936-gus0astcrgrq9rbp62a9q6018b61tm89.apps.googleusercontent.com',
-      cookiepolicy: 'single_host_origin',
-      scope: 'profile'
-    }).then(function(auth2) {
-      gapi.auth2.getAuthInstance().signOut();
-      $('#login-page').append('<div id="google-signin" class="g-signin2" data-onsuccess="onSignIn" style="display: none;"></div>');
-      gapi.signin2.render('google-signin', {
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSignIn,
-        'onfailure': function(error) {
-          console.log(error);
-        }
-      })
-      $("#google-signin").animate({opacity: "toggle"}, 700);
-    });
-  })
+  window.location.href = "/";
+//   gapi.load('auth2', function() {
+//     auth2 = gapi.auth2.init({
+//       client_id: '191344389936-gus0astcrgrq9rbp62a9q6018b61tm89.apps.googleusercontent.com',
+//       cookiepolicy: 'single_host_origin',
+//       scope: 'profile'
+//     }).then(function(auth2) {
+//       gapi.auth2.getAuthInstance().signOut();
+//       $('#login-page').append('<div id="google-signin" class="g-signin2" data-onsuccess="onSignIn" style="display: none;"></div>');
+//       gapi.signin2.render('google-signin', {
+//         'width': 240,
+//         'height': 50,
+//         'longtitle': true,
+//         'theme': 'dark',
+//         'onsuccess': onSignIn,
+//         'onfailure': function(error) {
+//           console.log(error);
+//         }
+//       })
+//       $("#google-signin").animate({opacity: "toggle"}, 700);
+//     });
+//   })
 }
 
 
